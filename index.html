@@ -38,11 +38,12 @@
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
+            text-align: center; /* 追加 */
         }
         .contact-form input[type="text"],
         .contact-form input[type="email"],
         .contact-form textarea {
-            width: 100%;
+            width: calc(100% - 22px); /* 変更 */
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
@@ -84,11 +85,11 @@
         <!-- Add more portfolio items as needed -->
 
         <div class="contact-form">
-            <h2>Contact</h2>
+            <h2>Contact Me</h2>
             <form action="#" method="post">
                 <input type="text" name="name" placeholder="Your Name" required><br>
                 <input type="email" name="email" placeholder="Your Email" required><br>
-                <textarea name="message" rows="4" placeholder="Your Message" required></textarea><br>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
                 <input type="submit" value="Send Message">
             </form>
         </div>
