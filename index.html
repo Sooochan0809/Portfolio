@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>My Portfolio</title>
+    <!-- Add FontAwesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,6 +24,32 @@
             margin: 20px auto;
             padding: 0 20px;
         }
+        .intro {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .intro h2 {
+            margin-bottom: 10px;
+        }
+        .intro p {
+            font-size: 16px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #555;
+        }
         .portfolio-item {
             margin-bottom: 40px;
         }
@@ -39,12 +66,12 @@
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
-            text-align: center; /* 追加 */
+            text-align: center;
         }
         .contact-form input[type="text"],
         .contact-form input[type="email"],
         .contact-form textarea {
-            width: calc(100% - 22px); /* 変更 */
+            width: calc(100% - 22px);
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
@@ -61,50 +88,68 @@
         .contact-form input[type="submit"]:hover {
             background-color: #555;
         }
+        .social-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 24px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #555;
+        }
     </style>
 </head>
-
 <body>
     <header>
         <h1>My Portfolio</h1>
     </header>
-
-    <div class="bio">
-      <h2>About Me</h2>
-      <p>I am a passionate web developer with experience in HTML, CSS, and JavaScript. I love building beautiful and functional websites that make a difference. Let's create something amazing together!</p>
-    </div>
-
     <div class="container">
-        <div class="portfolio-item">
-            <img src="image1.jpg" alt="Project 1">
-            <h3>Project 1</h3>
-            <p>Description of project 1 goes here...</p>
+        <div class="intro">
+            <h2>About Me</h2>
+            <p>I am a passionate web developer with experience in HTML, CSS, and JavaScript. I love building beautiful and functional websites that make a difference. Let's create something amazing together!</p>
+            <a href="#projects" class="btn">View My Projects</a>
+            <a href="#contact" class="btn">Contact Me</a>
         </div>
-        <div class="portfolio-item">
-            <img src="image2.jpg" alt="Project 2">
-            <h3>Project 2</h3>
-            <p>Description of project 2 goes here...</p>
+
+        <div id="projects">
+            <h2>My Projects</h2>
+            <div class="portfolio-item">
+                <img src="image1.jpg" alt="Project 1">
+                <h3>Project 1</h3>
+                <p>Description of project 1 goes here...</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="image2.jpg" alt="Project 2">
+                <h3>Project 2</h3>
+                <p>Description of project 2 goes here...</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="image3.jpg" alt="Project 3">
+                <h3>Project 3</h3>
+                <p>Description of project 3 goes here...</p>
+            </div>
         </div>
-        <div class="portfolio-item">
-            <img src="image3.jpg" alt="Project 3">
-            <h3>Project 3</h3>
-            <p>Description of project 3 goes here...</p>
-        </div>
-        <div class="contact-form">
-            <h2>Contact</h2>
+
+        <div id="contact" class="contact-form">
+            <h2>Contact Me</h2>
             <form action="#" method="post">
                 <input type="text" name="name" placeholder="Your Name" required><br>
                 <input type="email" name="email" placeholder="Your Email" required><br>
                 <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
                 <input type="submit" value="Send Message">
             </form>
-        </div>
-        <div class="social-links">
-          <a href="mailto:youremail@example.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.facebook.com/yourusername" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="https://twitter.com/yourusername" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/yourusername" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <!-- Add more social media links as needed -->
+            <div class="social-links">
+                <a href="mailto:youremail@example.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.facebook.com/yourusername" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com/yourusername" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/yourusername" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <!-- Add more social media links as needed -->
+            </div>
         </div>
     </div>
 </body>
