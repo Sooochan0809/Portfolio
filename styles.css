@@ -24,6 +24,8 @@ nav ul {
 }
 
 nav ul li {
+    background-color: #343a40;
+    color: #fff;
     display: inline;
     margin-right: 20px;
 }
