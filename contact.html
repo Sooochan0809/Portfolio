@@ -1,35 +1,9 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio - Introduction</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>My Portfolio</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="projects.html">My Projects</a></li>
-        </ul>
-    </nav>
-    <div class="container">
-        <div class="intro">
-            <h2>About Me</h2>
-            <p>I am a passionate web developer with experience in HTML, CSS, and JavaScript. I love building beautiful and functional websites that make a difference. Let's create something amazing together!</p>
-        </div>
-    </div>
-</body>
-</html>-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sotaro Kido - Portfolio</title>
+    <title>Contact - Sotaro Kido</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -44,21 +18,24 @@
             <h1>Sotaro Kido</h1>
             <nav>
                 <ul>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <section id="hero">
-        <div class="container">
-            <h2>Welcome to My Portfolio</h2>
-            <p>I am a graduate student passionate about Human-Computer Interaction (HCI). Explore my work and feel free to get in touch!</p>
+    <div class="container">
+        <div class="contact-form">
+            <h2>Contact</h2>
+            <form action="https://formspree.io/skido24@iamas.ac.jp"method="post">
+                <input type="text" name="name" placeholder="Your Name" required><br>
+                <input type="email" name="email" placeholder="Your Email" required><br>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
+                <input type="submit" value="Send Message">
+            </form>
         </div>
-    </section>
-
+    </div>
     <footer>
         <div class="container">
             <p>&copy; 2024 Sotaro Kido</p>
