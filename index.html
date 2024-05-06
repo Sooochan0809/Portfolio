@@ -34,6 +34,31 @@
             margin-top: 10px;
             font-size: 24px;
         }
+        .contact-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact-form input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .contact-form input[type="submit"]:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -57,6 +82,16 @@
             <p>Description of project 3 goes here...</p>
         </div>
         <!-- Add more portfolio items as needed -->
+
+        <div class="contact-form">
+            <h2>Contact Me</h2>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Your Name" required><br>
+                <input type="email" name="email" placeholder="Your Email" required><br>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
+                <input type="submit" value="Send Message">
+            </form>
+        </div>
     </div>
 </body>
 </html>
