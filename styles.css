@@ -2,14 +2,19 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #f8f9fa;
+    color: #333;
 }
 
 header {
-    background-color: #333;
+    background-color: #343a40;
     color: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0;
+}
+
+h1 {
+    margin: 0;
 }
 
 nav ul {
@@ -24,7 +29,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #333;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -43,21 +48,6 @@ nav ul li a {
     margin-bottom: 20px;
 }
 
-.portfolio-item {
-    margin-bottom: 40px;
-}
-
-.portfolio-item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.portfolio-item h3 {
-    margin-top: 10px;
-    font-size: 24px;
-}
-
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
@@ -69,7 +59,7 @@ nav ul li a {
 }
 
 .contact-form input[type="submit"] {
-    background-color: #333;
+    background-color: #343a40;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -81,15 +71,14 @@ nav ul li a {
     background-color: #555;
 }
 
-.social-links a {
-    display: inline-block;
-    margin: 0 10px;
-    font-size: 16px;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.social-links {
+    text-align: right;
 }
 
-.social-links a:hover {
-    color: #555;
+.social-links a {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 20px;
+    color: #343a40;
+    text-decoration: none;
 }
