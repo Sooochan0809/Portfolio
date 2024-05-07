@@ -47,7 +47,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sotaro Kido - Portfolio</title>
+    <title>Kido Sotaro - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -61,10 +61,26 @@
             padding-top:240px; /* 上部のpaddingを100pxに設定 */
             /*padding-bottom: 240px; /* 下部のpaddingを100pxに設定 */
         /*}*/
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 5px;
+        }
+        nav ul li a {
+            color: #333; /* リンクの色を白に設定 */
+            text-decoration: none;
+            font-size: 30px; /* リンクのフォントサイズを大きくする */
+        }
+        h1 {
+            font-size: 60px; /* タイトルのフォントサイズを大きくする */
+        }
     </style>
 </head>
 <body>
-    <header>
+    <!--<header>
         <div class="container">
             <h1>Sotaro Kido</h1>
             <nav>
@@ -75,16 +91,35 @@
                 </ul>
             </nav>
         </div>
-    </header>
+    </header>-->
 
     <section id="hero">
         <div class="container">
-            <h2>Welcome to My Portfolio</h2>
-            <p>I am a graduate student passionate about Human-Computer Interaction (HCI). Explore my work and feel free to get in touch!</p>
+            <h1>Kido Sotaro</h1>
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </nav>
+                <div class="container">
+                    <nav>
+                        <ul>
+                            <li><a href="portfolio.html">Work</a></li>
+                        </ul>
+                    </nav>
+                <div class="container">
+                    <nav>
+                        <ul>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
+    <!--<footer>
         <div class="container">
             <p>&copy; 2024 Sotaro Kido</p>
             <div class="social-links">
@@ -92,5 +127,5 @@
                 <a href="https://www.instagram.com/Sotaro_Kido" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-    </footer>
+    </footer>-->
 </body>
