@@ -193,3 +193,25 @@ footer {
     color: #343a40;
     text-decoration: none;
 }
+/* 通常のスタイル */
+#hero {
+    text-align: center; /* テキストを中央に配置 */
+    margin-top: 200px; /* 上部の余白を50pxに設定 */
+    margin-bottom: 200px; /* 下部の余白を50pxに設定 */
+}
+
+/* メディアクエリ: 幅が600px以下の場合 */
+@media screen and (max-width: 600px) {
+    #hero {
+        margin-top: 50px; /* 上部の余白を30pxに設定 */
+        margin-bottom: 50px; /* 下部の余白を30pxに設定 */
+    }
+}
+
+/* メディアクエリ: 幅が400px以下の場合 */
+@media screen and (max-width: 400px) {
+    #hero {
+        margin-top: 30px; /* 上部の余白を20pxに設定 */
+        margin-bottom: 30px; /* 下部の余白を20pxに設定 */
+    }
+}
