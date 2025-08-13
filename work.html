@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Works｜Kido Sotaro</title>
+    <meta name="description" content="作品・協力・アーカイブ" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
+                    colors: { brand: { DEFAULT: "#4f46e5" } }
+                }
+            }, darkMode: 'class'
+        };
+        // もしlocalStorageのthemeがlightなら無視する
+        localStorage.setItem('theme', 'light');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .ratio {
+            position: relative;
+            width: 100%;
+            padding-top: 62.5%
+        }
+
+        .ratio>img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem
+        }
+    </style>
+</head>
+
+<body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+    <!-- header 共通 -->
+    <header
+        class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
+        <div class="mx-auto w-full px-0 px-4 sm:px-6 lg:px-8 flex items-center h-16">
+            <a href="./" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
+            <nav class="ml-auto hidden sm:flex gap-6 text-sm">
+                <a data-nav href="about.html" class="hover:text-brand">About</a>
+                <a data-nav href="work.html" class="hover:text-brand font-bold">Works</a>
+                <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
+            </nav>
+            <button id="themeToggle"
+                class="ml-3 rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2 hover:shadow"
+                aria-label="テーマ切替">
+                <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path
+                        d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364-1.414-1.414M7.05 7.05 5.636 5.636m12.728 0-1.414 1.414M7.05 16.95l-1.414 1.414" />
+                    <circle cx="12" cy="12" r="4" />
+                </svg>
+                <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 15.5A8.38 8.38 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5z" />
+                </svg>
+            </button>
+            <button id="menuBtn" class="ml-2 sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2"
+                aria-label="メニュー">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobileNav" class="sm:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
+            <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
+                <a data-nav class="hover:text-brand" href="about.html">About</a>
+                <a data-nav class="hover:text-brand font-bold" href="work.html">Works</a>
+                <a data-nav class="hover:text-brand" href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-28">
+        <!-- Section 1: Works -->
+        <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex items-end justify-between gap-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold">Works</h1>
+                    <p class="text-sm text-zinc-500 dark:text-zinc-400">研究/作品</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input id="search1" type="search" placeholder="検索…"
+                        class="w-40 sm:w-60 rounded-xl border px-3 py-2 text-sm bg-white/70 dark:bg-zinc-950/60" />
+                    <select id="tagFilter1" class="rounded-xl border px-3 py-2 text-sm bg-white/70 dark:bg-zinc-950/60">
+                        <option value="">すべて</option>
+                    </select>
+                </div>
+            </div>
+            <div id="grid1" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+        <!-- Section 2: More/Archive -->
+        <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 border-t border-zinc-200 dark:border-zinc-800">
+            <div class="flex items-end justify-between gap-6">
+                <div>
+                    <h2 class="text-2xl font-extrabold">Cooperation</h2>
+                    <p class="text-sm text-zinc-500 dark:text-zinc-400">制作協力</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input id="search2" type="search" placeholder="検索…"
+                        class="w-40 sm:w-60 rounded-xl border px-3 py-2 text-sm bg-white/70 dark:bg-zinc-950/60" />
+                    <select id="tagFilter2" class="rounded-xl border px-3 py-2 text-sm bg-white/70 dark:bg-zinc-950/60">
+                        <option value="">すべて</option>
+                    </select>
+                </div>
+            </div>
+            <div id="grid2" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+    </main>
+    <footer class="py-10 text-center text-sm text-zinc-500">© <span id="y"></span> Your Name</footer>
+
+    <script src="js/site.js"></script>
+    <script src="js/work-data.js"></script>
+    <script>
+        // Section 1: Works
+        const grid1 = document.getElementById('grid1');
+        const tagFilter1 = document.getElementById('tagFilter1');
+        const search1 = document.getElementById('search1');
+        const allTags1 = Array.from(new Set(works.flatMap(w => w.tags))).sort();
+        allTags1.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; tagFilter1.appendChild(o); });
+        function cardHTML1(w) {
+            return `
+      <article class="group rounded-2xl border overflow-hidden bg-white/60 dark:bg-zinc-950/50 hover:shadow-lg transition">
+        <a href="${w.link || '#'}" class="block">
+          <div class="ratio"><img src="${w.cover}" alt="${w.title}" loading="lazy"/></div>
+          <div class="p-4">
+            <div class="flex items-center justify-between text-xs text-zinc-500"><span>${w.year}</span><span>${w.tags.join(', ')}</span></div>
+            <h3 class="mt-2 text-lg font-semibold group-hover:text-brand">${w.title}</h3>
+            <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">${w.summary}</p>
+          </div>
+        </a>
+      </article>`;
+        }
+        function render1() {
+            const q = (search1.value || '').toLowerCase();
+            const tag = tagFilter1.value;
+            const filtered = works.filter(w => {
+                const okTag = !tag || w.tags.includes(tag);
+                const okText = !q || [w.title, w.summary, w.tags.join(' ')].join(' ').toLowerCase().includes(q);
+                return okTag && okText;
+            });
+            grid1.innerHTML = filtered.map(cardHTML1).join('');
+        }
+        search1.addEventListener('input', render1);
+        tagFilter1.addEventListener('change', render1);
+        render1();
+
+        // Section 2: Works More
+        const grid2 = document.getElementById('grid2');
+        const tagFilter2 = document.getElementById('tagFilter2');
+        const search2 = document.getElementById('search2');
+        const allTags2 = Array.from(new Set(worksMore.flatMap(w => w.tags))).sort();
+        allTags2.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; tagFilter2.appendChild(o); });
+        function cardHTML2(w) {
+            return `
+      <article class="group rounded-2xl border overflow-hidden bg-white/60 dark:bg-zinc-950/50 hover:shadow-lg transition">
+        <a href="${w.link || '#'}" class="block">
+          <div class="ratio"><img src="${w.cover}" alt="${w.title}" loading="lazy"/></div>
+          <div class="p-4">
+            <div class="flex items-center justify-between text-xs text-zinc-500"><span>${w.year}</span><span>${w.tags.join(', ')}</span></div>
+            <h3 class="mt-2 text-lg font-semibold group-hover:text-brand">${w.title}</h3>
+            <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">${w.summary}</p>
+          </div>
+        </a>
+      </article>`;
+        }
+        function render2() {
+            const q = (search2.value || '').toLowerCase();
+            const tag = tagFilter2.value;
+            const filtered = worksMore.filter(w => {
+                const okTag = !tag || w.tags.includes(tag);
+                const okText = !q || [w.title, w.summary, w.tags.join(' ')].join(' ').toLowerCase().includes(q);
+                return okTag && okText;
+            });
+            grid2.innerHTML = filtered.map(cardHTML2).join('');
+        }
+        search2.addEventListener('input', render2);
+        tagFilter2.addEventListener('change', render2);
+        render2();
+
+        document.getElementById('y').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

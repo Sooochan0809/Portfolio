@@ -1,120 +1,208 @@
-<!--<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sotaro Kido - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>城戸双汰朗のポートフォリオ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
+                    colors: { brand: { DEFAULT: "#4f46e5" } },
+                    boxShadow: { glow: "0 20px 60px -20px rgba(0,0,0,.25)" }
+                }
+            },
+            darkMode: 'class'
+        };
+        // ダークモードを常に有効にする
+        document.documentElement.classList.add('dark');
+        // もしlocalStorageのthemeがlightなら無視する
+        localStorage.setItem('theme', 'dark');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
     <style>
-        .social-links {
-            text-align: right; /* アイコンを右詰めに配置 */
+        .dot {
+            backdrop-filter: blur(8px);
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+        .dot:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, .18);
+        }
+
+        .ring-soft {
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, .06) inset;
+        }
+
+        /* === 背景スライドショー（常時アニメ） === */
+        #bg-slideshow {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            pointer-events: none;
+        }
+
+        #bg-slideshow img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            animation: kb 24s linear infinite;
+            will-change: transform, opacity;
+            filter: saturate(1) contrast(1);
+        }
+
+        /* 4枚を時間差で循環（間断なしで常に動く） */
+        #bg-slideshow img:nth-of-type(1) {
+            animation-delay: 0s;
+        }
+
+        #bg-slideshow img:nth-of-type(2) {
+            animation-delay: 6s;
+        }
+
+        #bg-slideshow img:nth-of-type(3) {
+            animation-delay: 12s;
+        }
+
+        #bg-slideshow img:nth-of-type(4) {
+            animation-delay: 18s;
+        }
+
+        /* クロスフェード + ゆるズーム（待ち時間ゼロ設計） */
+        @keyframes kb {
+            0% {
+                opacity: 0;
+                transform: scale(1);
+            }
+
+            5% {
+                opacity: 1;
+                transform: scale(1.01);
+            }
+
+            /* フェードイン開始すぐ */
+            25% {
+                opacity: 1;
+                transform: scale(1.06);
+            }
+
+            /* 常にズームで動いている */
+            30% {
+                opacity: 0;
+                transform: scale(1.08);
+            }
+
+            /* 次の画像とクロスフェード */
+            100% {
+                opacity: 0;
+                transform: scale(1.08);
+            }
+        }
+
+        /* 読みやすさオーバーレイ（濃さは調整OK） */
+        #bg-slideshow .overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, .45), rgba(255, 255, 255, .15) 35%, rgba(255, 255, 255, 0)),
+                linear-gradient(to top, rgba(9, 9, 11, .55), rgba(9, 9, 11, .25) 40%, rgba(9, 9, 11, 0));
+        }
+
+        @media (prefers-color-scheme: dark) {
+            #bg-slideshow .overlay {
+                background:
+                    linear-gradient(to bottom, rgba(9, 9, 11, .60), rgba(9, 9, 11, .30) 35%, rgba(9, 9, 11, 0)),
+                    linear-gradient(to top, rgba(9, 9, 11, .65), rgba(9, 9, 11, .35) 40%, rgba(9, 9, 11, 0));
+            }
+        }
+
+        /* 動きを減らしたいユーザー配慮 */
+        @media (prefers-reduced-motion: reduce) {
+            #bg-slideshow img {
+                animation: none;
+                opacity: 1;
+            }
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Sotaro Kido</h1>
-            <nav>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="portfolio.html">Work</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section id="hero">
-        <div class="container">
-            <h2>Welcome to My Portfolio</h2>
-            <p>I am a graduate student passionate about Human-Computer Interaction (HCI). Explore my work and feel free to get in touch!</p>
-        </div>
-    </section>
+<body class="min-h-svh flex flex-col bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 font-sans">
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Sotaro Kido</p>
-            <div class="social-links">
-                <a href="mailto:skido24@iamas.ac.jp" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.instagram.com/Sotaro_Kido" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>-->
+    <!-- 背景スライドショー（常時アニメ） -->
+    <div id="bg-slideshow" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1523419409543-a9d0e78a3a20?q=80&w=1920&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1920&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1920&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1920&auto=format&fit=crop" alt="">
+        <div class="overlay"></div>
+    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kido Sotaro - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
-    <script src="main.js"></script>
-    <!-- <script src="particle.js"></script>
-    <script src="utils.js"></script>  -->
-    <style>
-        .social-links {
-            text-align: right;
+    <!-- Hero（中央寄せに戻す） -->
+    <main class="flex-1 flex items-center justify-center">
+        <section class="mx-auto max-w-7xl px-6 sm:px-24 w-full py-28">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-16 lg:gap-x-20 items-center lg:items-end">
+                <!-- 画像 -->
+                <div
+                    class="order-first lg:order-none lg:col-span-5 w-full flex justify-center lg:justify-center basis-[100%]">
+                    <div class="relative">
+                        <div
+                            class="w-[24rem] h-[24rem] sm:w-[36rem] sm:h-[36rem] rounded-full overflow-hidden ring-1 ring-zinc-200/80 dark:ring-zinc-800/80 shadow-glow">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop"
+                                alt="Portrait" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="absolute inset-0 -z-10 rounded-full blur-3xl opacity-30 bg-brand/20"></div>
+                    </div>
+                </div>
 
-        }
-
-        .container {
-            text-align: center;
-
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 5px;
-        }
-
-        nav ul li a {
-            color: #333;
-
-            text-decoration: none;
-            font-size: 30px;
-        }
-
-        h1 {
-            font-size: 60px;
-        }
-    </style>
-</head>
-
-<body>
-
-    <section id="hero">
-        <div class="container">
-            <h1>Kido Sotaro</h1>
-            <div class="container">
-                <nav>
-                    <ul>
-                        <li><a href="about.html">About</a></li>
-                    </ul>
-                </nav>
-                <div class="container">
-                    <nav>
-                        <ul>
-                            <li><a href="portfolio.html">Work</a></li>
-                        </ul>
-                    </nav>
-                    <div class="container">
-                        <nav>
-                            <ul>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </nav>
+                <!-- テキスト -->
+                <div class="lg:col-span-7 w-full text-center lg:text-left basis-[70%] lg:pl-12">
+                    <div class="ml-0 lg:mx-0 max-w-2xl space-y-8 text-sm">
+                        <h1
+                            class="text-[clamp(2.5rem,7vw,5rem)] font-extrabold tracking-tight leading-tight lg:text-left text-center">
+                            <span class="tracking-[0.05em]">城戸 </span>
+                            <span class="tracking-[0em]">双汰朗</span>
+                            <span class="block text-base text-zinc-400 mt-0 tracking-[0.25em]">Kido Sotaro</span>
+                        </h1>
+                        <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed" style="font-size: 0.9rem;">
+                            2001年生まれ。熊本県出身。<br>
+                            小学生から高校生までは、競技バドミントンに熱中。<br>
+                            地元の県立大学大学に進学し、情報工学や教育などの分野を学ぶ。<br>
+                            その後、ソフトウェアを用いた「表現」に興味を持ったことをきっかけに、情報科学芸術大学院大学(IAMAS)に進学。<br>
+                            自身の興味関心を論文/作品/ワークショップと様々な形態でアウトプットしています。
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-6 justify-center lg:justify-start">
+                            <a href="about.html"
+                                class="dot inline-flex items-center justify-center w-32 h-32 rounded-full bg-white/70 dark:bg-zinc-900/60 ring-1 ring-zinc-200/70 dark:ring-zinc-700/60 ring-soft text-base font-semibold">略歴</a>
+                            <a href="work.html"
+                                class="dot inline-flex items-center justify-center w-32 h-32 rounded-full bg-white/70 dark:bg-zinc-900/60 ring-1 ring-zinc-200/70 dark:ring-zinc-700/60 ring-soft text-base font-semibold">作品</a>
+                            <a href="contact.html"
+                                class="dot inline-flex items-center justify-center w-32 h-32 rounded-full bg-white/70 dark:bg-zinc-900/60 ring-1 ring-zinc-200/70 dark:ring-zinc-700/60 ring-soft text-base font-semibold">連絡</a>
+                        </div>
                     </div>
                 </div>
             </div>
-    </section>
+        </section>
+    </main>
 
+    <!-- 任意のサイト用スクリプト -->
+    <script src="js/site.js"></script>
+    <script>
+        const y = document.getElementById('y');
+        if (y) y.textContent = new Date().getFullYear();
+    </script>
 </body>
+
+</html>

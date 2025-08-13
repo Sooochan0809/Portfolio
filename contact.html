@@ -1,52 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Kido Sotaro</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        .social-links {
-            text-align: right; /* アイコンを右詰めに配置 */
-        }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact｜Kido Sotaro</title>
+    <meta name="description" content="お問い合わせ" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] }, colors: { brand: { DEFAULT: "#4f46e5" } } } }, darkMode: 'class' };</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap"
+        rel="stylesheet">
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Kido Sotaro</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="portfolio.html">Work</a></li>
-                </ul>
+
+<body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+    <!-- header 共通 -->
+    <header
+        class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
+        <div class="mx-auto w-full px-0 px-4 sm:px-6 lg:px-8 flex items-center h-16">
+            <a href="./" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
+            <nav class="ml-auto hidden sm:flex gap-6 text-sm">
+                <a data-nav href="about.html" class="hover:text-brand">About</a>
+                <a data-nav href="work.html" class="hover:text-brand">Works</a>
+                <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
+            </nav>
+            <button id="themeToggle"
+                class="ml-3 rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2 hover:shadow"
+                aria-label="テーマ切替">
+                <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path
+                        d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364-1.414-1.414M7.05 7.05 5.636 5.636m12.728 0-1.414 1.414M7.05 16.95l-1.414 1.414" />
+                    <circle cx="12" cy="12" r="4" />
+                </svg>
+                <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 15.5A8.38 8.38 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5z" />
+                </svg>
+            </button>
+            <button id="menuBtn" class="ml-2 sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2"
+                aria-label="メニュー">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobileNav" class="sm:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
+            <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
+                <a data-nav class="hover:text-brand" href="about.html">About</a>
+                <a data-nav class="hover:text-brand" href="work.html">Works</a>
+                <a data-nav class="hover:text-brand" href="contact.html">Contact</a>
             </nav>
         </div>
     </header>
 
-    <div class="container">
-        <div class="contact-form">
-            <h2>Contact</h2>
-            <form action="https://formspree.io/skido24@iamas.ac.jp"method="post">
-                <input type="text" name="name" placeholder="お名前" required><br>
-                <input type="text" name="Affiliation" placeholder="所属" required><br>
-                <input type="email" name="email" placeholder="Email" required><br>
-                <textarea name="message" rows="13" placeholder="内容" required></textarea><br>
-                <input type="submit" value="Send Message">
-            </form>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Sotaro Kido</p>
-            <div class="social-links">
-                <a href="mailto:skido24@iamas.ac.jp" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.instagram.com/Sotaro_Kido" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <main class="pt-28">
+        <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 grid lg:grid-cols-2 gap-10 items-start">
+            <div>
+                <h1 class="text-3xl font-extrabold">Contact</h1>
+                <p class="mt-2 text-sm text-zinc-500 dark:text-zinc-400">お仕事・共同研究のご相談などお気軽に</p>
             </div>
-        </div>
-    </footer>
+            <form class="grid gap-4"
+                onsubmit="event.preventDefault();window.location.href='mailto:you@example.com?subject='+encodeURIComponent(document.getElementById('msgSubject').value)+'&body='+encodeURIComponent(document.getElementById('msgBody').value)">
+                <input id="msgSubject" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60"
+                    placeholder="件名" required />
+                <textarea id="msgBody" class="rounded-xl border px-4 py-3 min-h-[120px] bg-white/70 dark:bg-zinc-950/60"
+                    placeholder="お問い合わせ内容" required></textarea>
+                <button
+                    class="justify-self-start rounded-2xl bg-brand px-5 py-3 text-white font-semibold shadow-glow">メール作成</button>
+            </form>
+        </section>
+    </main>
+    <footer class="py-10 text-center text-sm text-zinc-500">© <span id="y"></span> Your Name</footer>
+    <script src="js/site.js"></script>
+    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    <script>localStorage.setItem('theme', 'light');</script>
 </body>
+
 </html>
