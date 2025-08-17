@@ -27,37 +27,35 @@
     <style>
         .ratio {
             position: relative;
-            width: 100%;
+            width: 100%
         }
 
         .ratio::before {
             content: "";
             display: block;
-            padding-top: var(--ratio, 56.25%);
+            padding-top: var(--ratio, 56.25%)
         }
 
-        /* 既定16:9 */
         .ratio>* {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 1rem;
+            border-radius: 1rem
         }
 
-        /* スライダー: スクロールバー非表示 */
         .no-scrollbar {
             -ms-overflow-style: none;
-            scrollbar-width: none;
+            scrollbar-width: none
         }
 
         .no-scrollbar::-webkit-scrollbar {
-            display: none;
+            display: none
         }
 
         dialog::backdrop {
-            background: rgba(0, 0, 0, .6);
+            background: rgba(0, 0, 0, .6)
         }
     </style>
 </head>
@@ -107,8 +105,6 @@
     <!-- Main -->
     <main class="pt-16">
         <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
-
-            <!-- TopBar：タイトル + 年 + タグ -->
             <div id="topbar" class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <h1 id="title" class="text-3xl md:text-4xl font-extrabold tracking-tight"></h1>
                 <div class="flex flex-wrap items-center gap-2 md:gap-3 text-sm text-zinc-600">
@@ -118,12 +114,8 @@
                 </div>
             </div>
 
-            <!-- 本文 -->
-            <article id="body" class="prose prose-zinc dark:prose-invert max-w-none mt-8">
-                <!-- 動的に挿入 -->
-            </article>
+            <article id="body" class="prose prose-zinc dark:prose-invert max-w-none mt-8"></article>
 
-            <!-- 作品一覧へ戻る -->
             <div class="mt-12">
                 <a href="work.html"
                     class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
@@ -138,7 +130,7 @@
         </section>
     </main>
 
-    <!-- 画像/動画モーダル -->
+    <!-- モーダル -->
     <dialog id="viewer" class="p-0 rounded-2xl w-[min(90vw,1000px)] bg-transparent">
         <button id="closeViewer"
             class="absolute right-3 top-3 z-10 rounded-full bg-white/80 dark:bg-zinc-900/80 p-2 border">✕</button>
@@ -150,12 +142,10 @@
 
     <footer class="py-10 text-center text-sm text-zinc-500">© <span id="y"></span> Kido Sotaro</footer>
 
-    <!-- 共通JS -->
     <script src="js/site.js"></script>
     <script src="js/work-data.js"></script>
 
     <script>
-        // ============ Helpers ============
         const $ = (s, r = document) => r.querySelector(s);
         const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
         const params = new URLSearchParams(location.search);
@@ -170,8 +160,7 @@
             return (!w || !h) ? "56.25%" : (h / w * 100) + "%";
         };
 
-        const tagBadge = t =>
-            `<li class="inline-flex items-center px-2 py-1 rounded-lg border border-zinc-300/70 dark:border-zinc-700">${t}</li>`;
+        const tagBadge = t => `<li class="inline-flex items-center px-2 py-1 rounded-lg border border-zinc-300/70 dark:border-zinc-700">${t}</li>`;
 
         function subHeading(text) {
             const h = document.createElement("h3");
@@ -180,13 +169,11 @@
             return h;
         }
 
-        // [文字](URL) と 生URL を <a> に変換
         function linkify(text) {
             if (!text) return "";
             let html = String(text)
                 .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
                     `<a href="$2" target="_blank" rel="noopener" class="underline decoration-zinc-400 hover:decoration-brand">$1</a>`);
-            // 生URL
             html = html.replace(/(^|[\s(>])((https?:\/\/[^\s<)]+))/g,
                 (_, p1, url) => `${p1}<a href="${url}" target="_blank" rel="noopener" class="underline decoration-zinc-400 hover:decoration-brand">${url}</a>`);
             return html;
@@ -209,24 +196,49 @@
             document.head.appendChild(s);
         }
 
-        // 画像群を単体/スライダーで描画（本文やギャラリー用に継続利用）
-        function renderImages(imgs, frag) {
-            if (!imgs || imgs.length === 0) return;
+        // 画像/動画の配列を単体 or スライダーで描画
+        function renderImages(items, frag) {
+            if (!items || items.length === 0) return;
 
-            if (imgs.length === 1) {
+            // 1枚だけ
+            if (items.length === 1) {
+                const it = items[0];
                 const fig = document.createElement("figure");
                 const box = document.createElement("div");
                 box.className = "ratio mt-6";
-                box.style.setProperty("--ratio", ratioVar(imgs[0].ratio || "16/9"));
-                const image = document.createElement("img");
-                image.src = imgs[0].src; image.alt = imgs[0].alt || "";
-                image.loading = "lazy"; image.className = "cursor-zoom-in";
-                image.addEventListener("click", () => openViewer("img", imgs[0].src, imgs[0].alt));
-                box.appendChild(image); fig.appendChild(box);
+                box.style.setProperty("--ratio", ratioVar(it.ratio || "16/9"));
+
+                if (it.type === "video") {
+                    const v = document.createElement("video");
+                    v.src = it.src;
+                    if (it.poster) v.poster = it.poster;
+                    v.controls = true;
+                    v.playsInline = true; v.setAttribute('playsinline', '');
+                    v.muted = true; v.setAttribute('muted', '');
+                    v.preload = 'metadata';
+                    v.className = "cursor-zoom-in object-contain rounded-2xl";
+                    v.addEventListener("click", (e) => {
+                        if (!v.paused) return;
+                        openViewer("video", it.src, "");
+                        e.preventDefault();
+                    });
+                    box.appendChild(v);
+                } else {
+                    const img = document.createElement("img");
+                    img.src = it.src;
+                    img.alt = it.alt || "";
+                    img.loading = "lazy";
+                    img.className = "cursor-zoom-in";
+                    img.addEventListener("click", () => openViewer("img", it.src, it.alt));
+                    box.appendChild(img);
+                }
+
+                fig.appendChild(box);
                 frag.appendChild(fig);
                 return;
             }
 
+            // 複数 → スライダー
             const wrap = document.createElement("figure");
             const sWrap = document.createElement("div");
             sWrap.className = "relative group";
@@ -235,16 +247,41 @@
             track.className = "flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth";
             track.setAttribute("data-track", "");
 
-            imgs.forEach(obj => {
+            items.forEach(obj => {
                 const slide = document.createElement("div");
                 slide.className = "snap-start shrink-0 w-full";
+
                 const box = document.createElement("div");
-                box.className = "ratio"; box.style.setProperty("--ratio", ratioVar(obj.ratio || "16/9"));
-                const image = document.createElement("img");
-                image.src = obj.src; image.alt = obj.alt || "";
-                image.loading = "lazy"; image.className = "cursor-zoom-in";
-                image.addEventListener("click", () => openViewer("img", obj.src, obj.alt));
-                box.appendChild(image); slide.appendChild(box); track.appendChild(slide);
+                box.className = "ratio";
+                box.style.setProperty("--ratio", ratioVar(obj.ratio || "16/9"));
+
+                if (obj.type === "video") {
+                    const v = document.createElement("video");
+                    v.src = obj.src;
+                    if (obj.poster) v.poster = obj.poster;
+                    v.controls = true;
+                    v.playsInline = true; v.setAttribute('playsinline', '');
+                    v.muted = true; v.setAttribute('muted', '');
+                    v.preload = 'metadata';
+                    v.className = "cursor-zoom-in object-contain rounded-2xl";
+                    v.addEventListener("click", (e) => {
+                        if (!v.paused) return;
+                        openViewer("video", obj.src, "");
+                        e.preventDefault();
+                    });
+                    box.appendChild(v);
+                } else {
+                    const image = document.createElement("img");
+                    image.src = obj.src;
+                    image.alt = obj.alt || "";
+                    image.loading = "lazy";
+                    image.className = "cursor-zoom-in";
+                    image.addEventListener("click", () => openViewer("img", obj.src, obj.alt));
+                    box.appendChild(image);
+                }
+
+                slide.appendChild(box);
+                track.appendChild(slide);
             });
 
             const btnBase = "absolute top-1/2 -translate-y-1/2 z-10 rounded-full border bg-white/90 dark:bg-zinc-900/80 px-3 py-2 shadow opacity-100 md:opacity-0 md:group-hover:opacity-100 transition";
@@ -261,7 +298,7 @@
             const dots = document.createElement("div");
             dots.className = "absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5";
             dots.setAttribute("data-dots", "");
-            imgs.forEach((_, idx) => {
+            items.forEach((_, idx) => {
                 const d = document.createElement("button");
                 d.className = "w-2.5 h-2.5 rounded-full bg-white/70 dark:bg-zinc-800/70 ring-1 ring-black/10";
                 d.setAttribute("data-dot", String(idx));
@@ -271,7 +308,7 @@
             sWrap.appendChild(track); sWrap.appendChild(prev); sWrap.appendChild(next); sWrap.appendChild(dots);
             wrap.appendChild(sWrap); frag.appendChild(wrap);
 
-            queueMicrotask(() => initSlider(sWrap));
+            queueMicrotask(() => initSlider(sWrap)); // DOM反映後に初期化
         }
 
         function initSlider(wrapper) {
@@ -283,7 +320,28 @@
 
             const slideWidth = () => track.clientWidth;
             const idx = () => Math.round(track.scrollLeft / slideWidth());
-            const maxIdx = () => track.children.length - 1;
+            const total = track.children.length;
+
+            // --- 見えている動画だけ自動再生（既存のIOロジックはそのまま） ---
+            const videos = Array.from(track.querySelectorAll('video'));
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const v = entry.target;
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+                        videos.forEach(o => { if (o !== v) { try { o.pause(); o.currentTime = 0; } catch { } } });
+                        try { const p = v.play(); if (p && typeof p.then === 'function') p.catch(() => { }); } catch { }
+                    } else {
+                        try { v.pause(); v.currentTime = 0; } catch { }
+                    }
+                });
+            }, { root: track, threshold: [0, 0.6, 1] });
+            videos.forEach(v => io.observe(v));
+
+            // --- 目的のインデックスにスムーススクロール（ループ対応） ---
+            function goTo(i) {
+                const target = ((i % total) + total) % total; // 負数にも対応
+                track.scrollTo({ left: target * slideWidth(), behavior: 'smooth' });
+            }
 
             function updateUI() {
                 const i = idx();
@@ -292,19 +350,23 @@
                     d.classList.toggle('opacity-70', di !== i);
                     d.setAttribute('aria-current', di === i ? 'true' : 'false');
                 });
-                btnPrev.disabled = (i === 0);
-                btnNext.disabled = (i === maxIdx());
-                btnPrev.style.opacity = btnPrev.disabled ? 0.4 : 1;
-                btnNext.style.opacity = btnNext.disabled ? 0.4 : 1;
+                // ループなので常に有効
+                btnPrev.disabled = false;
+                btnNext.disabled = false;
+                btnPrev.style.opacity = 1;
+                btnNext.style.opacity = 1;
             }
 
-            btnPrev.addEventListener('click', () => track.scrollBy({ left: -slideWidth(), behavior: 'smooth' }));
-            btnNext.addEventListener('click', () => track.scrollBy({ left: +slideWidth(), behavior: 'smooth' }));
-            dots.forEach((d, di) => d.addEventListener('click', () => track.scrollTo({ left: di * slideWidth(), behavior: 'smooth' })));
+            // --- クリック時：ループで移動 ---
+            btnNext.addEventListener('click', () => goTo(idx() + 1));
+            btnPrev.addEventListener('click', () => goTo(idx() - 1)); // 右だけでOKなら: track.scrollBy({left:-slideWidth(), behavior:'smooth'})
+            dots.forEach((d, di) => d.addEventListener('click', () => goTo(di)));
+
             track.addEventListener('scroll', updateUI);
             window.addEventListener('resize', updateUI);
             updateUI();
         }
+
 
         // ===== 本文レンダラ =====
         function renderMdSections(text, frag) {
@@ -366,7 +428,11 @@
                             box.className = "ratio mt-6"; box.style.setProperty("--ratio", ratioVar(e.ratio || "16/9"));
                             const v = document.createElement("video");
                             v.src = e.src; if (e.poster) v.poster = e.poster;
-                            v.controls = true; v.playsInline = true; v.className = "cursor-zoom-in object-contain rounded-2xl";
+                            v.controls = true;
+                            v.playsInline = true; v.setAttribute('playsinline', '');
+                            v.muted = true; v.setAttribute('muted', '');
+                            v.preload = 'metadata';
+                            v.className = "cursor-zoom-in object-contain rounded-2xl";
                             v.addEventListener("click", (ev) => { if (!v.paused) return; openViewer("video", e.src, ""); ev.preventDefault(); });
                             box.appendChild(v); fig.appendChild(box); frag.appendChild(fig); continue;
                         }
@@ -424,7 +490,11 @@
                     box.className = "ratio mt-6"; box.style.setProperty("--ratio", ratioVar(b.ratio || "16/9"));
                     const v = document.createElement("video");
                     v.src = b.src; if (b.poster) v.poster = b.poster;
-                    v.controls = true; v.playsInline = true; v.className = "cursor-zoom-in object-contain rounded-2xl";
+                    v.controls = true;
+                    v.playsInline = true; v.setAttribute('playsinline', '');
+                    v.muted = true; v.setAttribute('muted', '');
+                    v.preload = 'metadata';
+                    v.className = "cursor-zoom-in object-contain rounded-2xl";
                     v.addEventListener("click", (e) => { if (!v.paused) return; openViewer("video", b.src, ""); e.preventDefault(); });
                     box.appendChild(v); fig.appendChild(box); frag.appendChild(fig); continue;
                 }
@@ -436,7 +506,6 @@
 
         // ============ Render ============
         function render(item) {
-            // SEO
             document.title = `${item.title}｜Kido Sotaro`;
             const desc = item.summary || "Work detail";
             let meta = document.querySelector('meta[name="description"]');
@@ -445,20 +514,17 @@
             const setOG = (p, c) => { let m = document.querySelector(`meta[property="${p}"]`); if (!m) { m = document.createElement('meta'); m.setAttribute('property', p); document.head.appendChild(m); } m.content = c; };
             setOG("og:title", document.title);
             setOG("og:description", desc);
-            // OGP用画像
             setOG("og:image", Array.isArray(item.coverGallery) && item.coverGallery.length ? item.coverGallery[0].src : item.cover);
             injectJSONLD(item);
 
-            // TopBar
             $("#title").textContent = item.title;
             $("#year").textContent = item.year || "";
             $("#tags").innerHTML = (item.tags || []).map(tagBadge).join("");
 
-            // 本文
             renderBodyNodes(item.body || [], document.getElementById("body"));
         }
 
-        // モーダルビューア
+        // モーダル
         const dlg = document.getElementById("viewer");
         function openViewer(kind, src, alt) {
             const img = document.getElementById("viewerImg"), vid = document.getElementById("viewerVideo");
@@ -469,7 +535,6 @@
         }
         document.getElementById("closeViewer").addEventListener("click", () => dlg.close());
 
-        // 起動
         (function init() {
             document.getElementById("y").textContent = new Date().getFullYear();
             const item = bySlug(slug);

@@ -29,7 +29,9 @@
                 // ここから画像専用
                 secImg("",
                     img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
-                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    video("https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+                        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&auto=format&fit=crop",
+                        "16/9"),
                     img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
                     img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
                 ),
