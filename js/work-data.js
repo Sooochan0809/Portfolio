@@ -1,46 +1,378 @@
+// js/work-data.js
+// 一覧ページは `works/worksMore` を参照、詳細は `window.works/window.worksMore` も参照可。
+// ←このファイルだけで小見出しと本文を編集できるよう、ヘルパーを用意。
 
-const works = [
-    {
-        title: "目の身体性について", year: "2025", tags: ["修士研究", "ワークショップ", "教育"],
-        cover: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
-        summary: "テスト", link: "https://measobi.com/"
-    },
-    {
-        title: "め遊びプロジェクト", year: "2025", tags: ["ワークショップ", "福祉"],
-        cover: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
-        summary: "テスト", link: "#"
-    },
-    {
-        title: "テスト", year: "2025", tags: ["Workshop", "Expression", "Education"],
-        cover: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
-        summary: "テスト", link: "#"
-    },
-    {
-        title: "テスト", year: "2025", tags: ["Workshop", "Expression", "Education"],
-        cover: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
-        summary: "テスト", link: "#"
-    },
-    {
-        title: "テスト", year: "2025", tags: ["Workshop", "Expression", "Education"],
-        cover: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
-        summary: "テスト", link: "#"
-    }
-];
+(function () {
+    // ---- 本文ヘルパー（編集がラクになります） --------------------------
+    const sec = (title, ...content) => ({ type: "section", title, content });   // 小見出しセクション
+    const p = (text) => ({ type: "p", text });             // 段落
+    const img = (src, alt = "", ratio = "16/9") => ({ type: "img", src, alt, ratio }); // 画像（比率可）
+    const secImg = (title, ...images) => ({ type: "gallery", title, images });
+    const video = (src, poster = "", ratio = "16/9") => ({ type: "video", src, poster, ratio }); // 動画
+    const ul = (items) => ({ type: "ul", items });            // 箇条書き
+    // ★ 追加：画像専用セクション（ギャラリー）
+    // ※ MD風にまとめて書きたい場合は  { type:"md", text:`[概要] ... [目的] ...` } も使えます
 
-const worksMore = [
-    {
-        title: "テスト", year: "2025", tags: ["Workshop", "Expression", "Education"],
-        cover: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
-        summary: "テスト", link: "#"
-    },
-    {
-        title: "テスト", year: "2025", tags: ["Workshop", "Expression", "Education"],
-        cover: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
-        summary: "テスト", link: "#"
-    },
-    {
-        title: "テスト", year: "2021", tags: ["Research", "HCI"],
-        cover: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
-        summary: "テスト", link: "#"
-    }
-];
+    // ===== Works =====
+    window.works = [
+        {
+            slug: "me-no-shintaisei", // 目の身体性について
+            title: "テスト",
+            year: "2025",
+            tags: ["修士研究", "ワークショップ", "教育"],
+            cover:
+                "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
+            summary: "テスト",
+            role: ["研究", "設計"],
+            period: "2025",
+            body: [
+                // ここから画像専用
+                secImg("",
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
+                ),
+                sec("概要",
+                    p("プロジェクトの背景テキスト（仮）。ここに要点（対象・手法・成果のサマリ）を2〜3文で。"),
+
+                ),
+                sec("目的",
+                    p("ねらいの説明（仮）。何を明らかにしたいか／解決したい課題は何か。"),
+                ),
+                sec("プロセス",
+                    ul(["調査・要件整理", "プロトタイピング（v1→v2）", "ユーザテスト／考察"])
+                ),
+                sec("結果・考察",
+                    p("得られた示唆や次のステップ（今後の改善点・適用可能性）など。")
+                ),
+                sec("参照",
+                    ul([
+                        { text: "め遊びプロジェクトホームページ", href: "https://measobi.com/" },
+                        { text: "関連資料", href: "https://example.com" }
+                    ])
+                )
+            ],
+            credits: [
+                // { label: "指導", value: "鈴木 先生" },
+                // { label: "撮影", value: "鶴目 さん" }
+            ]
+        },
+        {
+            slug: "me-asobi-project", // め遊びプロジェクト
+            title: "テスト",
+            year: "2025",
+            tags: ["ワークショップ", "福祉"],
+            cover:
+                "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
+            summary: "テスト",
+            role: ["研究", "設計"],
+            period: "2025",
+            body: [
+                // ここから画像専用
+                secImg("",
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
+                ),
+                sec("概要",
+                    p("プロジェクトの背景テキスト（仮）。ここに要点（対象・手法・成果のサマリ）を2〜3文で。"),
+
+                ),
+                sec("目的",
+                    p("ねらいの説明（仮）。何を明らかにしたいか／解決したい課題は何か。"),
+                ),
+                sec("プロセス",
+                    ul(["調査・要件整理", "プロトタイピング（v1→v2）", "ユーザテスト／考察"])
+                ),
+                sec("結果・考察",
+                    p("得られた示唆や次のステップ（今後の改善点・適用可能性）など。")
+                ),
+                sec("参照",
+                    ul([
+                        { text: "め遊びプロジェクトホームページ", href: "https://measobi.com/" },
+                        { text: "関連資料", href: "https://example.com" }
+                    ])
+                )
+            ],
+            credits: [
+                // { label: "指導", value: "鈴木 先生" },
+                // { label: "撮影", value: "鶴目 さん" }
+            ]
+        },
+        {
+            slug: "test-2025-a",
+            title: "テスト",
+            year: "2025",
+            tags: ["Workshop", "Expression", "Education"],
+            cover:
+                "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
+            summary: "テスト",
+            role: ["研究", "設計"],
+            period: "2025",
+            body: [
+                // ここから画像専用
+                secImg("",
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
+                ),
+                sec("概要",
+                    p("プロジェクトの背景テキスト（仮）。ここに要点（対象・手法・成果のサマリ）を2〜3文で。"),
+
+                ),
+                sec("目的",
+                    p("ねらいの説明（仮）。何を明らかにしたいか／解決したい課題は何か。"),
+                ),
+                sec("プロセス",
+                    ul(["調査・要件整理", "プロトタイピング（v1→v2）", "ユーザテスト／考察"])
+                ),
+                sec("結果・考察",
+                    p("得られた示唆や次のステップ（今後の改善点・適用可能性）など。")
+                ),
+                sec("参照",
+                    ul([
+                        { text: "め遊びプロジェクトホームページ", href: "https://measobi.com/" },
+                        { text: "関連資料", href: "https://example.com" }
+                    ])
+                )
+            ],
+            credits: [
+                // { label: "指導", value: "鈴木 先生" },
+                // { label: "撮影", value: "鶴目 さん" }
+            ]
+        },
+        {
+            slug: "test-2025-b",
+            title: "テスト",
+            year: "2025",
+            tags: ["Workshop", "Expression", "Education"],
+            cover:
+                "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
+            summary: "テスト",
+            role: ["研究", "設計"],
+            period: "2025",
+            body: [
+                // ここから画像専用
+                secImg("",
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
+                ),
+                sec("概要",
+                    p("プロジェクトの背景テキスト（仮）。ここに要点（対象・手法・成果のサマリ）を2〜3文で。"),
+
+                ),
+                sec("目的",
+                    p("ねらいの説明（仮）。何を明らかにしたいか／解決したい課題は何か。"),
+                ),
+                sec("プロセス",
+                    ul(["調査・要件整理", "プロトタイピング（v1→v2）", "ユーザテスト／考察"])
+                ),
+                sec("結果・考察",
+                    p("得られた示唆や次のステップ（今後の改善点・適用可能性）など。")
+                ),
+                sec("参照",
+                    ul([
+                        { text: "め遊びプロジェクトホームページ", href: "https://measobi.com/" },
+                        { text: "関連資料", href: "https://example.com" }
+                    ])
+                )
+            ],
+            credits: [
+                // { label: "指導", value: "鈴木 先生" },
+                // { label: "撮影", value: "鶴目 さん" }
+            ]
+        },
+        {
+            slug: "test-2025-c",
+            title: "テスト",
+            year: "2025",
+            tags: ["Workshop", "Expression", "Education"],
+            cover:
+                "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
+            summary: "テスト",
+            role: ["研究", "設計"],
+            period: "2025",
+            body: [
+                // ここから画像専用
+                secImg("",
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
+                ),
+                sec("概要",
+                    p("プロジェクトの背景テキスト（仮）。ここに要点（対象・手法・成果のサマリ）を2〜3文で。"),
+
+                ),
+                sec("目的",
+                    p("ねらいの説明（仮）。何を明らかにしたいか／解決したい課題は何か。"),
+                ),
+                sec("プロセス",
+                    ul(["調査・要件整理", "プロトタイピング（v1→v2）", "ユーザテスト／考察"])
+                ),
+                sec("結果・考察",
+                    p("得られた示唆や次のステップ（今後の改善点・適用可能性）など。")
+                ),
+                sec("参照",
+                    ul([
+                        { text: "め遊びプロジェクトホームページ", href: "https://measobi.com/" },
+                        { text: "関連資料", href: "https://example.com" }
+                    ])
+                )
+            ],
+            credits: [
+                // { label: "指導", value: "鈴木 先生" },
+                // { label: "撮影", value: "鶴目 さん" }
+            ]
+        }
+    ];
+
+    // ===== Cooperation / More =====
+    window.worksMore = [
+        {
+            slug: "test-more-2025-a",
+            title: "テスト",
+            year: "2025",
+            tags: ["Workshop", "Expression", "Education"],
+            cover:
+                "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
+            summary: "テスト",
+            role: ["研究", "設計"],
+            period: "2025",
+            body: [
+                // ここから画像専用
+                secImg("",
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
+                ),
+                sec("概要",
+                    p("プロジェクトの背景テキスト（仮）。ここに要点（対象・手法・成果のサマリ）を2〜3文で。"),
+
+                ),
+                sec("目的",
+                    p("ねらいの説明（仮）。何を明らかにしたいか／解決したい課題は何か。"),
+                ),
+                sec("プロセス",
+                    ul(["調査・要件整理", "プロトタイピング（v1→v2）", "ユーザテスト／考察"])
+                ),
+                sec("結果・考察",
+                    p("得られた示唆や次のステップ（今後の改善点・適用可能性）など。")
+                ),
+                sec("参照",
+                    ul([
+                        { text: "め遊びプロジェクトホームページ", href: "https://measobi.com/" },
+                        { text: "関連資料", href: "https://example.com" }
+                    ])
+                )
+            ],
+            credits: [
+                // { label: "指導", value: "鈴木 先生" },
+                // { label: "撮影", value: "鶴目 さん" }
+            ]
+        },
+        {
+            slug: "test-more-2025-b",
+            title: "テスト",
+            year: "2025",
+            tags: ["Workshop", "Expression", "Education"],
+            cover:
+                "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
+            summary: "テスト",
+            role: ["研究", "設計"],
+            period: "2025",
+            body: [
+                // ここから画像専用
+                secImg("",
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
+                ),
+                sec("概要",
+                    p("プロジェクトの背景テキスト（仮）。ここに要点（対象・手法・成果のサマリ）を2〜3文で。"),
+
+                ),
+                sec("目的",
+                    p("ねらいの説明（仮）。何を明らかにしたいか／解決したい課題は何か。"),
+                ),
+                sec("プロセス",
+                    ul(["調査・要件整理", "プロトタイピング（v1→v2）", "ユーザテスト／考察"])
+                ),
+                sec("結果・考察",
+                    p("得られた示唆や次のステップ（今後の改善点・適用可能性）など。")
+                ),
+                sec("参照",
+                    ul([
+                        { text: "め遊びプロジェクトホームページ", href: "https://measobi.com/" },
+                        { text: "関連資料", href: "https://example.com" }
+                    ])
+                )
+            ],
+            credits: [
+                // { label: "指導", value: "鈴木 先生" },
+                // { label: "撮影", value: "鶴目 さん" }
+            ]
+        },
+        {
+            slug: "test-2021-hci",
+            title: "テスト",
+            year: "2021",
+            tags: ["Research", "HCI"],
+            cover:
+                "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
+            summary: "テスト",
+            role: ["研究", "設計"],
+            period: "2025",
+            body: [
+                // ここから画像専用
+                secImg("",
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9"),
+                    img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
+                ),
+                sec("概要",
+                    p("プロジェクトの背景テキスト（仮）。ここに要点（対象・手法・成果のサマリ）を2〜3文で。"),
+
+                ),
+                sec("目的",
+                    p("ねらいの説明（仮）。何を明らかにしたいか／解決したい課題は何か。"),
+                ),
+                sec("プロセス",
+                    ul(["調査・要件整理", "プロトタイピング（v1→v2）", "ユーザテスト／考察"])
+                ),
+                sec("結果・考察",
+                    p("得られた示唆や次のステップ（今後の改善点・適用可能性）など。")
+                ),
+                sec("参照",
+                    ul([
+                        { text: "め遊びプロジェクトホームページ", href: "https://measobi.com/" },
+                        { text: "関連資料", href: "https://example.com" }
+                    ])
+                )
+            ],
+            credits: [
+                // { label: "指導", value: "鈴木 先生" },
+                // { label: "撮影", value: "鶴目 さん" }
+            ]
+        }
+    ];
+
+    // 一覧ページの既存コード互換（const 参照用）
+    try { window.works ?? (window.works = window.works); } catch { }
+    try { window.worksMore ?? (window.worksMore = window.worksMore); } catch { }
+
+    // 既存の一覧JSが `const works/worksMore` を読む想定ならエイリアスを用意
+    // （二重定義エラーが出たら下の2行は削除してください）
+    // eslint-disable-next-line no-redeclare
+    const works = window.works;
+    // eslint-disable-next-line no-redeclare
+    const worksMore = window.worksMore;
+})();
