@@ -2,249 +2,334 @@
 <html lang="ja">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About｜Kido Sotaro</title>
-    <meta name="description" content="略歴・スキル・タイムライン" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
-                    colors: { brand: { DEFAULT: "#4f46e5", soft: "#6366f1", gold: "#f59e0b" } },
-                    boxShadow: { glow: "0 20px 60px -20px rgba(0,0,0,.25)" }
-                }
-            },
-            darkMode: 'class'
-        };
-        // もしlocalStorageのthemeがlightなら無視する
-        localStorage.setItem('theme', 'light');
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap"
-        rel="stylesheet">
-    <style>
-        .ring-soft {
-            box-shadow: 0 0 0 1px rgba(0, 0, 0, .06) inset;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About｜Kido Sotaro</title>
+  <meta name="description" content="プロフィール・略歴・スキル・実績" />
 
-        mark {
-            background: linear-gradient(transparent 60%, rgba(245, 158, 11, .35) 0);
-            padding: 0 .15em;
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
+          colors: { brand: { DEFAULT: "#4f46e5", soft: "#6366f1", gold: "#f59e0b" } },
+          boxShadow: { glow: "0 20px 60px -20px rgba(0,0,0,.25)" },
+          /* 追加：px指定で使い回せるスケール */
+          lineHeight: {
+            '22px': '22px',
+            '24px': '24px',
+            '28px': '28px',
+            '32px': '32px',
+            '36px': '36px',
+            '40px': '40px',
+            '48px': '48px'
+          },
+          letterSpacing: {
+            '-1px': '-1px',
+            '-0.5px': '-0.5px',
+            '0.25px': '0.25px',
+            '0.5px': '0.5px',
+            '1px': '1px',
+            '2px': '2px'
+          }
         }
+      },
+      darkMode: 'class'
+    };
+    // ダークモードを常に有効にする
+    document.documentElement.classList.add('light');
+    // もしlocalStorageのthemeがlightなら無視する
+    localStorage.setItem('theme', 'light');
+  </script>
 
-        /* ドーナツ（円グラフ）共通 */
-        .donut {
-            position: relative;
-            width: 10rem;
-            /* 直径: 変更可 */
-            height: 10rem;
-            border-radius: 9999px;
-            background:
-                conic-gradient(var(--c1) 0 var(--p1),
-                    var(--c2) var(--p1) calc(var(--p1) + var(--p2)),
-                    var(--c3) calc(var(--p1) + var(--p2)) calc(var(--p1) + var(--p2) + var(--p3)),
-                    var(--c4) calc(var(--p1) + var(--p2) + var(--p3)) calc(var(--p1)+var(--p2)+var(--p3)+var(--p4)),
-                    var(--c5) calc(var(--p1)+var(--p2)+var(--p3)+var(--p4)) 100%);
-        }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css">
 
-        .donut-hole {
-            position: absolute;
-            inset: .95rem;
-            /* 穴の大きさ */
-            border-radius: 9999px;
-        }
+  <style>
+    /* 追加：要素ごとのベースタイポ（pxで統一） */
+    /* @layer base {
+      h1 {
+        @apply leading-48px tracking--1px;
+      }
 
-        .legend-dot {
-            width: .75rem;
-            height: .75rem;
-            border-radius: 9999px;
-        }
-    </style>
+      h2 {
+        @apply leading-40px tracking--0.5px;
+      }
+
+      h3 {
+        @apply leading-36px tracking--0.5px;
+      }
+
+      p {
+        @apply leading-24px tracking-0.25px;
+      }
+
+      li {
+        @apply leading-24px tracking-0.25px;
+      }
+
+      small {
+        @apply leading-22px tracking-0.5px;
+      }
+    } */
+  </style>
 </head>
 
 <body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100 font-sans">
-    <!-- Header（共通） -->
-    <header
-        class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
-        <div class="mx-auto w-full px-0 px-4 sm:px-6 lg:px-8 flex items-center h-16">
-            <a href="./" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
-            <nav class="ml-auto hidden sm:flex gap-6 text-sm">
-                <a data-nav href="about.html" class="hover:text-brand">About</a>
-                <a data-nav href="work.html" class="hover:text-brand">Works</a>
-                <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
-            </nav>
-            <button id="themeToggle"
-                class="ml-3 rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2 hover:shadow"
-                aria-label="テーマ切替">
-                <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path
-                        d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364-1.414-1.414M7.05 7.05 5.636 5.636m12.728 0-1.414 1.414M7.05 16.95l-1.414 1.414" />
-                    <circle cx="12" cy="12" r="4" />
-                </svg>
-                <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.5">
-                    <path d="M20 15.5A8.38 8.38 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5z" />
-                </svg>
-            </button>
-            <button id="menuBtn" class="ml-2 sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2"
-                aria-label="メニュー">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.5">
-                    <path d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
+
+  <!-- ===== Header（1つ目のコード由来／テーマ切替＋モバイルNav） ===== -->
+  <header
+    class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
+    <div class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
+      <!-- 左側：ロゴ -->
+      <a href="index.html" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
+
+      <!-- 右側：ナビ or ハンバーガー -->
+      <div class="flex items-center gap-2">
+        <!-- PC表示用ナビ -->
+        <nav class="hidden sm:flex gap-6 text-sm">
+          <a data-nav href="#profile" class="hover:text-brand">About</a>
+          <a data-nav href="work.html" class="hover:text-brand">Works</a>
+          <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
+        </nav>
+
+        <!-- モバイル表示用ボタン -->
+        <button id="menuBtn" class="sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2"
+          aria-label="メニュー">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    </div>
+    <div id="mobileNav" class="sm:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
+      <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
+        <a data-nav class="hover:text-brand" href="about.html">About</a>
+        <a data-nav class="hover:text-brand" href="work.html">Works</a>
+        <a data-nav class="hover:text-brand" href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Main ===== -->
+  <main class="pt-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+
+      <!-- Title Row（2つ目のコードのトーン） -->
+      <header id="profile" class="pt-10 md:pt-0">
+        <div class="flex flex-col items-start gap-2">
+          <!-- PROFILE -->
+          <h1 class="leading-none tracking-tight text-left"
+            style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">
+            PROFILE
+          </h1>
+          <!-- プロフィール -->
+          <span class="text-sm text-gray-500">プロフィール</span>
         </div>
-        <div id="mobileNav" class="sm:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
-            <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
-                <a data-nav class="hover:text-brand" href="about.html">About</a>
-                <a data-nav class="hover:text-brand" href="work.html">Works</a>
-                <a data-nav class="hover:text-brand" href="contact.html">Contact</a>
-            </nav>
+      </header>
+
+      <!-- Two Column Layout（写真＋内容） -->
+      <section class="mt-8 md:mt-12 grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-16">
+        <!-- Left Column / Photo（2つ目のコード） -->
+        <aside class="order-1 lg:order-none hidden lg:block">
+          <figure class="w-[260px] max-w-full border border-gray-200 shadow-sm">
+            <img class="block w-full h-auto" src="\img\01_about\kidosotaro.png" alt="Portrait" />
+          </figure>
+        </aside>
+
+        <!-- Right Column / Content（2つ目をベース＋1つ目の見出し階層） -->
+        <div class="order-2 lg:order-none">
+          <!-- ABOUT ME -->
+          <section id="about-me" class="mb-[80px]">
+            <h2 class="text-xl font-normal cap mt-[1.5px]" data-cap="私について">ABOUT ME</h2>
+
+            <!-- Photo for mobile only -->
+            <figure class="mt-[20px] w-[260px] border border-gray-200 shadow-sm lg:hidden">
+              <img class="block w-full h-auto" src="\img\01_about\kidosotaro.png" alt="Portrait" />
+            </figure>
+
+            <div class="mt-[20px] lg:mt-[56px]">
+              <div class="text-[32px] font-bold">城戸 双汰朗 <span
+                  class="ml-2 align-baseline text-[16px] font-normal text-gray-500">kido sotaro</span></div>
+              <p class="text-[16px] text-gray-600">情報科学芸術大学院大学 修士2年</p>
+            </div>
+            <p class="mt-[32px] text-[16px] text-gray-800 dark:text-zinc-200 leading-relaxed tracking-wide"
+              style="line-height:24px;">
+              2001年、熊本県生まれ。<br>
+              小学生から高校生までは、競技バドミントンに熱中。<br>
+              高校卒業後は県立大学大学に進学し、教育、情報工学を中心に実践的に学びを深め、<br>
+              卒業時には情報科教員免許を取得。<br>
+              現在は、情報科学芸術大学院大学(IAMAS)に進学し、自身の興味関心を論文/作品/ワークショップなど、様々な形態でアウトプットしています。
+            </p>
+          </section>
+
+          <!-- WORK EXPERIENCE（2つ目の内容を1つ目のタイムライン装飾に寄せる） -->
+          <section id="work-experience" class="mb-[80px]">
+            <h2 class="text-xl font-normal cap" data-cap="経歴">WORK EXPERIENCE</h2>
+            <ol class="relative mt-[24px] border-l-2 border-zinc-300 dark:border-zinc-800 pl-6">
+              <!-- item -->
+              <li class="mb-[32px]">
+                <span class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
+                <p class="text-sm text-zinc-500">2024/04 - 現在</p>
+                <p class="mt-[2px] mb-[8px] text-[20px]">情報科学芸術大学院大学　メディア表現研究科</p>
+                <p class="text-[15px] text-zinc-600 dark:text-zinc-300">実装力の先にある表現力を培うべく進学。現在は、人の顔（表情）をテーマに研究を行っている。</p>
+              </li>
+              <li class="mb-[32px]">
+                <span class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
+                <p class="text-sm text-zinc-500">2020/04 - 2024/03</p>
+                <p class="mt-[2px] mb-[8px] text-[20px]">熊本県立大学 総合管理学部</p>
+                <p class="text-[15px] text-zinc-600 dark:text-zinc-300">[公共] [ビジネス] [情報]
+                  領域を体系的に学びつつ、ゼミ選択を期に情報コースを専攻。石橋研究室に在籍。
+                  人とコンピュータ、コンピュータとコンピュータとのインタラクション（相互作用）をテーマに研究に取り組む。情報科教員の免許を取得。</p>
+              </li>
+              <li>
+                <span class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
+                <p class="text-sm text-zinc-500">2017/04 - 2020/03</p>
+                <p class="mt-[2px] mb-[8px] text-[20px]">熊本中央高等学校 普通科</p>
+                <p class="text-[15px] text-zinc-700 dark:text-zinc-300">地元を離れ、県内有数のバドミントン部強豪校に進学。3年間、寮生活を送る。
+                  小学生から続けていたバドミントンだが、中学卒業まで目立った成績を残すことができず、苦悩。最後の高校総体にて団体戦レギュラー入り、県内3位入賞を果たす。</p>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Research -->
+          <section id="research" class="mb-[80px]">
+            <h2 class="text-xl font-normal cap" data-cap="論文">Research</h2>
+            <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
+              <li>2025.4　福祉の視点 ― 福祉の技術プロジェクト（情報科学芸術大学院大学）</li>
+              <li>2024.9　バイパルス出力加速度を用いたムービングフォトでの新しいインタラクション</li>
+              <li>2024.9　仮題：重畳現実計画</li>
+              <li>2023.3　観察と表現努力の向上を目的としたKinectによる動作評価の試み</li>
+              <li>2023.3　三三民族誌</li>
+            </ul>
+          </section>
+
+          <!-- Exhibition / Workshop -->
+          <section id="exhibition-workshop" class="mb-[80px]">
+            <h2 class="text-xl font-normal cap" data-cap="展示／ワークショップ">Exhibition/Workshop</h2>
+            <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
+              <li>2025.6　あいちワークショップギャザリング mini, ある／みる さわる目・みられる目</li>
+              <li>2025.5　スイトピアラジオ、出演</li>
+              <li>2025.2　あいちワークショップギャザリング mini, 必泊び：び～よんびん人編集</li>
+              <li>2024.10　Interverse Virtual Reality Challenge (IVRC) 2024, 現場運営補助</li>
+            </ul>
+          </section>
+
+          <!-- Production / Cooperation -->
+          <section id="production-cooperation" class="mb-[80px]">
+            <h2 class="text-xl font-normal cap" data-cap="制作協力">ProductionCooperation</h2>
+            <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
+              <li>2025.6　パンタグラフ 美術ワークショップ「光の再アニメーション」撮影・動画編集</li>
+              <li>2025.1　Magic Lantern for meeting Kumamushi again, 通訳・3Dプリント</li>
+              <li>2024.3　芸術県民祭動画制作、iOSアプリ開発</li>
+            </ul>
+          </section>
+
+          <!-- Award / License -->
+          <section id="award-license" class="mb-[80px]">
+            <h2 class="text-xl font-normal cap" data-cap="表彰／資格">AWARD/license</h2>
+            <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
+              <li>2024.10　Interverse Virtual Reality Challenge (IVRC) 2024, IVRC運営</li>
+              <li>2025.9　Interverse Virtual Reality Challenge (IVRC) 2024 REAP STAGE 進出, マテハ大株式会社</li>
+              <li>2024.3　高等学校教諭一種免許（情報）</li>
+              <li>2023.3　卒業発表・芸術科学フォーラム2023 優秀発表</li>
+            </ul>
+          </section>
+
+          <!-- Skills（2つ目の簡潔な構造＋文言は1つ目の見出し系） -->
+          <section id="skills" class="mb-[80px]">
+            <h2 class="text-xl font-normal cap" data-cap="スキル">SKILLS</h2>
+            <div class="mt-[16px] grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <div class="text-sm text-gray-500">License</div>
+                <p class="mt-[4px] text-[15px]">高等学校教諭一種免許（情報）, 普通自動車第一種運転免許</p>
+                <div class="mt-[16px] text-sm text-gray-500">Tools</div>
+                <p class="mt-[4px] text-[15px]">Unity, TouchDesigner, Fusion360, Figma, Illustrator, Arduino IDE, GitHub
+                </p>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Coding</div>
+                <p class="mt-[4px] text-[15px]">C#, Python, HTML, CSS, C++, JavaScript</p>
+              </div>
+            </div>
+          </section>
         </div>
-    </header>
+      </section>
 
-    <main class="pt-16">
-        <!-- ここ全体を置き換え -->
-        <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 gap-12">
+    </div>
+  </main>
 
-            <!-- プロフィール -->
-            <aside>
-                <div
-                    class="rounded-2xl ring-1 ring-zinc-200/70 dark:ring-zinc-800/70 overflow-hidden bg-white/70 dark:bg-zinc-900/40">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop"
-                        alt="portrait" class="w-full aspect-[16/9] object-cover">
-                    <div class="p-5 space-y-3">
-                        <div>
-                            <h2 class="text-xl font-bold leading-tight">城戸 双汰朗</h2>
-                            <p class="text-sm text-zinc-500">KIDO Sotaro</p>
-                        </div>
-                        <ul class="text-sm leading-6">
-                            <li class="flex gap-3 items-start">
-                                <span
-                                    class="mt-1 inline-block w-6 h-6 rounded-full bg-brand/10 text-brand grid place-items-center">🎓</span>
-                                <div>
-                                    <p class="font-medium">情報科学芸術大学院大学（休学中）</p>
-                                    <p class="text-zinc-500">メディア表現研究科</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-3 items-start">
-                                <span
-                                    class="mt-1 inline-block w-6 h-6 rounded-full bg-brand/10 text-brand grid place-items-center">🎂</span>
-                                <div>
-                                    <p class="font-medium">2001.08.09</p>
-                                    <p class="text-zinc-500">生年月日</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-3 items-start">
-                                <span
-                                    class="mt-1 inline-block w-6 h-6 rounded-full bg-brand/10 text-brand grid place-items-center">🏸</span>
-                                <div>
-                                    <p class="font-medium">バドミントン</p>
-                                    <p class="text-zinc-500">特技</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </aside>
+  <footer class="pt-0 pb-10 text-center text-sm text-zinc-500">© <span id="y"></span> 城戸 双汰朗</footer>
 
-            <!-- ABOUT + SKILLS（説明＋バー） -->
-            <section class="space-y-8">
-                <section>
-                    <div>
-                        <h3 class="text-lg font-extrabold text-zinc-800 mb-0">ABOUT ME<span
-                                class="text-xs text-zinc-400 font-normal ml-2">私について</span></h3>
-                        <p class="mt-2 leading-7 text-zinc-700 dark:text-zinc-300">
-                            ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ（400文字）
-                        </p>
-                    </div>
-                </section>
+  <script>
+    // 年号
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // モバイルメニュー
+    document.getElementById('menuBtn')?.addEventListener('click', () => {
+      document.getElementById('mobileNav')?.classList.toggle('hidden');
+    });
+    // テーマ切替
+    const btn = document.getElementById('themeToggle');
+    btn?.addEventListener('click', () => {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('dark');
+      document.getElementById('iconSun')?.classList.toggle('hidden', !isDark);
+      document.getElementById('iconMoon')?.classList.toggle('hidden', isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    (function () {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const useDark = saved ? saved === 'dark' : prefersDark;
+      document.documentElement.classList.toggle('dark', useDark);
+      document.getElementById('iconSun')?.classList.toggle('hidden', !useDark);
+      document.getElementById('iconMoon')?.classList.toggle('hidden', useDark);
+    })();
+  </script>
 
-                <!-- タイムライン（画像対応・項目追加しやすい） -->
-                <section>
-                    <h3 class="text-lg font-extrabold text-zinc-800 mb-3">WORK EXPERIENCE<span
-                            class="text-xs text-zinc-400 font-normal ml-2">経歴</span></h3>
-                    <ol id="timeline" class="relative border-l border-zinc-200 dark:border-zinc-800">
-                        <!-- JSで挿入 -->
-                    </ol>
-                </section>
+  <script src="js/site.js"></script>
 
-                <!-- ▼▼ SKILLS（円グラフ・統一デザイン） ▼▼ -->
-                <section aria-labelledby="skillsCharts">
-                    <h3 class="text-lg font-extrabold text-zinc-800 mb-0">SKILLS<span
-                            class="text-xs text-zinc-400 font-normal ml-2">スキル</span></h3>
+  <script>
+    // 年号
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-                    <!-- ツール -->
-                    <article class="mt-6">
-                        <h4 class="text-base font-bold text-brand">ツール</h4>
-                        <div id="skills-tools" class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <!-- JSで挿入 -->
-                        </div>
-                    </article>
+    // デバッグコード（これ無くても動くはずなのに）
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('DOM loaded');
 
-                    <!-- プログラム言語 -->
-                    <article class="mt-10">
-                        <h4 class="text-base font-bold text-brand">プログラム言語</h4>
-                        <div id="skills-langs" class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <!-- JSで挿入 -->
-                        </div>
-                    </article>
-                </section>
-            </section>
-    </main>
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileNav = document.getElementById('mobileNav');
 
+      console.log('menuBtn element:', menuBtn);
+      console.log('mobileNav element:', mobileNav);
 
-    <footer class="py-10 text-center text-sm text-zinc-500">© <span id="y"></span> 城戸 双汰朗</footer>
-
-    <script>
-        // 年号
-        document.getElementById('y').textContent = new Date().getFullYear();
-        // モバイルメニュー
-        document.getElementById('menuBtn')?.addEventListener('click', () => {
-            document.getElementById('mobileNav')?.classList.toggle('hidden');
+      if (menuBtn) {
+        console.log('Adding click listener to menuBtn');
+        menuBtn.addEventListener('click', function (e) {
+          console.log('Menu button clicked!', e);
+          if (mobileNav) {
+            console.log('Before toggle - mobileNav classes:', mobileNav.className);
+            mobileNav.classList.toggle('hidden');
+            console.log('After toggle - mobileNav classes:', mobileNav.className);
+          } else {
+            console.error('mobileNav not found!');
+          }
         });
-        // テーマ切替
-        const btn = document.getElementById('themeToggle');
-        btn?.addEventListener('click', () => {
-            const html = document.documentElement;
-            const isDark = html.classList.toggle('dark');
-            document.getElementById('iconSun')?.classList.toggle('hidden', !isDark);
-            document.getElementById('iconMoon')?.classList.toggle('hidden', isDark);
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-        (function () {
-            const saved = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const useDark = saved ? saved === 'dark' : prefersDark;
-            document.documentElement.classList.toggle('dark', useDark);
-            document.getElementById('iconSun')?.classList.toggle('hidden', !useDark);
-            document.getElementById('iconMoon')?.classList.toggle('hidden', useDark);
-        })();
-
-        // 円グラフのストローク長を自動計算
-        (function () {
-            document.querySelectorAll('[data-percent]').forEach(card => {
-                const p = Math.max(0, Math.min(100, Number(card.dataset.percent) || 0));
-                const bar = card.querySelector('circle.bar');
-                if (!bar) return;
-                const r = Number(bar.getAttribute('r')) || 64;
-                const c = 2 * Math.PI * r;
-                bar.style.strokeDasharray = String(c);
-                bar.style.strokeDashoffset = String(c * (1 - p / 100));
-                const lbl = card.querySelector('.js-percent');
-                if (lbl) lbl.textContent = p;
-            });
-        })();
-    </script>
-
-    <script type="module" src="./js/timeline-render.js"></script>
-    <script type="module" src="./js/skills-render.js"></script>
-
+      } else {
+        console.error('menuBtn not found!');
+      }
+    });
+  </script>
 </body>
 
 </html>

@@ -1,0 +1,29 @@
+/* 共通スタイル */
+
+/* h2のスタイル */
+h2.cap {
+  font-size: 32px !important;
+}
+
+/* 右肩の小見出し（CAPTION） */
+.cap::after {
+  content: attr(data-cap);
+  margin-left: .75rem;
+  color: #6b7280;
+  font-weight: 400;
+  font-size: .85rem;
+}
+
+/* その他の共通スタイル */
+:root {
+  --brand-deep: #111827;
+}
+
+.ring-soft {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .06) inset;
+}
+
+mark {
+  background: linear-gradient(transparent 60%, rgba(245, 158, 11, .35) 0);
+  padding: 0 .15em;
+}
