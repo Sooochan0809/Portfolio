@@ -262,7 +262,7 @@
                                         if (!mobileWigglePaused) {
                                             triggerWiggle();
                                         }
-                                    }, 2000);
+                                    }, 3000);
                                 }
 
                                 function resetPcWiggleTimer() {
@@ -286,10 +286,10 @@
                                             if (isMobile) {
                                                 mobileWigglePaused = true;
                                                 if (mobileWigglePauseTimeout) clearTimeout(mobileWigglePauseTimeout);
-                                                // 2秒後に再開
+                                                // 3秒後に再開
                                                 mobileWigglePauseTimeout = setTimeout(() => {
                                                     mobileWigglePaused = false;
-                                                }, 2000);
+                                                }, 3000);
                                             }
                                         }, {passive:true});
                                     });
