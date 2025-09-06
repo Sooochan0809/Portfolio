@@ -181,9 +181,9 @@
                             style="margin-top: 32px;"
                             class="flex flex-wrap items-center justify-start font-semibold text-zinc-800 dark:text-zinc-100 group relative text-[16px] sm:text-[24px]">
                             <a href="about.html" class="hover:underline transition nav-link nav-absorb">ABOUT</a>
-                            <span class="mx-3 text-zinc-400 select-none nav-absorb-divider">／</span>
+                            <span class="mx-3 text-zinc-400 select-none">／</span>
                             <a href="work.html" class="hover:underline transition nav-link nav-absorb">WORKS</a>
-                            <span class="mx-3 text-zinc-400 select-none nav-absorb-divider">／</span>
+                            <span class="mx-3 text-zinc-400 select-none">／</span>
                             <a href="contact.html" class="hover:underline transition nav-link nav-absorb">CONTACT</a>
                         </nav>
                         <style>
@@ -234,24 +234,66 @@
                                 const absorbTargets = Array.from(nav.querySelectorAll('.nav-absorb, .nav-absorb-divider'));
                                 let isMobile = window.matchMedia('(max-width: 640px)').matches;
 
-                                // --- 3秒無操作で微弱に揺らす ---
-                                let wiggleTimeout = null;
-                                function resetWiggleTimer() {
-                                    if (wiggleTimeout) clearTimeout(wiggleTimeout);
-                                    wiggleTimeout = setTimeout(() => {
-                                        absorbTargets.forEach(el => {
-                                            el.classList.add('nav-wiggle');
-                                            setTimeout(() => el.classList.remove('nav-wiggle'), 800);
-                                        });
+                                // --- スマホ用: 2秒ごとに揺らす ---
+                                let mobileWiggleInterval = null;
+                                let mobileWigglePaused = false;
+                                let mobileWigglePauseTimeout = null;
+
+                                // --- PC用: 3秒無操作で揺らす ---
+                                let pcWiggleTimeout = null;
+
+                                function triggerWiggle() {
+                                    absorbTargets.forEach(el => {
+                                        el.classList.add('nav-wiggle');
+                                        setTimeout(() => el.classList.remove('nav-wiggle'), 800);
+                                    });
+                                }
+
+                                function clearMobileWiggleInterval() {
+                                    if (mobileWiggleInterval) {
+                                        clearInterval(mobileWiggleInterval);
+                                        mobileWiggleInterval = null;
+                                    }
+                                }
+
+                                function startMobileWiggleInterval() {
+                                    clearMobileWiggleInterval();
+                                    mobileWiggleInterval = setInterval(() => {
+                                        if (!mobileWigglePaused) {
+                                            triggerWiggle();
+                                        }
+                                    }, 2000);
+                                }
+
+                                function resetPcWiggleTimer() {
+                                    if (pcWiggleTimeout) clearTimeout(pcWiggleTimeout);
+                                    pcWiggleTimeout = setTimeout(() => {
+                                        triggerWiggle();
                                     }, 3000);
                                 }
-                                // 初回
-                                resetWiggleTimer();
 
                                 // 何かしら操作があればリセット
-                                ['mousemove', 'touchstart', 'keydown'].forEach(ev => {
-                                    document.addEventListener(ev, resetWiggleTimer, {passive:true});
-                                });
+                                function addGlobalListeners() {
+                                    // PC: reset timer on user activity
+                                    ['mousemove', 'keydown'].forEach(ev => {
+                                        document.addEventListener(ev, function () {
+                                            if (!isMobile) resetPcWiggleTimer();
+                                        }, {passive:true});
+                                    });
+                                    // スマホ: 一時的に揺れを止める
+                                    ['touchstart', 'mousedown', 'keydown'].forEach(ev => {
+                                        document.addEventListener(ev, function () {
+                                            if (isMobile) {
+                                                mobileWigglePaused = true;
+                                                if (mobileWigglePauseTimeout) clearTimeout(mobileWigglePauseTimeout);
+                                                // 2秒後に再開
+                                                mobileWigglePauseTimeout = setTimeout(() => {
+                                                    mobileWigglePaused = false;
+                                                }, 2000);
+                                            }
+                                        }, {passive:true});
+                                    });
+                                }
 
                                 // --- スマホ/PCで挙動を分岐 ---
                                 function setUpNavBehavior() {
@@ -277,8 +319,11 @@
                                                 setTimeout(() => el.classList.remove('absorbed'), 120);
                                             });
                                         });
+                                        // スマホ用揺れインターバル
+                                        startMobileWiggleInterval();
                                     } else {
                                         // PC: 吸着効果
+                                        clearMobileWiggleInterval();
                                         const margin = 48;
                                         function isNearElement(el, mouseX, mouseY) {
                                             const rect = el.getBoundingClientRect();
@@ -310,12 +355,17 @@
                                                 }
                                             });
                                         });
+                                        // PC用揺れタイマー
+                                        resetPcWiggleTimer();
                                     }
                                 }
+
                                 setUpNavBehavior();
+                                addGlobalListeners();
                                 window.addEventListener('resize', () => {
                                     setUpNavBehavior();
                                 });
+
                             })();
                         </script>
                         <style>
