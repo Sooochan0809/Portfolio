@@ -8,42 +8,39 @@
     <meta name="description" content="お問い合わせ" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/common.css">
-    <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] }, colors: { brand: { DEFAULT: "#4f46e5" } } } }, darkMode: 'class' };</script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
+                    colors: { brand: { DEFAULT: "#4f46e5" } }
+                }
+            },
+            darkMode: 'class'
+        };
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100">
-    <!-- header 共通 -->
-    <header
-        class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
+    <header class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
         <div class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
-            <!-- 左側：ロゴ -->
             <a href="index.html" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
-            
-            <!-- 右側：ナビ or ハンバーガー -->
             <div class="flex items-center gap-2">
-              <!-- PC表示用ナビ -->
-              <nav class="hidden sm:flex gap-6 text-sm">
-                <a data-nav href="about.html" class="hover:text-brand">About</a>
-                <a data-nav href="work.html" class="hover:text-brand">Works</a>
-                <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
-              </nav>
-          
-              <!-- モバイル表示用ボタン -->
-              <button id="menuBtn" class="sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2"
-                aria-label="メニュー">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="1.5">
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
+                <nav class="hidden sm:flex gap-6 text-sm">
+                    <a data-nav href="about.html" class="hover:text-brand">About</a>
+                    <a data-nav href="work.html" class="hover:text-brand">Works</a>
+                    <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
+                </nav>
+                <button id="menuBtn" class="sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2" aria-label="メニュー">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
-          </div>
-          
+        </div>
         <div id="mobileNav" class="sm:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
             <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
                 <a data-nav class="hover:text-brand" href="about.html">About</a>
@@ -57,13 +54,11 @@
         <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 grid lg:grid-cols-2 gap-10 items-start">
             <header>
                 <div class="flex flex-col items-start gap-2">
-                    <!-- PROFILE -->
                     <h1 class="leading-none tracking-tight text-left"
-                    style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">CONTACT
+                        style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">CONTACT
                     </h1>
-                    <!-- プロフィール -->
                     <span class="text-sm text-gray-500">ご連絡</span>
-                  </div>
+                </div>
             </header>
             <form class="grid gap-4"
                 onsubmit="event.preventDefault();window.location.href='mailto:you@example.com?subject='+encodeURIComponent(document.getElementById('msgSubject').value)+'&body='+encodeURIComponent(document.getElementById('msgBody').value)">
@@ -76,8 +71,6 @@
             </form>
         </section>
     </main>
-    <footer class="py-10 text-center text-sm text-zinc-500">© <span id="y"></span> Your Name</footer>
-    <script src="js/site.js"></script>
     <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
     <script>localStorage.setItem('theme', 'light');</script>
 </body>

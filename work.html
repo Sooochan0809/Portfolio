@@ -118,7 +118,20 @@
       <div id="grid2" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
   </main>
-  <footer class="py-10 text-center text-sm text-zinc-500">© <span id="y"></span> kidosotaro</footer>
+
+  <footer class="pt-0 pb-10 pr-6 text-right text-sm text-zinc-500">
+    LastUpdated <span id="last-updated"></span>
+  </footer>
+  <script>
+    // フッターに最終更新日を表示
+    document.getElementById('last-updated').textContent = (function() {
+      const d = new Date(document.lastModified);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}.${m}.${day}`;
+    })();
+  </script>
 
   <script src="js/site.js"></script>
   <script src="js/work-data.js"></script>

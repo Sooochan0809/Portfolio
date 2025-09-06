@@ -107,7 +107,6 @@
 
     <script>
         const $ = (s, r = document) => r.querySelector(s);
-        const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
         const params = new URLSearchParams(location.search);
         const slug = params.get("slug");
 
@@ -282,7 +281,7 @@
             const idx = () => Math.round(track.scrollLeft / slideWidth());
             const total = track.children.length;
 
-            // --- 見えている動画だけ自動再生（既存のIOロジックはそのまま） ---
+            // --- 見えている動画だけ自動再生 ---
             const videos = Array.from(track.querySelectorAll('video'));
             const io = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -310,23 +309,20 @@
                     d.classList.toggle('opacity-70', di !== i);
                     d.setAttribute('aria-current', di === i ? 'true' : 'false');
                 });
-                // ループなので常に有効
                 btnPrev.disabled = false;
                 btnNext.disabled = false;
                 btnPrev.style.opacity = 1;
                 btnNext.style.opacity = 1;
             }
 
-            // --- クリック時：ループで移動 ---
             btnNext.addEventListener('click', () => goTo(idx() + 1));
-            btnPrev.addEventListener('click', () => goTo(idx() - 1)); // 右だけでOKなら: track.scrollBy({left:-slideWidth(), behavior:'smooth'})
+            btnPrev.addEventListener('click', () => goTo(idx() - 1));
             dots.forEach((d, di) => d.addEventListener('click', () => goTo(di)));
 
             track.addEventListener('scroll', updateUI);
             window.addEventListener('resize', updateUI);
             updateUI();
         }
-
 
         // ===== 本文レンダラ =====
         function renderMdSections(text, frag) {
