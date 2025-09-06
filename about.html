@@ -97,22 +97,19 @@
   <main class="pt-16">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
 
-      <!-- Title Row（2つ目のコードのトーン） -->
+      <!--PROFILE-->
       <header id="profile" class=" md:pt-0">
-        <div class="flex flex-col items-start gap-2">
-          <!-- PROFILE -->
+        <div class="flex flex-col items-start gap-2">  
           <h1 class="leading-none tracking-tight text-left"
             style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em;">
             PROFILE
           </h1>
-          <!-- プロフィール -->
           <span class="text-sm text-gray-500">プロフィール</span>
         </div>
       </header>
 
       <!-- Two Column Layout（写真＋内容） -->
       <section class="mt-8 md:mt-12 grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-16">
-        <!-- Left Column / Photo（2つ目のコード） -->
         <aside class="order-1 lg:order-none hidden lg:block">
           <figure class="w-[260px] max-w-full border border-gray-200 shadow-sm">
             <img class="block w-full h-auto" src="./img/01_about/kidosotaro.png" alt="Portrait" />
@@ -124,12 +121,9 @@
           <!-- ABOUT ME -->
           <section id="about-me" class="mb-[80px]">
             <h2 class="text-xl font-normal cap mt-[1.5px] hidden lg:block" data-cap="私について">ABOUT ME</h2>
-
-            <!-- Photo for mobile only -->
             <figure class="mt-[20px] w-[260px] border border-gray-200 shadow-sm lg:hidden">
               <img class="block w-full h-auto" src="./img/01_about/kidosotaro.png" alt="Portrait" />
             </figure>
-
             <div class="mt-[20px] lg:mt-[56px]">
               <div class="text-[32px] font-bold">城戸 双汰朗 <span
                   class="ml-2 align-baseline text-[16px] font-normal text-gray-500">kido sotaro</span></div>
@@ -253,12 +247,11 @@
           </section>
         </div>
       </section>
-
     </div>
   </main>
 
   <footer class="pt-0 pb-10 text-center text-sm text-zinc-500">© <span id="y"></span> 城戸 双汰朗</footer>
-
+  
   <script>
     // 年号
     document.getElementById('y').textContent = new Date().getFullYear();
