@@ -153,36 +153,112 @@
     <main class="flex-1 flex items-center justify-center">
         <section class="mx-auto max-w-7xl px-6 sm:px-24 w-full py-28">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-16 lg:gap-x-20 items-center lg:items-end">
-                <!-- 画像 -->
-                <!-- <div
-                    class="order-first lg:order-none lg:col-span-5 w-full flex justify-center lg:justify-center basis-[100%]">
-                    <div class="relative">
-                        <div
-                            class="w-[24rem] h-[24rem] sm:w-[36rem] sm:h-[36rem] rounded-full overflow-hidden ring-1 ring-zinc-200/80 dark:ring-zinc-800/80 shadow-glow">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop"
-                                alt="Portrait" class="w-full h-full object-cover" />
-                        </div>
-                        <div class="absolute inset-0 -z-10 rounded-full blur-3xl opacity-30 bg-brand/20"></div>
-                    </div>
-                </div> -->
 
                 <!-- テキスト -->
-                <div class="lg:col-span-7 w-full text-center lg:text-left basis-[70%] lg:pl-12">
+                <div class="lg:col-span-7 w-full text-center lg:text-left basis-[100%] lg:pl-12">
                     <div class="ml-0 lg:mx-0 max-w-2xl space-y-8 text-sm">
-                        <h1
-                            class="text-[clamp(2.5rem,7vw,5rem)] font-extrabold tracking-tight leading-tight lg:text-left text-center">
-                            <span class="tracking-[0.05em]">城戸 </span>
-                            <span class="tracking-[0em]">双汰朗</span>
-                            <span class="block text-base text-zinc-400 mt-0 tracking-[0.25em]">Kido Sotaro</span>
+                        <h1 class="font-extrabold tracking-tight leading-tight text-left">
+                            <span class="block text-sm text-zinc-400 mb-1 ml-1" style="font-size:32px; margin-left:0;">
+                                Portfolio
+                            </span>
+                            <span style="display:block; height:10px;"></span>
+                            <!-- 横並び -->
+                            <span class="flex items-end gap-2">
+                                <!-- ここを絶対固定サイズにする（例：56px）-->
+                                <span
+                                    class="tracking-[0.05em] text-[40px] sm:text-[48px] md:text-[72px] leading-none whitespace-nowrap">城戸</span>
+                                <span
+                                    class="tracking-[0em] text-[40px] sm:text-[48px] md:text-[72px] leading-none whitespace-nowrap">双汰朗</span>
+                                <!-- 英字は少し小さめ＆改行禁止で横に続ける。下端揃えのためflex+items-endを親に指定 -->
+                                <span class="text-base text-zinc-400 tracking-[0.05em] whitespace-nowrap"
+                                    style="position:relative; top:3px;">
+                                    Kido Sotaro
+                                </span>
+                            </span>
                         </h1>
-                        <div class="pt-2 flex flex-wrap gap-6 justify-center lg:justify-start">
-                            <a href="about.html"
-                                class="dot inline-flex items-center justify-center w-32 h-32 rounded-full bg-white/70 dark:bg-zinc-900/60 ring-1 ring-zinc-200/70 dark:ring-zinc-700/60 ring-soft text-base font-semibold">ABOUT</a>
-                            <a href="work.html"
-                                class="dot inline-flex items-center justify-center w-32 h-32 rounded-full bg-white/70 dark:bg-zinc-900/60 ring-1 ring-zinc-200/70 dark:ring-zinc-700/60 ring-soft text-base font-semibold">WORKS</a>
-                            <a href="contact.html"
-                                class="dot inline-flex items-center justify-center w-32 h-32 rounded-full bg-white/70 dark:bg-zinc-900/60 ring-1 ring-zinc-200/70 dark:ring-zinc-700/60 ring-soft text-base font-semibold">CONTACT</a>
-                        </div>
+
+                        <nav id="main-nav" style="margin-top: 32px; font-size: 24px;"
+                            class="flex flex-wrap items-center justify-start font-semibold text-zinc-800 dark:text-zinc-100 group relative">
+                            <a href="about.html" class="hover:underline transition nav-link nav-absorb">ABOUT</a>
+                            <span class="mx-3 text-zinc-400 select-none ">／</span>
+                            <a href="work.html" class="hover:underline transition nav-link nav-absorb">WORKS</a>
+                            <span class="mx-3 text-zinc-400 select-none ">／</span>
+                            <a href="contact.html" class="hover:underline transition nav-link nav-absorb">CONTACT</a>
+                        </nav>
+                        <style>
+                            .nav-absorb,
+                            .nav-absorb-divider {
+                                transition:
+                                    transform 0.25s cubic-bezier(.4, 2, .6, 1),
+                                    box-shadow 0.25s,
+                                    color 0.18s;
+                                will-change: transform;
+                                position: relative;
+                                z-index: 1;
+                            }
+
+                            .nav-absorb.absorbed,
+                            .nav-absorb-divider.absorbed {
+                                transform: scale(1.13) translateY(-7px);
+
+
+                                z-index: 10;
+                            }
+                        </style>
+                        <script>
+                            // 各nav要素ごとに吸着効果
+                            (function () {
+                                const margin = 48; // px, 各要素の周囲
+                                function isNearElement(el, mouseX, mouseY) {
+                                    const rect = el.getBoundingClientRect();
+                                    return (
+                                        mouseX >= rect.left - margin &&
+                                        mouseX <= rect.right + margin &&
+                                        mouseY >= rect.top - margin &&
+                                        mouseY <= rect.bottom + margin
+                                    );
+                                }
+                                // nav内の吸着対象
+                                const nav = document.getElementById('main-nav');
+                                if (!nav) return;
+                                const absorbTargets = Array.from(nav.querySelectorAll('.nav-absorb, .nav-absorb-divider'));
+                                const hovering = new Array(absorbTargets.length).fill(false);
+                                const stickyTimeouts = new Array(absorbTargets.length).fill(null);
+
+                                document.addEventListener('mousemove', (e) => {
+                                    absorbTargets.forEach((el, idx) => {
+                                        if (isNearElement(el, e.clientX, e.clientY)) {
+                                            if (!hovering[idx]) {
+                                                hovering[idx] = true;
+                                                el.classList.add('absorbed');
+                                            }
+                                            if (stickyTimeouts[idx]) clearTimeout(stickyTimeouts[idx]);
+                                        } else {
+                                            if (hovering[idx]) {
+                                                stickyTimeouts[idx] = setTimeout(() => {
+                                                    el.classList.remove('absorbed');
+                                                    hovering[idx] = false;
+                                                }, 180);
+                                            }
+                                        }
+                                    });
+                                });
+                                // 各要素自体にマウスが入ったら即吸着
+                                absorbTargets.forEach((el, idx) => {
+                                    el.addEventListener('mouseenter', () => {
+                                        hovering[idx] = true;
+                                        el.classList.add('absorbed');
+                                        if (stickyTimeouts[idx]) clearTimeout(stickyTimeouts[idx]);
+                                    });
+                                    el.addEventListener('mouseleave', () => {
+                                        stickyTimeouts[idx] = setTimeout(() => {
+                                            el.classList.remove('absorbed');
+                                            hovering[idx] = false;
+                                        }, 180);
+                                    });
+                                });
+                            })();
+                        </script>
                     </div>
                 </div>
             </div>
