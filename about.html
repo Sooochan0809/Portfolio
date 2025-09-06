@@ -22,7 +22,7 @@
       },
       darkMode: 'class'
     };
-    // ダークモードを常に有効にする
+    // ライトモードを常に有効にする
     document.documentElement.classList.add('light');
     // もしlocalStorageのthemeがlightなら無視する
     localStorage.setItem('theme', 'light');
@@ -51,7 +51,7 @@
       <div class="flex items-center gap-2">
         <!-- PC表示用ナビ -->
         <nav class="hidden sm:flex gap-6 text-sm">
-          <a data-nav href="#profile" class="hover:text-brand">About</a>
+          <a data-nav href="about.html" class="font-bold text-brand">About</a>
           <a data-nav href="work.html" class="hover:text-brand">Works</a>
           <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
         </nav>
@@ -70,7 +70,7 @@
     </div>
     <div id="mobileNav" class="sm:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
       <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
-        <a data-nav class="hover:text-brand" href="about.html">About</a>
+        <a data-nav href="about.html" class="font-bold text-brand">About</a>
         <a data-nav class="hover:text-brand" href="work.html">Works</a>
         <a data-nav class="hover:text-brand" href="contact.html">Contact</a>
       </nav>

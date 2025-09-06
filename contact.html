@@ -18,13 +18,16 @@
             },
             darkMode: 'class'
         };
+        // ライトモードを常に有効にする
+        document.documentElement.classList.add('light');
+        localStorage.setItem('theme', 'light');
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+<body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100 font-sans">
     <header class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
         <div class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
             <a href="index.html" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
@@ -32,9 +35,9 @@
                 <nav class="hidden sm:flex gap-6 text-sm">
                     <a data-nav href="about.html" class="hover:text-brand">About</a>
                     <a data-nav href="work.html" class="hover:text-brand">Works</a>
-                    <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
+                    <a data-nav href="contact.html" class="font-bold text-brand">Contact</a>
                 </nav>
-                <button id="menuBtn" class="sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2" aria-label="メニュー">
+                <button id="menuBtn" class="sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2" aria-label="メニュー" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -45,7 +48,8 @@
             <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
                 <a data-nav class="hover:text-brand" href="about.html">About</a>
                 <a data-nav class="hover:text-brand" href="work.html">Works</a>
-                <a data-nav class="hover:text-brand" href="contact.html">Contact</a>
+                <!-- CONTACT: モバイル時は太字＋ブランド色 -->
+                <a data-nav href="contact.html" class="font-bold text-brand">Contact</a>
             </nav>
         </div>
     </header>
@@ -71,8 +75,36 @@
             </form>
         </section>
     </main>
-    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
-    <script>localStorage.setItem('theme', 'light');</script>
+    <footer class="pt-0 pb-10 pr-6 text-right text-sm text-zinc-500">
+        LastUpdated <span id="last-updated"></span>
+    </footer>
+    <script>
+        // フッターに最終更新日を表示
+        document.getElementById('last-updated').textContent = (function() {
+            const d = new Date(document.lastModified);
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${y}.${m}.${day}`;
+        })();
+    </script>
+    <script>
+        // 年号
+        // (about.htmlと同じくid="y"があれば年号を入れる)
+        if (document.getElementById('y')) {
+            document.getElementById('y').textContent = new Date().getFullYear();
+        }
+        // モバイルメニュー
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            if (menuBtn && mobileNav) {
+                menuBtn.addEventListener('click', function () {
+                    mobileNav.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

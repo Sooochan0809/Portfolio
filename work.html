@@ -17,6 +17,8 @@
         }
       }, darkMode: 'class'
     };
+    // ライトモードを常に有効にする
+    document.documentElement.classList.add('light');
     // もしlocalStorageのthemeがlightなら無視する
     localStorage.setItem('theme', 'light');
   </script>
@@ -41,14 +43,15 @@
       border-radius: 1rem
     }
 
-     /* 角丸を角に変更 */
-     #grid1 article,
-        #grid2 article {
-          border-radius: 0.2rem !important;
-        }
-        .ratio>img {
-          border-radius: 0.2rem !important;
-        }
+    /* 角丸を角に変更 */
+    #grid1 article,
+    #grid2 article {
+      border-radius: 0.2rem !important;
+    }
+
+    .ratio>img {
+      border-radius: 0.2rem !important;
+    }
   </style>
 </head>
 
@@ -59,7 +62,7 @@
     <div class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
       <!-- 左側：ロゴ -->
       <a href="index.html" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
-      
+
       <!-- 右側：ナビ or ハンバーガー -->
       <div class="flex items-center gap-2">
         <!-- PC表示用ナビ -->
@@ -68,7 +71,7 @@
           <a data-nav href="work.html" class="hover:text-brand">Works</a>
           <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
         </nav>
-    
+
         <!-- モバイル表示用ボタン -->
         <button id="menuBtn" class="sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2"
           aria-label="メニュー">
@@ -79,11 +82,11 @@
         </button>
       </div>
     </div>
-    
+
     <div id="mobileNav" class="sm:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
       <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
         <a data-nav class="hover:text-brand" href="about.html">About</a>
-        <a data-nav class="hover:text-brand font-bold" href="work.html">Works</a>
+        <a data-nav class="hover:text-brand" href="work.html">Works</a>
         <a data-nav class="hover:text-brand" href="contact.html">Contact</a>
       </nav>
     </div>
@@ -95,7 +98,7 @@
       <div class="flex items-end justify-between gap-6">
         <div>
           <h1 class="leading-none tracking-tight"
-          style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">WORKS</h1>
+            style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">WORKS</h1>
           <span class="mb-2 text-sm text-gray-500">研究/作品</span>
         </div>
         <div class="flex items-center gap-2">
@@ -103,13 +106,13 @@
       </div>
       <div id="grid1" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
-    
+
     <!-- Section 2: More/Archive -->
     <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-100">
       <div class="flex items-end justify-between gap-6">
         <div>
           <h1 class="leading-none tracking-tight"
-          style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">COOPERATION</h1>
+            style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">COOPERATION</h1>
           <span class="mb-2 text-sm text-gray-500">制作協力</span>
         </div>
         <div class="flex items-center gap-2">
@@ -124,7 +127,7 @@
   </footer>
   <script>
     // フッターに最終更新日を表示
-    document.getElementById('last-updated').textContent = (function() {
+    document.getElementById('last-updated').textContent = (function () {
       const d = new Date(document.lastModified);
       const y = d.getFullYear();
       const m = String(d.getMonth() + 1).padStart(2, '0');
@@ -132,7 +135,7 @@
       return `${y}.${m}.${day}`;
     })();
   </script>
-
+  
   <script src="js/site.js"></script>
   <script src="js/work-data.js"></script>
 
@@ -158,10 +161,10 @@
     function render1() {
       const tag = tagFilter1?.value || ""; // セレクトが無い場合は空
       const filtered = works.filter(w => !tag || w.tags.includes(tag));
-      
+
       // 作品カードのHTMLを生成
       const cardsHTML = filtered.map(cardHTML1).join('');
-      
+
       // 案内のHTMLを生成
       const indicatorHTML = `
         <div class="flex flex-col items-center justify-center p-8 border-2 border-dashed border-gray-200 rounded-md bg-gray-50 transition-colors pointer-events-none select-none">
@@ -173,7 +176,7 @@
           </div>
         </div>
       `;
-      
+
       // 作品カードと案内を結合してグリッドに設定
       grid1.innerHTML = cardsHTML + indicatorHTML;
     }
