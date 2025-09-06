@@ -6,12 +6,48 @@ h2.cap {
 }
 
 /* 右肩の小見出し（CAPTION） */
+/* 英語: .cap::after, 和文: .cap::before を使う前提 */
+/* HTML例: <h2 class="cap" data-cap="English Caption" data-cap-jp="和文キャプション">タイトル</h2> */
+
 .cap::after {
   content: attr(data-cap);
   margin-left: .75rem;
   color: #6b7280;
   font-weight: 400;
   font-size: .85rem;
+}
+
+/* 和文はデフォルト非表示 */
+.cap::before {
+  content: "";
+  display: none;
+}
+
+@media (max-width: 640px) {
+  /* スマホ時は英語の下に和文を表示 */
+  .cap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cap::after {
+    content: attr(data-cap);
+    margin-left: 0;
+    color: #6b7280;
+    font-weight: 400;
+    font-size: .85rem;
+    margin-bottom: 0.15rem;
+    order: 1;
+  }
+  .cap::before {
+    content: attr(data-cap-jp);
+    display: block;
+    color: #6b7280;
+    font-weight: 400;
+    font-size: .85rem;
+    margin-bottom: 0.25rem;
+    order: 2;
+  }
 }
 
 /* その他の共通スタイル */

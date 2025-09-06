@@ -98,11 +98,11 @@
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
 
       <!-- Title Row（2つ目のコードのトーン） -->
-      <header id="profile" class="pt-10 md:pt-0">
+      <header id="profile" class=" md:pt-0">
         <div class="flex flex-col items-start gap-2">
           <!-- PROFILE -->
           <h1 class="leading-none tracking-tight text-left"
-            style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">
+            style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em;">
             PROFILE
           </h1>
           <!-- プロフィール -->
@@ -115,7 +115,7 @@
         <!-- Left Column / Photo（2つ目のコード） -->
         <aside class="order-1 lg:order-none hidden lg:block">
           <figure class="w-[260px] max-w-full border border-gray-200 shadow-sm">
-            <img class="block w-full h-auto" src=".img/01_about/kidosotaro.png" alt="Portrait" />
+            <img class="block w-full h-auto" src="./img/01_about/kidosotaro.png" alt="Portrait" />
           </figure>
         </aside>
 
@@ -123,7 +123,7 @@
         <div class="order-2 lg:order-none">
           <!-- ABOUT ME -->
           <section id="about-me" class="mb-[80px]">
-            <h2 class="text-xl font-normal cap mt-[1.5px]" data-cap="私について">ABOUT ME</h2>
+            <h2 class="text-xl font-normal cap mt-[1.5px] hidden lg:block" data-cap="私について">ABOUT ME</h2>
 
             <!-- Photo for mobile only -->
             <figure class="mt-[20px] w-[260px] border border-gray-200 shadow-sm lg:hidden">
@@ -189,10 +189,26 @@
           <section id="exhibition-workshop" class="mb-[80px]">
             <h2 class="text-xl font-normal cap" data-cap="展示／ワークショップ">Exhibition/Workshop</h2>
             <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
-              <li>2025.6　あいちワークショップギャザリング mini, ある／みる さわる目・みられる目</li>
-              <li>2025.5　スイトピアラジオ、出演</li>
-              <li>2025.2　あいちワークショップギャザリング mini, 必泊び：び～よんびん人編集</li>
-              <li>2024.10　Interverse Virtual Reality Challenge (IVRC) 2024, 現場運営補助</li>
+              <li class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline">
+                <span class="whitespace-nowrap">2025.6</span>
+                <span class="break-words">あいちワークショップギャザリング mini</span>
+                <span class="col-start-2 break-words">ある／みる さわる目・みられる目</span>
+              </li>
+              <li class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline">
+                <span class="whitespace-nowrap">2025.5</span>
+                <span class="break-words">スイトピアラジオ</span>
+                <span class="col-start-2 break-words">出演</span>
+              </li>
+              <li class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline">
+                <span class="whitespace-nowrap">2025.2</span>
+                <span class="break-words">あいちワークショップギャザリング mini</span>
+                <span class="col-start-2 break-words">必泊び：び～よんびん人編集</span>
+              </li>
+              <li class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline">
+                <span class="whitespace-nowrap">2024.10</span>
+                <span class="break-words">Interverse Virtual Reality Challenge (IVRC) 2024</span>
+                <span class="col-start-2 break-words">現場運営補助</span>
+              </li>
             </ul>
           </section>
 
@@ -208,12 +224,13 @@
 
           <!-- Award / License -->
           <section id="award-license" class="mb-[80px]">
-            <h2 class="text-xl font-normal cap" data-cap="表彰／資格">AWARD/license</h2>
+            <h2 class="text-xl font-normal cap" data-cap="受賞">AWARD</h2>
             <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
               <li>2024.10　Interverse Virtual Reality Challenge (IVRC) 2024, IVRC運営</li>
               <li>2025.9　Interverse Virtual Reality Challenge (IVRC) 2024 REAP STAGE 進出, マテハ大株式会社</li>
               <li>2024.3　高等学校教諭一種免許（情報）</li>
               <li>2023.3　卒業発表・芸術科学フォーラム2023 優秀発表</li>
+              <li>2017.6　熊本県高校総体 バドミントン団体 3位入賞</li>
             </ul>
           </section>
 
