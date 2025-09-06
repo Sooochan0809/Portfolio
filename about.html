@@ -405,6 +405,39 @@
   </script>
 
   <script src="js/site.js"></script>
+
+  <script>
+    // 年号
+    document.getElementById('y').textContent = new Date().getFullYear();
+  
+    // デバッグコード（これ無くても動くはずなのに）
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('DOM loaded');
+  
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+  
+      console.log('menuBtn element:', menuBtn);
+      console.log('mobileNav element:', mobileNav);
+  
+      if (menuBtn) {
+        console.log('Adding click listener to menuBtn');
+        menuBtn.addEventListener('click', function (e) {
+          console.log('Menu button clicked!', e);
+          if (mobileNav) {
+            console.log('Before toggle - mobileNav classes:', mobileNav.className);
+            mobileNav.classList.toggle('hidden');
+            console.log('After toggle - mobileNav classes:', mobileNav.className);
+          } else {
+            console.error('mobileNav not found!');
+          }
+        });
+      } else {
+        console.error('menuBtn not found!');
+      }
+    });
+  </script>
+  
 </body>
 
 </html>
