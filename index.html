@@ -181,11 +181,143 @@
                             style="margin-top: 32px;"
                             class="flex flex-wrap items-center justify-start font-semibold text-zinc-800 dark:text-zinc-100 group relative text-[16px] sm:text-[24px]">
                             <a href="about.html" class="hover:underline transition nav-link nav-absorb">ABOUT</a>
-                            <span class="mx-3 text-zinc-400 select-none ">／</span>
+                            <span class="mx-3 text-zinc-400 select-none nav-absorb-divider">／</span>
                             <a href="work.html" class="hover:underline transition nav-link nav-absorb">WORKS</a>
-                            <span class="mx-3 text-zinc-400 select-none ">／</span>
+                            <span class="mx-3 text-zinc-400 select-none nav-absorb-divider">／</span>
                             <a href="contact.html" class="hover:underline transition nav-link nav-absorb">CONTACT</a>
                         </nav>
+                        <style>
+                            .nav-absorb,
+                            .nav-absorb-divider {
+                                transition:
+                                    transform 0.25s cubic-bezier(.4, 2, .6, 1),
+                                    box-shadow 0.25s,
+                                    color 0.18s;
+                                will-change: transform;
+                                position: relative;
+                                z-index: 1;
+                            }
+                            .nav-absorb.absorbed,
+                            .nav-absorb-divider.absorbed {
+                                transform: scale(1.13) translateY(-7px);
+                                z-index: 10;
+                            }
+                            /* 微弱な揺れアニメーション */
+                            @keyframes nav-wiggle {
+                                0% { transform: translateY(0); }
+                                15% { transform: translateY(-2px) rotate(-2deg);}
+                                30% { transform: translateY(2px) rotate(2deg);}
+                                45% { transform: translateY(-1.5px) rotate(-1deg);}
+                                60% { transform: translateY(1.5px) rotate(1deg);}
+                                75% { transform: translateY(-1px) rotate(-0.5deg);}
+                                100% { transform: translateY(0); }
+                            }
+                            .nav-wiggle {
+                                animation: nav-wiggle 0.7s cubic-bezier(.4,2,.6,1);
+                            }
+                            /* スマホ時は吸着演出を無効化し、タップ時に即反応 */
+                            @media (max-width: 640px) {
+                                .nav-absorb,
+                                .nav-absorb-divider {
+                                    transition: transform 0.12s cubic-bezier(.4,2,.6,1), color 0.18s;
+                                }
+                                .nav-absorb.absorbed,
+                                .nav-absorb-divider.absorbed {
+                                    transform: scale(1.10) translateY(-2px);
+                                }
+                            }
+                        </style>
+                        <script>
+                            (function () {
+                                const nav = document.getElementById('main-nav');
+                                if (!nav) return;
+                                const absorbTargets = Array.from(nav.querySelectorAll('.nav-absorb, .nav-absorb-divider'));
+                                let isMobile = window.matchMedia('(max-width: 640px)').matches;
+
+                                // --- 3秒無操作で微弱に揺らす ---
+                                let wiggleTimeout = null;
+                                function resetWiggleTimer() {
+                                    if (wiggleTimeout) clearTimeout(wiggleTimeout);
+                                    wiggleTimeout = setTimeout(() => {
+                                        absorbTargets.forEach(el => {
+                                            el.classList.add('nav-wiggle');
+                                            setTimeout(() => el.classList.remove('nav-wiggle'), 800);
+                                        });
+                                    }, 3000);
+                                }
+                                // 初回
+                                resetWiggleTimer();
+
+                                // 何かしら操作があればリセット
+                                ['mousemove', 'touchstart', 'keydown'].forEach(ev => {
+                                    document.addEventListener(ev, resetWiggleTimer, {passive:true});
+                                });
+
+                                // --- スマホ/PCで挙動を分岐 ---
+                                function setUpNavBehavior() {
+                                    isMobile = window.matchMedia('(max-width: 640px)').matches;
+                                    absorbTargets.forEach(el => {
+                                        el.classList.remove('absorbed');
+                                        el.onmouseenter = el.onmouseleave = el.onmousedown = el.onmouseup = el.ontouchstart = el.ontouchend = null;
+                                    });
+
+                                    if (isMobile) {
+                                        // スマホ: タップ時に即反応
+                                        absorbTargets.forEach(el => {
+                                            el.addEventListener('touchstart', function () {
+                                                el.classList.add('absorbed');
+                                            }, {passive:true});
+                                            el.addEventListener('touchend', function () {
+                                                setTimeout(() => el.classList.remove('absorbed'), 120);
+                                            }, {passive:true});
+                                            el.addEventListener('mousedown', function () {
+                                                el.classList.add('absorbed');
+                                            });
+                                            el.addEventListener('mouseup', function () {
+                                                setTimeout(() => el.classList.remove('absorbed'), 120);
+                                            });
+                                        });
+                                    } else {
+                                        // PC: 吸着効果
+                                        const margin = 48;
+                                        function isNearElement(el, mouseX, mouseY) {
+                                            const rect = el.getBoundingClientRect();
+                                            return (
+                                                mouseX >= rect.left - margin &&
+                                                mouseX <= rect.right + margin &&
+                                                mouseY >= rect.top - margin &&
+                                                mouseY <= rect.bottom + margin
+                                            );
+                                        }
+                                        const hovering = new Array(absorbTargets.length).fill(false);
+                                        const stickyTimeouts = new Array(absorbTargets.length).fill(null);
+
+                                        document.addEventListener('mousemove', (e) => {
+                                            absorbTargets.forEach((el, idx) => {
+                                                if (isNearElement(el, e.clientX, e.clientY)) {
+                                                    if (!hovering[idx]) {
+                                                        hovering[idx] = true;
+                                                        el.classList.add('absorbed');
+                                                    }
+                                                    if (stickyTimeouts[idx]) clearTimeout(stickyTimeouts[idx]);
+                                                } else {
+                                                    if (hovering[idx]) {
+                                                        hovering[idx] = false;
+                                                        stickyTimeouts[idx] = setTimeout(() => {
+                                                            el.classList.remove('absorbed');
+                                                        }, 120);
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    }
+                                }
+                                setUpNavBehavior();
+                                window.addEventListener('resize', () => {
+                                    setUpNavBehavior();
+                                });
+                            })();
+                        </script>
                         <style>
                             .nav-absorb,
                             .nav-absorb-divider {
