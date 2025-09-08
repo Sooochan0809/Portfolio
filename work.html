@@ -98,13 +98,13 @@
       <div class="flex items-end justify-between gap-6">
         <div>
           <h1 class="leading-none tracking-tight"
-            style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">WORKS</h1>
+            style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em;">WORKS</h1>
           <span class="mb-2 text-sm text-gray-500">研究/作品</span>
         </div>
         <div class="flex items-center gap-2">
         </div>
       </div>
-      <div id="grid1" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div id="grid1" class="mt-[64px] grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
     <!-- Section 2: More/Archive -->
@@ -118,7 +118,7 @@
         <div class="flex items-center gap-2">
         </div>
       </div>
-      <div id="grid2" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div id="grid2" class="mt-[64px] grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
   </main>
 
@@ -229,9 +229,6 @@
       tagFilter2.addEventListener('change', render2);
     }
     render2();
-
-    // 年号
-    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 
 </body>

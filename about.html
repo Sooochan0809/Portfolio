@@ -67,7 +67,6 @@
       </div>
     </div>
 
-    </div>
     <div id="mobileNav" class="sm:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
       <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
         <a data-nav href="about.html" class="font-bold text-brand">About</a>
@@ -81,20 +80,82 @@
   <main class="pt-16">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
 
-      <!--PROFILE-->
-      <header id="profile" class=" md:pt-0">
+      <!-- headerの描画とアニメーション定義 -->
+      <header id="profile" class="md:pt-0 lg:sticky lg:top-[120px] lg:self-start">
         <div class="flex flex-col items-start gap-2">
-          <h1 class="leading-none tracking-tight text-left"
-            style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em;">
-            PROFILE
+          <h1 id="profile-title" class="leading-none tracking-tight text-left"
+            style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em; position:relative;">
+            <span id="portfolio-progress" style="position:relative; display:inline-block; line-height:1;">
+              <span class="portfolio-text" style="color:#000; position:relative; z-index:1;">PROFILE</span>
+              <span class="portfolio-gradient" style="
+                pointer-events:none;
+                position:absolute;
+                left:0; top:0;
+                width:100%; height:100%;
+                display:block;
+                z-index:2;
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+                background-clip: text;
+                background: linear-gradient(to top, #8000ff 0%, transparent 0%);
+                color: #8000ff;
+                transition: background 0.2s;
+              ">PROFILE</span>
+            </span>
           </h1>
           <span class="text-sm text-gray-500">プロフィール</span>
         </div>
       </header>
+      <script>
+        // スクロール進捗に応じてPORTFOLIOの色と下から上にたまるグラデーションを制御
+        (function () {
+          const wrapper = document.getElementById('portfolio-progress');
+          const text = wrapper.querySelector('.portfolio-text');
+          const grad = wrapper.querySelector('.portfolio-gradient');
+
+          function lerpColor(a, b, t) {
+            return Math.round(a + (b - a) * t);
+          }
+          function clamp(v, min, max) {
+            return Math.max(min, Math.min(max, v));
+          }
+          function updatePortfolioProgress() {
+            // スクロール進捗
+            const scrollTop = window.scrollY || window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            let progress = docHeight > 0 ? scrollTop / docHeight : 0;
+            progress = clamp(progress, 0, 1);
+            // 黒 (#000) から むらさき (#8000ff) への色変化
+            const start = { r: 0, g: 0, b: 0 };
+            const end = { r: 128, g: 0, b: 255 };
+            const r = lerpColor(start.r, end.r, progress);
+            const g = lerpColor(start.g, end.g, progress);
+            const b = lerpColor(start.b, end.b, progress);
+            text.style.color = `rgb(${r},${g},${b})`;
+            // 下から上にたまるグラデーション
+            // グラデーションの高さを進捗に応じて変化
+            const percent = Math.round(progress * 100);
+            grad.style.background = `linear-gradient(to top, #8000ff 0%, #8000ff ${percent}%, transparent ${percent}%, transparent 100%)`;
+            grad.style.webkitBackgroundClip = "text";
+            grad.style.backgroundClip = "text";
+            grad.style.webkitTextFillColor = "transparent";
+            grad.style.textFillColor = "transparent";
+            grad.style.opacity = percent > 0 ? 1 : 0;
+            // 文字が隠れないように、グラデーションの上に黒文字が常に見える
+            // 進捗100%で黒文字を消す
+            text.style.opacity = (progress < 1) ? 1 : 0;
+          }
+
+          window.addEventListener('scroll', updatePortfolioProgress, { passive: true });
+          window.addEventListener('resize', updatePortfolioProgress);
+          document.addEventListener('DOMContentLoaded', updatePortfolioProgress);
+        })();
+      </script>
+      <!-- headerの描画とアニメーション定義 -->
 
       <!-- Two Column Layout（写真＋内容） -->
-      <section class="mt-8 md:mt-12 grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-16">
-        <aside class="order-1 lg:order-none hidden lg:block">
+      <section class="mt-8 md:mt-8 grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-16">
+        <aside class="order-1 lg:order-none mt-[64px] hidden lg:block sticky top-[316px] self-start">
           <figure class="w-[260px] max-w-full border border-gray-200 shadow-sm">
             <img class="block w-full h-auto" src="./img/01_about/kidosotaro.png" alt="Portrait" />
           </figure>
@@ -104,11 +165,11 @@
         <div class="order-2 lg:order-none">
           <!-- ABOUT ME -->
           <section id="about-me" class="mb-[80px]">
-            <h2 class="text-xl font-normal cap mt-[1.5px] hidden lg:block" data-cap="私について">ABOUT ME</h2>
-            <figure class="mt-[20px] w-[260px] border border-gray-200 shadow-sm lg:hidden">
+            <h2 class="text-xl font-normal cap mt-[64px] hidden lg:block" data-cap="私について">ABOUT ME</h2>
+            <figure class="mt-[16px] w-[260px] border border-gray-200 shadow-sm lg:hidden">
               <img class="block w-full h-auto" src="./img/01_about/kidosotaro.png" alt="Portrait" />
             </figure>
-            <div class="mt-[20px] lg:mt-[56px]">
+            <div class="mt-[16px] lg:mt-[56px]">
               <div class="text-[32px] font-bold">城戸 双汰朗 <span
                   class="ml-2 align-baseline text-[16px] font-normal text-gray-500">kido sotaro</span></div>
               <p class="text-[16px] text-gray-600">情報科学芸術大学院大学 修士2年</p>
@@ -162,7 +223,9 @@
                   class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
                   福祉の視点　─福祉の技術プロジェクト─
                 </span>
-                <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
+                <span
+                  class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
+                  style="transition:all .18s cubic-bezier(.4,0,.2,1);">
                   [情報科学芸術大学院大学紀要🔗]
                 </span>
               </li>
@@ -174,7 +237,9 @@
                   class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
                   モバイル型入出力装置を用いたムービングライトとの新しいインタラクション
                 </span>
-                <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
+                <span
+                  class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
+                  style="transition:all .18s cubic-bezier(.4,0,.2,1);">
                   [エンターテインメントコンピューティング🔗]
                 </span>
               </li>
@@ -186,7 +251,9 @@
                   class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
                   耳研澄装置製造工場
                 </span>
-                <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
+                <span
+                  class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
+                  style="transition:all .18s cubic-bezier(.4,0,.2,1);">
                   [Interverse Virtual Reality Challenge (IVRC) 2024🔗]
                 </span>
               </li>
@@ -198,7 +265,9 @@
                   class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
                   観察力と表現力の向上を目的としたKinectによる動物動作のものまねシステム ～動物園での子ども向けイベントにおける実証実験をとおして～
                 </span>
-                <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
+                <span
+                  class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
+                  style="transition:all .18s cubic-bezier(.4,0,.2,1);">
                   [映像表現・芸術科学フォーラム2023🔗]
                 </span>
               </li>
@@ -210,7 +279,9 @@
                   class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
                   二人三腕脚
                 </span>
-                <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
+                <span
+                  class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
+                  style="transition:all .18s cubic-bezier(.4,0,.2,1);">
                   [Interverse Virtual Reality Challenge (IVRC) 2022🔗]
                 </span>
               </li>
@@ -372,7 +443,7 @@
           </section>
 
           <!-- Skills（2つ目の簡潔な構造＋文言は1つ目の見出し系） -->
-          <section id="skills" class="mb-[80px]">
+          <section id="skills" class="mb-[168px]">
             <h2 class="text-xl font-normal cap" data-cap="スキル">SKILLS</h2>
             <div class="mt-[16px] grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -398,7 +469,7 @@
   </footer>
   <script>
     // フッターに最終更新日を表示
-    document.getElementById('last-updated').textContent = (function() {
+    document.getElementById('last-updated').textContent = (function () {
       const d = new Date(document.lastModified);
       const y = d.getFullYear();
       const m = String(d.getMonth() + 1).padStart(2, '0');
@@ -407,31 +478,9 @@
     })();
   </script>
 
-  <script>
-    // 年号
-    document.getElementById('y').textContent = new Date().getFullYear();
-    // モバイルメニュー
-    document.getElementById('menuBtn')?.addEventListener('click', () => {
-      document.getElementById('mobileNav')?.classList.toggle('hidden');
-    });
-  </script>
-
   <script src="js/site.js"></script>
 
   <script>
-    // 年号
-    document.getElementById('y').textContent = new Date().getFullYear();
-  
-    // デバッグコード（これ無くても動くはずなのに）
-    document.addEventListener('DOMContentLoaded', function () {
-      console.log('DOM loaded');
-  
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileNav = document.getElementById('mobileNav');
-  
-      console.log('menuBtn element:', menuBtn);
-      console.log('mobileNav element:', mobileNav);
-  
       if (menuBtn) {
         console.log('Adding click listener to menuBtn');
         menuBtn.addEventListener('click', function (e) {
@@ -447,9 +496,23 @@
       } else {
         console.error('menuBtn not found!');
       }
+    // 不要なコメントや構文エラーを削除し、正しいスクリプトブロックに修正
+    // 年号
+    if (document.getElementById('y')) {
+      document.getElementById('y').textContent = new Date().getFullYear();
+    }
+    // モバイルメニュー
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      if (menuBtn && mobileNav) {
+        menuBtn.addEventListener('click', function () {
+          mobileNav.classList.toggle('hidden');
+        });
+      }
     });
   </script>
-  
+
 </body>
 
 </html>

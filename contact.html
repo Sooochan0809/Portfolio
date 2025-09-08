@@ -55,24 +55,26 @@
     </header>
 
     <main class="pt-16">
-        <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 grid lg:grid-cols-2 gap-10 items-start">
-            <header>
+        <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+            <header class="mb-8">
                 <div class="flex flex-col items-start gap-2">
                     <h1 class="leading-none tracking-tight text-left"
-                        style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">CONTACT
+                        style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em;">CONTACT
                     </h1>
                     <span class="text-sm text-gray-500">ご連絡</span>
                 </div>
             </header>
-            <form class="grid gap-4"
-                onsubmit="event.preventDefault();window.location.href='mailto:you@example.com?subject='+encodeURIComponent(document.getElementById('msgSubject').value)+'&body='+encodeURIComponent(document.getElementById('msgBody').value)">
-                <input id="msgSubject" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60"
-                    placeholder="件名" required />
-                <textarea id="msgBody" class="rounded-xl border px-4 py-3 min-h-[120px] bg-white/70 dark:bg-zinc-950/60"
-                    placeholder="お問い合わせ内容" required></textarea>
-                <button
-                    class="justify-self-start rounded-2xl bg-brand px-5 py-3 text-white font-semibold shadow-glow">メール作成</button>
-            </form>
+            <div class="flex justify-end">
+                <form class="grid gap-4 max-w-[560px] w-full mt-[64px]"
+                    onsubmit="event.preventDefault();window.location.href='mailto:you@example.com?subject='+encodeURIComponent(document.getElementById('msgSubject').value)+'&body='+encodeURIComponent(document.getElementById('msgBody').value)">
+                    <input id="msgSubject" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60"
+                        placeholder="件名" required />
+                    <textarea id="msgBody" class="rounded-xl border px-4 py-3 min-h-[120px] bg-white/70 dark:bg-zinc-950/60"
+                        placeholder="お問い合わせ内容" required></textarea>
+                    <button
+                        class="justify-self-start rounded-2xl bg-brand px-5 py-3 text-white font-semibold shadow-glow">メール作成</button>
+                </form>
+            </div>
         </section>
     </main>
     <footer class="pt-0 pb-10 pr-6 text-right text-sm text-zinc-500">
