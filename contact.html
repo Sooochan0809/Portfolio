@@ -65,21 +65,110 @@
                 </div>
             </header>
             <div class="flex justify-end">
-                <form class="grid gap-4 max-w-[560px] w-full mt-[64px]"
-                    onsubmit="event.preventDefault();window.location.href='mailto:you@example.com?subject='+encodeURIComponent(document.getElementById('msgSubject').value)+'&body='+encodeURIComponent(document.getElementById('msgBody').value)">
-                    <input id="msgSubject" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60"
-                        placeholder="件名" required />
-                    <textarea id="msgBody" class="rounded-xl border px-4 py-3 min-h-[120px] bg-white/70 dark:bg-zinc-950/60"
-                        placeholder="お問い合わせ内容" required></textarea>
+                <form id="contactForm" class="grid gap-4 max-w-[560px] w-full mt-[8px]" method="POST" action="https://formspree.io/f/xzzayorb" autocomplete="on">
+                    <!-- 会社名（任意） -->
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-zinc-700 mb-1">ご所属先</label>
+                        <input id="company" name="company" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="会社名/学校名" autocomplete="organization" />
+                    </div>
+                    <!-- 姓 -->
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-zinc-700 mb-1">姓 <span class="text-red-500">*</span></label>
+                        <input id="lastName" name="lastName" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="姓" required autocomplete="family-name" />
+                    </div>
+                    <!-- 名 -->
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-zinc-700 mb-1">名 <span class="text-red-500">*</span></label>
+                        <input id="firstName" name="firstName" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="名" required autocomplete="given-name" />
+                    </div>
+                    <!-- メールアドレス -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-zinc-700 mb-1">メールアドレス <span class="text-red-500">*</span></label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full"
+                            placeholder="your@email.com"
+                            required
+                            autocomplete="email"
+                            pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                            oninput="this.setCustomValidity(this.validity.patternMismatch ? '正しいメールアドレスを入力してください' : '');"
+                        />
+                    </div>
+                    <!-- 件名 -->
+                    <div>
+                        <label for="msgSubject" class="block text-sm font-medium text-zinc-700 mb-1">件名 <span class="text-red-500">*</span></label>
+                        <input id="msgSubject" name="subject" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full"
+                            placeholder="件名" required />
+                    </div>
+                    <!-- お問い合わせ内容 -->
+                    <div>
+                        <label for="msgBody" class="block text-sm font-medium text-zinc-700 mb-1">お問い合わせ内容 <span class="text-red-500">*</span></label>
+                        <textarea id="msgBody" name="message" class="rounded-xl border px-4 py-3 min-h-[120px] bg-white/70 dark:bg-zinc-950/60 w-full"
+                            placeholder="お問い合わせ内容" required></textarea>
+                    </div>
                     <button
-                        class="justify-self-start rounded-2xl bg-brand px-5 py-3 text-white font-semibold shadow-glow">メール作成</button>
+                        id="sendBtn"
+                        class="justify-self-start rounded-2xl bg-brand px-5 py-3 text-white font-semibold shadow-glow disabled:opacity-50"
+                        type="submit" disabled>送信</button>
                 </form>
             </div>
+            <script>
+                // 送信先メールアドレスはFormspree経由（action属性で指定）
+                const form = document.getElementById('contactForm');
+                const lastName = document.getElementById('lastName');
+                const firstName = document.getElementById('firstName');
+                const email = document.getElementById('email');
+                const subject = document.getElementById('msgSubject');
+                const body = document.getElementById('msgBody');
+                const sendBtn = document.getElementById('sendBtn');
+
+                function checkForm() {
+                    // 必須項目が全て入力されていれば有効化
+                    const requiredFilled =
+                        lastName.value.trim() &&
+                        firstName.value.trim() &&
+                        email.value.trim() &&
+                        subject.value.trim() &&
+                        body.value.trim();
+                    sendBtn.disabled = !requiredFilled;
+                }
+
+                lastName.addEventListener('input', checkForm);
+                firstName.addEventListener('input', checkForm);
+                email.addEventListener('input', checkForm);
+                subject.addEventListener('input', checkForm);
+                body.addEventListener('input', checkForm);
+
+                form.addEventListener('submit', function (e) {
+                    // 自動送信（FormspreeにPOST）→ 送信後に完了メッセージ表示
+                    e.preventDefault();
+                    sendBtn.disabled = true;
+                    sendBtn.textContent = "送信中…";
+                    fetch(form.action, {
+                        method: "POST",
+                        headers: {
+                            "Accept": "application/json"
+                        },
+                        body: new FormData(form)
+                    }).then(response => {
+                        if (response.ok) {
+                            form.innerHTML = '<div class="text-green-600 text-lg font-semibold py-8">送信が完了しました。<br>ご連絡ありがとうございます。</div>';
+                        } else {
+                            sendBtn.disabled = false;
+                            sendBtn.textContent = "メール送信";
+                            alert("送信に失敗しました。時間をおいて再度お試しください。");
+                        }
+                    }).catch(() => {
+                        sendBtn.disabled = false;
+                        sendBtn.textContent = "メール送信";
+                        alert("送信に失敗しました。時間をおいて再度お試しください。");
+                    });
+                });
+            </script>
         </section>
     </main>
-    <footer class="pt-0 pb-10 pr-6 text-right text-sm text-zinc-500">
-        LastUpdated <span id="last-updated"></span>
-    </footer>
     <script>
         // フッターに最終更新日を表示
         document.getElementById('last-updated').textContent = (function() {
