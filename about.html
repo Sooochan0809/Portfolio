@@ -245,8 +245,6 @@
 
 <body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100 font-sans">
 
-
-
   <!-- ===== Header（1つ目のコード由来／テーマ切替＋モバイルNav） ===== -->
   <header
     class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
@@ -282,6 +280,12 @@
       </nav>
     </div>
     <script>
+      // iOS（iPhone/iPad）での挙動安定化のためのユーティリティ
+      function isIOS() {
+        return /iP(ad|hone|od)/.test(navigator.userAgent) ||
+          (navigator.userAgent.includes('Macintosh') && 'ontouchend' in document);
+      }
+
       // ナビゲーションのidに移動したらfont-bold text-brandを付与
       function updateNavHighlight() {
         // PCナビ
@@ -355,8 +359,16 @@
           const el = document.getElementById(id);
           if (el) {
             e.preventDefault();
-            const y = el.getBoundingClientRect().top + window.scrollY - 72; // header高さ
-            window.scrollTo({ top: y, behavior: "smooth" });
+            // iOS Safariのバグ対策: setTimeoutで遅延させる
+            const scrollToY = () => {
+              const y = el.getBoundingClientRect().top + window.scrollY - 72; // header高さ
+              window.scrollTo({ top: y, behavior: "smooth" });
+            };
+            if (isIOS()) {
+              setTimeout(scrollToY, 10);
+            } else {
+              scrollToY();
+            }
           }
         });
       });
@@ -365,21 +377,16 @@
 
   <!-- ===== Main ===== -->
   <main class="pt-16" style="min-height:0;">
-    <!--
-      ここで指定した色（--profile-gradient-color: #8000ff;）を背景色として機能させるには、style属性でbackground-colorに指定します。
-    -->
     <div class="main-container-fix mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-[40px] pb-5"
-      style="background-color: #83c2ce; min-height:100vh; box-shadow: 0 0 0 100vmax #f9fafb; clip-path: inset(0 -100vmax); box-shadow: 0 0 0 100vmax #f9fafb; clip-path: inset(0 -100vmax);"
-      >
+      style="background-color: #83c2ce; min-height:100vh; box-shadow: 0 0 0 100vmax #f9fafb; clip-path: inset(0 -100vmax); box-shadow: 0 0 0 100vmax #f9fafb; clip-path: inset(0 -100vmax);">
       <div style="position:fixed; inset:0; pointer-events:none; z-index:0;">
-        <div style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(2rem); background:#83c2ce"></div>
-        <div style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100%; filter:blur(2rem); background:#83c2ce"></div>
+        <div
+          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(2rem); background:#83c2ce">
+        </div>
+        <div
+          style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100%; filter:blur(2rem); background:#83c2ce">
+        </div>
       </div>
-      <!-- 
-        色を指定したい場合は、sectionタグにstyle属性でbackground-colorなどを指定できます。
-        例: <section style="background-color: #f0f0f0;">
-        もしくはclassでTailwindのbg-色名を使うこともできます。
-      -->
       <section id="profile" style="background-color: #f9fafb;">
         <!-- headerの描画とアニメーション定義 -->
         <header class="md:pt-[0px] lg:sticky lg:top-[120px] lg:self-start">
@@ -494,14 +501,28 @@
               text.style.opacity = (progress < 1) ? 1 : 0;
             }
 
-            window.addEventListener('scroll', updatePortfolioProgress, { passive: true });
-            window.addEventListener('resize', updatePortfolioProgress);
+            // iOS Safariのバグ対策: scrollイベントの挙動が遅延することがあるためrequestAnimationFrameでラップ
+            let ticking = false;
+            function onScrollOrResize() {
+              if (!ticking) {
+                window.requestAnimationFrame(function () {
+                  updatePortfolioProgress();
+                  ticking = false;
+                });
+                ticking = true;
+              }
+            }
+
+            window.addEventListener('scroll', onScrollOrResize, { passive: true });
+            window.addEventListener('resize', onScrollOrResize);
             document.addEventListener('DOMContentLoaded', updatePortfolioProgress);
           })();
         </script>
         <!-- headerの描画とアニメーション定義 -->
 
         <!-- Two Column Layout（写真＋内容） -->
+        <!-- ...（省略: ここは元のまま）... -->
+        <!-- 以降は元のまま -->
         <section id=PROFILE
           class="mt-8 mb-16 md:mt-8 grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-16">
           <aside class="order-1 lg:order-none mt-[64px] hidden lg:block sticky top-[316px] self-start">
@@ -957,11 +978,20 @@
       const menuBtn = document.getElementById('menuBtn');
       const mobileNav = document.getElementById('mobileNav');
       if (menuBtn && mobileNav) {
-        menuBtn.addEventListener('click', function () {
+        // iOS Safariのバグ対策: touchendもバインド
+        function toggleNav(e) {
+          e.preventDefault();
           mobileNav.classList.toggle('hidden');
-        });
+        }
+        menuBtn.addEventListener('click', toggleNav);
+        menuBtn.addEventListener('touchend', toggleNav);
       }
     });
+
+    // 年号
+    if (document.getElementById('y')) {
+      document.getElementById('y').textContent = new Date().getFullYear();
+    }
   </script>
 
   <script src="js/work-data.js"></script>
@@ -1068,15 +1098,15 @@
               const worksEnd = getWorksScrollWidth() - horizontalSection.offsetWidth * 0.5;
               const scrollX = -gsap.getProperty(horizontalScroll, "x");
               if (scrollX < worksEnd) {
-                worksHeader.classList.add('show');
-                worksHeader.classList.remove('fade');
-                cooperationHeader.classList.add('fade');
-                cooperationHeader.classList.remove('show');
+                worksHeader && worksHeader.classList.add('show');
+                worksHeader && worksHeader.classList.remove('fade');
+                cooperationHeader && cooperationHeader.classList.add('fade');
+                cooperationHeader && cooperationHeader.classList.remove('show');
               } else {
-                worksHeader.classList.remove('show');
-                worksHeader.classList.add('fade');
-                cooperationHeader.classList.remove('fade');
-                cooperationHeader.classList.add('show');
+                worksHeader && worksHeader.classList.remove('show');
+                worksHeader && worksHeader.classList.add('fade');
+                cooperationHeader && cooperationHeader.classList.remove('fade');
+                cooperationHeader && cooperationHeader.classList.add('show');
               }
             }
           }
@@ -1108,42 +1138,48 @@
           );
         });
 
-        // ホバー効果
+        // ホバー効果（iOSではhoverが効かないのでtouchstartも対応）
         scrollItems.forEach(item => {
-          item.addEventListener('mouseenter', function () {
-            gsap.to(this, {
+          function scaleUp() {
+            gsap.to(item, {
               scale: 1.05,
               duration: 0.3,
               ease: "power2.out"
             });
-          });
-          item.addEventListener('mouseleave', function () {
-            gsap.to(this, {
+          }
+          function scaleDown() {
+            gsap.to(item, {
               scale: 1,
               duration: 0.3,
               ease: "power2.out"
             });
-          });
+          }
+          item.addEventListener('mouseenter', scaleUp);
+          item.addEventListener('mouseleave', scaleDown);
+          // iOS/touchデバイス用
+          item.addEventListener('touchstart', scaleUp);
+          item.addEventListener('touchend', scaleDown);
         });
 
         // スクロール進捗の表示（デバッグ用）
-        // ScrollTrigger.create({
-        //   trigger: horizontalSection,
-        //   start: "top top+=120",
-        //   end: () => `+=${horizontalScroll.scrollWidth - horizontalSection.offsetWidth}`,
-        //   onUpdate: (self) => {
-        //     console.log("Scroll Progress:", self.progress);
-        //   }
-        // });
+        ScrollTrigger.create({
+          trigger: horizontalSection,
+          start: "top top+=120",
+          end: () => `+=${horizontalScroll.scrollWidth - horizontalSection.offsetWidth}`,
+          onUpdate: (self) => {
+            // iOSでconsole.logが重い場合はコメントアウト
+            // console.log("Scroll Progress:", self.progress);
+          }
+        });
       }
 
-      // 初回セットアップ
-      setTimeout(setupHorizontalScroll, 200);
+      // iOS Safariのバグ対策: DOM描画が遅れることがあるのでsetTimeoutを長めに
+      setTimeout(setupHorizontalScroll, /iP(ad|hone|od)/.test(navigator.userAgent) ? 600 : 200);
 
       // リサイズ時に再セットアップ
       window.addEventListener('resize', () => {
         ScrollTrigger.getAll().forEach(st => st.kill());
-        setTimeout(setupHorizontalScroll, 200);
+        setTimeout(setupHorizontalScroll, /iP(ad|hone|od)/.test(navigator.userAgent) ? 600 : 200);
       });
     });
   </script>
