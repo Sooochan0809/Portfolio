@@ -13,7 +13,7 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
-                    colors: { brand: { DEFAULT: "#4f46e5" } }
+                    colors: { brand: { DEFAULT: "#81c7d7" } }
                 }
             },
             darkMode: 'class'
@@ -24,11 +24,14 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100 font-sans">
-    <header class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
+    <header
+        class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
         <div class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
             <a href="index.html" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
             <div class="flex items-center gap-2">
@@ -37,8 +40,10 @@
                     <a data-nav href="work.html" class="hover:text-brand">Works</a>
                     <a data-nav href="contact.html" class="font-bold text-brand">Contact</a>
                 </nav>
-                <button id="menuBtn" class="sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2" aria-label="メニュー" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <button id="menuBtn" class="sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2"
+                    aria-label="メニュー" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5">
                         <path d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
@@ -55,65 +60,74 @@
     </header>
 
     <main class="pt-16">
-        <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
-            <header class="mb-8">
-                <div class="flex flex-col items-start gap-2">
-                    <h1 class="leading-none tracking-tight text-left"
-                        style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em;">CONTACT
-                    </h1>
-                    <span class="text-sm text-gray-500">ご連絡</span>
+        <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-[48px]" style="background-color: #83c2ce;">
+            <section style="background-color: #f9fafb;">
+                <header class="mb-[12px] py-[10px]">
+                    <div class="flex flex-col items-start gap-2">
+                        <h1 class="leading-none tracking-tight text-left"
+                            style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em;">CONTACT
+                        </h1>
+                        <span class="text-sm text-gray-500">ご連絡</span>
+                    </div>
+                </header>
+                <div class="flex justify-end">
+                    <form id="contactForm" class="grid gap-4 max-w-[560px] w-full mt-[0px]" method="POST"
+                        action="https://formspree.io/f/xzzayorb" autocomplete="on">
+                        <!-- 会社名（任意） -->
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-zinc-700 mb-1">ご所属先</label>
+                            <input id="company" name="company"
+                                class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full"
+                                placeholder="会社名/学校名" autocomplete="organization" />
+                        </div>
+                        <!-- 姓 -->
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-zinc-700 mb-1">姓 <span
+                                    class="text-red-500">*</span></label>
+                            <input id="lastName" name="lastName"
+                                class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full"
+                                placeholder="姓" required autocomplete="family-name" />
+                        </div>
+                        <!-- 名 -->
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-zinc-700 mb-1">名 <span
+                                    class="text-red-500">*</span></label>
+                            <input id="firstName" name="firstName"
+                                class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full"
+                                placeholder="名" required autocomplete="given-name" />
+                        </div>
+                        <!-- メールアドレス -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-zinc-700 mb-1">メールアドレス <span
+                                    class="text-red-500">*</span></label>
+                            <input id="email" name="email" type="email"
+                                class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full"
+                                placeholder="your@email.com" required autocomplete="email"
+                                pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                                oninput="this.setCustomValidity(this.validity.patternMismatch ? '正しいメールアドレスを入力してください' : '');" />
+                        </div>
+                        <!-- 件名 -->
+                        <div>
+                            <label for="msgSubject" class="block text-sm font-medium text-zinc-700 mb-1">件名 <span
+                                    class="text-red-500">*</span></label>
+                            <input id="msgSubject" name="subject"
+                                class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full"
+                                placeholder="件名" required />
+                        </div>
+                        <!-- お問い合わせ内容 -->
+                        <div>
+                            <label for="msgBody" class="block text-sm font-medium text-zinc-700 mb-1">お問い合わせ内容 <span
+                                    class="text-red-500">*</span></label>
+                            <textarea id="msgBody" name="message"
+                                class="rounded-xl border px-4 py-3 min-h-[120px] bg-white/70 dark:bg-zinc-950/60 w-full"
+                                placeholder="お問い合わせ内容" required></textarea>
+                        </div>
+                        <button id="sendBtn"
+                            class="justify-self-start rounded-2xl bg-brand px-5 py-3 text-white font-semibold shadow-glow disabled:opacity-50"
+                            type="submit" disabled>送信</button>
+                    </form>
                 </div>
-            </header>
-            <div class="flex justify-end">
-                <form id="contactForm" class="grid gap-4 max-w-[560px] w-full mt-[8px]" method="POST" action="https://formspree.io/f/xzzayorb" autocomplete="on">
-                    <!-- 会社名（任意） -->
-                    <div>
-                        <label for="company" class="block text-sm font-medium text-zinc-700 mb-1">ご所属先</label>
-                        <input id="company" name="company" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="会社名/学校名" autocomplete="organization" />
-                    </div>
-                    <!-- 姓 -->
-                    <div>
-                        <label for="lastName" class="block text-sm font-medium text-zinc-700 mb-1">姓 <span class="text-red-500">*</span></label>
-                        <input id="lastName" name="lastName" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="姓" required autocomplete="family-name" />
-                    </div>
-                    <!-- 名 -->
-                    <div>
-                        <label for="firstName" class="block text-sm font-medium text-zinc-700 mb-1">名 <span class="text-red-500">*</span></label>
-                        <input id="firstName" name="firstName" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="名" required autocomplete="given-name" />
-                    </div>
-                    <!-- メールアドレス -->
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-zinc-700 mb-1">メールアドレス <span class="text-red-500">*</span></label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full"
-                            placeholder="your@email.com"
-                            required
-                            autocomplete="email"
-                            pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
-                            oninput="this.setCustomValidity(this.validity.patternMismatch ? '正しいメールアドレスを入力してください' : '');"
-                        />
-                    </div>
-                    <!-- 件名 -->
-                    <div>
-                        <label for="msgSubject" class="block text-sm font-medium text-zinc-700 mb-1">件名 <span class="text-red-500">*</span></label>
-                        <input id="msgSubject" name="subject" class="rounded-xl border px-4 py-3 bg-white/70 dark:bg-zinc-950/60 w-full"
-                            placeholder="件名" required />
-                    </div>
-                    <!-- お問い合わせ内容 -->
-                    <div>
-                        <label for="msgBody" class="block text-sm font-medium text-zinc-700 mb-1">お問い合わせ内容 <span class="text-red-500">*</span></label>
-                        <textarea id="msgBody" name="message" class="rounded-xl border px-4 py-3 min-h-[120px] bg-white/70 dark:bg-zinc-950/60 w-full"
-                            placeholder="お問い合わせ内容" required></textarea>
-                    </div>
-                    <button
-                        id="sendBtn"
-                        class="justify-self-start rounded-2xl bg-brand px-5 py-3 text-white font-semibold shadow-glow disabled:opacity-50"
-                        type="submit" disabled>送信</button>
-                </form>
-            </div>
+            </section>
             <script>
                 // 送信先メールアドレスはFormspree経由（action属性で指定）
                 const form = document.getElementById('contactForm');
@@ -171,7 +185,7 @@
     </main>
     <script>
         // フッターに最終更新日を表示
-        document.getElementById('last-updated').textContent = (function() {
+        document.getElementById('last-updated').textContent = (function () {
             const d = new Date(document.lastModified);
             const y = d.getFullYear();
             const m = String(d.getMonth() + 1).padStart(2, '0');

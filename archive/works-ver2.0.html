@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Works｜Kido Sotaro</title>
+  <meta name="description" content="作品・協力・アーカイブ" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/common.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
+          colors: { brand: { DEFAULT: "#81c7d7" } }
+        }
+      }, darkMode: 'class'
+    };
+    // ライトモードを常に有効にする
+    document.documentElement.classList.add('light');
+    // もしlocalStorageのthemeがlightなら無視する
+    localStorage.setItem('theme', 'light');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    p {
+      color: #111827;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      p {
+        color: #111827;
+      }
+    }
+
+    .ratio {
+      position: relative;
+      width: 100%;
+      padding-top: 62.5%
+    }
+
+    .ratio>img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem
+    }
+
+    #grid1 article,
+    #grid2 article {
+      border-radius: 0.2rem !important;
+    }
+
+    .ratio>img {
+      border-radius: 0.2rem !important;
+    }
+
+    /* 横スクロール用スタイル */
+    .horizontal-section {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: hidden;
+      padding-bottom: 80px;
+      background: #f9fafb;
+      /* header高さ分だけ下げる */
+      margin-top: 80px;
+    }
+    .horizontal-scroll {
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      width: max-content;
+      min-height: 420px;
+      padding: 0 0 0 0;
+    }
+    .scroll-item {
+      flex: 0 0 340px;
+      max-width: 340px;
+      min-width: 280px;
+      margin: 0;
+    }
+    @media (max-width: 1024px) {
+      .horizontal-section {
+        max-width: 98vw;
+      }
+    }
+    @media (max-width: 640px) {
+      .horizontal-section {
+        max-width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .horizontal-scroll {
+        padding: 0 4vw 0 4vw;
+      }
+      .scroll-item {
+        flex-basis: 80vw;
+        max-width: 90vw;
+        min-width: 70vw;
+      }
+    }
+    .scroll-indicator {
+      flex: 0 0 220px;
+      max-width: 220px;
+      min-width: 180px;
+      align-self: center;
+    }
+    .section-header {
+      position: fixed;
+      left: 0;
+      top: 72px; /* header height */
+      z-index: 40;
+      width: 100vw;
+      pointer-events: none;
+      transition: opacity 0.4s;
+      height: 120px;
+      background: transparent;
+    }
+    .section-header-inner {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-left: 2vw;
+      padding-right: 2vw;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      background: transparent;
+      pointer-events: auto;
+      height: 80px;
+    }
+    .section-header .fade {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    .section-header .show {
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 0.4s;
+    }
+    @media (max-width: 640px) {
+      .section-header-inner {
+        padding-left: 4vw;
+        padding-right: 4vw;
+      }
+    }
+    /* mainのpadding-topをheader分だけに */
+    main {
+      padding-top: 72px !important;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+  <!-- header 共通 -->
+  <header
+    class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
+    <div class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
+      <!-- 左側：ロゴ -->
+      <a href="index.html" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
+
+      <!-- 右側：ナビ or ハンバーガー -->
+      <div class="flex items-center gap-2">
+        <!-- PC表示用ナビ -->
+        <nav class="hidden sm:flex gap-6 text-sm">
+          <a data-nav href="about.html" class="hover:text-brand">About</a>
+          <a data-nav href="work.html" class="hover:text-brand">Works</a>
+          <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
+        </nav>
+
+        <!-- モバイル表示用ボタン -->
+        <button id="menuBtn" class="sm:hidden rounded-xl border border-zinc-300/70 dark:border-zinc-700 p-2"
+          aria-label="メニュー">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileNav" class="sm:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
+      <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
+        <a data-nav class="hover:text-brand" href="about.html">About</a>
+        <a data-nav class="hover:text-brand" href="work.html">Works</a>
+        <a data-nav class="hover:text-brand" href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12" style="background-color: #83c2ce;">
+      <!-- 横スクロールセクション -->
+      <section class="horizontal-section mt-[0px] px-2 sm:px-8" style="background-color: #f9fafb; max-width: 100vw;">
+        <!-- ヘッダーを重ねて表示（上下ズレ防止のため絶対配置） -->
+        <div class="section-header" style="position: relative; height: 128px;">
+          <div id="worksHeader" class="section-header-inner show"
+            style="position: absolute; left: 0; top: 0; width: 100%; transition: opacity .4s, visibility .4s;">
+            <div class="flex flex-col items-start justify-start">
+              <h1 class="leading-none tracking-tight text-left"
+                style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em;">WORKS</h1>
+              <span class="mb-2 text-sm text-gray-500">研究/作品</span>
+            </div>
+            <div class="flex items-center gap-2"></div>
+          </div>
+          <div id="cooperationHeader" class="section-header-inner fade"
+            style="position: absolute; left: 0; top: 0; width: 100%; transition: opacity .4s, visibility .4s;">
+            <div>
+              <h1 class="leading-none tracking-tight"
+                style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em;">COOPERATION</h1>
+              <span class="mb-2 text-sm text-gray-500">制作協力</span>
+            </div>
+            <div class="flex items-center gap-2"></div>
+          </div>
+        </div>
+        <div id="horizontalScroll" class="horizontal-scroll mt-[64px]"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pt-0 pb-10 pr-6 text-right text-sm text-zinc-500">
+    LastUpdated <span id="last-updated"></span>
+  </footer>
+  <script>
+    // フッターに最終更新日を表示
+    document.getElementById('last-updated').textContent = (function () {
+      const d = new Date(document.lastModified);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}.${m}.${day}`;
+    })();
+  </script>
+
+  <script src="js/site.js"></script>
+  <script src="js/work-data.js"></script>
+
+  <script>
+    // 横スクロールカードHTML
+    function cardHTML(w) {
+      return `
+            <article class="scroll-item group rounded-2xl border overflow-hidden bg-white/60 dark:bg-zinc-950/50 hover:shadow-lg transition">
+              <a href="detail.html?slug=${w.slug}" class="block">
+                <div class="ratio"><img src="${w.cover}" alt="${w.title}" loading="lazy"/></div>
+                <div class="p-4">
+                  <div class="flex items-center justify-between text-xs text-zinc-500"><span>${w.year}</span><span>${w.tags.join(', ')}</span></div>
+                  <h3 class="mt-2 text-lg font-semibold group-hover:text-brand">${w.title}</h3>
+                  <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">${w.summary}</p>
+                </div>
+              </a>
+            </article>`;
+    }
+
+    // 案内カード
+    // function indicatorHTML() {
+    //   return `
+    //     <div class="scroll-indicator flex flex-col items-center justify-center p-8 border-2 border-dashed border-gray-200 rounded-md bg-gray-50 transition-colors pointer-events-none select-none">
+    //       <div class="text-sm text-gray-500 mb-3 text-center">スクロールして<br>ご覧ください</div>
+    //       <div class="animate-bounce">
+    //         <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    //           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    //         </svg>
+    //       </div>
+    //     </div>
+    //   `;
+    // }
+
+    // 横スクロール全体を描画
+    function renderHorizontalScroll() {
+      // 作品・協力を連結
+      const allCards = [
+        ...works.map(cardHTML),
+        // indicatorHTML(),
+        ...worksMore.map(cardHTML)
+      ].join('');
+      document.getElementById('horizontalScroll').innerHTML = allCards;
+    }
+    renderHorizontalScroll();
+
+    // ========== 横スクロールGSAP ==========
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const horizontalSection = document.querySelector('.horizontal-section');
+      const horizontalScroll = document.getElementById('horizontalScroll');
+      const scrollItems = horizontalScroll.querySelectorAll('.scroll-item');
+      const worksHeader = document.getElementById('worksHeader');
+      const cooperationHeader = document.getElementById('cooperationHeader');
+
+      // works, indicator, cooperationのカード数
+      const worksCount = works.length;
+      const indicatorCount = 1;
+      const cooperationCount = worksMore.length;
+
+      // 各カードの幅を取得
+      function getCardWidth(idx) {
+        const item = horizontalScroll.children[idx];
+        if (!item) return 0;
+        return item.getBoundingClientRect().width + parseFloat(getComputedStyle(item).marginRight || 0);
+      }
+
+      // works+indicatorまでの幅
+      function getWorksScrollWidth() {
+        let w = 0;
+        for (let i = 0; i < worksCount + indicatorCount; ++i) {
+          w += getCardWidth(i);
+        }
+        return w;
+      }
+
+      // 横スクロールのアニメーション
+      function setupHorizontalScroll() {
+        // 横スクロールセクションの幅を取得
+        const sectionRect = horizontalSection.getBoundingClientRect();
+        const sectionWidth = sectionRect.width;
+
+        // 最後のカードが画面内に完全に入るように、sectionの幅を使う
+        const lastCardIdx = horizontalScroll.children.length - 1;
+        const lastCard = horizontalScroll.children[lastCardIdx];
+        let lastCardWidth = 0;
+        if (lastCard) {
+          lastCardWidth = lastCard.getBoundingClientRect().width + parseFloat(getComputedStyle(lastCard).marginRight || 0);
+        }
+        // 横スクロールの最大移動量
+        const maxScrollX = Math.max(0, horizontalScroll.scrollWidth - sectionWidth + lastCardWidth);
+
+        gsap.to(horizontalScroll, {
+          x: () => {
+            // 横スクロールの最大移動量
+            return -Math.max(0, horizontalScroll.scrollWidth - horizontalSection.offsetWidth + lastCardWidth);
+          },
+          ease: "none",
+          scrollTrigger: {
+            trigger: horizontalSection,
+            start: "top top+=120", // header+header下部分
+            end: () => {
+              // 横スクロールの最大移動量
+              return `+=${Math.max(0, horizontalScroll.scrollWidth - horizontalSection.offsetWidth + lastCardWidth)}`;
+            },
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            pinSpacing: true,
+            onUpdate: (self) => {
+              // worksとcooperationの切り替え
+              const worksEnd = getWorksScrollWidth() - horizontalSection.offsetWidth * 0.5;
+              const scrollX = -gsap.getProperty(horizontalScroll, "x");
+              if (scrollX < worksEnd) {
+                worksHeader.classList.add('show');
+                worksHeader.classList.remove('fade');
+                cooperationHeader.classList.add('fade');
+                cooperationHeader.classList.remove('show');
+              } else {
+                worksHeader.classList.remove('show');
+                worksHeader.classList.add('fade');
+                cooperationHeader.classList.remove('fade');
+                cooperationHeader.classList.add('show');
+              }
+            }
+          }
+        });
+
+        // 各アイテムのフェードインアニメーション
+        scrollItems.forEach((item, index) => {
+          gsap.fromTo(item,
+            {
+              opacity: 0,
+              y: 50,
+              scale: 0.8
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              delay: index * 0.1,
+              ease: "back.out(1.7)",
+              scrollTrigger: {
+                trigger: item,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+              }
+            }
+          );
+        });
+
+        // ホバー効果
+        scrollItems.forEach(item => {
+          item.addEventListener('mouseenter', function () {
+            gsap.to(this, {
+              scale: 1.05,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          });
+          item.addEventListener('mouseleave', function () {
+            gsap.to(this, {
+              scale: 1,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          });
+        });
+
+        // スクロール進捗の表示（デバッグ用）
+        // ScrollTrigger.create({
+        //   trigger: horizontalSection,
+        //   start: "top top+=120",
+        //   end: () => `+=${horizontalScroll.scrollWidth - horizontalSection.offsetWidth}`,
+        //   onUpdate: (self) => {
+        //     console.log("Scroll Progress:", self.progress);
+        //   }
+        // });
+      }
+
+      // 初回セットアップ
+      setTimeout(setupHorizontalScroll, 200);
+
+      // リサイズ時に再セットアップ
+      window.addEventListener('resize', () => {
+        ScrollTrigger.getAll().forEach(st => st.kill());
+        setTimeout(setupHorizontalScroll, 200);
+      });
+    });
+  </script>
+
+</body>
+
+</html>

@@ -3,6 +3,7 @@
 /* h2のスタイル */
 h2.cap {
   font-size: 32px !important;
+  color: #111827; /* カラーを指定 */
 }
 
 /* 右肩の小見出し（CAPTION） */

@@ -13,7 +13,7 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
-                    colors: { brand: { DEFAULT: "#4f46e5" } },
+                    colors: { brand: { DEFAULT: "#81c7d7" } },
                     boxShadow: { glow: "0 20px 60px -20px rgba(0,0,0,.25)" }
                 }
             },
@@ -64,30 +64,44 @@
 <body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100">
 
     <main>
-        <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
-            <div id="topbar" class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-                <h1 id="title" class="text-3xl md:text-4xl font-extrabold tracking-tight"></h1>
-                <div class="flex flex-wrap items-center gap-2 md:gap-3 text-sm text-zinc-600">
-                    <span id="year"
-                        class="inline-flex items-center px-2 py-1 rounded-lg border border-zinc-300/70 dark:border-zinc-700"></span>
-                    <ul id="tags" class="flex flex-wrap gap-2"></ul>
+        <div class="main-container-fix mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-[40px] pb-5"
+            style="background-color: #83c2ce; min-height:100vh; box-shadow: 0 0 0 100vmax #f9fafb; clip-path: inset(0 -100vmax); box-shadow: 0 0 0 100vmax #f9fafb; clip-path: inset(0 -100vmax);">
+            <div style="position:fixed; inset:0; pointer-events:none; z-index:0;">
+                <div
+                    style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(3rem); background:#83c2ce">
+                </div>
+                <div
+                    style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100%; filter:blur(3rem); background:#83c2ce">
                 </div>
             </div>
 
-            <article id="body" class="prose prose-zinc dark:prose-invert max-w-none mt-8"></article>
+            <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8" style="background-color: #f9fafb;">
+                <div id="topbar" class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                    <h1 id="title" class="text-3xl md:text-4xl font-extrabold tracking-tight"></h1>
+                    <div class="flex flex-wrap items-center gap-2 md:gap-3 text-sm text-zinc-600">
+                        <span id="year"
+                            class="inline-flex items-center px-2 py-1 rounded-lg border border-zinc-300/70 dark:border-zinc-700"></span>
+                        <ul id="tags" class="flex flex-wrap gap-2"></ul>
+                    </div>
+                </div>
 
-            <div class="mt-12">
-                <a href="work.html"
-                    class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="1.5">
-                        <path d="M15 18l-6-6 6-6" />
-                        <path d="M6 12h12" />
-                    </svg>
-                    一覧に戻る
-                </a>
-            </div>
-        </section>
+                <article id="body" class="prose prose-zinc dark:prose-invert max-w-none mt-8"></article>
+
+                <div class="mt-12">
+                    <a href="about.html#works"
+                        class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5">
+                            <path d="M15 18l-6-6 6-6" />
+                            <path d="M6 12h12" />
+                        </svg>
+                        戻る
+                    </a>
+                </div>
+            </section>
+            <footer class="pt-10 pb-0 pr-0 text-right text-sm text-zinc-500">
+                LastUpdated <span id="last-updated"></span>
+            </footer>
     </main>
 
     <!-- モーダル -->
@@ -100,7 +114,18 @@
         </div>
     </dialog>
 
-    <footer class="py-10 text-center text-sm text-zinc-500">© <span id="y"></span> Kido Sotaro</footer>
+    <!-- <footer class="py-10 text-center text-sm text-zinc-500">© <span id="y"></span> Kido Sotaro</footer> -->
+
+    <script>
+        // フッターに最終更新日を表示
+        document.getElementById('last-updated').textContent = (function () {
+            const d = new Date(document.lastModified);
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${y}.${m}.${day}`;
+        })();
+    </script>
 
     <script src="js/site.js"></script>
     <script src="js/work-data.js"></script>
@@ -492,7 +517,7 @@
         document.getElementById("closeViewer").addEventListener("click", () => dlg.close());
 
         (function init() {
-            document.getElementById("y").textContent = new Date().getFullYear();
+            //document.getElementById("y").textContent = new Date().getFullYear();
             const item = bySlug(slug);
             if (!slug || !item) return notFound();
             render(item);
@@ -507,7 +532,7 @@
           <p class="mt-2 text-zinc-500">指定の作品が見つかりませんでした。</p>
           <a href="work.html" class="inline-flex mt-6 items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/><path d="M6 12h12"/></svg>
-            作品一覧に戻る
+            戻る
           </a>
         </div>`;
         }
