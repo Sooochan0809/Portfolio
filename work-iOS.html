@@ -13,7 +13,7 @@
       theme: {
         extend: {
           fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
-          colors: { brand: { DEFAULT: "#81c7d7" } }
+          colors: { brand: { DEFAULT: "#27569b" } }
         }
       }, darkMode: 'class'
     };
@@ -72,15 +72,15 @@
     class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70 border-b border-zinc-200/70 dark:border-zinc-800/70">
     <div class="mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
       <!-- 左側：ロゴ -->
-      <a href="index.html" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
+      <a href="index-iOS.html" class="font-extrabold tracking-tight text-lg">Kido Sotaro</a>
 
       <!-- 右側：ナビ or ハンバーガー -->
       <div class="flex items-center gap-2">
         <!-- PC表示用ナビ -->
         <nav class="hidden sm:flex gap-6 text-sm">
-          <a data-nav href="about.html" class="hover:text-brand">About</a>
-          <a data-nav href="work.html" class="hover:text-brand">Works</a>
-          <a data-nav href="contact.html" class="hover:text-brand">Contact</a>
+          <a data-nav href="about-iOS.html" class="hover:text-brand">About</a>
+          <a data-nav href="work-iOS.html" class="hover:text-brand">Works</a>
+          <a data-nav href="contact-iOS.html" class="hover:text-brand">Contact</a>
         </nav>
 
         <!-- モバイル表示用ボタン -->
@@ -96,45 +96,45 @@
 
     <div id="mobileNav" class="sm:hidden hidden border-t border-zinc-200 dark:border-zinc-800">
       <nav class="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm">
-        <a data-nav class="hover:text-brand" href="about.html">About</a>
-        <a data-nav class="hover:text-brand" href="work.html">Works</a>
-        <a data-nav class="hover:text-brand" href="contact.html">Contact</a>
+        <a data-nav class="hover:text-brand" href="about-iOS.html">About</a>
+        <a data-nav class="hover:text-brand" href="work-iOS.html">Works</a>
+        <a data-nav class="hover:text-brand" href="contact-iOS.html">Contact</a>
       </nav>
     </div>
   </header>
 
   <main class="pt-16">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12" style="background-color: #83c2ce;">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12" style="background-color: #27569b">
       <!-- Section 1: Works -->
       <section class="py-[10px]" style="background-color: #f9fafb;">
         <div class="flex items-end justify-between gap-6">
           <div>
             <h1 class="leading-none tracking-tight"
-              style="font-weight:320; font-size:clamp(80px,8vw,80px); letter-spacing:-.02em;">WORKS</h1>
+              style="font-weight:320; font-size:clamp(56px,8vw,80px); letter-spacing:-.02em;">WORKS</h1>
             <span class="mb-2 text-sm text-gray-500">研究/作品</span>
           </div>
           <div class="flex items-center gap-2">
           </div>
         </div>
-        <div id="grid1" class="mt-[64px] grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div id="grid1" class="mt-[64px] grid sm:grid-cols-2 lg:grid-cols-3 gap-12"></div>
       </section>
 
       <!-- Section 2: More/Archive -->
-      <section class="py-12 pt-24" style="background-color: #f9fafb;">
+      <section class="py-0 pt-24" style="background-color: #f9fafb;">
         <div class="flex items-end justify-between gap-6">
           <div>
             <h1 class="leading-none tracking-tight"
-              style="font-weight:320; font-size:clamp(40px,8vw,80px); letter-spacing:-.02em;">COOPERATION</h1>
+              style="font-weight:320; font-size:clamp(56px,8vw,80px); letter-spacing:-.02em;">COOPERATION</h1>
             <span class="mb-2 text-sm text-gray-500">制作協力</span>
           </div>
           <div class="flex items-center gap-2">
           </div>
         </div>
-        <div id="grid2" class="mt-[64px] grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div id="grid2" class="mt-[64px] grid sm:grid-cols-2 lg:grid-cols-3 gap-12"></div>
+        <footer class="pt-10 pb-0 pr-0 text-right text-sm text-zinc-500">
+          LastUpdated <span id="last-updated"></span>
+        </footer>
       </section>
-      <footer class="pt-10 pb-0 pr-0 text-right text-sm text-zinc-500">
-        LastUpdated <span id="last-updated"></span>
-      </footer>
     </div>
   </main>
 
@@ -160,7 +160,7 @@
     function cardHTML1(w) {
       return `
             <article class="group rounded-2xl border overflow-hidden bg-white/60 dark:bg-zinc-950/50 hover:shadow-lg transition">
-              <a href="detail.html?slug=${w.slug}" class="block">
+              <a href="detail-iOS.html?slug=${w.slug}" class="block">
                 <div class="ratio"><img src="${w.cover}" alt="${w.title}" loading="lazy"/></div>
                 <div class="p-4">
                   <div class="flex items-center justify-between text-xs text-zinc-500"><span>${w.year}</span><span>${w.tags.join(', ')}</span></div>
@@ -191,7 +191,7 @@
       `;
 
       // 作品カードと案内を結合してグリッドに設定
-      grid1.innerHTML = cardsHTML + indicatorHTML;
+      grid1.innerHTML = cardsHTML;
     }
 
     // セレクトが存在する場合のみ、候補を埋めてイベント登録
@@ -214,7 +214,7 @@
     function cardHTML2(w) {
       return `
             <article class="group rounded-2xl border overflow-hidden bg-white/60 dark:bg-zinc-950/50 hover:shadow-lg transition">
-              <a href="detail.html?slug=${w.slug}" class="block">
+              <a href="detail-iOS.html?slug=${w.slug}" class="block">
                 <div class="ratio"><img src="${w.cover}" alt="${w.title}" loading="lazy"/></div>
                 <div class="p-4">
                   <div class="flex items-center justify-between text-xs text-zinc-500"><span>${w.year}</span><span>${w.tags.join(', ')}</span></div>

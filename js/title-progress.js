@@ -3,9 +3,9 @@
     // 進捗に応じて表示するテキスト（PC用）
     const progressTexts = [
         { threshold: 0.0, label: "PROFILE", ja: "プロフィール" },
-        { threshold: 0.5, label: "WORKS", ja: "研究/作品" },
-        { threshold: 0.7, label: "CORPORATION", ja: "制作協力" },
-        { threshold: 0.9, label: "CONTACT", ja: "ご連絡" },
+        { threshold: 0.42, label: "WORKS", ja: "研究/作品" },
+        { threshold: 0.8, label: "CORPORATION", ja: "制作協力" },
+        { threshold: 0.99, label: "CONTACT", ja: "ご連絡" },
         { threshold: 1.0, label: "CONTACT", ja: "ご連絡" }
     ];
 

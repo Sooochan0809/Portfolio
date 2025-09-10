@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Work Detail｜Kido Sotaro</title>
+    <meta name="description" content="作品詳細ページ" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/common.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
+                    colors: { brand: { DEFAULT: "#27569b" } },
+                    boxShadow: { glow: "0 20px 60px -20px rgba(0,0,0,.25)" }
+                }
+            },
+            darkMode: 'class'
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .ratio {
+            position: relative;
+            width: 100%
+        }
+
+        .ratio::before {
+            content: "";
+            display: block;
+            padding-top: var(--ratio, 56.25%)
+        }
+
+        .ratio>* {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, .6)
+        }
+    </style>
+</head>
+
+<body class="bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+
+    <main>
+        <div class="main-container-fix mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-[40px] pb-5"
+            style="background-color: #27569b; min-height:100vh; box-shadow: 0 0 0 100vmax #f9fafb; clip-path: inset(0 -100vmax);">
+            <div style="position:fixed; inset:0; pointer-events:none; z-index:0;">
+                <!-- ブラーなしの背景装飾（必要ならここに要素を追加） -->
+            </div>
+
+            <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8" style="background-color: #f9fafb;">
+                <div id="topbar" class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                    <h1 id="title" class="text-3xl md:text-4xl font-extrabold tracking-tight"></h1>
+                    <div class="flex flex-wrap items-center gap-2 md:gap-3 text-sm text-zinc-600">
+                        <span id="year"
+                            class="inline-flex items-center px-2 py-1 rounded-lg border border-zinc-300/70 dark:border-zinc-700"></span>
+                        <ul id="tags" class="flex flex-wrap gap-2"></ul>
+                    </div>
+                </div>
+
+                <article id="body" class="prose prose-zinc dark:prose-invert max-w-none mt-8"></article>
+
+                <div class="mt-12">
+                    <a href="work-iOS.html"
+                        class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5">
+                            <path d="M15 18l-6-6 6-6" />
+                            <path d="M6 12h12" />
+                        </svg>
+                        戻る
+                    </a>
+                </div>
+            </section>
+            <footer class="pt-10 pb-0 pr-0 text-right text-sm text-zinc-500">
+                LastUpdated <span id="last-updated"></span>
+            </footer>
+    </main>
+
+    <!-- モーダル -->
+    <dialog id="viewer" class="p-0 rounded-2xl w-[min(90vw,1000px)] bg-transparent">
+        <button id="closeViewer"
+            class="absolute right-3 top-3 z-10 rounded-full bg-white/80 dark:bg-zinc-900/80 p-2 border">✕</button>
+        <div class="ratio" style="--ratio:56.25%">
+            <img id="viewerImg" class="hidden" alt="" />
+            <video id="viewerVideo" class="hidden" controls playsinline></video>
+        </div>
+    </dialog>
+
+    <!-- <footer class="py-10 text-center text-sm text-zinc-500">© <span id="y"></span> Kido Sotaro</footer> -->
+
+    <script>
+        // フッターに最終更新日を表示
+        document.getElementById('last-updated').textContent = (function () {
+            const d = new Date(document.lastModified);
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${y}.${m}.${day}`;
+        })();
+    </script>
+
+    <script src="js/site.js"></script>
+    <script src="js/work-data.js"></script>
+
+    <script>
+        const $ = (s, r = document) => r.querySelector(s);
+        const params = new URLSearchParams(location.search);
+        const slug = params.get("slug");
+
+        const all = (window.works || []).concat(window.worksMore || []);
+        const bySlug = s => all.find(w => w.slug === s);
+
+        const ratioVar = r => {
+            if (!r) return "56.25%";
+            const [w, h] = String(r).split("/").map(Number);
+            return (!w || !h) ? "56.25%" : (h / w * 100) + "%";
+        };
+
+        const tagBadge = t => `<li class="inline-flex items-center px-2 py-1 rounded-lg border border-zinc-300/70 dark:border-zinc-700">${t}</li>`;
+
+        function subHeading(text) {
+            const h = document.createElement("h3");
+            h.className = "mt-12 mb-4 text-xl md:text-[1.35rem] font-extrabold leading-tight pl-3 border-l-4 border-brand/90";
+            h.textContent = text;
+            return h;
+        }
+
+        function linkify(text) {
+            if (!text) return "";
+            let html = String(text)
+                .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+                    `<a href="$2" target="_blank" rel="noopener" class="underline decoration-zinc-400 hover:decoration-brand">$1</a>`);
+            html = html.replace(/(^|[\s(>])((https?:\/\/[^\s<)]+))/g,
+                (_, p1, url) => `${p1}<a href="${url}" target="_blank" rel="noopener" class="underline decoration-zinc-400 hover:decoration-brand">${url}</a>`);
+            return html;
+        }
+
+        function injectJSONLD(item) {
+            const data = {
+                "@context": "https://schema.org",
+                "@type": "CreativeWork",
+                "name": item.title,
+                "description": item.summary,
+                "image": Array.isArray(item.coverGallery) && item.coverGallery.length ? item.coverGallery[0].src : item.cover,
+                "dateCreated": item.year,
+                "keywords": (item.tags || []).join(", "),
+                "locationCreated": item.location || undefined
+            };
+            const s = document.createElement("script");
+            s.type = "application/ld+json";
+            s.textContent = JSON.stringify(data);
+            document.head.appendChild(s);
+        }
+
+        // 画像/動画の配列を単体 or スライダーで描画
+        function renderImages(items, frag) {
+            if (!items || items.length === 0) return;
+
+            // 1枚だけ
+            if (items.length === 1) {
+                const it = items[0];
+                const fig = document.createElement("figure");
+                const box = document.createElement("div");
+                box.className = "ratio mt-6";
+                box.style.setProperty("--ratio", ratioVar(it.ratio || "16/9"));
+
+                if (it.type === "video") {
+                    const v = document.createElement("video");
+                    v.src = it.src;
+                    if (it.poster) v.poster = it.poster;
+                    v.controls = true;
+                    v.playsInline = true; v.setAttribute('playsinline', '');
+                    v.muted = true; v.setAttribute('muted', '');
+                    v.preload = 'metadata';
+                    v.className = "cursor-zoom-in object-contain rounded-2xl";
+                    v.addEventListener("click", (e) => {
+                        if (!v.paused) return;
+                        openViewer("video", it.src, "");
+                        e.preventDefault();
+                    });
+                    box.appendChild(v);
+                } else {
+                    const img = document.createElement("img");
+                    img.src = it.src;
+                    img.alt = it.alt || "";
+                    img.loading = "lazy";
+                    img.className = "cursor-zoom-in";
+                    img.addEventListener("click", () => openViewer("img", it.src, it.alt));
+                    box.appendChild(img);
+                }
+
+                fig.appendChild(box);
+                frag.appendChild(fig);
+                return;
+            }
+
+            // 複数 → スライダー
+            const wrap = document.createElement("figure");
+            const sWrap = document.createElement("div");
+            sWrap.className = "relative group";
+
+            const track = document.createElement("div");
+            track.className = "flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth";
+            track.setAttribute("data-track", "");
+
+            items.forEach(obj => {
+                const slide = document.createElement("div");
+                slide.className = "snap-start shrink-0 w-full";
+
+                const box = document.createElement("div");
+                box.className = "ratio";
+                box.style.setProperty("--ratio", ratioVar(obj.ratio || "16/9"));
+
+                if (obj.type === "video") {
+                    const v = document.createElement("video");
+                    v.src = obj.src;
+                    if (obj.poster) v.poster = obj.poster;
+                    v.controls = true;
+                    v.playsInline = true; v.setAttribute('playsinline', '');
+                    v.muted = true; v.setAttribute('muted', '');
+                    v.preload = 'metadata';
+                    v.className = "cursor-zoom-in object-contain rounded-2xl";
+                    v.addEventListener("click", (e) => {
+                        if (!v.paused) return;
+                        openViewer("video", obj.src, "");
+                        e.preventDefault();
+                    });
+                    box.appendChild(v);
+                } else {
+                    const image = document.createElement("img");
+                    image.src = obj.src;
+                    image.alt = obj.alt || "";
+                    image.loading = "lazy";
+                    image.className = "cursor-zoom-in";
+                    image.addEventListener("click", () => openViewer("img", obj.src, obj.alt));
+                    box.appendChild(image);
+                }
+
+                slide.appendChild(box);
+                track.appendChild(slide);
+            });
+
+            const btnBase = "absolute top-1/2 -translate-y-1/2 z-10 rounded-full border bg-white/90 dark:bg-zinc-900/80 px-3 py-2 shadow opacity-100 md:opacity-0 md:group-hover:opacity-100 transition";
+            const prev = document.createElement("button");
+            prev.className = btnBase + " left-2";
+            prev.setAttribute("data-prev", ""); prev.setAttribute("aria-label", "Prev");
+            prev.innerHTML = "‹";
+
+            const next = document.createElement("button");
+            next.className = btnBase + " right-2";
+            next.setAttribute("data-next", ""); next.setAttribute("aria-label", "Next");
+            next.innerHTML = "›";
+
+            const dots = document.createElement("div");
+            dots.className = "absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5";
+            dots.setAttribute("data-dots", "");
+            items.forEach((_, idx) => {
+                const d = document.createElement("button");
+                d.className = "w-2.5 h-2.5 rounded-full bg-white/70 dark:bg-zinc-800/70 ring-1 ring-black/10";
+                d.setAttribute("data-dot", String(idx));
+                dots.appendChild(d);
+            });
+
+            sWrap.appendChild(track); sWrap.appendChild(prev); sWrap.appendChild(next); sWrap.appendChild(dots);
+            wrap.appendChild(sWrap); frag.appendChild(wrap);
+
+            queueMicrotask(() => initSlider(sWrap)); // DOM反映後に初期化
+        }
+
+        function initSlider(wrapper) {
+            const track = wrapper.querySelector('[data-track]');
+            const btnPrev = wrapper.querySelector('[data-prev]');
+            const btnNext = wrapper.querySelector('[data-next]');
+            const dotsWrap = wrapper.querySelector('[data-dots]');
+            const dots = Array.from(dotsWrap.querySelectorAll('[data-dot]'));
+
+            const slideWidth = () => track.clientWidth;
+            const idx = () => Math.round(track.scrollLeft / slideWidth());
+            const total = track.children.length;
+
+            // --- 見えている動画だけ自動再生 ---
+            const videos = Array.from(track.querySelectorAll('video'));
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const v = entry.target;
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+                        videos.forEach(o => { if (o !== v) { try { o.pause(); o.currentTime = 0; } catch { } } });
+                        try { const p = v.play(); if (p && typeof p.then === 'function') p.catch(() => { }); } catch { }
+                    } else {
+                        try { v.pause(); v.currentTime = 0; } catch { }
+                    }
+                });
+            }, { root: track, threshold: [0, 0.6, 1] });
+            videos.forEach(v => io.observe(v));
+
+            // --- 目的のインデックスにスムーススクロール（ループ対応） ---
+            function goTo(i) {
+                const target = ((i % total) + total) % total; // 負数にも対応
+                track.scrollTo({ left: target * slideWidth(), behavior: 'smooth' });
+            }
+
+            function updateUI() {
+                const i = idx();
+                dots.forEach((d, di) => {
+                    d.classList.toggle('bg-brand', di === i);
+                    d.classList.toggle('opacity-70', di !== i);
+                    d.setAttribute('aria-current', di === i ? 'true' : 'false');
+                });
+                btnPrev.disabled = false;
+                btnNext.disabled = false;
+                btnPrev.style.opacity = 1;
+                btnNext.style.opacity = 1;
+            }
+
+            btnNext.addEventListener('click', () => goTo(idx() + 1));
+            btnPrev.addEventListener('click', () => goTo(idx() - 1));
+            dots.forEach((d, di) => d.addEventListener('click', () => goTo(di)));
+
+            track.addEventListener('scroll', updateUI);
+            window.addEventListener('resize', updateUI);
+            updateUI();
+        }
+
+        // ===== 本文レンダラ =====
+        function renderMdSections(text, frag) {
+            const lines = String(text || "").split(/\r?\n/);
+            let cur = null, buf = [];
+            const pushPara = () => {
+                const joined = buf.join(" ").trim();
+                if (joined && cur) {
+                    const p = document.createElement("p");
+                    p.innerHTML = linkify(joined);
+                    cur.paras.push(p);
+                }
+                buf = [];
+            };
+            const flush = () => {
+                if (!cur) return;
+                frag.appendChild(subHeading(cur.title));
+                cur.paras.forEach(node => frag.appendChild(node));
+                cur = null;
+            };
+            for (const raw of lines) {
+                const line = raw.trimEnd();
+                const m = line.match(/^\[(.+?)\]$/);
+                if (m) { if (cur) { pushPara(); flush(); } cur = { title: m[1], paras: [] }; }
+                else if (line === "") { pushPara(); }
+                else { if (!cur) cur = { title: "本文", paras: [] }; buf.push(line); }
+            }
+            if (cur) { pushPara(); flush(); }
+        }
+
+        function renderBodyNodes(body, container) {
+            const frag = document.createDocumentFragment();
+
+            for (let i = 0; i < (body || []).length; i++) {
+                const b = body[i];
+                if (!b) continue;
+
+                if (b.type === "gallery") {
+                    if (b.title) frag.appendChild(subHeading(b.title));
+                    renderImages(b.images || [], frag);
+                    continue;
+                }
+
+                if (b.type === "section") {
+                    if (b.title) frag.appendChild(subHeading(b.title));
+                    const content = b.content || [];
+                    for (let k = 0; k < content.length; k++) {
+                        const e = content[k]; if (!e) continue;
+
+                        if (e.type === "gallery") { if (e.title) frag.appendChild(subHeading(e.title)); renderImages(e.images || [], frag); continue; }
+                        if (e.type === "img") {
+                            const imgs = []; let m = k;
+                            while (m < content.length && content[m] && content[m].type === "img") { imgs.push(content[m]); m++; }
+                            renderImages(imgs, frag); k = m - 1; continue;
+                        }
+                        if (e.type === "video") {
+                            const fig = document.createElement("figure");
+                            const box = document.createElement("div");
+                            box.className = "ratio mt-6"; box.style.setProperty("--ratio", ratioVar(e.ratio || "16/9"));
+                            const v = document.createElement("video");
+                            v.src = e.src; if (e.poster) v.poster = e.poster;
+                            v.controls = true;
+                            v.playsInline = true; v.setAttribute('playsinline', '');
+                            v.muted = true; v.setAttribute('muted', '');
+                            v.preload = 'metadata';
+                            v.className = "cursor-zoom-in object-contain rounded-2xl";
+                            v.addEventListener("click", (ev) => { if (!v.paused) return; openViewer("video", e.src, ""); ev.preventDefault(); });
+                            box.appendChild(v); fig.appendChild(box); frag.appendChild(fig); continue;
+                        }
+                        if (e.type === "p") {
+                            const el = document.createElement("p");
+                            el.innerHTML = linkify(e.text || "");
+                            frag.appendChild(el); continue;
+                        }
+                        if (e.type === "h2" || e.type === "h3") { frag.appendChild(subHeading(e.text || "")); continue; }
+                        if (e.type === "ul") {
+                            const ul = document.createElement("ul");
+                            (e.items || []).forEach(t => {
+                                const li = document.createElement("li");
+                                if (t && typeof t === "object" && t.href) {
+                                    li.innerHTML = `<a href="${t.href}" target="_blank" rel="noopener" class="underline decoration-zinc-400 hover:decoration-brand">${t.text || t.href}</a>`;
+                                } else {
+                                    li.innerHTML = linkify(String(t));
+                                }
+                                ul.appendChild(li);
+                            });
+                            frag.appendChild(ul); continue;
+                        }
+                        if (e.type === "md") { renderMdSections(e.text || "", frag); continue; }
+                    }
+                    continue;
+                }
+
+                if (b.type === "md") { renderMdSections(b.text || "", frag); continue; }
+
+                if (b.type === "p") { const p = document.createElement("p"); p.innerHTML = linkify(b.text || ""); frag.appendChild(p); continue; }
+                if (b.type === "h2" || b.type === "h3") { frag.appendChild(subHeading(b.text || "")); continue; }
+                if (b.type === "ul") {
+                    const ul = document.createElement("ul");
+                    (b.items || []).forEach(t => {
+                        const li = document.createElement("li");
+                        if (t && typeof t === "object" && t.href) {
+                            li.innerHTML = `<a href="${t.href}" target="_blank" rel="noopener" class="underline decoration-zinc-400 hover:decoration-brand">${t.text || t.href}</a>`;
+                        } else {
+                            li.innerHTML = linkify(String(t));
+                        }
+                        ul.appendChild(li);
+                    });
+                    frag.appendChild(ul); continue;
+                }
+
+                if (b.type === "img") {
+                    const imgs = []; let j = i;
+                    while (j < body.length && body[j] && body[j].type === "img") { imgs.push(body[j]); j++; }
+                    renderImages(imgs, frag); i = j - 1; continue;
+                }
+
+                if (b.type === "video") {
+                    const fig = document.createElement("figure");
+                    const box = document.createElement("div");
+                    box.className = "ratio mt-6"; box.style.setProperty("--ratio", ratioVar(b.ratio || "16/9"));
+                    const v = document.createElement("video");
+                    v.src = b.src; if (b.poster) v.poster = b.poster;
+                    v.controls = true;
+                    v.playsInline = true; v.setAttribute('playsinline', '');
+                    v.muted = true; v.setAttribute('muted', '');
+                    v.preload = 'metadata';
+                    v.className = "cursor-zoom-in object-contain rounded-2xl";
+                    v.addEventListener("click", (e) => { if (!v.paused) return; openViewer("video", b.src, ""); e.preventDefault(); });
+                    box.appendChild(v); fig.appendChild(box); frag.appendChild(fig); continue;
+                }
+            }
+
+            container.innerHTML = "";
+            container.appendChild(frag);
+        }
+
+        // ============ Render ============
+        function render(item) {
+            document.title = `${item.title}｜Kido Sotaro`;
+            const desc = item.summary || "Work detail";
+            let meta = document.querySelector('meta[name="description"]');
+            if (!meta) { meta = document.createElement('meta'); meta.name = "description"; document.head.appendChild(meta); }
+            meta.content = desc;
+            const setOG = (p, c) => { let m = document.querySelector(`meta[property="${p}"]`); if (!m) { m = document.createElement('meta'); m.setAttribute('property', p); document.head.appendChild(m); } m.content = c; };
+            setOG("og:title", document.title);
+            setOG("og:description", desc);
+            setOG("og:image", Array.isArray(item.coverGallery) && item.coverGallery.length ? item.coverGallery[0].src : item.cover);
+            injectJSONLD(item);
+
+            $("#title").textContent = item.title;
+            $("#year").textContent = item.year || "";
+            $("#tags").innerHTML = (item.tags || []).map(tagBadge).join("");
+
+            renderBodyNodes(item.body || [], document.getElementById("body"));
+        }
+
+        // モーダル
+        const dlg = document.getElementById("viewer");
+        function openViewer(kind, src, alt) {
+            const img = document.getElementById("viewerImg"), vid = document.getElementById("viewerVideo");
+            img.classList.add("hidden"); vid.classList.add("hidden");
+            if (kind === "img") { img.src = src; img.alt = alt || ""; img.classList.remove("hidden"); }
+            else { vid.src = src; vid.currentTime = 0; vid.classList.remove("hidden"); }
+            if (typeof dlg.showModal === "function") dlg.showModal();
+        }
+        document.getElementById("closeViewer").addEventListener("click", () => dlg.close());
+
+        (function init() {
+            //document.getElementById("y").textContent = new Date().getFullYear();
+            const item = bySlug(slug);
+            if (!slug || !item) return notFound();
+            render(item);
+        })();
+
+        function notFound() {
+            document.title = "Not Found｜Kido Sotaro";
+            const sec = document.querySelector("main section");
+            sec.innerHTML = `
+        <div class="text-center py-24">
+          <h1 class="text-3xl font-extrabold">404</h1>
+          <p class="mt-2 text-zinc-500">指定の作品が見つかりませんでした。</p>
+          <a href="work.html" class="inline-flex mt-6 items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/><path d="M6 12h12"/></svg>
+            戻る
+          </a>
+        </div>`;
+        }
+    </script>
+</body>
+
+</html>
