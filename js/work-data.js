@@ -16,14 +16,13 @@
     // ===== Works =====
     window.works = [
         {
-            slug: "me-no-shintaisei", // 目の身体性について
-            title: "テスト",
+            slug: "syusikennkyu-3", // 目の身体性について
+            title: "《みる目/みせる目/みられる目》",
             year: "2025",
-            tags: ["修士研究", "ワークショップ", "教育"],
+            tags: ["修士研究", "ワークショップ", "表情"],
             cover:
                 "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
-            summary: "テスト",
-            role: ["研究", "設計"],
+            summary: "あいちワークショップギャザリング（2025/6/28）にて出展。",
             period: "2025",
             body: [
                 // ここから画像専用
@@ -36,11 +35,11 @@
                     img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
                 ),
                 sec("概要",
-                    p("プロジェクトの背景テキスト（仮）。ここに要点（対象・手法・成果のサマリ）を2〜3文で。"),
+                    p(""),
 
                 ),
                 sec("目的",
-                    p("ねらいの説明（仮）。何を明らかにしたいか／解決したい課題は何か。"),
+                    p(""),
                 ),
                 sec("プロセス",
                     ul(["調査・要件整理", "プロトタイピング（v1→v2）", "ユーザテスト／考察"])
@@ -56,19 +55,18 @@
                 )
             ],
             credits: [
-                // { label: "指導", value: "鈴木 先生" },
+                { label: "協力", value: "牛尾 日莉" },
                 // { label: "撮影", value: "鶴目 さん" }
             ]
         },
         {
-            slug: "me-asobi-project", // め遊びプロジェクト
-            title: "テスト",
+            slug: "syusikennkyu-2", // め遊びプロジェクト
+            title: "め遊び-スイトピアテラス-",
             year: "2025",
-            tags: ["ワークショップ", "福祉"],
+            tags: ["ワークショップ"],
             cover:
                 "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop",
-            summary: "テスト",
-            role: ["研究", "設計"],
+            summary: "スイトピアテラス（2025/5/5）にて出展。",
             period: "2025",
             body: [
                 // ここから画像専用
@@ -79,14 +77,14 @@
                     img("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop", "デモ画像", "16/9")
                 ),
                 sec("概要",
-                    p("プロジェクトの背景テキスト（仮）。ここに要点（対象・手法・成果のサマリ）を2〜3文で。"),
+                    p(""),
 
                 ),
                 sec("目的",
-                    p("ねらいの説明（仮）。何を明らかにしたいか／解決したい課題は何か。"),
+                    p(""),
                 ),
                 sec("プロセス",
-                    ul(["調査・要件整理", "プロトタイピング（v1→v2）", "ユーザテスト／考察"])
+                    ul([""])
                 ),
                 sec("結果・考察",
                     p("得られた示唆や次のステップ（今後の改善点・適用可能性）など。")

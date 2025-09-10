@@ -1,0 +1,521 @@
+@keyframes to-header {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 380px;
+        height: 210px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.85);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    }
+
+    60% {
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 900px;
+        height: 110px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    100% {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 72px;
+        border-radius: 0px;
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+}
+
+/* ベースレイアウト */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #83c2ce;
+    width: 100vw;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+    display: block;
+    overflow-y: auto;
+}
+
+.inner {
+    min-height: 130vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* =========================
+   ヘッダー全体
+   ========================= */
+.header-anim-item {
+    position: fixed;
+    z-index: 50;
+    animation: to-header linear both;
+    animation-timeline: scroll();
+    animation-range: 0 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    will-change: top, left, width, height, border-radius, box-shadow;
+    transition: box-shadow 0.2s, border-radius 0.2s;
+    pointer-events: auto;
+    padding: 16px 24px;
+    box-sizing: border-box;
+    gap: 0.5rem;
+    height: auto;
+    min-height: 80px;
+    background: rgba(255, 255, 255, 0.97);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* =========================
+   ロゴ・タイトル
+   ========================= */
+.header-anim-portfolio {
+    font-size: 24px;
+    font-weight: 700;
+    color: #81c7d7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: opacity 0.18s;
+    cursor: pointer;
+}
+
+.header-anim-portfolio.kido-sotaro {
+    text-transform: none;
+    color: #22223b;
+    letter-spacing: 0.04em;
+    font-size: 24px;
+    transition: color 0.18s, font-size 0.18s, letter-spacing 0.18s;
+    margin-left: 0px;
+}
+
+/* 日本語名 */
+.header-anim-name-ja {
+    font-size: 32px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 0;
+    text-align: left;
+    letter-spacing: 0.04em;
+    font-family: 'Noto Sans JP', 'Inter', system-ui, sans-serif;
+    transition: opacity 0.03s;
+}
+
+/* =========================
+   ヘッダー中央・ナビゲーション
+   ========================= */
+.header-anim-center {
+    flex: 0 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    position: relative;
+}
+
+.header-anim-nav {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    min-width: 0;
+    transition: none;
+    flex-wrap: nowrap !important;
+}
+
+
+.header-anim-nav a {
+    color: #22223b;
+    text-decoration: none;
+    padding: 0px 0px;
+    /* paddingを狭める: 8px 16px → 6px 10px */
+    border-radius: 0px;
+    transition: background 0.18s, color 0.18s;
+    background: transparent;
+    font-weight: 600;
+    white-space: nowrap;
+
+}
+
+.header-anim-nav a:first-child {
+    margin-left: 0;
+}
+
+.header-anim-nav a:last-child {
+    margin-right: 0;
+}
+
+.header-anim-nav .nav-separator {
+    color: #b0b0b0;
+    font-size: 20px;
+    user-select: none;
+    pointer-events: none;
+    margin: 0px 4px;
+    display: inline !important;
+}
+
+/* ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+   ナビゲーション（Aboutなど）の左右マージンを設定している箇所
+   ここで a 要素（例: About）に margin-left, margin-right を指定している
+   ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
+/* =========================
+   ヘッダー（is-header時）ここを変えると左右のマージンが広がる
+   ========================= */
+.header-anim-item.is-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px 40px;
+    /* 左右のマージンを広げる: 16px → 32px */
+    gap: 8px;
+    min-height: 72px;
+}
+
+.header-anim-item.is-header .header-anim-center {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    min-width: 0;
+}
+
+.header-anim-item.is-header .header-anim-nav {
+    margin-left: auto;
+    justify-content: flex-end !important;
+    flex-wrap: nowrap !important;
+    gap: 16px;
+    align-self: center;
+}
+
+/* =========================
+   レスポンシブ: 640px以下
+   ========================= */
+@media (max-width: 640px) {
+    @keyframes to-header {
+        0% {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 56vw;
+            height: 124px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, .92);
+        }
+
+        60% {
+            top: 16%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 98vw;
+            height: 72px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, .97);
+        }
+
+        100% {
+            top: 0px;
+            left: 0;
+            transform: none;
+            width: 100vw;
+            border-radius: 1px;
+            background: rgba(255, 255, 255, .99);
+        }
+    }
+
+    .header-anim-item {
+        font-size: 0.95rem;
+        min-height: 48px;
+        padding: 6px 4vw;
+        gap: 4px;
+        border-radius: 8px;
+    }
+
+    .header-anim-portfolio {
+        font-size: 16px;
+        letter-spacing: 1px;
+        padding-right: 4px;
+    }
+
+    .header-anim-portfolio.kido-sotaro {
+        font-size: 16px;
+        letter-spacing: 0.02em;
+    }
+
+    .header-anim-name-ja {
+        font-size: 24px;
+        text-align: left;
+        padding-left: 0;
+    }
+
+    .header-anim-center {
+        gap: 2px;
+        /* 4px → 2px */
+    }
+
+    .header-anim-nav {
+        gap: 2px;
+        /* 4px → 2px */
+        font-size: 16px;
+        margin-top: 2px;
+        /* 4px → 2px */
+        justify-content: center !important;
+        flex-wrap: nowrap !important;
+    }
+
+    /* ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+       ナビゲーション（Aboutなど）の左右マージンを設定している箇所（モバイル）
+       ここで a 要素（例: About）に margin-left, margin-right を指定している
+       ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
+    .header-anim-nav a {
+        padding: 4px 6px;
+        /* 6px 8px → 4px 6px */
+        font-size: 0.95em;
+        border-radius: 6px;
+        margin-left: 4px;
+        /* 左右マージン(モバイル)（Aboutなどのナビ項目の間隔） */
+        margin-right: 4px;
+    }
+
+    /* ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ */
+    .header-anim-nav a:first-child {
+        margin-left: 0;
+    }
+
+    .header-anim-nav a:last-child {
+        margin-right: 0;
+    }
+
+    .header-anim-nav .nav-separator {
+        font-size: 1em;
+        /* 1.1em → 1em */
+        margin: 0 2px;
+        /* 0 2px → 0 2px (左右マージン調整) */
+        display: inline !important;
+    }
+
+    .header-anim-item.is-header .header-anim-center {
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
+        /* 6px → 4px */
+        min-width: 0;
+    }
+
+    .header-anim-item.is-header .header-right {
+        display: flex !important;
+        align-items: center;
+        margin-left: auto;
+        gap: 0;
+    }
+
+    .header-anim-item.is-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 6px 4vw;
+        gap: 2px;
+        /* 4px → 2px */
+        min-height: 48px;
+    }
+
+    .header-anim-item:not(.is-header) .header-anim-nav {
+        display: flex !important;
+        position: static !important;
+        flex-direction: row !important;
+        background: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        min-width: 0 !important;
+        z-index: auto !important;
+        margin-top: 2px !important;
+        /* 4px → 2px */
+        gap: 3px !important;
+        /* 6px → 3px */
+        justify-content: center !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .header-anim-item.is-header .header-anim-nav.open {
+        display: flex !important;
+    }
+
+    .header-anim-item.is-header .header-anim-nav {
+        display: none !important;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(255, 255, 255, 0.92) !important;
+        border-radius: 0px !important;
+        padding: 2px 0 !important;
+        max-height: 120px !important;
+        line-height: 1.15 !important;
+        margin-top: 0 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        flex-direction: column !important;
+        align-items: flex-start;
+        min-width: 120px;
+        z-index: 99;
+        height: auto;
+    }
+
+    .header-anim-item.is-header .header-anim-nav.open {
+        display: flex !important;
+    }
+
+    .header-anim-item.is-header .header-anim-nav a {
+        padding: 6px 10px !important;
+        /* 7px 14px → 6px 10px */
+        font-size: 0.95rem !important;
+        line-height: 1.15 !important;
+        width: 100%;
+        text-align: left;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .header-anim-item.is-header .header-anim-nav .nav-separator {
+        display: none !important;
+    }
+
+    /* ハンバーガーメニュー */
+    /* ここを修正: ヘッダーになる前はハンバーガーを非表示にする */
+    .hamburger {
+        display: none !important;
+    }
+
+    .header-anim-item.is-header .hamburger {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        margin-left: 0;
+        z-index: 100;
+    }
+
+    .hamburger-bar {
+        width: 24px;
+        height: 3px;
+        background: #22223b;
+        margin: 3px 0;
+        border-radius: 2px;
+        transition: all 0.2s;
+    }
+}
+
+/* =========================
+   レスポンシブ: 641px以上
+   ========================= */
+@media (min-width: 641px) {
+    .hamburger {
+        display: none !important;
+    }
+
+    .header-anim-nav {
+        display: flex !important;
+        position: static !important;
+        flex-direction: row !important;
+        background: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        min-width: 0 !important;
+        z-index: auto !important;
+        margin-top: 8px !important;
+        gap: 8px !important;
+        /* 16px → 8px */
+        justify-content: center !important;
+        flex-wrap: nowrap !important;
+    }
+
+    /* ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+       ナビゲーション（Aboutなど）の左右マージンを設定している箇所（PC）
+       ここで a 要素（例: About）に margin-left, margin-right を指定している
+       ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
+    .header-anim-nav a {
+        padding: 0px 0px !important;
+        /* 8px 16px → 6px 10px */
+        font-size: 16px !important;
+        text-align: left !important;
+        width: auto !important;
+        display: inline-block !important;
+        margin-left: 2px !important;
+        /* 左右マージン(PC)（Aboutなどのナビ項目の間隔） */
+        margin-right: 2px !important;
+    }
+
+    /* ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ */
+    .header-anim-nav a:first-child {
+        margin-left: 0 !important;
+    }
+
+    .header-anim-nav a:last-child {
+        margin-right: 0 !important;
+    }
+
+    .header-anim-nav .nav-separator {
+        display: inline !important;
+        font-size: 20px !important;
+        /* 24px → 20px */
+        margin: 0 4px !important;
+        /* 左右マージン(PC) */
+    }
+}
+
+/* =========================
+   その他ユーティリティ
+   ========================= */
+.hide-in-header {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.18s;
+}
+
+/* =========================
+   ハンバーガーメニュー
+   ========================= */
+.hamburger {
+    display: none;
+}
+
+.hamburger.open .bar1 {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open .bar2 {
+    opacity: 0;
+}
+
+.hamburger.open .bar3 {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
