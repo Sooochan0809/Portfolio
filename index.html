@@ -7,6 +7,55 @@
   <title>About｜Kido Sotaro</title>
   <meta name="description" content="プロフィール・略歴・スキル・実績" />
 
+  <script>
+    (function () {
+      const ua = navigator.userAgent || "";
+      const vendor = navigator.vendor || "";
+      const uaData = navigator.userAgentData;
+
+      // デバイス判定（iPadOSの"Mac"偽装もケア）
+      function isDesktop() {
+        if (uaData && "mobile" in uaData) {
+          if (uaData.mobile) return false;
+        }
+        const isIPadOS = navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+        const isMobileLike = /(Mobi|Android|iPhone|iPad|iPod|Tablet)/i.test(ua);
+        return !(isMobileLike || isIPadOS);
+      }
+
+      // Chrome（Google製）判定。Edge/Opera/Brave等のChromium系は除外。
+      function isGoogleChrome() {
+        const isEdge = ua.includes("Edg/");
+        const isOpera = ua.includes("OPR/") || ua.includes("Opera");
+        const isSamsung = ua.includes("SamsungBrowser");
+        const isDuck = ua.includes("DuckDuckGo");
+        const isYandex = ua.includes("YaBrowser");
+        const isVivaldi = ua.includes("Vivaldi");
+        const isBrave = ua.includes("Brave");
+
+        const hasChromeToken = /Chrome\//.test(ua) || /CriOS\//.test(ua); // iOS ChromeはCriOS
+        const isGoogleVendor = vendor === "Google Inc."; // 多くのChromeで"Google Inc."
+
+        return hasChromeToken && isGoogleVendor && !isEdge && !isOpera && !isSamsung && !isDuck && !isYandex && !isVivaldi && !isBrave;
+      }
+
+      // ここで条件分岐してリダイレクト
+      // 例1: 「PC かつ Chrome 以外」は全部まとめて fallback.html へ
+      if (!(isDesktop() && isGoogleChrome())) {
+        location.replace("index-ver1.0.html"); // ←読み込みたいページ名に変更
+      }
+
+      // 例2: 用途別に出し分けしたい場合は、上のifをコメントアウトしてこちらを使う
+      /*
+      if (!isDesktop()) {
+        location.replace("mobile.html");       // スマホ/タブレット用
+      } else if (!isGoogleChrome()) {
+        location.replace("not-chrome.html");   // PCだけどChrome以外
+      }
+      */
+    })();
+  </script>
+
   <!-- Tailwind（任意） -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -604,7 +653,7 @@
   <script src="js/site.js"></script>
   <script src="js/work-data.js"></script>
   <script src="js/slidescroll.js"></script>
-  
+
   <script>
     (function () {
       const item = document.getElementById('item');
