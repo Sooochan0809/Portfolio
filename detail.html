@@ -192,6 +192,11 @@
                 box.className = "ratio mt-6";
                 box.style.setProperty("--ratio", ratioVar(it.ratio || "16/9"));
 
+                // // ※ letterbox用の背景などは box に当てると綺麗
+                // if (it.style && it.style.background) {
+                //     box.style.background = it.style.background;
+                // }
+
                 if (it.type === "video") {
                     const v = document.createElement("video");
                     v.src = it.src;
@@ -238,6 +243,11 @@
                 const box = document.createElement("div");
                 box.className = "ratio";
                 box.style.setProperty("--ratio", ratioVar(obj.ratio || "16/9"));
+
+                // // 背景色などは box 側へ
+                // if (obj.style && obj.style.background) {
+                //     box.style.background = obj.style.background;
+                // }
 
                 if (obj.type === "video") {
                     const v = document.createElement("video");
@@ -419,6 +429,30 @@
                             v.addEventListener("click", (ev) => { if (!v.paused) return; openViewer("video", e.src, ""); ev.preventDefault(); });
                             box.appendChild(v); fig.appendChild(box); frag.appendChild(fig); continue;
                         }
+                        // YouTube動画埋め込み
+                        if (e.type === "youtube") {
+                            const fig = document.createElement("figure");
+                            fig.className = "mt-6 mb-6";
+                            const box = document.createElement("div");
+                            box.className = "ratio";
+                            box.style.setProperty("--ratio", ratioVar(e.ratio || "16/9"));
+                            const iframe = document.createElement("iframe");
+                            iframe.src = `https://www.youtube.com/embed/${e.videoId || e.id || ""}`;
+                            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                            iframe.allowFullscreen = true;
+                            iframe.frameBorder = "0";
+                            iframe.className = "w-full h-full"; // 角を鋭角に（丸みをなくす）
+                            box.appendChild(iframe);
+                            fig.appendChild(box);
+                            if (e.caption) {
+                                const cap = document.createElement("figcaption");
+                                cap.className = "mt-2 text-sm text-zinc-500";
+                                cap.textContent = e.caption;
+                                fig.appendChild(cap);
+                            }
+                            frag.appendChild(fig);
+                            continue;
+                        }
                         if (e.type === "p") {
                             const el = document.createElement("p");
                             el.innerHTML = linkify(e.text || "");
@@ -532,7 +566,7 @@
         <div class="text-center py-24">
           <h1 class="text-3xl font-extrabold">404</h1>
           <p class="mt-2 text-zinc-500">指定の作品が見つかりませんでした。</p>
-          <a href="work.html" class="inline-flex mt-6 items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
+          <a href="index.html#works" class="inline-flex mt-6 items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/><path d="M6 12h12"/></svg>
             戻る
           </a>
