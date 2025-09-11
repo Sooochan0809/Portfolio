@@ -24,7 +24,7 @@
       }
 
       // Chrome（Google製）判定。Edge/Opera/Brave等のChromium系は除外。
-      function isGoogleChrome() {
+      function isGoogleChromeisEdge() {
         const isEdge = ua.includes("Edg/");
         const isOpera = ua.includes("OPR/") || ua.includes("Opera");
         const isSamsung = ua.includes("SamsungBrowser");
@@ -36,23 +36,21 @@
         const hasChromeToken = /Chrome\//.test(ua) || /CriOS\//.test(ua); // iOS ChromeはCriOS
         const isGoogleVendor = vendor === "Google Inc."; // 多くのChromeで"Google Inc."
 
-        return hasChromeToken && isGoogleVendor && !isEdge && !isOpera && !isSamsung && !isDuck && !isYandex && !isVivaldi && !isBrave;
+        // Edgeは許可する（Edgeならtrueを返す）
+        if (isEdge) return true;
+
+        return hasChromeToken && isGoogleVendor && !isOpera && !isSamsung && !isDuck && !isYandex && !isVivaldi && !isBrave;
       }
 
       // ここで条件分岐してリダイレクト
       // 例1: 「PC かつ Chrome 以外」は全部まとめて fallback.html へ
-      if (!(isDesktop() && isGoogleChrome())) {
-        location.replace("index-iOS.html"); // ←読み込みたいページ名に変更
-      }
-
-      // 例2: 用途別に出し分けしたい場合は、上のifをコメントアウトしてこちらを使う
-      /*
+      // モバイル端末（iPhone, Android, iPadなど）の場合は必ずindex-iOS.htmlへリダイレクト
+      // それ以外（PC）はChrome以外ならリダイレクト
       if (!isDesktop()) {
-        location.replace("mobile.html");       // スマホ/タブレット用
-      } else if (!isGoogleChrome()) {
-        location.replace("not-chrome.html");   // PCだけどChrome以外
+        location.replace("index-iOS.html");
+      } else if (!isGoogleChromeisEdge()) {
+        location.replace("index-iOS.html");
       }
-      */
     })();
   </script>
 
@@ -169,13 +167,107 @@
     </div>
   </header>
 
+  <nav>
+    <!-- スクロールサイン: 常に画面内に表示し、スクロール位置で表示場所を変える -->
+    <div id="scroll-sign" class="scroll-sign-container"
+      style="display:flex; flex-direction:column; align-items:center; pointer-events:none; position:fixed; left:50%; transform:translateX(-50%); bottom:2.5rem; z-index:100;">
+      <div class="scroll-arrow"
+        style="width:32px; height:32px; display:flex; align-items:center; justify-content:center;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+          style="display:block; margin:0 auto; animation:scrollArrowBounce 1.6s infinite;">
+          <path d="M16 8v16M16 24l-6-6M16 24l6-6" stroke="#1c1d1d" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
+      <span class="scroll-sign-text"
+        style="margin-top:16px; font-size:16px; color:#1c1d1d; letter-spacing:0.1em; font-weight:600; opacity:0.85; user-select:none;">
+        SCROLL
+      </span>
+    </div>
+    <style>
+      @keyframes scrollArrowBounce {
+        0% {
+          transform: translateY(0);
+        }
+
+        40% {
+          transform: translateY(16px);
+        }
+
+        60% {
+          transform: translateY(16px);
+        }
+
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .scroll-sign-container {
+        transition: left 0.4s, right 0.4s, top 0.4s, bottom 0.4s;
+      }
+
+      @media (max-width: 600px) {
+        .scroll-sign-container .scroll-arrow svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .scroll-sign-text {
+          font-size: 0.85rem !important;
+        }
+      }
+    </style>
+    <script>
+      // スクロール位置によってサインの表示位置を変える
+      (function () {
+        const sign = document.getElementById('scroll-sign');
+        function updateSignPosition() {
+          const scrollY = window.scrollY || window.pageYOffset;
+          const docHeight = document.documentElement.scrollHeight;
+          const winHeight = window.innerHeight;
+          // ページの上部付近
+          if (scrollY < 100) {
+            // 画面下中央
+            sign.style.bottom = '2.5rem';
+            sign.style.top = '';
+            sign.style.left = '50%';
+            sign.style.right = '';
+            sign.style.transform = 'translateX(-50%)';
+          }
+          // ページの中間
+          else if (scrollY + winHeight < docHeight - 200) {
+            // 画面右下
+            sign.style.bottom = '1.5rem';
+            sign.style.top = '';
+            sign.style.left = '';
+            sign.style.right = '1.5rem';
+            sign.style.transform = 'none';
+          }
+          // ページの最下部付近
+          else {
+            // 画面上中央
+            sign.style.top = '2.5rem';
+            sign.style.bottom = '';
+            sign.style.left = '200%';
+            sign.style.right = '';
+            sign.style.transform = 'translateX(-50%)';
+          }
+        }
+        window.addEventListener('scroll', updateSignPosition, { passive: true });
+        window.addEventListener('resize', updateSignPosition);
+        document.addEventListener('DOMContentLoaded', updateSignPosition);
+      })();
+    </script>
+  </nav>
+
   <!-- ===== Main ===== -->
   <main class="pt-16" style="min-height:0;">
     <div class="main-container-fix mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-[40px] pb-5"
-      style="background-color: #f9fafb; min-height:100vh; box-shadow: 0 0 0 100vmax #83c2ce; clip-path: inset(0 -100vmax); box-shadow: 0 0 0 100vmax #83c2ce; clip-path: inset(0 -100vmax);">
+      style="background-color: #f9fafbf5; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax); box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
       <div style="position:fixed; inset:0; pointer-events:none; z-index:0;">
         <div
-          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(2rem); background:#83c2ce">
+          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(2rem); background:#81c7d7">
         </div>
         <div
           style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100%; filter:blur(2rem); background:#83c2ce">
