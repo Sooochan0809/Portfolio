@@ -4,10 +4,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About｜Kido Sotaro</title>
+  <title>城戸双汰朗のポートフォリオ</title>
   <meta name="description" content="プロフィール・略歴・スキル・実績" />
 
   <script>
+    // 初期ロード時PCもしくはモバイル端末以外は、別サイトに飛ぶ
     (function () {
       const ua = navigator.userAgent || "";
       const vendor = navigator.vendor || "";
@@ -43,7 +44,6 @@
       }
 
       // ここで条件分岐してリダイレクト
-      // 例1: 「PC かつ Chrome 以外」は全部まとめて fallback.html へ
       // モバイル端末（iPhone, Android, iPadなど）の場合は必ずindex-iOS.htmlへリダイレクト
       // それ以外（PC）はChrome以外ならリダイレクト
       if (!isDesktop()) {
@@ -339,7 +339,7 @@
                     class="ml-2 align-baseline text-[16px] font-normal text-gray-500">kido sotaro</span></div>
                 <p class="text-[16px] text-gray-600">情報科学芸術大学院大学 修士2年</p>
               </div>
-              <p class="mt-[32px] text-[16px] text-gray-800 dark:text-zinc-200 leading-relaxed tracking-wide"
+              <p class="mt-[32px] text-[16px] text-[#111827] dark:text-zinc-200 leading-relaxed tracking-wide"
                 style="line-height:24px;">
                 2001年、熊本県生まれ。<br>
                 小学生から高校生までは、競技バドミントンに熱中。<br>
@@ -359,7 +359,7 @@
                     class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
                   <p class="text-sm text-zinc-500">2024/04 - 現在</p>
                   <p class="mt-[2px] mb-[8px] text-[20px]">情報科学芸術大学院大学　メディア表現研究科</p>
-                  <p class="text-[15px] text-zinc-600 dark:text-zinc-300">実装力の先にある表現力を培うべく進学。現在は、人の顔（表情）をテーマに研究を行っている。
+                  <p class="text-[16px] text-zinc-600 dark:text-zinc-300">実装力の先にある表現力を培うべく進学。現在は、人の顔（表情）をテーマに研究を行っている。
                   </p>
                 </li>
                 <li class="mb-[32px]">
@@ -367,7 +367,7 @@
                     class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
                   <p class="text-sm text-zinc-500">2020/04 - 2024/03</p>
                   <p class="mt-[2px] mb-[8px] text-[20px]">熊本県立大学　総合管理学部 総合管理学科</p>
-                  <p class="text-[15px] text-zinc-600 dark:text-zinc-300">[公共] [ビジネス] [情報]
+                  <p class="text-[16px] text-zinc-600 dark:text-zinc-300">[公共] [ビジネス] [情報]
                     領域を体系的に学びつつ、ゼミ選択を期に情報コースを専攻。石橋研究室に在籍。
                     人とコンピュータ、コンピュータとコンピュータとのインタラクション（相互作用）をテーマに研究に取り組む。情報科教員の免許を取得。</p>
                 </li>
@@ -376,7 +376,7 @@
                     class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
                   <p class="text-sm text-zinc-500">2017/04 - 2020/03</p>
                   <p class="mt-[2px] mb-[8px] text-[20px]">熊本中央高等学校　普通科</p>
-                  <p class="text-[15px] text-zinc-700 dark:text-zinc-300">地元を離れ、県内有数のバドミントン部強豪校に進学。3年間、寮生活を送る。
+                  <p class="text-[16px] text-zinc-700 dark:text-zinc-300">地元を離れ、県内有数のバドミントン部強豪校に進学。3年間、寮生活を送る。
                     小学生から続けていたバドミントンだが、中学卒業まで目立った成績を残すことができず、苦悩。最後の高校総体にて団体戦レギュラー入り、県内3位入賞を果たす。</p>
                 </li>
               </ol>
@@ -385,7 +385,7 @@
             <!-- Research -->
             <section id="research" class="mb-[80px]">
               <h2 class="text-xl font-normal cap" data-cap="論文">Research</h2>
-              <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
+              <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
                 <li
                   class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
                   <span class="whitespace-nowrap md:mr-2">2025.4</span>
@@ -462,7 +462,7 @@
             <!-- Exhibition / Workshop -->
             <section id="exhibition-workshop" class="mb-[80px]">
               <h2 class="text-xl font-normal cap" data-cap="展示／ワークショップ">Exhibition/Workshop</h2>
-              <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
+              <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
                 <li
                   class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
                   <!-- 日付（スマホ=左列 / PC=先頭、カンマなし） -->
@@ -519,7 +519,7 @@
             <!-- Production / Cooperation -->
             <section id="production-cooperation" class="mb-[80px]">
               <h2 class="text-xl font-normal cap" data-cap="制作協力">ProductionCooperation</h2>
-              <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
+              <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
                 <li
                   class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
                   <span class="whitespace-nowrap md:mr-2">2025.6</span>
@@ -534,7 +534,7 @@
 
                 <li
                   class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.1</span>
+                  <span class="whitespace-nowrap md:mr-2">2025.1</span>
                   <span
                     class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
                     Magic Lantern for meeting Kumamushi again（大橋美月）
@@ -561,7 +561,7 @@
             <!-- Award / License -->
             <section id="award-license" class="mb-[80px]">
               <h2 class="text-xl font-normal cap" data-cap="受賞">AWARD</h2>
-              <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
+              <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
                 <li
                   class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
                   <span class="whitespace-nowrap md:mr-2">2024.10</span>
@@ -618,15 +618,15 @@
               <div class="mt-[16px] grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <div class="text-sm text-gray-500">License</div>
-                  <p class="mt-[4px] text-[15px]">高等学校教諭一種免許（情報）, 普通自動車第一種運転免許</p>
+                  <p class="mt-[4px] text-[16px]">高等学校教諭一種免許（情報）, 普通自動車第一種運転免許</p>
                   <div class="mt-[16px] text-sm text-gray-500">Tools</div>
-                  <p class="mt-[4px] text-[15px]">Unity, TouchDesigner, Fusion360, Figma, Illustrator, Arduino IDE,
+                  <p class="mt-[4px] text-[16px]">Unity, TouchDesigner, Fusion360, Figma, Illustrator, Arduino IDE,
                     GitHub
                   </p>
                 </div>
                 <div>
                   <div class="text-sm text-gray-500">Coding</div>
-                  <p class="mt-[4px] text-[15px]">C#, Python, HTML, CSS, C++, JavaScript</p>
+                  <p class="mt-[4px] text-[16px]">C#, Python, HTML, CSS, C++, JavaScript</p>
                 </div>
               </div>
             </section>
@@ -671,14 +671,14 @@
                 action="https://formspree.io/f/xzzayorb" autocomplete="on">
                 <!-- 会社名（任意） -->
                 <div>
-                  <label for="company" class="block text-sm font-medium text-zinc-700 mb-1">ご所属</label>
+                  <label for="company" class="block text-sm font-medium text-[#111827] mb-1">ご所属</label>
                   <input id="company" name="company"
                     class="rounded-xl border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="会社名/学校名"
                     autocomplete="organization" />
                 </div>
                 <!-- 姓 -->
                 <div>
-                  <label for="lastName" class="block text-sm font-medium text-zinc-700 mb-1">姓 <span
+                  <label for="lastName" class="block text-sm font-medium text-[#111827] mb-1">姓 <span
                       class="text-red-500">*</span></label>
                   <input id="lastName" name="lastName"
                     class="rounded-xl border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="姓" required
@@ -686,7 +686,7 @@
                 </div>
                 <!-- 名 -->
                 <div>
-                  <label for="firstName" class="block text-sm font-medium text-zinc-700 mb-1">名 <span
+                  <label for="firstName" class="block text-sm font-medium text-[#111827] mb-1">名 <span
                       class="text-red-500">*</span></label>
                   <input id="firstName" name="firstName"
                     class="rounded-xl border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="名" required
@@ -694,7 +694,7 @@
                 </div>
                 <!-- メールアドレス -->
                 <div>
-                  <label for="email" class="block text-sm font-medium text-zinc-700 mb-1">メールアドレス <span
+                  <label for="email" class="block text-sm font-medium text-[#111827] mb-1">メールアドレス <span
                       class="text-red-500">*</span></label>
                   <input id="email" name="email" type="email"
                     class="rounded-xl border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
@@ -703,7 +703,7 @@
                 </div>
                 <!-- 件名 -->
                 <div>
-                  <label for="msgSubject" class="block text-sm font-medium text-zinc-700 mb-1">件名 <span
+                  <label for="msgSubject" class="block text-sm font-medium text-[#111827] mb-1">件名 <span
                       class="text-red-500">*</span></label>
                   <input id="msgSubject" name="subject"
                     class="rounded-xl border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="件名"
@@ -711,15 +711,15 @@
                 </div>
                 <!-- お問い合わせ内容 -->
                 <div>
-                  <label for="msgBody" class="block text-sm font-medium text-zinc-700 mb-1">お問い合わせ内容 <span
+                  <label for="msgBody" class="block text-sm font-medium text-[#111827] mb-1">お問い合わせ内容 <span
                       class="text-red-500">*</span></label>
                   <textarea id="msgBody" name="message"
                     class="rounded-xl border px-3 py-2 min-h-[80px] bg-white/70 dark:bg-zinc-950/60 w-full"
                     placeholder="お問い合わせ内容" required></textarea>
                 </div>
                 <button id="sendBtn"
-                  class="justify-self-start rounded-2xl bg-brand px-4 py-2 text-white font-semibold shadow-glow disabled:opacity-50"
-                  type="submit" disabled>送信</button>
+                  class="justify-self-end rounded-2xl bg-brand px-4 py-2 text-white font-semibold shadow-glow disabled:opacity-50"
+                  type="submit" disabled style="margin-left:auto;">送信</button>
               </form>
             </div>
           </section>

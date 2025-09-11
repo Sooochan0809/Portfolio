@@ -47,7 +47,7 @@
                 sec("結果・考察",
                     p("得られた示唆や次のステップ（今後の改善点・適用可能性）など。")
                 ),
-                sec("参照",
+                sec("実施協力",
                     ul([
                         { text: "め遊びプロジェクトホームページ", href: "https://measobi.com/" },
                         { text: "関連資料", href: "https://example.com" }

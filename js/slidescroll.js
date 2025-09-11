@@ -34,8 +34,8 @@ function cardHTML(w) {
             <div class="ratio"><img src="${w.cover}" alt="${w.title}" loading="lazy"/></div>
             <div class="p-4">
               <div class="flex items-center justify-between text-xs text-zinc-500"><span>${w.year}</span><span>${w.tags.join(', ')}</span></div>
-              <h3 class="mt-2 text-lg font-semibold group-hover:text-brand">${w.title}</h3>
-              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">${w.summary}</p>
+              <h3 class="mt-2 text-[#111827] font-semibold group-hover:text-brand">${w.title}</h3>
+              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-200">${w.summary}</p>
             </div>
           </a>
         </article>`;
