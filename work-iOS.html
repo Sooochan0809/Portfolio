@@ -116,11 +116,11 @@
           <div class="flex items-center gap-2">
           </div>
         </div>
-        <div id="grid1" class="mt-[64px] grid sm:grid-cols-2 lg:grid-cols-3 gap-12"></div>
+        <div id="grid1" class="mt-[8px] grid sm:grid-cols-2 lg:grid-cols-3 gap-[8px]"></div>
       </section>
 
       <!-- Section 2: More/Archive -->
-      <section class="py-0 pt-24" style="background-color: #f9fafb;">
+      <section class="py-0 pt-[16px]" style="background-color: #f9fafb;">
         <div class="flex items-end justify-between gap-6">
           <div>
             <h1 class="leading-none tracking-tight"
@@ -130,7 +130,7 @@
           <div class="flex items-center gap-2">
           </div>
         </div>
-        <div id="grid2" class="mt-[64px] grid sm:grid-cols-2 lg:grid-cols-3 gap-12"></div>
+        <div id="grid2" class="mt-[8px] grid sm:grid-cols-2 lg:grid-cols-3 gap-[8px]"></div>
         <footer class="pt-10 pb-0 pr-0 text-right text-sm text-zinc-500">
           LastUpdated <span id="last-updated"></span>
         </footer>
@@ -159,13 +159,13 @@
 
     function cardHTML1(w) {
       return `
-            <article class="group rounded-2xl border overflow-hidden bg-white/60 dark:bg-zinc-950/50 hover:shadow-lg transition">
+            <article class="group rounded-2xl border overflow-hidden bg-white/60 dark:bg-zinc-950/50 hover:shadow-lg transition" style="transform: scale(0.9); transform-origin: center;">
               <a href="detail-iOS.html?slug=${w.slug}" class="block">
                 <div class="ratio"><img src="${w.cover}" alt="${w.title}" loading="lazy"/></div>
                 <div class="p-4">
                   <div class="flex items-center justify-between text-xs text-zinc-500"><span>${w.year}</span><span>${w.tags.join(', ')}</span></div>
                   <h3 class="mt-2 text-lg font-semibold group-hover:text-brand">${w.title}</h3>
-                  <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">${w.summary}</p>
+                  <p class="mt-1 text-xs text-zinc-600 dark:text-zinc-300">${w.summary}</p>
                 </div>
               </a>
             </article>`;
@@ -213,7 +213,7 @@
 
     function cardHTML2(w) {
       return `
-            <article class="group rounded-2xl border overflow-hidden bg-white/60 dark:bg-zinc-950/50 hover:shadow-lg transition">
+           <article class="group rounded-2xl border overflow-hidden bg-white/60 dark:bg-zinc-950/50 hover:shadow-lg transition" style="transform: scale(0.9); transform-origin: center;">
               <a href="detail-iOS.html?slug=${w.slug}" class="block">
                 <div class="ratio"><img src="${w.cover}" alt="${w.title}" loading="lazy"/></div>
                 <div class="p-4">
