@@ -28,8 +28,8 @@
         width: 100vw;
         height: 72px;
         border-radius: 0px;
-        background: rgba(255, 255, 255, 0.15);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        /* background: rgba(255, 255, 255, 0.103);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); */
     }
 }
 
@@ -176,17 +176,13 @@ body {
 }
 
 /* ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
-   ナビゲーション（Aboutなど）の左右マージンを設定している箇所
-   ここで a 要素（例: About）に margin-left, margin-right を指定している
-   ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
-/* =========================
    ヘッダー（is-header時）ここを変えると左右のマージンが広がる
-   ========================= */
+   ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 .header-anim-item.is-header {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding: 16px 40px;
+    padding: 16px 48px;
     /* 左右のマージンを広げる: 16px → 32px */
     gap: 8px;
     min-height: 72px;

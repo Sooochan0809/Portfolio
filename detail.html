@@ -13,6 +13,7 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
+                    colors: { brand: { DEFAULT: "#83c2ce" } },
                     boxShadow: { glow: "0 20px 60px -20px rgba(0,0,0,.25)" }
                 }
             },
@@ -267,14 +268,16 @@
                 track.appendChild(slide);
             });
 
+            // ボタン同士の距離は左右の "left-2" "right-2" で設定されており、8px (0.5rem) です
             const btnBase = "absolute top-1/2 -translate-y-1/2 z-10 rounded-full border bg-white/90 dark:bg-zinc-900/80 px-3 py-2 shadow opacity-100 md:opacity-0 md:group-hover:opacity-100 transition";
+            // それぞれ prev: "left-2" (左から8px), next: "right-2" (右から8px) で配置
             const prev = document.createElement("button");
-            prev.className = btnBase + " left-2";
+            prev.className = btnBase + " left-1";
             prev.setAttribute("data-prev", ""); prev.setAttribute("aria-label", "Prev");
             prev.innerHTML = "‹";
 
             const next = document.createElement("button");
-            next.className = btnBase + " right-2";
+            next.className = btnBase + " right-1";
             next.setAttribute("data-next", ""); next.setAttribute("aria-label", "Next");
             next.innerHTML = "›";
 

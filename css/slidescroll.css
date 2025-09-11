@@ -41,7 +41,7 @@
   width: max-content;
   min-height: 480px;
   padding-left: 560px;   /* JSのpadding-left: 560px;を反映 */
-  padding-right: 560px;  /* JSのpadding-right: 560px;を反映 */
+  padding-right: 1240px;  /* JSのpadding-right: 560px;を反映 */
   padding-top: 0;
   padding-bottom: 0;
   /* 横スクロールを有効にする */
