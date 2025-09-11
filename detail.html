@@ -205,13 +205,23 @@
                     v.playsInline = true; v.setAttribute('playsinline', '');
                     v.muted = true; v.setAttribute('muted', '');
                     v.preload = 'metadata';
-                    v.className = "cursor-zoom-in object-contain rounded-2xl";
+                    // 角丸を外す（rounded-2xlを削除）→鋭角
+                    v.className = "cursor-zoom-in object-contain";
                     v.addEventListener("click", (e) => {
                         if (!v.paused) return;
                         openViewer("video", it.src, "");
                         e.preventDefault();
                     });
                     box.appendChild(v);
+                } else if (it.type === "youtube") {
+                    // YouTube埋め込み
+                    const iframe = document.createElement("iframe");
+                    iframe.src = `https://www.youtube.com/embed/${it.id}?rel=0&modestbranding=1`;
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    iframe.allowFullscreen = true;
+                    iframe.className = "w-full h-full";
+                    iframe.style.border = "none";
+                    box.appendChild(iframe);
                 } else {
                     const img = document.createElement("img");
                     img.src = it.src;
@@ -257,13 +267,23 @@
                     v.playsInline = true; v.setAttribute('playsinline', '');
                     v.muted = true; v.setAttribute('muted', '');
                     v.preload = 'metadata';
-                    v.className = "cursor-zoom-in object-contain rounded-2xl";
+                    // 角丸を外す（rounded-2xlを削除）→鋭角
+                    v.className = "cursor-zoom-in object-contain";
                     v.addEventListener("click", (e) => {
                         if (!v.paused) return;
                         openViewer("video", obj.src, "");
                         e.preventDefault();
                     });
                     box.appendChild(v);
+                } else if (obj.type === "youtube") {
+                    // YouTube埋め込み
+                    const iframe = document.createElement("iframe");
+                    iframe.src = `https://www.youtube.com/embed/${obj.id}?rel=0&modestbranding=1`;
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    iframe.allowFullscreen = true;
+                    iframe.className = "w-full h-full";
+                    iframe.style.border = "none";
+                    box.appendChild(iframe);
                 } else {
                     const image = document.createElement("img");
                     image.src = obj.src;
@@ -320,6 +340,7 @@
 
             // --- 見えている動画だけ自動再生 ---
             const videos = Array.from(track.querySelectorAll('video'));
+            const youtube = Array.from(track.querySelectorAll('youtube'));
             const io = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const v = entry.target;

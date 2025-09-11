@@ -53,7 +53,7 @@
             body: [
                 // ここから画像専用
                 secImg("",
-                    img("https://drive.google.com/file/d/1aYsoJG-ZOdz5V1NbbQE7lLi9knfI-oLV/view?usp=sharing", "画像", "16/9"),
+                    youtube("https://youtu.be/MIuBiFRICeM"),
                     video("https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
                         "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&auto=format&fit=crop",
                         "16/9"),

@@ -187,6 +187,11 @@
                 box.className = "ratio mt-6";
                 box.style.setProperty("--ratio", ratioVar(it.ratio || "16/9"));
 
+                // // ※ letterbox用の背景などは box に当てると綺麗
+                // if (it.style && it.style.background) {
+                //     box.style.background = it.style.background;
+                // }
+
                 if (it.type === "video") {
                     const v = document.createElement("video");
                     v.src = it.src;
@@ -195,13 +200,23 @@
                     v.playsInline = true; v.setAttribute('playsinline', '');
                     v.muted = true; v.setAttribute('muted', '');
                     v.preload = 'metadata';
-                    v.className = "cursor-zoom-in object-contain rounded-2xl";
+                    // 角丸を外す（rounded-2xlを削除）→鋭角
+                    v.className = "cursor-zoom-in object-contain";
                     v.addEventListener("click", (e) => {
                         if (!v.paused) return;
                         openViewer("video", it.src, "");
                         e.preventDefault();
                     });
                     box.appendChild(v);
+                } else if (it.type === "youtube") {
+                    // YouTube埋め込み
+                    const iframe = document.createElement("iframe");
+                    iframe.src = `https://www.youtube.com/embed/${it.id}?rel=0&modestbranding=1`;
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    iframe.allowFullscreen = true;
+                    iframe.className = "w-full h-full";
+                    iframe.style.border = "none";
+                    box.appendChild(iframe);
                 } else {
                     const img = document.createElement("img");
                     img.src = it.src;
@@ -234,6 +249,11 @@
                 box.className = "ratio";
                 box.style.setProperty("--ratio", ratioVar(obj.ratio || "16/9"));
 
+                // // 背景色などは box 側へ
+                // if (obj.style && obj.style.background) {
+                //     box.style.background = obj.style.background;
+                // }
+
                 if (obj.type === "video") {
                     const v = document.createElement("video");
                     v.src = obj.src;
@@ -242,13 +262,23 @@
                     v.playsInline = true; v.setAttribute('playsinline', '');
                     v.muted = true; v.setAttribute('muted', '');
                     v.preload = 'metadata';
-                    v.className = "cursor-zoom-in object-contain rounded-2xl";
+                    // 角丸を外す（rounded-2xlを削除）→鋭角
+                    v.className = "cursor-zoom-in object-contain";
                     v.addEventListener("click", (e) => {
                         if (!v.paused) return;
                         openViewer("video", obj.src, "");
                         e.preventDefault();
                     });
                     box.appendChild(v);
+                } else if (obj.type === "youtube") {
+                    // YouTube埋め込み
+                    const iframe = document.createElement("iframe");
+                    iframe.src = `https://www.youtube.com/embed/${obj.id}?rel=0&modestbranding=1`;
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    iframe.allowFullscreen = true;
+                    iframe.className = "w-full h-full";
+                    iframe.style.border = "none";
+                    box.appendChild(iframe);
                 } else {
                     const image = document.createElement("img");
                     image.src = obj.src;
@@ -263,14 +293,16 @@
                 track.appendChild(slide);
             });
 
+            // ボタン同士の距離は左右の "left-2" "right-2" で設定されており、8px (0.5rem) です
             const btnBase = "absolute top-1/2 -translate-y-1/2 z-10 rounded-full border bg-white/90 dark:bg-zinc-900/80 px-3 py-2 shadow opacity-100 md:opacity-0 md:group-hover:opacity-100 transition";
+            // それぞれ prev: "left-2" (左から8px), next: "right-2" (右から8px) で配置
             const prev = document.createElement("button");
-            prev.className = btnBase + " left-2";
+            prev.className = btnBase + " left-1";
             prev.setAttribute("data-prev", ""); prev.setAttribute("aria-label", "Prev");
             prev.innerHTML = "‹";
 
             const next = document.createElement("button");
-            next.className = btnBase + " right-2";
+            next.className = btnBase + " right-1";
             next.setAttribute("data-next", ""); next.setAttribute("aria-label", "Next");
             next.innerHTML = "›";
 
@@ -303,6 +335,7 @@
 
             // --- 見えている動画だけ自動再生 ---
             const videos = Array.from(track.querySelectorAll('video'));
+            const youtube = Array.from(track.querySelectorAll('youtube'));
             const io = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const v = entry.target;
@@ -411,6 +444,30 @@
                             v.className = "cursor-zoom-in object-contain rounded-2xl";
                             v.addEventListener("click", (ev) => { if (!v.paused) return; openViewer("video", e.src, ""); ev.preventDefault(); });
                             box.appendChild(v); fig.appendChild(box); frag.appendChild(fig); continue;
+                        }
+                        // YouTube動画埋め込み
+                        if (e.type === "youtube") {
+                            const fig = document.createElement("figure");
+                            fig.className = "mt-6 mb-6";
+                            const box = document.createElement("div");
+                            box.className = "ratio";
+                            box.style.setProperty("--ratio", ratioVar(e.ratio || "16/9"));
+                            const iframe = document.createElement("iframe");
+                            iframe.src = `https://www.youtube.com/embed/${e.videoId || e.id || ""}`;
+                            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                            iframe.allowFullscreen = true;
+                            iframe.frameBorder = "0";
+                            iframe.className = "w-full h-full"; // 角を鋭角に（丸みをなくす）
+                            box.appendChild(iframe);
+                            fig.appendChild(box);
+                            if (e.caption) {
+                                const cap = document.createElement("figcaption");
+                                cap.className = "mt-2 text-sm text-zinc-500";
+                                cap.textContent = e.caption;
+                                fig.appendChild(cap);
+                            }
+                            frag.appendChild(fig);
+                            continue;
                         }
                         if (e.type === "p") {
                             const el = document.createElement("p");
@@ -525,7 +582,7 @@
         <div class="text-center py-24">
           <h1 class="text-3xl font-extrabold">404</h1>
           <p class="mt-2 text-zinc-500">指定の作品が見つかりませんでした。</p>
-          <a href="work.html" class="inline-flex mt-6 items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
+          <a href="index.html#works" class="inline-flex mt-6 items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/><path d="M6 12h12"/></svg>
             戻る
           </a>
