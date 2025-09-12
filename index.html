@@ -6,8 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>城戸双汰朗のポートフォリオ</title>
   <meta name="description" content="" />
+
+  <!-- 検索ヒット関連 -->
   <meta name="google-site-verification" content="sjE2RcUhpD_eqe9iAfIVKHvzOTge6NhxvWVJQGBf2ss" />
-  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KX16JC13WL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-KX16JC13WL');
+  </script>
+
   <!-- スクロールバー消し -->
   <style>
     body {
@@ -807,7 +818,7 @@
           sendBtn.classList.remove('bg-brand', 'hover:bg-brand/90');
           sendBtn.classList.add('bg-green-600', 'hover:bg-green-700');
           sendBtn.disabled = true;
-          
+
           // 3秒後にボタンを元に戻す
           setTimeout(() => {
             sendBtn.textContent = "送信";
