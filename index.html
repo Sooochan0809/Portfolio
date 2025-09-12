@@ -676,19 +676,30 @@
           </section>
           <!-- ヘッダーを重ねて表示（上下ズレ防止のため絶対配置） -->
 
-          <section class="pt-[196px] pb-[0px]">
-            <!-- 空白 -->
-          </section>
 
-          <section id="contact">
-            <div class="flex justify-end">
-              <form id="contactForm" class="grid gap-3 max-w-[560px] w-full mt-[0px]" method="POST"
+
+          <section id="contact" class="mt-[360px] mb-[24px]">
+            <div class="flex flex-col md:flex-row items-start md:items-stretch md:justify-between">
+              <!-- 左側テキスト: 左詰め -->
+              <div class="w-full md:max-w-[496px] text-left pl-[8px] mb-8 md:mb-0 md:mr-16">
+                <p class="text-[16px] text-[#111827] mb-4">
+                  ポートフォリをご覧いただき、ありがとうございました。<br>
+                  御用の際は、右側のフォームてご連絡いただけます。<br>
+                  どうぞ、お気軽にご連絡下さい。
+                </p>
+                <p class="text-sm text-gray-500">
+                  ※内容によってはご返信できない場合がございます。<br>
+                  ※個人情報は厳重に管理し、第三者に提供することはございません。
+                </p>
+              </div>
+              <!-- 右側フォーム -->
+              <form id="contactForm" class="grid gap-3 w-full md:max-w-[496px] md:ml-auto" method="POST"
                 action="https://formspree.io/f/xzzayorb" autocomplete="on">
                 <!-- 会社名（任意） -->
                 <div>
                   <label for="company" class="block text-sm font-medium text-[#111827] mb-1">ご所属</label>
                   <input id="company" name="company"
-                    class="rounded-xl border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="会社名/学校名"
+                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="会社名/学校名"
                     autocomplete="organization" />
                 </div>
                 <!-- 姓 -->
@@ -696,7 +707,7 @@
                   <label for="lastName" class="block text-sm font-medium text-[#111827] mb-1">姓 <span
                       class="text-red-500">*</span></label>
                   <input id="lastName" name="lastName"
-                    class="rounded-xl border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="姓" required
+                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="姓" required
                     autocomplete="family-name" />
                 </div>
                 <!-- 名 -->
@@ -704,7 +715,7 @@
                   <label for="firstName" class="block text-sm font-medium text-[#111827] mb-1">名 <span
                       class="text-red-500">*</span></label>
                   <input id="firstName" name="firstName"
-                    class="rounded-xl border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="名" required
+                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="名" required
                     autocomplete="given-name" />
                 </div>
                 <!-- メールアドレス -->
@@ -712,7 +723,7 @@
                   <label for="email" class="block text-sm font-medium text-[#111827] mb-1">メールアドレス <span
                       class="text-red-500">*</span></label>
                   <input id="email" name="email" type="email"
-                    class="rounded-xl border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
                     placeholder="your@email.com" required autocomplete="email" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
                     oninput="this.setCustomValidity(this.validity.patternMismatch ? '正しいメールアドレスを入力してください' : '');" />
                 </div>
@@ -721,7 +732,7 @@
                   <label for="msgSubject" class="block text-sm font-medium text-[#111827] mb-1">件名 <span
                       class="text-red-500">*</span></label>
                   <input id="msgSubject" name="subject"
-                    class="rounded-xl border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="件名"
+                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="件名"
                     required />
                 </div>
                 <!-- お問い合わせ内容 -->
@@ -729,7 +740,7 @@
                   <label for="msgBody" class="block text-sm font-medium text-[#111827] mb-1">お問い合わせ内容 <span
                       class="text-red-500">*</span></label>
                   <textarea id="msgBody" name="message"
-                    class="rounded-xl border px-3 py-2 min-h-[80px] bg-white/70 dark:bg-zinc-950/60 w-full"
+                    class="rounded-0 border px-3 py-3 min-h-[200px] h-[200px] md:min-h-[160px] md:h-[160px] bg-white/70 dark:bg-zinc-950/60 w-full resize-vertical"
                     placeholder="お問い合わせ内容" required></textarea>
                 </div>
                 <button id="sendBtn"
@@ -740,10 +751,11 @@
           </section>
         </section>
       </section>
-      <footer class="pt-[16px] pb-0 pr-0 text-right text-sm text-zinc-500">
-        LastUpdated <span id="last-updated"></span>
-      </footer>
+
     </div>
+    <footer class="pt-[0px] pb-[0px] pr-8 text-right text-sm text-zinc-500">
+      LastUpdated <span id="last-updated"></span>
+    </footer>
   </main>
 
   <script>
