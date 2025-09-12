@@ -41,7 +41,7 @@
             slug: "syusikennkyu-3", // 目の身体性について
             title: "《みる目/みせる目/みられる目》",
             year: "2025",
-            tags: ["修士研究", "ワークショップ", "表情"],
+            tags: ["修士研究", "ワークショップ", "iOSアプリ"],
             cover: toDriveDirectLink("https://drive.google.com/file/d/1aYsoJG-ZOdz5V1NbbQE7lLi9knfI-oLV/view?usp=sharing"),
             summary: "《みる目／みせる目／みられる目》は、主に子どもを対象としたワークショップ。タイトルが示すとおり、「目」が持つ多様なあり方に注目し、普段、見過ごされがちな側面に焦点を当てた内容をオリジナルのiOSアプリケーションを使い、遊びを交えながら進める。　．．．",
             period: "2025",
@@ -82,33 +82,35 @@
         },
         {
             slug: "syusikennkyu-2", // め遊びプロジェクト
-            title: "め遊び-スイトピアテラス-",
+            title: "め遊び inスイトピアテラス",
             year: "2025",
-            tags: ["ワークショップ"],
+            tags: ["ワークショップ", "体験"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1SUrosEoXyN-X47j-qiHH5pEi6Sxvxzs6/view?usp=sharing"),
-            summary: "スイトピアテラス（2025/5/5）にて出展。",
+            summary: "2025年5月5日、スイトピアで開催された「スイトピアテラス」にて、《め遊び ― 目でモノに触ったり、気持ちを伝えたり、いろいろな目の使い方にチャレンジしよう！》を実施。 当日は、老若男女さまざまな方々に《め触り》を体験していただけた。...",
             period: "2025",
             body: [
                 // ここから画像専用
-                secImg("",
-                    img("", "画像", "16/9"),
-                    img("", "画像", "16/9"),
-                    img("", "画像", "16/9"),
-                    img("", "画像", "16/9")
+                sec("",
+                    youtube("https://youtu.be/IPXictFjRAM?si=XbtM-9ZBw2SfjPFL"),
                 ),
                 sec("概要",
-                    p(""),
-
+                    p("2025年5月5日、スイトピアで開催された「スイトピアテラス」にて、《め遊び ― 目でモノに触ったり、気持ちを伝えたり、いろいろな目の使い方にチャレンジしよう！》を実施。 当日は、老若男女さまざまな方々に《め触り》を体験していただけた。"),
                 ),
-                sec("目的",
-                    p(""),
+                sec("《め触り》について",
+                    youtube("https://youtu.be/UoMuOlyS8-c"),
+                    p("《め触り》は瞼を大きく開けたり、逆に細めたりすることで映像の中のオブジェクトを動かす装置。"),
+                    p("今回の展示では、”はこ”と”バネ”の二種類（それぞれ大/中/小の3パターン）のオブジェクトを目で動かして遊ぶことができる。"),
+                    p("3パターン、それぞれ異なる質量を持ち、それに応じて挙動のスピードが異なっている。これらの違いが目の開閉運動と連動されることで、手を使わずに「重さ」や「硬さ」を擬似的に知覚できる。"),
+                    p("　"),
+                    youtube("https://youtu.be/N6ExbDVTBE8"),
+                    p("手元には、映像内のオブジェクトを変更する為のスイッチャーがおかれている。これを操作することで、オブジェクトの大/中/小を選ぶ。")
                 ),
-                sec("プロセス",
-                    ul([""])
-                ),
-                sec("結果・考察",
-                    p("準備中です💦")
+                sec("関連",
+                    ul([
+                        { text: "スイトピア", href: "https://www2.og-bunka.or.jp/" },
+                        { text: "疑似触覚", href: "https://www.jstage.jst.go.jp/article/isciesci/61/11/61_447/_pdf/-char/ja" }
+                    ])
                 )
             ]
         },
@@ -116,7 +118,7 @@
             slug: "syusikennkyu-1",
             title: "め遊び-びょ～んびょん編-",
             year: "2025",
-            tags: ["ワークショップ"],
+            tags: ["ワークショップ","体験"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1s9Q58Q0-wyxCK5ppN7SHriCV2iFyTADI/view?usp=sharing"),
             summary: "準備中です💦",
