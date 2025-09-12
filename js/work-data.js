@@ -122,7 +122,6 @@
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1s9Q58Q0-wyxCK5ppN7SHriCV2iFyTADI/view?usp=sharing"),
             summary: "準備中です💦",
-            role: ["研究", "設計"],
             period: "2025",
             body: [
                 // ここから画像専用
@@ -153,12 +152,44 @@
             ]
         },
         {
-            slug: "test-2025-b",
-            title: "準備中です💦",
-            year: "2025",
-            tags: [],
+            slug: "ivrc2024-2",
+            title: "耳研澄製造工場 -IVRC2024LEAPSTAGE-",
+            year: "2024",
+            tags: ["作品","研究","装置"],
             cover:
-                toDriveDirectLink(""),
+                toDriveDirectLink("https://drive.google.com/file/d/1rNQI0kzh4QPWD44srstxefkF4qbpp4ec/view?usp=sharing"),
+            summary: "準備中です💦",
+            period: "2025",
+            body: [
+                // ここから画像専用
+                secImg("",
+                    img("", "画像", "16/9"),
+                    img("", "画像", "16/9"),
+                    img("", "画像", "16/9"),
+                    img("", "画像", "16/9")
+                ),
+                sec("概要",
+                    p("準備中です💦"),
+
+                ),
+                sec("目的",
+                    p("準備中です💦"),
+                ),
+                sec("プロセス",
+                    ul(["準備中です💦"])
+                ),
+                sec("結果・考察",
+                    p("準備中です💦")
+                )
+            ]
+        },
+        {
+            slug: "ivrc-2",
+            title: "耳研澄製造工場 -IVRC2024SEEDSTAGE-",
+            year: "2025",
+            tags: ["作品","研究","装置"],
+            cover:
+                toDriveDirectLink("https://drive.google.com/file/d/15BX6HCzQ38B8JfMaL9f-YLkYQLyfu3Kg/view?usp=drive_link"),
             summary: "準備中です💦",
             role: ["研究", "設計"],
             period: "2025",
@@ -186,35 +217,64 @@
             ]
         },
         {
-            slug: "test-2025-c",
-            title: "準備中です💦",
-            year: "2025",
-            tags: [],
+            slug: "cim-g",
+            title: "Character Input Method by Gasshou ”CIM-G”",
+            year: "2024",
+            tags: ["作品","研究","インターフェース"],
             cover:
-                toDriveDirectLink(""),
+                toDriveDirectLink("https://drive.google.com/file/d/1CDRAif-akHv_xQv9xYoHURqCHwlIxQer/view?usp=sharing"),
             summary: "準備中です💦",
-            role: ["研究", "設計"],
             period: "2025",
             body: [
                 // ここから画像専用
-                secImg("",
-                    img("", "画像", "16/9"),
-                    img("", "画像", "16/9"),
-                    img("", "画像", "16/9"),
-                    img("", "画像", "16/9")
+                sec("",
+                    youtube("https://youtu.be/SGGzU31cSgY")
                 ),
                 sec("概要",
-                    p("準備中です💦"),
+                    p("スマートフォンの登場により、外出先での連絡やアプリ操作など、デジタルインタラクションの空間的制約が解消された。さらに、HMDのようなウェアラブルデバイスはその自由度を拡張し、私生活への浸透が期待されている。 しかし、これらのデバイスの進化に対し、文字入力のインターフェースはキーボードやフリック入力といった従来の方式に留まっている。このため、直感的な操作が実現されず、入力の速度や精度に課題があり、新しい環境に最適とは言えない。特にHMDを用いた仮想空間では、空間上に浮かぶ仮想キーボードを使う場面が一般的だが、触覚フィードバックが欠如している点が問題として挙げられる。"),
 
                 ),
                 sec("目的",
-                    p("準備中です💦"),
+                    p("HMD装着時における新しい文字入力手法として、直感的に操作でき、持ち運びの必要がなく、どこでも文字入力が可能な新しい手法を提案する。"),
                 ),
-                sec("プロセス",
-                    ul(["準備中です💦"])
+                sec("担当箇所",
+                    img("https://drive.google.com/file/d/1P9-82BG87VNTEtI4MYlkJbM5ikOBjeQC/view?usp=sharing"),
+                    p("　　　"),
+                    p("mediapipeを使用した手のひら検出を使用したインターフェースの試作。")
                 ),
-                sec("結果・考察",
-                    p("準備中です💦")
+                sec("プロジェクトメンバー",
+                    p("城戸双汰朗，高岸航平，佐藤杏南")
+                )
+            ]
+        },
+        {
+            slug: "soturon",
+            title: "",
+            year: "2024",
+            tags: ["作品","研究"],
+            cover:
+                toDriveDirectLink("https://drive.google.com/file/d/10wa_FsPwPQhq0sEtdUsLEF02m7PQ2ssF/view?usp=sharing"),
+            summary: "準備中です💦",
+            period: "2025",
+            body: [
+                // ここから画像専用
+                sec("",
+                    youtube("https://youtu.be/dn6U-VMtW3s")
+                ),
+                sec("概要",
+                    p("スマートフォンの登場により、外出先での連絡やアプリ操作など、デジタルインタラクションの空間的制約が解消された。さらに、HMDのようなウェアラブルデバイスはその自由度を拡張し、私生活への浸透が期待されている。 しかし、これらのデバイスの進化に対し、文字入力のインターフェースはキーボードやフリック入力といった従来の方式に留まっている。このため、直感的な操作が実現されず、入力の速度や精度に課題があり、新しい環境に最適とは言えない。特にHMDを用いた仮想空間では、空間上に浮かぶ仮想キーボードを使う場面が一般的だが、触覚フィードバックが欠如している点が問題として挙げられる。"),
+
+                ),
+                sec("目的",
+                    p("HMD装着時における新しい文字入力手法として、直感的に操作でき、持ち運びの必要がなく、どこでも文字入力が可能な新しい手法を提案する。"),
+                ),
+                sec("担当箇所",
+                    img("https://drive.google.com/file/d/1P9-82BG87VNTEtI4MYlkJbM5ikOBjeQC/view?usp=sharing"),
+                    p("　　　"),
+                    p("mediapipeを使用した手のひら検出を使用したインターフェースの試作。")
+                ),
+                sec("プロジェクトメンバー",
+                    p("城戸双汰朗，高岸航平，佐藤杏南")
                 )
             ]
         }
