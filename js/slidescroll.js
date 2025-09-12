@@ -1,10 +1,9 @@
-
 // 横スクロールカード同士の間隔と、最初・最後の余白をCSSで指定
 const style = document.createElement('style');
 style.innerHTML = `
   .horizontal-scroll {
     display: flex;
-    gap: 48px;
+    gap: 96px;
     padding-left: 560px;
     padding-right: 560px;
     /* 画面幅に応じて余白を調整したい場合はvwを調整 */

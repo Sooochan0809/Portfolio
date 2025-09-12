@@ -276,16 +276,16 @@
   </nav>
 
   <!-- ===== Main ===== -->
-  <main class="pt-16" style="min-height:0;">
+  <main class="pt-0" style="min-height:0; padding-top:0 !important;">
     <!-- フッターの余白と合わせたら40px -->
-    <div class="main-container-fix mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-[40px] pb-[24px]"
+    <div class="main-container-fix mx-auto max-w-8xl px-[178px] pt-[80px] pb-[24px]"
       style="background-color: #f9fafbf5; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax); box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
       <div style="position:fixed; inset:0; pointer-events:none; z-index:0;">
         <div
-          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(2rem); background:#81c7d7">
+          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(100rem); background:#81c7d7">
         </div>
         <div
-          style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100%; filter:blur(2rem); background:#83c2ce">
+          style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100%; filter:blur(100rem); background:#83c2ce">
         </div>
       </div>
       <section id="profile" style="background-color: #f9fafb;">
@@ -321,22 +321,22 @@
           /* 上部から120pxで固定: 画面幅に応じて調整 */
           .sticky-header-fix {
             position: sticky;
-            top: 120px;
+            top: 112px;
             z-index: 10;
           }
 
           @media (min-width: 1024px) {
             .sticky-header-fix {
-              top: 88px;
+              top: 112px;
             }
           }
         </style>
 
         <!-- Two Column Layout（写真＋内容） -->
         <section id=PROFILE
-          class="mt-8 mb-16 md:mt-12 grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-16">
-          <aside class="order-1 lg:order-none mt-[0px] hidden lg:block sticky top-[240px] self-start">
-            <figure class="w-[260px] max-w-full border border-gray-200 shadow-sm">
+          class="mt-8 mb-16 md:mt-12 grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-40">
+          <aside class="order-1 lg:order-none mt-[0px] hidden lg:block sticky top-[272px] self-start">
+            <figure class="w-[520px] max-w-full border border-gray-200 shadow-sm pl-[16px]">
               <img class="block w-full h-auto" src="./img/01_about/kidosotaro.webp" alt="Portrait" />
             </figure>
           </aside>
@@ -345,7 +345,7 @@
           <div class="order-2 lg:order-none">
             <!-- ABOUT ME -->
             <section id="about-me" class="mb-[80px]">
-              <h2 class="text-xl font-normal cap mt-[0px] hidden lg:block" data-cap="私について">ABOUT ME</h2>
+              <h2 class="text-xl font-normal cap mt-[40px] hidden lg:block" data-cap="私について">ABOUT ME</h2>
               <figure class="mt-[16px] w-[260px] border border-gray-200 shadow-sm lg:hidden">
                 <img class="block w-full h-auto" src="./img/01_about/kidosotaro.webp" alt="Portrait" />
               </figure>
@@ -648,18 +648,13 @@
           </div>
         </section>
 
-        <section class="blank pt-[48px] pb-[48px] md:pt-[96px] md:pb-[96px]">
-          <!-- 空白 -->
-
-        </section>
-
         <section id="works">
           <!-- ここに飛ぶとちょうどいい -->
         </section>
 
         <section>
-          <section class="horizontal-section mx-auto max-w-6xl px-4 sm:px-6 lg:px-4">
-            <div class="section-header" style="position: relative; height: 120px; max-width: 100%;">
+          <section class="horizontal-section mx-auto max-w-none pt-16 md:pt-16">
+            <div class="section-header" style="position: relative; height: 80px; max-width: 100%;">
               <style>
                 @media (max-width: 640px) {
                   .section-header {
@@ -676,24 +671,21 @@
           </section>
           <!-- ヘッダーを重ねて表示（上下ズレ防止のため絶対配置） -->
 
-
-
           <section id="contact" class="mt-[360px] mb-[24px]">
-            <div class="flex flex-col md:flex-row items-start md:items-stretch md:justify-between">
-              <!-- 左側テキスト: 左詰め -->
-              <div class="w-full md:max-w-[496px] text-left pl-[8px] mb-8 md:mb-0 md:mr-16">
-                <p class="text-[16px] text-[#111827] mb-4">
-                  ポートフォリをご覧いただき、ありがとうございました。<br>
-                  御用の際は、右側のフォームてご連絡いただけます。<br>
-                  どうぞ、お気軽にご連絡下さい。
+            <div class="flex flex-col md:flex-row md:items-start gap-8 pr-[16px]">
+              <!-- テキスト部分 -->
+              <div class="w-full md:w-1/2 ">
+                <p class="text-[16px] text-[#111827] mb-4 mt-4">
+                  ポートフォリをご覧いただき、ありがとうございました。<br>御用の際は、右側のフォームにてご連絡いただけます。どうぞ、お気軽にご連絡下さい。
                 </p>
                 <p class="text-sm text-gray-500">
                   ※内容によってはご返信できない場合がございます。<br>
                   ※個人情報は厳重に管理し、第三者に提供することはございません。
                 </p>
               </div>
-              <!-- 右側フォーム -->
-              <form id="contactForm" class="grid gap-3 w-full md:max-w-[496px] md:ml-auto" method="POST"
+
+              <!-- フォーム部分 -->
+              <form id="contactForm" class="grid gap-3 w-full md:w-1/2 " method="POST"
                 action="https://formspree.io/f/xzzayorb" autocomplete="on">
                 <!-- 会社名（任意） -->
                 <div>
@@ -744,19 +736,103 @@
                     placeholder="お問い合わせ内容" required></textarea>
                 </div>
                 <button id="sendBtn"
-                  class="justify-self-end rounded-2xl bg-brand px-4 py-2 text-white font-semibold shadow-glow disabled:opacity-50"
+                  class="justify-self-end rounded-2xl bg-brand px-6 py-3 text-white font-bold shadow-glow disabled:opacity-500 disabled:cursor-not-allowed hover:bg-brand/90 transition-colors"
                   type="submit" disabled style="margin-left:auto;">送信</button>
               </form>
             </div>
           </section>
         </section>
       </section>
-
+      <footer class="pt-[16px] pb-[0px] pr-8 text-right text-sm text-zinc-500">
+        LastUpdated <span id="last-updated"></span>
+      </footer>
     </div>
-    <footer class="pt-[0px] pb-[0px] pr-8 text-right text-sm text-zinc-500">
-      LastUpdated <span id="last-updated"></span>
-    </footer>
+
   </main>
+
+  <script>// 送信先メールアドレスはFormspree経由（action属性で指定）
+    const form = document.getElementById('contactForm');
+    const lastName = document.getElementById('lastName');
+    const firstName = document.getElementById('firstName');
+    const email = document.getElementById('email');
+    const subject = document.getElementById('msgSubject');
+    const body = document.getElementById('msgBody');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function checkForm() {
+      // 必須項目が全て入力されていれば有効化
+      const requiredFilled =
+        lastName.value.trim() &&
+        firstName.value.trim() &&
+        email.value.trim() &&
+        subject.value.trim() &&
+        body.value.trim();
+      sendBtn.disabled = !requiredFilled;
+    }
+
+    function clearForm() {
+      // フォームの内容をクリア
+      lastName.value = '';
+      firstName.value = '';
+      email.value = '';
+      subject.value = '';
+      body.value = '';
+      document.getElementById('company').value = '';
+    }
+
+    // 初期状態でフォームチェックを実行
+    checkForm();
+
+    lastName.addEventListener('input', checkForm);
+    firstName.addEventListener('input', checkForm);
+    email.addEventListener('input', checkForm);
+    subject.addEventListener('input', checkForm);
+    body.addEventListener('input', checkForm);
+
+    form.addEventListener('submit', function (e) {
+      // 自動送信（FormspreeにPOST）→ 送信後に完了メッセージ表示
+      e.preventDefault();
+      sendBtn.disabled = true;
+      sendBtn.textContent = "送信中…";
+      fetch(form.action, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json"
+        },
+        body: new FormData(form)
+      }).then(response => {
+        if (response.ok) {
+          // 送信成功時：フォームをクリアしてボタンで完了を表示
+          clearForm();
+          sendBtn.textContent = "送信に成功しました。ありがとうございます";
+          sendBtn.classList.remove('bg-brand', 'hover:bg-brand/90');
+          sendBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+          sendBtn.disabled = true;
+          
+          // 3秒後にボタンを元に戻す
+          setTimeout(() => {
+            sendBtn.textContent = "送信";
+            sendBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+            sendBtn.classList.add('bg-brand', 'hover:bg-brand/90');
+            checkForm();
+          }, 3000);
+        } else {
+          sendBtn.disabled = false;
+          sendBtn.textContent = "送信";
+          checkForm(); // フォーム状態を再チェック
+          alert("送信に失敗しました。時間をおいて再度お試しください。");
+        }
+      }).catch(() => {
+        sendBtn.disabled = false;
+        sendBtn.textContent = "送信";
+        checkForm(); // フォーム状態を再チェック
+        alert("送信に失敗しました。時間をおいて再度お試しください。");
+      });
+    });</script>
+
+  <script src="js/site.js"></script>
+  <script src="js/work-data.js"></script>
+  <script src="js/slidescroll.js"></script>
 
   <script>
     // フッターに最終更新日を表示
@@ -768,10 +844,6 @@
       return `${y}.${m}.${day}`;
     })();
   </script>
-
-  <script src="js/site.js"></script>
-  <script src="js/work-data.js"></script>
-  <script src="js/slidescroll.js"></script>
 
   <script>
     (function () {
