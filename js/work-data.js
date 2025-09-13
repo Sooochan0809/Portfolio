@@ -43,7 +43,7 @@
             year: "2025",
             tags: ["修士研究", "ワークショップ", "iOSアプリ"],
             cover: toDriveDirectLink("https://drive.google.com/file/d/1aYsoJG-ZOdz5V1NbbQE7lLi9knfI-oLV/view?usp=sharing"),
-            summary: "《みる目／みせる目／みられる目》は、主に子どもを対象としたワークショップ。タイトルが示すとおり、「目」が持つ多様なあり方に注目し、普段、見過ごされがちな側面に焦点を当てた内容をオリジナルのiOSアプリケーションを使い、遊びを交えながら進める。　．．．",
+            summary: "",
             period: "2025",
             body: [
                 // ここから画像専用
@@ -87,7 +87,7 @@
             tags: ["ワークショップ", "体験"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1SUrosEoXyN-X47j-qiHH5pEi6Sxvxzs6/view?usp=sharing"),
-            summary: "2025年5月5日、スイトピアで開催された「スイトピアテラス」にて、《め遊び ― 目でモノに触ったり、気持ちを伝えたり、いろいろな目の使い方にチャレンジしよう！》を実施。 当日は、老若男女さまざまな方々に《め触り》を体験していただけた。...",
+            summary: "",
             period: "2025",
             body: [
                 // ここから画像専用
@@ -118,10 +118,10 @@
             slug: "syusikennkyu-1",
             title: "め遊び-びょ～んびょん編-",
             year: "2025",
-            tags: ["ワークショップ","体験"],
+            tags: ["ワークショップ", "体験"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1s9Q58Q0-wyxCK5ppN7SHriCV2iFyTADI/view?usp=sharing"),
-            summary: "準備中です💦",
+            summary: "",
             period: "2025",
             body: [
                 // ここから画像専用
@@ -155,10 +155,10 @@
             slug: "ivrc2024-2",
             title: "耳研澄製造工場 -IVRC2024LEAPSTAGE-",
             year: "2024",
-            tags: ["作品","研究","装置"],
+            tags: ["作品", "研究", "装置"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1rNQI0kzh4QPWD44srstxefkF4qbpp4ec/view?usp=sharing"),
-            summary: "準備中です💦",
+            summary: "",
             period: "2025",
             body: [
                 // ここから画像専用
@@ -187,19 +187,16 @@
             slug: "ivrc-2",
             title: "耳研澄製造工場 -IVRC2024SEEDSTAGE-",
             year: "2025",
-            tags: ["作品","研究","装置"],
+            tags: ["作品", "研究", "装置"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/15BX6HCzQ38B8JfMaL9f-YLkYQLyfu3Kg/view?usp=drive_link"),
-            summary: "準備中です💦",
+            summary: "",
             role: ["研究", "設計"],
             period: "2025",
             body: [
                 // ここから画像専用
-                secImg("",
-                    img("", "画像", "16/9"),
-                    img("", "画像", "16/9"),
-                    img("", "画像", "16/9"),
-                    img("", "画像", "16/9")
+                sec("",
+                    youtube("https://youtu.be/QZ8XvUwAlV0")
                 ),
                 sec("概要",
                     p("準備中です💦"),
@@ -208,22 +205,30 @@
                 sec("目的",
                     p("準備中です💦"),
                 ),
-                sec("プロセス",
-                    ul(["準備中です💦"])
+                sec("システム",
+                    youtube("https://youtu.be/S_l2gkAJwa4"),
+                    ul(["テキスト準備中です💦"])
                 ),
-                sec("結果・考察",
+                sec("表彰",
                     p("準備中です💦")
+                ),
+                sec("関連",
+                    ul([
+                        { text: "IVRC(Interverse Virtual Reality Challenge)", href: "https://ivrc.net" },
+                        { text: "IVRC HISTORY ARCHIVE", href: "https://ivrc.net/archive/%e8%80%b3%e7%a0%94%e6%be%84%e8%a3%85%e7%bd%ae%e8%a3%bd%e9%80%a0%e5%b7%a5%e5%a0%b42024/" }
+                    ])
                 )
+
             ]
         },
         {
             slug: "cim-g",
             title: "Character Input Method by Gasshou ”CIM-G”",
             year: "2024",
-            tags: ["作品","研究","インターフェース"],
+            tags: ["作品", "研究", "インターフェース"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1CDRAif-akHv_xQv9xYoHURqCHwlIxQer/view?usp=sharing"),
-            summary: "準備中です💦",
+            summary: "",
             period: "2025",
             body: [
                 // ここから画像専用
@@ -249,32 +254,61 @@
         },
         {
             slug: "soturon",
-            title: "",
-            year: "2024",
-            tags: ["作品","研究"],
+            title: "鍛冶屋町妖怪祭り2023",
+            year: "2023",
+            tags: ["作品", "卒業研究"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/10wa_FsPwPQhq0sEtdUsLEF02m7PQ2ssF/view?usp=sharing"),
-            summary: "準備中です💦",
+            summary: "",
             period: "2025",
             body: [
                 // ここから画像専用
                 sec("",
-                    youtube("https://youtu.be/dn6U-VMtW3s")
+                    youtube("https://youtu.be/wBFpHJ63ji8")
                 ),
                 sec("概要",
-                    p("スマートフォンの登場により、外出先での連絡やアプリ操作など、デジタルインタラクションの空間的制約が解消された。さらに、HMDのようなウェアラブルデバイスはその自由度を拡張し、私生活への浸透が期待されている。 しかし、これらのデバイスの進化に対し、文字入力のインターフェースはキーボードやフリック入力といった従来の方式に留まっている。このため、直感的な操作が実現されず、入力の速度や精度に課題があり、新しい環境に最適とは言えない。特にHMDを用いた仮想空間では、空間上に浮かぶ仮想キーボードを使う場面が一般的だが、触覚フィードバックが欠如している点が問題として挙げられる。"),
+                    p("卒業研究の一環として、熊本県八代市鍛冶屋町で行われた妖怪祭りにてムービングライトとモバイル型プロジェクターとがインタラクションする装置を出展。老略男女様々な方に体験していただいた。"),
 
                 ),
                 sec("目的",
-                    p("HMD装着時における新しい文字入力手法として、直感的に操作でき、持ち運びの必要がなく、どこでも文字入力が可能な新しい手法を提案する。"),
+                    youtube("https://youtu.be/OY4mEmUbKzo"),
+                    p("ムービングライトに対しての汎用性、および、容易性の高いインタラクションシステムを構築することを目指す。"),
+                    p("この実現により、これまでのムービングライトを用いたインタラクティブ作品と比べ、操作の直感性やシステムの汎用性（場所／コンテンツ／対象ユーザの幅）の向上が期待できる。")
                 ),
-                sec("担当箇所",
-                    img("https://drive.google.com/file/d/1P9-82BG87VNTEtI4MYlkJbM5ikOBjeQC/view?usp=sharing"),
-                    p("　　　"),
-                    p("mediapipeを使用した手のひら検出を使用したインターフェースの試作。")
+                sec("論文",
+                    ul([
+                        { text: "モバイル型入出力装置を用いたムービングライトとの新しいインタラクション", href: "https://cir.nii.ac.jp/crid/1050582850003550720" }
+                    ])
+                )
+            ]
+        },
+        {
+            slug: "dousyokubutuen",
+            title: "準備中です💦",
+            year: "2022",
+            tags: ["作品", "研究"],
+            cover:
+                toDriveDirectLink(""),
+            summary: "",
+            period: "2025",
+            body: [
+                // ここから画像専用
+                sec("",
+                    youtube("https://youtu.be/wBFpHJ63ji8")
                 ),
-                sec("プロジェクトメンバー",
-                    p("城戸双汰朗，高岸航平，佐藤杏南")
+                sec("概要",
+                    p("卒業研究の一環として、熊本県八代市鍛冶屋町で行われた妖怪祭りにてムービングライトとモバイル型プロジェクターとがインタラクションする装置を出展。老略男女様々な方に体験していただいた。"),
+
+                ),
+                sec("目的",
+                    youtube("https://youtu.be/OY4mEmUbKzo"),
+                    p("ムービングライトに対しての汎用性、および、容易性の高いインタラクションシステムを構築することを目指す。"),
+                    p("この実現により、これまでのムービングライトを用いたインタラクティブ作品と比べ、操作の直感性やシステムの汎用性（場所／コンテンツ／対象ユーザの幅）の向上が期待できる。")
+                ),
+                sec("論文",
+                    ul([
+                        { text: "モバイル型入出力装置を用いたムービングライトとの新しいインタラクション", href: "https://cir.nii.ac.jp/crid/1050582850003550720" }
+                    ])
                 )
             ]
         }
@@ -289,7 +323,7 @@
             tags: [],
             cover:
                 toDriveDirectLink(""),
-            summary: "準備中です💦",
+            summary: "",
             role: ["研究", "設計"],
             period: "2025",
             body: [
@@ -322,7 +356,7 @@
             tags: [],
             cover:
                 toDriveDirectLink(""),
-            summary: "準備中です💦",
+            summary: "",
             role: ["研究", "設計"],
             period: "2025",
             body: [
@@ -355,7 +389,7 @@
             tags: [],
             cover:
                 toDriveDirectLink(""),
-            summary: "準備中です💦",
+            summary: "",
             role: ["研究", "設計"],
             period: "2025",
             body: [
