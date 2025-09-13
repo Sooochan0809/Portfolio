@@ -96,7 +96,6 @@
     document.documentElement.classList.add('light');
     localStorage.setItem('theme', 'light');
   </script>
-  <script src="js/title-progress.js"></script>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -108,24 +107,13 @@
   <link rel="stylesheet" href="css/common.css" />
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/slidescroll.css" />
+  <!-- GSAP & ScrollTriggerをCDNで追加 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
     p {
       color: #111827;
-    }
-
-    /* mainのpadding-topをheader分だけに */
-    main {
-      padding-top: 72px !important;
-    }
-
-    /* 追加: スマホでもprofile headerをstickyにする */
-    @media (max-width: 1023px) {
-      #profile {
-        position: sticky !important;
-        top: 72px !important;
-        z-index: 30;
-      }
     }
 
     /* 余白対策: body, html, #app, main, .main-container, .mx-auto, .max-w-6xl, .px-4, .sm\:px-6, .lg\:px-8, .pt-\[64px\], .pb-\[0px\] などの高さを100%にし、footerを下部に固定しやすくする */
@@ -145,29 +133,11 @@
       flex: 1 0 auto;
       min-height: 0;
     }
-
-    /* 追加: メインラッパーの高さを100%にし、footerが下に来るように */
-    .main-container-fix {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    /* 追加: フッターの余白を減らす */
-    footer {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
   </style>
-  <!-- GSAP & ScrollTriggerをCDNで追加 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-
 </head>
 
 <body>
+  <!-- header -->
   <header class="inner" id="inner">
     <div class="header-anim-item" id="item">
       <span class="header-anim-portfolio" id="portfolio-text" tabindex="0">portfolio</span>
@@ -192,9 +162,8 @@
       </div>
     </div>
   </header>
-
+  <!-- スクロールサイン: 常に画面内に表示し、スクロール位置で表示場所を変える -->
   <nav>
-    <!-- スクロールサイン: 常に画面内に表示し、スクロール位置で表示場所を変える -->
     <div id="scroll-sign" class="scroll-sign-container"
       style="display:flex; flex-direction:column; align-items:center; pointer-events:none; position:fixed; left:50%; transform:translateX(-50%); bottom:2.5rem; z-index:100;">
       <div class="scroll-arrow"
@@ -290,8 +259,10 @@
   <!-- ===== Main ===== -->
   <main class="pt-0" style="min-height:0; padding-top:0 !important;">
     <!-- フッターの余白と合わせたら40px -->
-    <div class="main-container-fix mx-auto max-w-8xl pl-[296px] pr-[296px] pt-[80px] pb-[24px]"
-      style="background-color: #FEFAEF; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax); box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
+    <div class="main-container-fix mx-auto max-w-8xl px-8 md:px-24 lg:px-48 xl:px-72 pt-[80px] pb-[24px]"
+      style="background-color: #FEFAEF; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
+
+      <!-- 背景の両端ぼかし -->
       <div style="position:fixed; inset:0; pointer-events:none; z-index:0;">
         <div
           style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(5rem); background:#81c7d7">
@@ -300,15 +271,15 @@
           style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100%; filter:blur(5rem); background:#83c2ce">
         </div>
       </div>
-      <section id="profile" style="background-color: #FEFAEF">
-        <!-- headerの描画とアニメーション定義 -->
-        <header class="profile-header sticky-header-fix">
-          <div class="flex flex-col items-start gap-2">
-            <h1 class="leading-none tracking-tight text-left"
-              style="font-weight:320; font-size:clamp(64px,8vw,80px); letter-spacing:-.02em; position:relative;">
-              <span id="portfolio-progress" style="position:relative; display:inline-block; line-height:1;">
-                <span class="portfolio-text" style="color:#111827; position:relative; z-index:1;"></span>
-                <span class="portfolio-gradient" style="
+
+      <!-- titleの描画とアニメーション定義 -->
+      <header id=title class="profile-header sticky-header-fix">
+        <div class="flex flex-col items-start gap-2">
+          <h1 class="leading-none tracking-tight text-left"
+            style="font-weight:320; font-size:clamp(64px,8vw,80px); letter-spacing:-.02em; position:relative;">
+            <span id="portfolio-progress" style="position:relative; display:inline-block; line-height:1;">
+              <span class="portfolio-text" style="color:#111827; position:relative; z-index:1;"></span>
+              <span class="portfolio-gradient" style="
                   pointer-events:none;
                   position:absolute;
                   left:0; top:0;
@@ -322,18 +293,15 @@
                   color: #81c7d7;
                   transition: background 0.2s;
                 ">PROFILE</span>
-              </span>
-            </h1>
-            <span id="portfolio-progress-ja" class="text-sm text-gray-500"></span>
-          </div>
-        </header>
-        <!-- headerの描画とアニメーション定義 -->
-
+            </span>
+          </h1>
+          <span id="portfolio-progress-ja" class="text-sm text-gray-500"></span>
+        </div>
+        <!-- titleの位置上部から120pxで固定: 画面幅に応じて調整 -->
         <style>
-          /* 上部から120pxで固定: 画面幅に応じて調整 */
           .sticky-header-fix {
             position: sticky;
-            top: 120px;
+            top: 88px;
             z-index: 10;
           }
 
@@ -343,423 +311,170 @@
             }
           }
         </style>
+      </header>
 
-        <!-- Two Column Layout（写真＋内容） -->
-        <section id=PROFILE
-          class="mb-[320px] md:mt-[48px] grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-40">
-          <aside class="order-1 lg:order-none mt-[0px] hidden lg:block sticky top-[272px] self-start">
-            <figure class="w-[520px] max-w-full border border-gray-200 shadow-sm pl-[0px]">
-              <img class="block w-full h-auto" src="./img/01_about/kidosotaro.webp" alt="Portrait" />
-            </figure>
-          </aside>
+      <!-- profile Two Column Layout（写真＋内容） -->
+      <section id="profile"
+        class="mb-[320px] md:mt-[48px] grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-40">
+        <aside class="order-1 lg:order-none hidden lg:block sticky top-[280px] self-start">
+          <figure class="w-[520px] max-w-full border border-gray-200 shadow-sm">
+            <img class="block w-full h-auto" src="./img/01_about/kidosotaro.webp" alt="Portrait" />
+          </figure>
+        </aside>
 
-          <!-- Right Column / Content（2つ目をベース＋1つ目の見出し階層） -->
-          <div class="order-2 lg:order-none">
-            <!-- ABOUT ME -->
-            <section id="about-me" class="mb-[160px] mt-[160px]">
-              <h2 class="text-xl font-normal cap hidden lg:block" data-cap="私について">ABOUT ME</h2>
-              <figure class="mt-[16px] w-[260px] border border-gray-200 shadow-sm lg:hidden">
-                <img class="block w-full h-auto" src="./img/01_about/kidosotaro.webp" alt="Portrait" />
-              </figure>
-              <div class="mt-[16px] lg:mt-[56px]">
-                <div class="text-[32px] font-bold">城戸 双汰朗 <span
-                    class="ml-2 align-baseline text-[16px] font-normal text-gray-500">kido sotaro</span></div>
-                <p class="text-[16px] text-gray-600">情報科学芸術大学院大学 修士2年</p>
-              </div>
-              <p class="mt-[32px] text-[16px] text-[#111827] dark:text-zinc-200 leading-relaxed tracking-wide"
-                style="line-height:24px;">
-                2001年、熊本県生まれ。
-                <br>熊本県立大学卒、情報科学芸術大学院大学（IAMAS）在籍(休学中)。
-                <br>“人とテクノロジーとの関わり”に興味があり、現在は、デジタル社会における身体性をテーマに研究を行っています。
-              </p>
-            </section>
+        <!-- Right Column / Content（2つ目をベース＋1つ目の見出し階層） -->
+        <div class="order-2 lg:order-none">
+          <!-- ABOUT ME -->
+          <section id="about-me" class="mb-[160px] mt-[272px]">
+            <h2 class="text-xl font-normal cap hidden lg:block" data-cap="私について">ABOUT ME</h2>
+            <div id="about-me-body"></div>
+          </section>
 
-            <!-- WORK EXPERIENCE（2つ目の内容を1つ目のタイムライン装飾に寄せる） -->
-            <section id="work-experience" class="mb-[160px]">
-              <h2 class="text-xl font-normal cap" data-cap="経歴">WORK EXPERIENCE</h2>
-              <ol class="relative mt-[24px] border-l-2 border-zinc-300 dark:border-zinc-800 pl-6">
-                <!-- item -->
-                <li class="mb-[32px]">
-                  <span
-                    class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
-                  <p class="text-sm text-zinc-500">2024/04 - 現在</p>
-                  <p class="mt-[2px] mb-[8px] text-[20px]">情報科学芸術大学院大学　メディア表現研究科</p>
-                  <p class="text-[16px] text-zinc-600 dark:text-zinc-300">
-                  </p>
-                </li>
-                <li class="mb-[32px]">
-                  <span
-                    class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
-                  <p class="text-sm text-zinc-500">2020/04 - 2024/03</p>
-                  <p class="mt-[2px] mb-[8px] text-[20px]">熊本県立大学　総合管理学部 総合管理学科</p>
-                  <p class="text-[16px] text-zinc-600 dark:text-zinc-300">[公共] [ビジネス] [情報]
-                    領域を体系的に学びつつ、ゼミ選択を期に情報コースを専攻。石橋研究室に在籍。<br>
-                    “人とコンピュータとの相互作用”をテーマに研究に取り組む。高校教員免許（情報）の免許を取得。</p>
-                </li>
-                <li>
-                  <span
-                    class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
-                  <p class="text-sm text-zinc-500">2017/04 - 2020/03</p>
-                  <p class="mt-[2px] mb-[8px] text-[20px]">熊本中央高等学校　普通科</p>
-                  <p class="text-[16px] text-zinc-700 dark:text-zinc-300">地元を離れ、県内有数のバドミントン部強豪校に進学。3年間、寮生活を送る。
-                    <br>最後の高校総体にて団体戦レギュラー入り、県内3位入賞を果たす。
-                  </p>
-                </li>
-              </ol>
-            </section>
+          <!-- WORK EXPERIENCE -->
+          <section id="work-experience" class="mb-[160px]">
+            <h2 class="text-xl font-normal cap" data-cap="経歴">WORK EXPERIENCE</h2>
+            <ol id="work-experience-list"
+              class="relative mt-[24px] border-l-2 border-zinc-300 dark:border-zinc-800 pl-6"></ol>
+          </section>
 
-            <!-- Research -->
-            <section id="research" class="mb-[160px]">
-              <h2 class="text-xl font-normal cap" data-cap="論文">Research</h2>
-              <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2025.4</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    福祉の視点　─福祉の技術プロジェクト─
-                  </span>
-                  <span
-                    class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
-                    style="transition:all .18s cubic-bezier(.4,0,.2,1);">
-                    [情報科学芸術大学院大学紀要🔗]
-                  </span>
-                </li>
+          <!-- Research -->
+          <section id="research" class="mb-[160px]">
+            <h2 class="text-xl font-normal cap" data-cap="論文">Research</h2>
+            <ul id="research-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
+          </section>
 
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.9</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    モバイル型入出力装置を用いたムービングライトとの新しいインタラクション
-                  </span>
-                  <span
-                    class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
-                    style="transition:all .18s cubic-bezier(.4,0,.2,1);">
-                    [エンターテインメントコンピューティング🔗]
-                  </span>
-                </li>
+          <!-- Exhibition / Workshop -->
+          <section id="exhibition-workshop" class="mb-[160px]">
+            <h2 class="text-xl font-normal cap" data-cap="展示／ワークショップ">Exhibition/Workshop</h2>
+            <ul id="exhibition-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
+          </section>
 
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.9</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    耳研澄装置製造工場
-                  </span>
-                  <span
-                    class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
-                    style="transition:all .18s cubic-bezier(.4,0,.2,1);">
-                    [Interverse Virtual Reality Challenge (IVRC) 2024🔗]
-                  </span>
-                </li>
+          <!-- Production / Cooperation -->
+          <section id="production-cooperation" class="mb-[160px]">
+            <h2 class="text-xl font-normal cap" data-cap="制作協力">ProductionCooperation</h2>
+            <ul id="cooperation-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
+          </section>
 
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2023.3</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    観察力と表現力の向上を目的としたKinectによる動物動作のものまねシステム ～動物園での子ども向けイベントにおける実証実験をとおして～
-                  </span>
-                  <span
-                    class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
-                    style="transition:all .18s cubic-bezier(.4,0,.2,1);">
-                    [映像表現・芸術科学フォーラム2023🔗]
-                  </span>
-                </li>
+          <!-- Award / License -->
+          <section id="award-license" class="mb-[160px]">
+            <h2 class="text-xl font-normal cap" data-cap="受賞">AWARD</h2>
+            <ul id="award-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
+          </section>
 
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2022.9</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    二人三腕脚
-                  </span>
-                  <span
-                    class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
-                    style="transition:all .18s cubic-bezier(.4,0,.2,1);">
-                    [Interverse Virtual Reality Challenge (IVRC) 2022🔗]
-                  </span>
-                </li>
-              </ul>
+          <!-- Skills -->
+          <section id="skills" class="mb-[0px]">
+            <h2 class="text-xl font-normal cap" data-cap="スキル">SKILLS</h2>
+            <div id="skills-body" class="mt-[16px] grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+          </section>
+        </div>
+      </section>
 
-            </section>
-
-            <!-- Exhibition / Workshop -->
-            <section id="exhibition-workshop" class="mb-[160px]">
-              <h2 class="text-xl font-normal cap" data-cap="展示／ワークショップ">Exhibition/Workshop</h2>
-              <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <!-- 日付（スマホ=左列 / PC=先頭、カンマなし） -->
-                  <span class="whitespace-nowrap md:mr-2">2025.6</span>
-                  <!-- 会場（PCのみ末尾にカンマ、1行強制＆長い時は省略） -->
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    あいちワークショップギャザリング mini
-                  </span>
-                  <!-- 作品タイトル（スマホ=2行目の左寄せ / PC=1行強制＆省略） -->
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    みる目・みせる目・みられる目
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2025.5</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    スイトピアテラス
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    め遊び...
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2025.2</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    あいちワークショップギャザリング mini
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    め遊び -びょ～んびょん編-
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.10</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Interverse Virtual Reality Challenge (IVRC) 2024
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    耳研澄装置製造工場
-                  </span>
-                </li>
-              </ul>
-            </section>
-
-            <!-- Production / Cooperation -->
-            <section id="production-cooperation" class="mb-[160px]">
-              <h2 class="text-xl font-normal cap" data-cap="制作協力">ProductionCooperation</h2>
-              <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2025.6</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    パンタグラフ 美術ワークショップ 「光の雨アニメーション」
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [撮影/動画編集]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2025.1</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Magic Lantern for meeting Kumamushi again（大橋美月）
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [Fusion360/3Dプリント]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.10</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Phonoscape Project（FabCafe Kyoto）
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [Unity/iOSアプリケーション]
-                  </span>
-                </li>
-              </ul>
-            </section>
-
-            <!-- Award / License -->
-            <section id="award-license" class="mb-[160px]">
-              <h2 class="text-xl font-normal cap" data-cap="受賞">AWARD</h2>
-              <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.10</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Interverse Virtual Reality Challenge (IVRC) 2024
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [青沼優介賞]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.9</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Interverse Virtual Reality Challenge (IVRC) 2024
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [REAPSTAGE 進出/ヤマハ株式会社賞/CRI・ミドルウェア賞]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2023.3</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    映像表現・芸術科学フォーラム2023
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [優秀発表賞（口頭発表）]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2019.6</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    熊本県高校総体2019 バドミントン競技
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [団体戦 3位入賞]
-                  </span>
-                </li>
-              </ul>
-            </section>
-
-            <!-- Skills（2つ目の簡潔な構造＋文言は1つ目の見出し系） -->
-            <section id="skills" class="mb-[0px]">
-              <h2 class="text-xl font-normal cap" data-cap="スキル">SKILLS</h2>
-              <div class="mt-[16px] grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <div class="text-sm text-gray-500">License</div>
-                  <p class="mt-[4px] text-[16px]">高等学校教諭一種免許（情報）, 普通自動車第一種運転免許</p>
-                  <div class="mt-[16px] text-sm text-gray-500">Tools</div>
-                  <p class="mt-[4px] text-[16px]">Unity, TouchDesigner, Fusion360, Figma, Illustrator, Arduino IDE,
-                    GitHub
-                  </p>
-                </div>
-                <div>
-                  <div class="text-sm text-gray-500">Coding</div>
-                  <p class="mt-[4px] text-[16px]">C#, Python, HTML, CSS, C++, JavaScript</p>
-                </div>
-              </div>
-            </section>
-          </div>
-        </section>
-
-        <section id="works">
-          <!-- ここに飛ぶとちょうどいい -->
-        </section>
-
-        <section>
-          <section class="horizontal-section mx-auto max-w-none pt-16 md:pt-16">
-            <div class="section-header" style="position: relative; height: 80px; max-width: 100%;">
-              <style>
-                @media (max-width: 640px) {
-                  .section-header {
-                    height: 120px !important;
-                  }
+      <!-- WORKS -->
+      <section id="works">
+        <section class="horizontal-section mx-auto max-w-none pt-16 md:pt-16">
+          <div class="section-header" style="position: relative; height: 80px; max-width: 100%;">
+            <style>
+              @media (max-width: 640px) {
+                .section-header {
+                  height: 88px !important;
                 }
-              </style>
-              <div id="cooperationHeader" class="section-header-inner fade"
-                style="position: absolute; left: 0; top: 0; width: 100%; transition: opacity .4s, visibility .4s;">
-                <div class="flex items-center gap-2"></div>
-              </div>
+              }
+            </style>
+            <div id="cooperationHeader" class="section-header-inner fade"
+              style="position: absolute; left: 0; top: 0; width: 100%; transition: opacity .4s, visibility .4s;">
+              <div class="flex items-center gap-2"></div>
             </div>
-            <div id="horizontalScroll" class="horizontal-scroll"></div>
-          </section>
-          <!-- ヘッダーを重ねて表示（上下ズレ防止のため絶対配置） -->
-
-          <section id="contact" class="mt-[360px] mb-[24px]">
-            <div class="flex flex-col md:flex-row md:items-start gap-8 pr-[16px]">
-              <!-- テキスト部分 -->
-              <div class="w-full md:w-1/2 ">
-                <p class="text-[16px] text-[#111827] mb-4 mt-8">
-                  ポートフォリをご覧いただき、ありがとうございました。<br>御用の際は、右側のフォームにてご連絡いただけます。どうぞ、お気軽にご連絡下さい。
-                </p>
-                <p class="text-sm text-gray-500">
-                  ※内容によってはご返信できない場合がございます。<br>
-                  ※個人情報は厳重に管理し、第三者に提供することはございません。
-                </p>
-              </div>
-
-              <!-- フォーム部分 -->
-              <form id="contactForm" class="grid gap-3 w-full md:w-1/2 " method="POST"
-                action="https://formspree.io/f/xzzayorb" autocomplete="on">
-                <!-- 会社名（任意） -->
-                <div>
-                  <label for="company" class="block text-sm font-medium text-[#111827] mb-1">ご所属</label>
-                  <input id="company" name="company"
-                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="会社名/学校名"
-                    autocomplete="organization" />
-                </div>
-                <!-- 姓 -->
-                <div>
-                  <label for="lastName" class="block text-sm font-medium text-[#111827] mb-1">姓 <span
-                      class="text-red-500">*</span></label>
-                  <input id="lastName" name="lastName"
-                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="姓" required
-                    autocomplete="family-name" />
-                </div>
-                <!-- 名 -->
-                <div>
-                  <label for="firstName" class="block text-sm font-medium text-[#111827] mb-1">名 <span
-                      class="text-red-500">*</span></label>
-                  <input id="firstName" name="firstName"
-                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="名" required
-                    autocomplete="given-name" />
-                </div>
-                <!-- メールアドレス -->
-                <div>
-                  <label for="email" class="block text-sm font-medium text-[#111827] mb-1">メールアドレス <span
-                      class="text-red-500">*</span></label>
-                  <input id="email" name="email" type="email"
-                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
-                    placeholder="your@email.com" required autocomplete="email" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
-                    oninput="this.setCustomValidity(this.validity.patternMismatch ? '正しいメールアドレスを入力してください' : '');" />
-                </div>
-                <!-- 件名 -->
-                <div>
-                  <label for="msgSubject" class="block text-sm font-medium text-[#111827] mb-1">件名 <span
-                      class="text-red-500">*</span></label>
-                  <input id="msgSubject" name="subject"
-                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="件名"
-                    required />
-                </div>
-                <!-- お問い合わせ内容 -->
-                <div>
-                  <label for="msgBody" class="block text-sm font-medium text-[#111827] mb-1">お問い合わせ内容 <span
-                      class="text-red-500">*</span></label>
-                  <textarea id="msgBody" name="message"
-                    class="rounded-0 border px-3 py-3 min-h-[200px] h-[200px] md:min-h-[160px] md:h-[160px] bg-white/70 dark:bg-zinc-950/60 w-full resize-vertical"
-                    placeholder="お問い合わせ内容" required></textarea>
-                </div>
-                <button id="sendBtn"
-                  class="justify-self-end rounded-2xl bg-brand px-6 py-3 text-white font-bold shadow-glow disabled:opacity-500 disabled:cursor-not-allowed hover:bg-brand/90 transition-colors"
-                  type="submit" disabled style="margin-left:auto;">送信</button>
-              </form>
-            </div>
-          </section>
+          </div>
+          <div id="horizontalScroll" class="horizontal-scroll"></div>
         </section>
       </section>
+
+      <!-- contact -->
+      <section id="contact" class="mt-[360px] mb-[24px]">
+        <div class="flex flex-col md:flex-row md:items-start gap-8 pr-[16px]">
+          <!-- テキスト部分 -->
+          <div class="w-full md:w-1/2 ">
+            <p class="text-[16px] text-[#111827] mb-4 mt-8">
+              ポートフォリをご覧いただき、ありがとうございました。<br>御用の際は、右側のフォームにてご連絡いただけます。どうぞ、お気軽にご連絡下さい。
+            </p>
+            <p class="text-sm text-gray-500">
+              ※内容によってはご返信できない場合がございます。<br>
+              ※個人情報は厳重に管理し、第三者に提供することはございません。
+            </p>
+          </div>
+
+          <!-- フォーム部分 -->
+          <form id="contactForm" class="grid gap-3 w-full md:w-1/2 " method="POST"
+            action="https://formspree.io/f/xzzayorb" autocomplete="on">
+            <!-- 会社名（任意） -->
+            <div>
+              <label for="company" class="block text-sm font-medium text-[#111827] mb-1">ご所属</label>
+              <input id="company" name="company"
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="会社名/学校名"
+                autocomplete="organization" />
+            </div>
+            <!-- 姓 -->
+            <div>
+              <label for="lastName" class="block text-sm font-medium text-[#111827] mb-1">姓 <span
+                  class="text-red-500">*</span></label>
+              <input id="lastName" name="lastName"
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="姓" required
+                autocomplete="family-name" />
+            </div>
+            <!-- 名 -->
+            <div>
+              <label for="firstName" class="block text-sm font-medium text-[#111827] mb-1">名 <span
+                  class="text-red-500">*</span></label>
+              <input id="firstName" name="firstName"
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="名" required
+                autocomplete="given-name" />
+            </div>
+            <!-- メールアドレス -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-[#111827] mb-1">メールアドレス <span
+                  class="text-red-500">*</span></label>
+              <input id="email" name="email" type="email"
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="your@email.com"
+                required autocomplete="email" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                oninput="this.setCustomValidity(this.validity.patternMismatch ? '正しいメールアドレスを入力してください' : '');" />
+            </div>
+            <!-- 件名 -->
+            <div>
+              <label for="msgSubject" class="block text-sm font-medium text-[#111827] mb-1">件名 <span
+                  class="text-red-500">*</span></label>
+              <input id="msgSubject" name="subject"
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="件名" required />
+            </div>
+            <!-- お問い合わせ内容 -->
+            <div>
+              <label for="msgBody" class="block text-sm font-medium text-[#111827] mb-1">お問い合わせ内容 <span
+                  class="text-red-500">*</span></label>
+              <textarea id="msgBody" name="message"
+                class="rounded-0 border px-3 py-3 min-h-[200px] h-[200px] md:min-h-[160px] md:h-[160px] bg-white/70 dark:bg-zinc-950/60 w-full resize-vertical"
+                placeholder="お問い合わせ内容" required></textarea>
+            </div>
+            <button id="sendBtn"
+              class="justify-self-end rounded-2xl bg-brand px-6 py-3 text-white font-bold shadow-glow disabled:opacity-500 disabled:cursor-not-allowed hover:bg-brand/90 transition-colors"
+              type="submit" disabled style="margin-left:auto;">送信</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- footer -->
       <footer class="pt-[16px] pb-[0px] pr-8 text-right text-sm text-zinc-500">
         LastUpdated <span id="last-updated"></span>
       </footer>
     </div>
   </main>
 
+  <script src="js/site.js"></script>
+  <script src="js/work-data.js"></script>
+  <script src="js/slidescroll.js"></script>
+  <script src="js/title-progress.js"></script>
+  <script type="module" src="js/profile-data.js"></script>
+  <script type="module" src="js/profile-render.js"></script>
+
+  <!--  -->
   <script>// 送信先メールアドレスはFormspree経由（action属性で指定）
     const form = document.getElementById('contactForm');
     const lastName = document.getElementById('lastName');
@@ -838,12 +553,10 @@
         checkForm(); // フォーム状態を再チェック
         alert("送信に失敗しました。時間をおいて再度お試しください。");
       });
-    });</script>
+    });
+  </script>
 
-  <script src="js/site.js"></script>
-  <script src="js/work-data.js"></script>
-  <script src="js/slidescroll.js"></script>
-
+  <!--  -->
   <script>
     // フッターに最終更新日を表示
     document.getElementById('last-updated').textContent = (function () {
@@ -855,6 +568,7 @@
     })();
   </script>
 
+  <!--  -->
   <script>
     (function () {
       const item = document.getElementById('item');
