@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>城戸双汰朗のポートフォリオ</title>
+  <title>城戸双汰朗|ポートフォリオ</title>
   <meta name="description" content="" />
 
   <!-- 検索ヒット関連 -->
@@ -290,24 +290,24 @@
   <!-- ===== Main ===== -->
   <main class="pt-0" style="min-height:0; padding-top:0 !important;">
     <!-- フッターの余白と合わせたら40px -->
-    <div class="main-container-fix mx-auto max-w-8xl px-[178px] pt-[80px] pb-[24px]"
-      style="background-color: #f9fafbf5; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax); box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
+    <div class="main-container-fix mx-auto max-w-8xl pl-[296px] pr-[296px] pt-[80px] pb-[24px]"
+      style="background-color: #FEFAEF; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax); box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
       <div style="position:fixed; inset:0; pointer-events:none; z-index:0;">
         <div
-          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(100rem); background:#81c7d7">
+          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(5rem); background:#81c7d7">
         </div>
         <div
-          style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100%; filter:blur(100rem); background:#83c2ce">
+          style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100%; filter:blur(5rem); background:#83c2ce">
         </div>
       </div>
-      <section id="profile" style="background-color: #f9fafb;">
+      <section id="profile" style="background-color: #FEFAEF">
         <!-- headerの描画とアニメーション定義 -->
         <header class="profile-header sticky-header-fix">
           <div class="flex flex-col items-start gap-2">
             <h1 class="leading-none tracking-tight text-left"
               style="font-weight:320; font-size:clamp(64px,8vw,80px); letter-spacing:-.02em; position:relative;">
               <span id="portfolio-progress" style="position:relative; display:inline-block; line-height:1;">
-                <span class="portfolio-text" style="color:#111827; position:relative; z-index:1;">PROFILE</span>
+                <span class="portfolio-text" style="color:#111827; position:relative; z-index:1;"></span>
                 <span class="portfolio-gradient" style="
                   pointer-events:none;
                   position:absolute;
@@ -324,7 +324,7 @@
                 ">PROFILE</span>
               </span>
             </h1>
-            <span id="portfolio-progress-ja" class="text-sm text-gray-500">プロフィール</span>
+            <span id="portfolio-progress-ja" class="text-sm text-gray-500"></span>
           </div>
         </header>
         <!-- headerの描画とアニメーション定義 -->
@@ -333,22 +333,22 @@
           /* 上部から120pxで固定: 画面幅に応じて調整 */
           .sticky-header-fix {
             position: sticky;
-            top: 112px;
+            top: 120px;
             z-index: 10;
           }
 
           @media (min-width: 1024px) {
             .sticky-header-fix {
-              top: 112px;
+              top: 120px;
             }
           }
         </style>
 
         <!-- Two Column Layout（写真＋内容） -->
         <section id=PROFILE
-          class="mt-8 mb-16 md:mt-12 grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-40">
+          class="mb-[320px] md:mt-[48px] grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-40">
           <aside class="order-1 lg:order-none mt-[0px] hidden lg:block sticky top-[272px] self-start">
-            <figure class="w-[520px] max-w-full border border-gray-200 shadow-sm pl-[16px]">
+            <figure class="w-[520px] max-w-full border border-gray-200 shadow-sm pl-[0px]">
               <img class="block w-full h-auto" src="./img/01_about/kidosotaro.webp" alt="Portrait" />
             </figure>
           </aside>
@@ -356,8 +356,8 @@
           <!-- Right Column / Content（2つ目をベース＋1つ目の見出し階層） -->
           <div class="order-2 lg:order-none">
             <!-- ABOUT ME -->
-            <section id="about-me" class="mb-[80px]">
-              <h2 class="text-xl font-normal cap mt-[40px] hidden lg:block" data-cap="私について">ABOUT ME</h2>
+            <section id="about-me" class="mb-[160px] mt-[160px]">
+              <h2 class="text-xl font-normal cap hidden lg:block" data-cap="私について">ABOUT ME</h2>
               <figure class="mt-[16px] w-[260px] border border-gray-200 shadow-sm lg:hidden">
                 <img class="block w-full h-auto" src="./img/01_about/kidosotaro.webp" alt="Portrait" />
               </figure>
@@ -368,15 +368,14 @@
               </div>
               <p class="mt-[32px] text-[16px] text-[#111827] dark:text-zinc-200 leading-relaxed tracking-wide"
                 style="line-height:24px;">
-                2001年、熊本県生まれ。<br>
-                小学生から高校生までは、競技バドミントンに熱中。<br>
-                高校卒業後は県立大学大学に進学し、教育、情報工学を中心に実践的にび、卒業と同時に、情報科教員免許を取得。<br>
-                現在は、情報科学芸術大学院大学(IAMAS)に進学し、自身の興味関心を論文/作品/ワークショップなど、多様な形で発信しています。
+                2001年、熊本県生まれ。
+                <br>熊本県立大学卒、情報科学芸術大学院大学（IAMAS）在籍(休学中)。
+                <br>“人とテクノロジーとの関わり”に興味があり、現在は、デジタル社会における身体性をテーマに研究を行っています。
               </p>
             </section>
 
             <!-- WORK EXPERIENCE（2つ目の内容を1つ目のタイムライン装飾に寄せる） -->
-            <section id="work-experience" class="mb-[80px]">
+            <section id="work-experience" class="mb-[160px]">
               <h2 class="text-xl font-normal cap" data-cap="経歴">WORK EXPERIENCE</h2>
               <ol class="relative mt-[24px] border-l-2 border-zinc-300 dark:border-zinc-800 pl-6">
                 <!-- item -->
@@ -385,7 +384,7 @@
                     class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
                   <p class="text-sm text-zinc-500">2024/04 - 現在</p>
                   <p class="mt-[2px] mb-[8px] text-[20px]">情報科学芸術大学院大学　メディア表現研究科</p>
-                  <p class="text-[16px] text-zinc-600 dark:text-zinc-300">実装力の先にある表現力を培うべく進学。現在は、人の顔（表情）をテーマに研究を行っている。
+                  <p class="text-[16px] text-zinc-600 dark:text-zinc-300">
                   </p>
                 </li>
                 <li class="mb-[32px]">
@@ -394,8 +393,8 @@
                   <p class="text-sm text-zinc-500">2020/04 - 2024/03</p>
                   <p class="mt-[2px] mb-[8px] text-[20px]">熊本県立大学　総合管理学部 総合管理学科</p>
                   <p class="text-[16px] text-zinc-600 dark:text-zinc-300">[公共] [ビジネス] [情報]
-                    領域を体系的に学びつつ、ゼミ選択を期に情報コースを専攻。石橋研究室に在籍。
-                    人とコンピュータ、コンピュータとコンピュータとのインタラクション（相互作用）をテーマに研究に取り組む。情報科教員の免許を取得。</p>
+                    領域を体系的に学びつつ、ゼミ選択を期に情報コースを専攻。石橋研究室に在籍。<br>
+                    “人とコンピュータとの相互作用”をテーマに研究に取り組む。高校教員免許（情報）の免許を取得。</p>
                 </li>
                 <li>
                   <span
@@ -403,13 +402,14 @@
                   <p class="text-sm text-zinc-500">2017/04 - 2020/03</p>
                   <p class="mt-[2px] mb-[8px] text-[20px]">熊本中央高等学校　普通科</p>
                   <p class="text-[16px] text-zinc-700 dark:text-zinc-300">地元を離れ、県内有数のバドミントン部強豪校に進学。3年間、寮生活を送る。
-                    小学生から続けていたバドミントンだが、中学卒業まで目立った成績を残すことができず、苦悩。最後の高校総体にて団体戦レギュラー入り、県内3位入賞を果たす。</p>
+                    <br>最後の高校総体にて団体戦レギュラー入り、県内3位入賞を果たす。
+                  </p>
                 </li>
               </ol>
             </section>
 
             <!-- Research -->
-            <section id="research" class="mb-[80px]">
+            <section id="research" class="mb-[160px]">
               <h2 class="text-xl font-normal cap" data-cap="論文">Research</h2>
               <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
                 <li
@@ -486,7 +486,7 @@
             </section>
 
             <!-- Exhibition / Workshop -->
-            <section id="exhibition-workshop" class="mb-[80px]">
+            <section id="exhibition-workshop" class="mb-[160px]">
               <h2 class="text-xl font-normal cap" data-cap="展示／ワークショップ">Exhibition/Workshop</h2>
               <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
                 <li
@@ -496,7 +496,7 @@
                   <!-- 会場（PCのみ末尾にカンマ、1行強制＆長い時は省略） -->
                   <span
                     class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    あいちワークショップギャザリング mini 🔗
+                    あいちワークショップギャザリング mini
                   </span>
                   <!-- 作品タイトル（スマホ=2行目の左寄せ / PC=1行強制＆省略） -->
                   <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
@@ -521,7 +521,7 @@
                   <span class="whitespace-nowrap md:mr-2">2025.2</span>
                   <span
                     class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    あいちワークショップギャザリング mini 🔗
+                    あいちワークショップギャザリング mini
                   </span>
                   <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
                     め遊び -びょ～んびょん編-
@@ -543,7 +543,7 @@
             </section>
 
             <!-- Production / Cooperation -->
-            <section id="production-cooperation" class="mb-[80px]">
+            <section id="production-cooperation" class="mb-[160px]">
               <h2 class="text-xl font-normal cap" data-cap="制作協力">ProductionCooperation</h2>
               <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
                 <li
@@ -551,7 +551,7 @@
                   <span class="whitespace-nowrap md:mr-2">2025.6</span>
                   <span
                     class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    パンタグラフ 美術ワークショップ 「光の雨アニメーション」🔗
+                    パンタグラフ 美術ワークショップ 「光の雨アニメーション」
                   </span>
                   <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
                     [撮影/動画編集]
@@ -575,7 +575,7 @@
                   <span class="whitespace-nowrap md:mr-2">2024.10</span>
                   <span
                     class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Phonoscape Project（FabCafe Kyoto）🔗
+                    Phonoscape Project（FabCafe Kyoto）
                   </span>
                   <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
                     [Unity/iOSアプリケーション]
@@ -585,7 +585,7 @@
             </section>
 
             <!-- Award / License -->
-            <section id="award-license" class="mb-[80px]">
+            <section id="award-license" class="mb-[160px]">
               <h2 class="text-xl font-normal cap" data-cap="受賞">AWARD</h2>
               <ul class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200">
                 <li
@@ -686,7 +686,7 @@
             <div class="flex flex-col md:flex-row md:items-start gap-8 pr-[16px]">
               <!-- テキスト部分 -->
               <div class="w-full md:w-1/2 ">
-                <p class="text-[16px] text-[#111827] mb-4 mt-4">
+                <p class="text-[16px] text-[#111827] mb-4 mt-8">
                   ポートフォリをご覧いただき、ありがとうございました。<br>御用の際は、右側のフォームにてご連絡いただけます。どうぞ、お気軽にご連絡下さい。
                 </p>
                 <p class="text-sm text-gray-500">
