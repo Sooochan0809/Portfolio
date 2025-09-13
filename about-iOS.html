@@ -534,306 +534,46 @@
           <!-- Right Column / Content（2つ目をベース＋1つ目の見出し階層） -->
           <div class="order-2 lg:order-none">
             <!-- ABOUT ME -->
-            <section id="about-me" class="mb-[80px]">
-              <h2 class="text-xl font-normal cap mt-[64px] hidden lg:block" data-cap="私について">ABOUT ME</h2>
-              <figure class="mt-[16px] w-[260px] border border-gray-200 shadow-sm lg:hidden">
-                <img class="block w-full h-auto" src="./img/01_about/kidosotaro.webp" alt="Portrait" />
-              </figure>
-              <div class="mt-[16px] lg:mt-[56px]">
-                <div class="text-[32px] font-bold">城戸 双汰朗 <span
-                    class="ml-2 align-baseline text-[16px] font-normal text-gray-500">kido sotaro</span></div>
-                <p class="text-[16px] text-gray-600">情報科学芸術大学院大学 修士2年</p>
-              </div>
-              <p class="mt-[32px] text-[16px] text-gray-800 dark:text-zinc-200 leading-relaxed tracking-wide"
-                style="line-height:24px;">
-                2001年、熊本県生まれ。<br>
-                小学生から高校生までは、競技バドミントンに熱中。<br>
-                高校卒業後は県立大学大学に進学し、教育、情報工学を中心に実践的に学ぶ。<br>
-                卒業と同時に、情報科教員免許を取得。<br>
-                現在は、情報科学芸術大学院大学(IAMAS)に進学し、自身の興味関心を論文/作品/ワークショップなど、様々な形態でアウトプットしています。
-              </p>
+            <section id="about-me" class="mb-[80px] mt-[0px]">
+              <h2 class="text-xl font-normal cap hidden lg:block" data-cap="私について">ABOUT ME</h2>
+              <div id="about-me-body"></div>
             </section>
 
-            <!-- WORK EXPERIENCE（2つ目の内容を1つ目のタイムライン装飾に寄せる） -->
+            <!-- WORK EXPERIENCE -->
             <section id="work-experience" class="mb-[80px]">
               <h2 class="text-xl font-normal cap" data-cap="経歴">WORK EXPERIENCE</h2>
-              <ol class="relative mt-[24px] border-l-2 border-zinc-300 dark:border-zinc-800 pl-6">
-                <!-- item -->
-                <li class="mb-[32px]">
-                  <span
-                    class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
-                  <p class="text-sm text-zinc-500">2024/04 - 現在</p>
-                  <p class="mt-[2px] mb-[8px] text-[20px]">情報科学芸術大学院大学　メディア表現研究科</p>
-                  <p class="text-[15px] text-zinc-600 dark:text-zinc-300">実装力の先にある表現力を培うべく進学。現在は、人の顔（表情）をテーマに研究を行っている。
-                  </p>
-                </li>
-                <li class="mb-[32px]">
-                  <span
-                    class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
-                  <p class="text-sm text-zinc-500">2020/04 - 2024/03</p>
-                  <p class="mt-[2px] mb-[8px] text-[20px]">熊本県立大学　総合管理学部 総合管理学科</p>
-                  <p class="text-[15px] text-zinc-600 dark:text-zinc-300">[公共] [ビジネス] [情報]
-                    領域を体系的に学びつつ、ゼミ選択を期に情報コースを専攻。石橋研究室に在籍。
-                    人とコンピュータ、コンピュータとコンピュータとのインタラクション（相互作用）をテーマに研究に取り組む。情報科教員の免許を取得。</p>
-                </li>
-                <li>
-                  <span
-                    class="absolute -left-[6.9px] mt-[4px] h-3 w-3 rounded-full bg-zinc-800 dark:bg-zinc-200"></span>
-                  <p class="text-sm text-zinc-500">2017/04 - 2020/03</p>
-                  <p class="mt-[2px] mb-[8px] text-[20px]">熊本中央高等学校　普通科</p>
-                  <p class="text-[15px] text-zinc-700 dark:text-zinc-300">地元を離れ、県内有数のバドミントン部強豪校に進学。3年間、寮生活を送る。
-                    小学生から続けていたバドミントンだが、中学卒業まで目立った成績を残すことができず、苦悩。最後の高校総体にて団体戦レギュラー入り、県内3位入賞を果たす。</p>
-                </li>
-              </ol>
+              <ol id="work-experience-list"
+                class="relative mt-[24px] border-l-2 border-zinc-300 dark:border-zinc-800 pl-6"></ol>
             </section>
 
             <!-- Research -->
             <section id="research" class="mb-[80px]">
               <h2 class="text-xl font-normal cap" data-cap="論文">Research</h2>
-              <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2025.4</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    福祉の視点　─福祉の技術プロジェクト─
-                  </span>
-                  <span
-                    class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
-                    style="transition:all .18s cubic-bezier(.4,0,.2,1);">
-                    [情報科学芸術大学院大学紀要🔗]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.9</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    モバイル型入出力装置を用いたムービングライトとの新しいインタラクション
-                  </span>
-                  <span
-                    class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
-                    style="transition:all .18s cubic-bezier(.4,0,.2,1);">
-                    [エンターテインメントコンピューティング🔗]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.9</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    耳研澄装置製造工場
-                  </span>
-                  <span
-                    class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
-                    style="transition:all .18s cubic-bezier(.4,0,.2,1);">
-                    [Interverse Virtual Reality Challenge (IVRC) 2024🔗]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2023.3</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    観察力と表現力の向上を目的としたKinectによる動物動作のものまねシステム ～動物園での子ども向けイベントにおける実証実験をとおして～
-                  </span>
-                  <span
-                    class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
-                    style="transition:all .18s cubic-bezier(.4,0,.2,1);">
-                    [映像表現・芸術科学フォーラム2023🔗]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2022.9</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    二人三腕脚
-                  </span>
-                  <span
-                    class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer"
-                    style="transition:all .18s cubic-bezier(.4,0,.2,1);">
-                    [Interverse Virtual Reality Challenge (IVRC) 2022🔗]
-                  </span>
-                </li>
-              </ul>
-
+              <ul id="research-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
             </section>
 
             <!-- Exhibition / Workshop -->
             <section id="exhibition-workshop" class="mb-[80px]">
               <h2 class="text-xl font-normal cap" data-cap="展示／ワークショップ">Exhibition/Workshop</h2>
-              <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <!-- 日付（スマホ=左列 / PC=先頭、カンマなし） -->
-                  <span class="whitespace-nowrap md:mr-2">2025.6</span>
-                  <!-- 会場（PCのみ末尾にカンマ、1行強制＆長い時は省略） -->
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    あいちワークショップギャザリング mini 🔗
-                  </span>
-                  <!-- 作品タイトル（スマホ=2行目の左寄せ / PC=1行強制＆省略） -->
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    みる目・みせる目・みられる目
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2025.5</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    スイトピアテラス
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    め遊び...
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2025.2</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    あいちワークショップギャザリング mini 🔗
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    め遊び -びょ～んびょん編-
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.10</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Interverse Virtual Reality Challenge (IVRC) 2024
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    耳研澄装置製造工場
-                  </span>
-                </li>
-              </ul>
+              <ul id="exhibition-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
             </section>
 
             <!-- Production / Cooperation -->
             <section id="production-cooperation" class="mb-[80px]">
               <h2 class="text-xl font-normal cap" data-cap="制作協力">ProductionCooperation</h2>
-              <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2025.6</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    パンタグラフ 美術ワークショップ 「光の雨アニメーション」🔗
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [撮影/動画編集]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.1</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Magic Lantern for meeting Kumamushi again（大橋美月）
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [Fusion360/3Dプリント]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.10</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Phonoscape Project（FabCafe Kyoto）🔗
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [Unity/iOSアプリケーション]
-                  </span>
-                </li>
-              </ul>
+              <ul id="cooperation-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
             </section>
 
             <!-- Award / License -->
             <section id="award-license" class="mb-[80px]">
               <h2 class="text-xl font-normal cap" data-cap="受賞">AWARD</h2>
-              <ul class="mt-[16px] space-y-2 text-[15px] text-gray-800 dark:text-zinc-200">
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.10</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Interverse Virtual Reality Challenge (IVRC) 2024
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [青沼優介賞]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2024.9</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    Interverse Virtual Reality Challenge (IVRC) 2024
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [REAPSTAGE 進出/ヤマハ株式会社賞/CRI・ミドルウェア賞]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2023.3</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    映像表現・芸術科学フォーラム2023
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [優秀発表賞（口頭発表）]
-                  </span>
-                </li>
-
-                <li
-                  class="grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0">
-                  <span class="whitespace-nowrap md:mr-2">2019.6</span>
-                  <span
-                    class="break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1">
-                    熊本県高校総体2019 バドミントン競技
-                  </span>
-                  <span class="col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate">
-                    [団体戦 3位入賞]
-                  </span>
-                </li>
-              </ul>
+              <ul id="award-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
             </section>
 
-            <!-- Skills（2つ目の簡潔な構造＋文言は1つ目の見出し系） -->
+            <!-- Skills -->
             <section id="skills" class="mb-[0px]">
               <h2 class="text-xl font-normal cap" data-cap="スキル">SKILLS</h2>
-              <div class="mt-[16px] grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <div class="text-sm text-gray-500">License</div>
-                  <p class="mt-[4px] text-[15px]">高等学校教諭一種免許（情報）, 普通自動車第一種運転免許</p>
-                  <div class="mt-[16px] text-sm text-gray-500">Tools</div>
-                  <p class="mt-[4px] text-[15px]">Unity, TouchDesigner, Fusion360, Figma, Illustrator, Arduino IDE,
-                    GitHub
-                  </p>
-                </div>
-                <div>
-                  <div class="text-sm text-gray-500">Coding</div>
-                  <p class="mt-[4px] text-[15px]">C#, Python, HTML, CSS, C++, JavaScript</p>
-                </div>
-              </div>
+              <div id="skills-body" class="mt-[16px] grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             </section>
           </div>
         </section>
@@ -844,6 +584,9 @@
 
     </div>
   </main>
+
+  <script type="module" src="js/profile-data.js"></script>
+  <script type="module" src="js/profile-render.js"></script>
 
   <script>
     // フッターに最終更新日を表示
