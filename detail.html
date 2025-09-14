@@ -61,7 +61,7 @@
     </style>
 </head>
 
-<body class="bg-white text-[#111827] antialiased dark:bg-zinc-950 dark:text-zinc-100">
+<body class="bg-white text-[#111827] antialiased dark:bg-zinc-950 dark:text-zinc-100" id="main-body">
 
     <main>
         <div class="main-container-fix mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-[40px] pb-5"
@@ -89,7 +89,7 @@
 
                 <div class="mt-12">
                     <a href="index.html#works"
-                        class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-indigo-600 transition shadow-sm">
+                        class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-white bg-brand hover:bg-blue-300 transition shadow-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.5">
                             <path d="M15 18l-6-6 6-6" />
@@ -114,8 +114,6 @@
         </div>
     </dialog>
 
-    <!-- <footer class="py-10 text-center text-sm text-zinc-500">© <span id="y"></span> Kido Sotaro</footer> -->
-
     <script>
         // フッターに最終更新日を表示
         document.getElementById('last-updated').textContent = (function () {
@@ -129,6 +127,22 @@
 
     <script src="js/site.js"></script>
     <script src="js/work-data.js"></script>
+
+    <script>
+        // --- 文字色抜け対策: f4f4色を強制 ---
+        (function () {
+            // ページロード時にbodyのtext色を強制
+            var body = document.getElementById('main-body');
+            if (body) {
+                body.style.color = '#111827';
+            }
+            // sectionやarticleなどにも適用したい場合は以下を追加
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function (sec) {
+                sec.style.color = '#111827';
+            });
+        })();
+    </script>
 
     <script>
         const $ = (s, r = document) => r.querySelector(s);
