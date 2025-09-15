@@ -35,6 +35,9 @@
 
         return { type: "youtube", id: videoId, ratio };
     };
+    // 体験の流れを表現できるconst
+    // 例: [{ step: "受付", description: "会場で受付を済ませます" }, ...]
+    const flow = (...steps) => steps.map(([step, description]) => ({ step, description }));
     // ===== Works =====
     window.works = [
         {
@@ -67,7 +70,7 @@
                     img("https://drive.google.com/file/d/179NXrK17mBwrNnmEbMh0LY_zWspeTX3W/view?usp=sharing", "画像", "16/9"),
                     img("https://drive.google.com/file/d/13BjKRoprMOoasfuWtxU9gkVuRDC1ak0b/view?usp=sharing", "画像", "16/9"),
                     p("　"),
-                    p("変顔大会になることも．．．＊親御さんへの撮影許可済")
+                    p("変顔大会になることも．．．＊親御さんへの了承を得て撮影したいものです。")
                 ),
                 sec("実施協力",
                     p("情報科学芸術大学修士2年　牛尾 日莉")
@@ -91,7 +94,7 @@
             body: [
                 // ここから画像専用
                 sec("",
-                    youtube("https://youtu.be/IPXictFjRAM?si=XbtM-9ZBw2SfjPFL"),
+                    youtube("https://youtu.be/IPXictFjRAM?si=XbtM-9ZBw2SfjPFL", "4/3"),
                 ),
                 sec("概要",
                     p("2025年5月5日、スイトピアセンターで開催された「スイトピアテラス」にて、《め遊び -目でモノに触ったり、気持ちを伝えたり、いろいろな目の使い方にチャレンジしよう！- 》を実施。 当日は、老若男女さまざまな方々に《め触り》を体験して頂いた。"),
@@ -136,7 +139,7 @@
                     p("体験者の表情を豊かにすること。"),
                 ),
                 sec("体験のながれ",
-                    ul(["準備中です💦"])
+                    img("https://drive.google.com/file/d/1ILeK-U9-ZK7BnHM3y-KYVmE_TNezzZQd/view?usp=sharing", "画像", "16/9")
                 ),
                 sec("共同実施者",
                     p("牛尾 日莉")

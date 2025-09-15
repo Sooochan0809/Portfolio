@@ -14,7 +14,7 @@ const dotLink = (label, href) => {
     "col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate transition duration-200 hover:scale-105 hover:shadow-glow hover:text-brand cursor-pointer",
   );
   span.style.transition = "all .18s cubic-bezier(.4,0,.2,1)";
-  span.textContent = `[${label}🔗]`;
+  span.textContent = `${label}`;
   if (href && href !== "#") {
     span.addEventListener("click", () => window.open(href, "_blank", "noopener"));
     span.setAttribute("role", "link");
@@ -85,13 +85,20 @@ const dotLink = (label, href) => {
     );
     const date = el("span", "whitespace-nowrap md:mr-2", r.date);
 
-    const title = el(
-      "span",
-      "break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1",
-      r.title
+    // titleとvenueに一括のどっとリンクをつける
+    const title = dotLink(
+      r.title,
+      r.href,
+      "break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1"
     );
 
-    const venue = dotLink(r.venue, r.href);
+    // venueには両端に[]をつける
+    const venue = el(
+      "span",
+      "col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate",
+      `[${r.venue}]`
+    );
+
     li.append(date, title, venue);
     ul.appendChild(li);
   });
