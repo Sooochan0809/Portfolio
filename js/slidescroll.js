@@ -1,11 +1,17 @@
 // 横スクロールカード同士の間隔と、最初・最後の余白をCSSで指定
 const style = document.createElement('style');
 style.innerHTML = `
+  .horizontal-section {
+    max-width: 80vw;
+    width: 80vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
   .horizontal-scroll {
     display: flex;
     gap: 96px;
-    padding-left: 560px;
-    padding-right: 560px;
+    padding-left: 60vw;
+    padding-right: 60vw;
     /* 画面幅に応じて余白を調整したい場合はvwを調整 */
   }
   .scroll-item {
@@ -15,11 +21,30 @@ style.innerHTML = `
   .horizontal-scroll .scroll-item:last-child {
     margin-right: 0 !important;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 1024px) {
+    .horizontal-section {
+      max-width: 70vw;
+      width: 70vw;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
     .horizontal-scroll {
-      padding-left: 320px;
-      padding-right: 80px;
-      gap: 48px;
+      padding-left: 60vw;
+      padding-right: 60vw;
+      gap: 64px;
+    }
+  }
+  @media (max-width: 640px) {
+    .horizontal-section {
+      max-width: 60vw;
+      width: 60vw;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .horizontal-scroll {
+      padding-left: 24vw;
+      padding-right: 24vw;
+      gap: 32px;
     }
   }
 `;
