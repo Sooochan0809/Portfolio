@@ -139,308 +139,337 @@
     </style>
 </head>
 
-<body class="min-h-svh flex flex-col bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 font-sans" style="background-color: #27569b;">
-
-    <!-- 背景スライドショー（常時アニメ） -->
-    <!-- <div id="bg-slideshow" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1920&auto=format&fit=crop" alt="">
-        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1920&auto=format&fit=crop" alt="">
-        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1920&auto=format&fit=crop" alt="">
-        <div class="overlay"></div>
-    </div> -->
+<body class="min-h-svh flex flex-col bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 font-sans"
+    style="background-color: #81c7d7;">
 
     <!-- Hero（中央寄せに戻す） -->
     <main class="flex-1 flex items-center justify-center">
         <section class="mx-auto max-w-7xl px-6 sm:px-24 w-full py-28">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-16 lg:gap-x-20 items-center lg:items-end">
-                <!-- テキスト -->
-                <div class="lg:col-span-7 w-full text-center lg:text-left basis-[100%] lg:pl-12">
-                    <div class="ml-0 lg:mx-0 max-w-2xl space-y-8 text-sm">
-                        <h1 class="font-extrabold tracking-tight leading-tight text-left">
-                            <span class="block text-sm text-zinc-400 mb-1 ml-1" style="font-size:32px; margin-left:0;">
-                                Portfolio
-                            </span>
-                            <span style="display:block; height:10px;"></span>
-                            <!-- 横並び -->
-                            <span class="flex items-end gap-2">
-                                <!-- ここを絶対固定サイズにする（例：56px）-->
-                                <span
-                                    class="tracking-[0.05em] text-[40px] sm:text-[48px] md:text-[72px] leading-none whitespace-nowrap">城戸</span>
-                                <span
-                                    class="tracking-[0em] text-[40px] sm:text-[48px] md:text-[72px] leading-none whitespace-nowrap">双汰朗</span>
-                                <!-- 英字は少し小さめ＆改行禁止で横に続ける。下端揃えのためflex+items-endを親に指定 -->
-                                <span class="text-base text-zinc-400 tracking-[0.05em] whitespace-nowrap"
-                                    style="position:relative; top:3px;">
-                                    Kido Sotaro
+                <!-- テキストを白い長方形背景で囲む -->
+                <div
+                    class="bg-white/90 px-4 py-4 w-full max-w-2xl mx-auto">
+                    <!-- テキスト -->
+                    <div class="lg:col-span-7 w-full text-center lg:text-left basis-[100%] lg:pl-12">
+                        <div class="ml-0 lg:mx-0 max-w-2xl space-y-8 text-sm">
+                            <h1 class="font-extrabold tracking-tight leading-tight text-left">
+                                <span class="block text-sm text-[#81c7d7;] mb-8 ml-1"
+                                    style="font-size:32px; margin-left:0;">
+                                    Portfolio
                                 </span>
-                            </span>
-                        </h1>
+                                <span style="display:block; height:10px;"></span>
+                                <!-- 横並び -->
+                                <span class="flex flex-col items-center justify-center w-full">
+                                    <span class="flex items-end gap-2 justify-center w-full">
+                                        <!-- ここを絶対固定サイズにする（例：56px）-->
+                                        <span
+                                            class="tracking-[0.05em] text-[40px] sm:text-[48px] md:text-[72px] leading-none whitespace-nowrap"
+                                            style="color:#111827;">城戸</span>
+                                        <span
+                                            class="tracking-[0em] text-[40px] sm:text-[48px] md:text-[72px] leading-none whitespace-nowrap"
+                                            style="color:#111827;">双汰朗</span>
+                                    </span>
+                                    <!-- 英字は少し小さめ＆改行禁止で横に続ける。下端揃えのためflex+items-endを親に指定 -->
+                                    <span class="text-base font-light text-[#81c7d7] tracking-[0.05em] whitespace-nowrap"
+                                        style="position:relative; top:3px; font-weight:600;">
+                                        Kido Sotaro
+                                    </span>
+                                </span>
+                            </h1>
 
-                        <nav id="main-nav"
-                            style="margin-top: 32px;"
-                            class="flex flex-wrap items-center justify-start font-semibold text-zinc-800 dark:text-zinc-100 group relative text-[16px] sm:text-[24px]">
-                            <a href="about-iOS.html" class="hover:underline transition nav-link nav-absorb">ABOUT</a>
-                            <span class="mx-3 text-zinc-400 select-none">／</span>
-                            <a href="work-iOS.html" class="hover:underline transition nav-link nav-absorb">WORKS</a>
-                            <span class="mx-3 text-zinc-400 select-none">／</span>
-                            <a href="contact-iOS.html" class="hover:underline transition nav-link nav-absorb">CONTACT</a>
-                        </nav>
-                        <style>
-                            .nav-absorb,
-                            .nav-absorb-divider {
-                                transition:
-                                    transform 0.25s cubic-bezier(.4, 2, .6, 1),
-                                    box-shadow 0.25s,
-                                    color 0.18s;
-                                will-change: transform;
-                                position: relative;
-                                z-index: 1;
-                            }
-                            .nav-absorb.absorbed,
-                            .nav-absorb-divider.absorbed {
-                                transform: scale(1.13) translateY(-7px);
-                                z-index: 10;
-                            }
-                            /* 微弱な揺れアニメーション */
-                            @keyframes nav-wiggle {
-                                0% { transform: translateY(0); }
-                                15% { transform: translateY(-2px) rotate(-2deg);}
-                                30% { transform: translateY(2px) rotate(2deg);}
-                                45% { transform: translateY(-1.5px) rotate(-1deg);}
-                                60% { transform: translateY(1.5px) rotate(1deg);}
-                                75% { transform: translateY(-1px) rotate(-0.5deg);}
-                                100% { transform: translateY(0); }
-                            }
-                            .nav-wiggle {
-                                animation: nav-wiggle 0.7s cubic-bezier(.4,2,.6,1);
-                            }
-                            /* スマホ時は吸着演出を無効化し、タップ時に即反応 */
-                            @media (max-width: 640px) {
+                            <nav id="main-nav" style="margin-top: 40px;"
+                                class="flex flex-wrap items-center justify-center font-semibold text-[#111827] dark:text-[#111827] group relative text-[16px] sm:text-[24px]">
+                                <a href="about-iOS.html"
+                                    class="hover:underline transition nav-link nav-absorb">ABOUT</a>
+                                <span class="mx-3 text-[#b0b0b0] select-none">／</span>
+                                <a href="work-iOS.html" class="hover:underline transition nav-link nav-absorb">WORKS</a>
+                                <span class="mx-3 text-[#b0b0b0] select-none">／</span>
+                                <a href="contact-iOS.html"
+                                    class="hover:underline transition nav-link nav-absorb">CONTACT</a>
+                            </nav>
+                            <style>
                                 .nav-absorb,
                                 .nav-absorb-divider {
-                                    transition: transform 0.12s cubic-bezier(.4,2,.6,1), color 0.18s;
+                                    transition:
+                                        transform 0.25s cubic-bezier(.4, 2, .6, 1),
+                                        box-shadow 0.25s,
+                                        color 0.18s;
+                                    will-change: transform;
+                                    position: relative;
+                                    z-index: 1;
                                 }
+
                                 .nav-absorb.absorbed,
                                 .nav-absorb-divider.absorbed {
-                                    transform: scale(1.10) translateY(-2px);
-                                }
-                            }
-                        </style>
-                        <script>
-                            (function () {
-                                const nav = document.getElementById('main-nav');
-                                if (!nav) return;
-                                const absorbTargets = Array.from(nav.querySelectorAll('.nav-absorb, .nav-absorb-divider'));
-                                let isMobile = window.matchMedia('(max-width: 640px)').matches;
-
-                                // --- スマホ用: 2秒ごとに揺らす ---
-                                let mobileWiggleInterval = null;
-                                let mobileWigglePaused = false;
-                                let mobileWigglePauseTimeout = null;
-
-                                // --- PC用: 3秒無操作で揺らす ---
-                                let pcWiggleTimeout = null;
-
-                                function triggerWiggle() {
-                                    absorbTargets.forEach(el => {
-                                        el.classList.add('nav-wiggle');
-                                        setTimeout(() => el.classList.remove('nav-wiggle'), 800);
-                                    });
+                                    transform: scale(1.13) translateY(-7px);
+                                    z-index: 10;
                                 }
 
-                                function clearMobileWiggleInterval() {
-                                    if (mobileWiggleInterval) {
-                                        clearInterval(mobileWiggleInterval);
-                                        mobileWiggleInterval = null;
+                                /* 微弱な揺れアニメーション */
+                                @keyframes nav-wiggle {
+                                    0% {
+                                        transform: translateY(0);
+                                    }
+
+                                    15% {
+                                        transform: translateY(-2px) rotate(-2deg);
+                                    }
+
+                                    30% {
+                                        transform: translateY(2px) rotate(2deg);
+                                    }
+
+                                    45% {
+                                        transform: translateY(-1.5px) rotate(-1deg);
+                                    }
+
+                                    60% {
+                                        transform: translateY(1.5px) rotate(1deg);
+                                    }
+
+                                    75% {
+                                        transform: translateY(-1px) rotate(-0.5deg);
+                                    }
+
+                                    100% {
+                                        transform: translateY(0);
                                     }
                                 }
 
-                                function startMobileWiggleInterval() {
-                                    clearMobileWiggleInterval();
-                                    mobileWiggleInterval = setInterval(() => {
-                                        if (!mobileWigglePaused) {
-                                            triggerWiggle();
-                                        }
-                                    }, 3000);
+                                .nav-wiggle {
+                                    animation: nav-wiggle 0.7s cubic-bezier(.4, 2, .6, 1);
                                 }
 
-                                function resetPcWiggleTimer() {
-                                    if (pcWiggleTimeout) clearTimeout(pcWiggleTimeout);
-                                    pcWiggleTimeout = setTimeout(() => {
-                                        triggerWiggle();
-                                    }, 3000);
+                                /* スマホ時は吸着演出を無効化し、タップ時に即反応 */
+                                @media (max-width: 640px) {
+
+                                    .nav-absorb,
+                                    .nav-absorb-divider {
+                                        transition: transform 0.12s cubic-bezier(.4, 2, .6, 1), color 0.18s;
+                                    }
+
+                                    .nav-absorb.absorbed,
+                                    .nav-absorb-divider.absorbed {
+                                        transform: scale(1.10) translateY(-2px);
+                                    }
                                 }
+                            </style>
+                            <script>
+                                (function () {
+                                    const nav = document.getElementById('main-nav');
+                                    if (!nav) return;
+                                    const absorbTargets = Array.from(nav.querySelectorAll('.nav-absorb, .nav-absorb-divider'));
+                                    let isMobile = window.matchMedia('(max-width: 640px)').matches;
 
-                                // 何かしら操作があればリセット
-                                function addGlobalListeners() {
-                                    // PC: reset timer on user activity
-                                    ['mousemove', 'keydown'].forEach(ev => {
-                                        document.addEventListener(ev, function () {
-                                            if (!isMobile) resetPcWiggleTimer();
-                                        }, {passive:true});
-                                    });
-                                    // スマホ: 一時的に揺れを止める
-                                    ['touchstart', 'mousedown', 'keydown'].forEach(ev => {
-                                        document.addEventListener(ev, function () {
-                                            if (isMobile) {
-                                                mobileWigglePaused = true;
-                                                if (mobileWigglePauseTimeout) clearTimeout(mobileWigglePauseTimeout);
-                                                // 3秒後に再開
-                                                mobileWigglePauseTimeout = setTimeout(() => {
-                                                    mobileWigglePaused = false;
-                                                }, 3000);
-                                            }
-                                        }, {passive:true});
-                                    });
-                                }
+                                    // --- スマホ用: 2秒ごとに揺らす ---
+                                    let mobileWiggleInterval = null;
+                                    let mobileWigglePaused = false;
+                                    let mobileWigglePauseTimeout = null;
 
-                                // --- スマホ/PCで挙動を分岐 ---
-                                function setUpNavBehavior() {
-                                    isMobile = window.matchMedia('(max-width: 640px)').matches;
-                                    absorbTargets.forEach(el => {
-                                        el.classList.remove('absorbed');
-                                        el.onmouseenter = el.onmouseleave = el.onmousedown = el.onmouseup = el.ontouchstart = el.ontouchend = null;
-                                    });
+                                    // --- PC用: 3秒無操作で揺らす ---
+                                    let pcWiggleTimeout = null;
 
-                                    if (isMobile) {
-                                        // スマホ: タップ時に即反応
+                                    function triggerWiggle() {
                                         absorbTargets.forEach(el => {
-                                            el.addEventListener('touchstart', function () {
-                                                el.classList.add('absorbed');
-                                            }, {passive:true});
-                                            el.addEventListener('touchend', function () {
-                                                setTimeout(() => el.classList.remove('absorbed'), 120);
-                                            }, {passive:true});
-                                            el.addEventListener('mousedown', function () {
-                                                el.classList.add('absorbed');
-                                            });
-                                            el.addEventListener('mouseup', function () {
-                                                setTimeout(() => el.classList.remove('absorbed'), 120);
-                                            });
+                                            el.classList.add('nav-wiggle');
+                                            setTimeout(() => el.classList.remove('nav-wiggle'), 800);
                                         });
-                                        // スマホ用揺れインターバル
-                                        startMobileWiggleInterval();
-                                    } else {
-                                        // PC: 吸着効果
-                                        clearMobileWiggleInterval();
-                                        const margin = 48;
-                                        function isNearElement(el, mouseX, mouseY) {
-                                            const rect = el.getBoundingClientRect();
-                                            return (
-                                                mouseX >= rect.left - margin &&
-                                                mouseX <= rect.right + margin &&
-                                                mouseY >= rect.top - margin &&
-                                                mouseY <= rect.bottom + margin
-                                            );
-                                        }
-                                        const hovering = new Array(absorbTargets.length).fill(false);
-                                        const stickyTimeouts = new Array(absorbTargets.length).fill(null);
-
-                                        document.addEventListener('mousemove', (e) => {
-                                            absorbTargets.forEach((el, idx) => {
-                                                if (isNearElement(el, e.clientX, e.clientY)) {
-                                                    if (!hovering[idx]) {
-                                                        hovering[idx] = true;
-                                                        el.classList.add('absorbed');
-                                                    }
-                                                    if (stickyTimeouts[idx]) clearTimeout(stickyTimeouts[idx]);
-                                                } else {
-                                                    if (hovering[idx]) {
-                                                        hovering[idx] = false;
-                                                        stickyTimeouts[idx] = setTimeout(() => {
-                                                            el.classList.remove('absorbed');
-                                                        }, 120);
-                                                    }
-                                                }
-                                            });
-                                        });
-                                        // PC用揺れタイマー
-                                        resetPcWiggleTimer();
                                     }
-                                }
 
-                                setUpNavBehavior();
-                                addGlobalListeners();
-                                window.addEventListener('resize', () => {
-                                    setUpNavBehavior();
-                                });
-
-                            })();
-                        </script>
-                        <style>
-                            .nav-absorb,
-                            .nav-absorb-divider {
-                                transition:
-                                    transform 0.25s cubic-bezier(.4, 2, .6, 1),
-                                    box-shadow 0.25s,
-                                    color 0.18s;
-                                will-change: transform;
-                                position: relative;
-                                z-index: 1;
-                            }
-
-                            .nav-absorb.absorbed,
-                            .nav-absorb-divider.absorbed {
-                                transform: scale(1.13) translateY(-7px);
-
-
-                                z-index: 10;
-                            }
-                        </style>
-                        <script>
-                            // 各nav要素ごとに吸着効果
-                            (function () {
-                                const margin = 48; // px, 各要素の周囲
-                                function isNearElement(el, mouseX, mouseY) {
-                                    const rect = el.getBoundingClientRect();
-                                    return (
-                                        mouseX >= rect.left - margin &&
-                                        mouseX <= rect.right + margin &&
-                                        mouseY >= rect.top - margin &&
-                                        mouseY <= rect.bottom + margin
-                                    );
-                                }
-                                // nav内の吸着対象
-                                const nav = document.getElementById('main-nav');
-                                if (!nav) return;
-                                const absorbTargets = Array.from(nav.querySelectorAll('.nav-absorb, .nav-absorb-divider'));
-                                const hovering = new Array(absorbTargets.length).fill(false);
-                                const stickyTimeouts = new Array(absorbTargets.length).fill(null);
-
-                                document.addEventListener('mousemove', (e) => {
-                                    absorbTargets.forEach((el, idx) => {
-                                        if (isNearElement(el, e.clientX, e.clientY)) {
-                                            if (!hovering[idx]) {
-                                                hovering[idx] = true;
-                                                el.classList.add('absorbed');
-                                            }
-                                            if (stickyTimeouts[idx]) clearTimeout(stickyTimeouts[idx]);
-                                        } else {
-                                            if (hovering[idx]) {
-                                                stickyTimeouts[idx] = setTimeout(() => {
-                                                    el.classList.remove('absorbed');
-                                                    hovering[idx] = false;
-                                                }, 180);
-                                            }
+                                    function clearMobileWiggleInterval() {
+                                        if (mobileWiggleInterval) {
+                                            clearInterval(mobileWiggleInterval);
+                                            mobileWiggleInterval = null;
                                         }
-                                    });
-                                });
-                                // 各要素自体にマウスが入ったら即吸着
-                                absorbTargets.forEach((el, idx) => {
-                                    el.addEventListener('mouseenter', () => {
-                                        hovering[idx] = true;
-                                        el.classList.add('absorbed');
-                                        if (stickyTimeouts[idx]) clearTimeout(stickyTimeouts[idx]);
-                                    });
-                                    el.addEventListener('mouseleave', () => {
-                                        stickyTimeouts[idx] = setTimeout(() => {
+                                    }
+
+                                    function startMobileWiggleInterval() {
+                                        clearMobileWiggleInterval();
+                                        mobileWiggleInterval = setInterval(() => {
+                                            if (!mobileWigglePaused) {
+                                                triggerWiggle();
+                                            }
+                                        }, 3000);
+                                    }
+
+                                    function resetPcWiggleTimer() {
+                                        if (pcWiggleTimeout) clearTimeout(pcWiggleTimeout);
+                                        pcWiggleTimeout = setTimeout(() => {
+                                            triggerWiggle();
+                                        }, 3000);
+                                    }
+
+                                    // 何かしら操作があればリセット
+                                    function addGlobalListeners() {
+                                        // PC: reset timer on user activity
+                                        ['mousemove', 'keydown'].forEach(ev => {
+                                            document.addEventListener(ev, function () {
+                                                if (!isMobile) resetPcWiggleTimer();
+                                            }, { passive: true });
+                                        });
+                                        // スマホ: 一時的に揺れを止める
+                                        ['touchstart', 'mousedown', 'keydown'].forEach(ev => {
+                                            document.addEventListener(ev, function () {
+                                                if (isMobile) {
+                                                    mobileWigglePaused = true;
+                                                    if (mobileWigglePauseTimeout) clearTimeout(mobileWigglePauseTimeout);
+                                                    // 3秒後に再開
+                                                    mobileWigglePauseTimeout = setTimeout(() => {
+                                                        mobileWigglePaused = false;
+                                                    }, 3000);
+                                                }
+                                            }, { passive: true });
+                                        });
+                                    }
+
+                                    // --- スマホ/PCで挙動を分岐 ---
+                                    function setUpNavBehavior() {
+                                        isMobile = window.matchMedia('(max-width: 640px)').matches;
+                                        absorbTargets.forEach(el => {
                                             el.classList.remove('absorbed');
-                                            hovering[idx] = false;
-                                        }, 180);
+                                            el.onmouseenter = el.onmouseleave = el.onmousedown = el.onmouseup = el.ontouchstart = el.ontouchend = null;
+                                        });
+
+                                        if (isMobile) {
+                                            // スマホ: タップ時に即反応
+                                            absorbTargets.forEach(el => {
+                                                el.addEventListener('touchstart', function () {
+                                                    el.classList.add('absorbed');
+                                                }, { passive: true });
+                                                el.addEventListener('touchend', function () {
+                                                    setTimeout(() => el.classList.remove('absorbed'), 120);
+                                                }, { passive: true });
+                                                el.addEventListener('mousedown', function () {
+                                                    el.classList.add('absorbed');
+                                                });
+                                                el.addEventListener('mouseup', function () {
+                                                    setTimeout(() => el.classList.remove('absorbed'), 120);
+                                                });
+                                            });
+                                            // スマホ用揺れインターバル
+                                            startMobileWiggleInterval();
+                                        } else {
+                                            // PC: 吸着効果
+                                            clearMobileWiggleInterval();
+                                            const margin = 48;
+                                            function isNearElement(el, mouseX, mouseY) {
+                                                const rect = el.getBoundingClientRect();
+                                                return (
+                                                    mouseX >= rect.left - margin &&
+                                                    mouseX <= rect.right + margin &&
+                                                    mouseY >= rect.top - margin &&
+                                                    mouseY <= rect.bottom + margin
+                                                );
+                                            }
+                                            const hovering = new Array(absorbTargets.length).fill(false);
+                                            const stickyTimeouts = new Array(absorbTargets.length).fill(null);
+
+                                            document.addEventListener('mousemove', (e) => {
+                                                absorbTargets.forEach((el, idx) => {
+                                                    if (isNearElement(el, e.clientX, e.clientY)) {
+                                                        if (!hovering[idx]) {
+                                                            hovering[idx] = true;
+                                                            el.classList.add('absorbed');
+                                                        }
+                                                        if (stickyTimeouts[idx]) clearTimeout(stickyTimeouts[idx]);
+                                                    } else {
+                                                        if (hovering[idx]) {
+                                                            hovering[idx] = false;
+                                                            stickyTimeouts[idx] = setTimeout(() => {
+                                                                el.classList.remove('absorbed');
+                                                            }, 120);
+                                                        }
+                                                    }
+                                                });
+                                            });
+                                            // PC用揺れタイマー
+                                            resetPcWiggleTimer();
+                                        }
+                                    }
+
+                                    setUpNavBehavior();
+                                    addGlobalListeners();
+                                    window.addEventListener('resize', () => {
+                                        setUpNavBehavior();
                                     });
-                                });
-                            })();
-                        </script>
+
+                                })();
+                            </script>
+                            <style>
+                                .nav-absorb,
+                                .nav-absorb-divider {
+                                    transition:
+                                        transform 0.25s cubic-bezier(.4, 2, .6, 1),
+                                        box-shadow 0.25s,
+                                        color 0.18s;
+                                    will-change: transform;
+                                    position: relative;
+                                    z-index: 1;
+                                }
+
+                                .nav-absorb.absorbed,
+                                .nav-absorb-divider.absorbed {
+                                    transform: scale(1.13) translateY(-7px);
+
+
+                                    z-index: 10;
+                                }
+                            </style>
+                            <script>
+                                // 各nav要素ごとに吸着効果
+                                (function () {
+                                    const margin = 48; // px, 各要素の周囲
+                                    function isNearElement(el, mouseX, mouseY) {
+                                        const rect = el.getBoundingClientRect();
+                                        return (
+                                            mouseX >= rect.left - margin &&
+                                            mouseX <= rect.right + margin &&
+                                            mouseY >= rect.top - margin &&
+                                            mouseY <= rect.bottom + margin
+                                        );
+                                    }
+                                    // nav内の吸着対象
+                                    const nav = document.getElementById('main-nav');
+                                    if (!nav) return;
+                                    const absorbTargets = Array.from(nav.querySelectorAll('.nav-absorb, .nav-absorb-divider'));
+                                    const hovering = new Array(absorbTargets.length).fill(false);
+                                    const stickyTimeouts = new Array(absorbTargets.length).fill(null);
+
+                                    document.addEventListener('mousemove', (e) => {
+                                        absorbTargets.forEach((el, idx) => {
+                                            if (isNearElement(el, e.clientX, e.clientY)) {
+                                                if (!hovering[idx]) {
+                                                    hovering[idx] = true;
+                                                    el.classList.add('absorbed');
+                                                }
+                                                if (stickyTimeouts[idx]) clearTimeout(stickyTimeouts[idx]);
+                                            } else {
+                                                if (hovering[idx]) {
+                                                    stickyTimeouts[idx] = setTimeout(() => {
+                                                        el.classList.remove('absorbed');
+                                                        hovering[idx] = false;
+                                                    }, 180);
+                                                }
+                                            }
+                                        });
+                                    });
+                                    // 各要素自体にマウスが入ったら即吸着
+                                    absorbTargets.forEach((el, idx) => {
+                                        el.addEventListener('mouseenter', () => {
+                                            hovering[idx] = true;
+                                            el.classList.add('absorbed');
+                                            if (stickyTimeouts[idx]) clearTimeout(stickyTimeouts[idx]);
+                                        });
+                                        el.addEventListener('mouseleave', () => {
+                                            stickyTimeouts[idx] = setTimeout(() => {
+                                                el.classList.remove('absorbed');
+                                                hovering[idx] = false;
+                                            }, 180);
+                                        });
+                                    });
+                                })();
+                            </script>
+                        </div>
                     </div>
                 </div>
             </div>
