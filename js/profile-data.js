@@ -66,16 +66,16 @@ export const data = {
   ],
 
   exhibitions: [
-    { date: "2025.6", place: "あいちワークショップギャザリング mini", work: "みる目・みせる目・みられる目" },
-    { date: "2025.5", place: "スイトピアテラス", work: "め遊び..." },
+    { date: "2025.6", place: "あいちワークショップギャザリング mini", work: "みる目 / みせる目 / みられる目" },
+    { date: "2025.5", place: "スイトピアテラス", work: "め遊び -目でモノに触ったり、気持ちを伝えたり、いろいろな目の使い方にチャレンジしよう！-" },
     { date: "2025.2", place: "あいちワークショップギャザリング mini", work: "め遊び -びょ～んびょん編-" },
     { date: "2024.10", place: "Interverse Virtual Reality Challenge (IVRC) 2024", work: "耳研澄装置製造工場" }
   ],
 
   cooperation: [
     { date: "2025.6", place: "パンタグラフ 美術ワークショップ 「光の雨アニメーション」", role: "[撮影/動画編集]" },
-    { date: "2025.1", place: "Magic Lantern for meeting Kumamushi again（大橋美月）", role: "[Fusion360/3Dプリント]" },
-    { date: "2024.10", place: "Phonoscape Project（FabCafe Kyoto）", role: "[Unity/iOSアプリケーション]" }
+    { date: "2025.1", place: "Magic Lantern for meeting Kumamushi again", role: "[3Dモデル制作/3D印刷]" },
+    { date: "2024.10", place: "Phonoscape Project（FabCafe Kyoto）", role: "[iOSアプリケーション制作]" }
   ],
 
   awards: [
@@ -87,7 +87,7 @@ export const data = {
 
   skills: {
     license: "高等学校教諭一種免許（情報）, 普通自動車第一種運転免許",
-    tools: "Unity, TouchDesigner, Fusion360, Figma, Illustrator, Arduino IDE, GitHub",
+    tools: "Unity, TouchDesigner, Fusion360, Figma, Illustrator, Arduino IDE, Git",
     coding: "C#, Python, HTML, CSS, C++, JavaScript"
   }
 };

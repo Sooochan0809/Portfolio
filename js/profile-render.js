@@ -81,25 +81,29 @@ const dotLink = (label, href) => {
   data.research.forEach(r => {
     const li = el(
       "li",
-      "grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0"
+      "mb-2"
     );
     const date = el("span", "whitespace-nowrap md:mr-2", r.date);
 
-    // titleとvenueに一括のどっとリンクをつける
-    const title = dotLink(
-      r.title,
-      r.href,
-      "break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1"
+    // titleを一行目に
+    const titleLine = el("div", "flex items-baseline gap-x-2");
+    titleLine.append(date);
+    titleLine.append(
+      dotLink(
+        r.title,
+        r.href,
+        "break-words md:min-w-0 md:whitespace-nowrap md:truncate"
+      )
     );
 
-    // venueには両端に[]をつける
-    const venue = el(
-      "span",
-      "col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate",
+    // venueは二行目に
+    const venueLine = el(
+      "div",
+      "pl-[4.5em] text-zinc-500 text-sm",
       `[${r.venue}]`
     );
 
-    li.append(date, title, venue);
+    li.append(titleLine, venueLine);
     ul.appendChild(li);
   });
 })();
@@ -112,20 +116,29 @@ const dotLink = (label, href) => {
   data.exhibitions.forEach(ex => {
     const li = el(
       "li",
-      "grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0"
+      "mb-2"
+    );
+    // 1行目: 日付と会場
+    const firstLine = el(
+      "div",
+      "flex items-baseline gap-x-2"
     );
     const date = el("span", "whitespace-nowrap md:mr-2", ex.date);
     const place = el(
       "span",
-      "break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1",
+      "break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[''] md:after:ml-1",
       ex.place
     );
-    const work = el(
-      "span",
-      "col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate",
+    firstLine.append(date, place);
+
+    // 2行目: work
+    const secondLine = el(
+      "div",
+      "pl-[4.5em] break-words md:min-w-0 md:whitespace-nowrap md:truncate text-zinc-600 dark:text-zinc-300",
       ex.work
     );
-    li.append(date, place, work);
+
+    li.append(firstLine, secondLine);
     ul.appendChild(li);
   });
 })();
@@ -138,20 +151,29 @@ const dotLink = (label, href) => {
   data.cooperation.forEach(co => {
     const li = el(
       "li",
-      "grid grid-cols-[auto,1fr] gap-x-2 items-baseline md:flex md:flex-nowrap md:items-baseline md:gap-x-2 md:min-w-0"
+      "mb-2"
+    );
+    // 1行目: 日付と会場
+    const firstLine = el(
+      "div",
+      "flex items-baseline gap-x-2"
     );
     const date = el("span", "whitespace-nowrap md:mr-2", co.date);
     const place = el(
       "span",
-      "break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[','] md:after:ml-1",
+      "break-words md:min-w-0 md:whitespace-nowrap md:truncate md:after:content-[''] md:after:ml-1",
       co.place
     );
-    const role = el(
-      "span",
-      "col-start-2 break-words md:col-start-auto md:min-w-0 md:whitespace-nowrap md:truncate",
+    firstLine.append(date, place);
+
+    // 2行目: role
+    const secondLine = el(
+      "div",
+      "pl-[4.5em] break-words md:min-w-0 md:whitespace-nowrap md:truncate text-zinc-600 dark:text-zinc-300",
       co.role
     );
-    li.append(date, place, role);
+
+    li.append(firstLine, secondLine);
     ul.appendChild(li);
   });
 })();

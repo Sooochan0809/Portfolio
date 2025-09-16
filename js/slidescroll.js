@@ -2,16 +2,20 @@
 const style = document.createElement('style');
 style.innerHTML = `
   .horizontal-section {
-    max-width: 80vw;
-    width: 80vw;
+    max-width: 100vw;
+    width: 100vw;
     margin-left: 50%;
     transform: translateX(-50%);
+    position: relative;
+    z-index: 1;
   }
   .horizontal-scroll {
     display: flex;
     gap: 96px;
     padding-left: 60vw;
     padding-right: 60vw;
+    position: relative;
+    z-index: 1;
     /* 画面幅に応じて余白を調整したい場合はvwを調整 */
   }
   .scroll-item {
@@ -23,8 +27,8 @@ style.innerHTML = `
   }
   @media (max-width: 1024px) {
     .horizontal-section {
-      max-width: 70vw;
-      width: 70vw;
+      max-width: 100vw;
+      width: 100vw;
       margin-left: 50%;
       transform: translateX(-50%);
     }
@@ -36,8 +40,8 @@ style.innerHTML = `
   }
   @media (max-width: 640px) {
     .horizontal-section {
-      max-width: 60vw;
-      width: 60vw;
+      max-width: 100vw;
+      width: 100vw;
       margin-left: 50%;
       transform: translateX(-50%);
     }

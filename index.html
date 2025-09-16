@@ -263,14 +263,14 @@
       style="background-color: #FEFAEF; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
 
       <!-- 背景の両端ぼかし -->
-      <div style="position:fixed; inset:0; pointer-events:none; z-index:0;">
+      <!-- <div style="position:fixed; inset:0; pointer-events:none; z-index:0;">
         <div
           style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100%; filter:blur(5rem); background:#81c7d7">
         </div>
         <div
           style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100%; filter:blur(5rem); background:#83c2ce">
         </div>
-      </div>
+      </div> -->
 
       <!-- titleの描画とアニメーション定義 -->
       <header id=title class="profile-header sticky-header-fix">
@@ -370,8 +370,17 @@
       </section>
 
       <!-- WORKS -->
+      <!-- ぼかしをカードより上に表示するため、WORKSセクションの外に移動 -->
+      <div class="global-blur-bg" aria-hidden="true" style="position:fixed; inset:0; pointer-events:none; z-index:10;">
+        <div
+          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100vh; filter:blur(12rem); background:#81c7d7">
+        </div>
+        <div
+          style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100vh; filter:blur(12rem); background:#83c2ce">
+        </div>
+      </div>
       <section id="works">
-        <section class="horizontal-section mx-auto max-w-none pt-16 md:pt-16">
+        <section class="horizontal-section mx-auto max-w-none pt-16 md:pt-16" style="position: relative; z-index: 1;">
           <div class="section-header" style="position: relative; height: 80px; max-width: 100%;">
             <style>
               @media (max-width: 640px) {
@@ -390,11 +399,11 @@
       </section>
 
       <!-- contact -->
-      <section id="contact" class="mt-[360px] mb-[24px]">
-        <div class="flex flex-col md:flex-row md:items-start gap-8 pr-[16px]">
+      <section id="contact" class="mt-[280px] mb-[56px]">
+        <div class="flex flex-col md:flex-row md:items-start gap-8 pr-[8px]">
           <!-- テキスト部分 -->
           <div class="w-full md:w-1/2 ">
-            <p class="text-[16px] text-[#111827] mb-4 mt-8">
+            <p class="text-[16px] text-[#111827] mb-4 mt-0">
               ポートフォリをご覧いただき、ありがとうございました。<br>御用の際は、右側のフォームにてご連絡いただけます。どうぞ、お気軽にご連絡下さい。
             </p>
             <p class="text-sm text-gray-500">
@@ -414,20 +423,21 @@
                 autocomplete="organization" />
             </div>
             <!-- 姓 -->
-            <div>
-              <label for="lastName" class="block text-sm font-medium text-[#111827] mb-1">姓 <span
-                  class="text-red-500">*</span></label>
-              <input id="lastName" name="lastName"
-                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="姓" required
-                autocomplete="family-name" />
-            </div>
-            <!-- 名 -->
-            <div>
-              <label for="firstName" class="block text-sm font-medium text-[#111827] mb-1">名 <span
-                  class="text-red-500">*</span></label>
-              <input id="firstName" name="firstName"
-                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="名" required
-                autocomplete="given-name" />
+            <div class="flex gap-3">
+              <div class="w-1/2">
+                <label for="lastName" class="block text-sm font-medium text-[#111827] mb-1">姓 <span
+                    class="text-red-500">*</span></label>
+                <input id="lastName" name="lastName"
+                  class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="姓" required
+                  autocomplete="family-name" />
+              </div>
+              <div class="w-1/2">
+                <label for="firstName" class="block text-sm font-medium text-[#111827] mb-1">名 <span
+                    class="text-red-500">*</span></label>
+                <input id="firstName" name="firstName"
+                  class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="名" required
+                  autocomplete="given-name" />
+              </div>
             </div>
             <!-- メールアドレス -->
             <div>
