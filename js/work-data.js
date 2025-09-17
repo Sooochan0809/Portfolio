@@ -169,7 +169,7 @@
             ]
         },
         {
-            slug: "ivrc2024-2",
+            slug: "ivrc2024-leap",
             title: "耳研澄製造工場 -IVRC2024LEAPSTAGE-",
             year: "2024",
             tags: ["作品", "研究", "装置"],
@@ -200,7 +200,7 @@
             ]
         },
         {
-            slug: "ivrc-2",
+            slug: "ivrc2024-seed",
             title: "耳研澄製造工場 -IVRC2024SEEDSTAGE-",
             year: "2025",
             tags: ["作品", "研究", "装置"],
@@ -344,29 +344,28 @@
         },
         {
             slug: "dousyokubutuen",
-            title: "準備中です💦",
+            title: "観察力と表現力の向上を目的としたKinectによる動物動作のものまねシステム",
             year: "2022",
             tags: ["作品", "研究"],
             cover:
-                toDriveDirectLink(""),
+                toDriveDirectLink("https://drive.google.com/file/d/1QpBfbi2wXTeEryYJMxZ3IFtnshFIrocD/view?usp=sharing"),
             summary: "",
-            period: "2025",
             body: [
                 // ここから画像専用
                 sec("",
-                    img(""),
+                    img("https://drive.google.com/file/d/1QpBfbi2wXTeEryYJMxZ3IFtnshFIrocD/view?usp=sharing"),
                 ),
                 sec("概要",
-                    p(""),
+                    p("すみません！準備中です💦"),
 
                 ),
                 sec("目的",
-                    p(""),
+                    p("すみません！準備中です💦"),
                 ),
                 sec("論文",
-                    // ul([
-                    //     { text: "", href: "" }
-                    // ])
+                    ul([
+                        { text: "観察力と表現力の向上を目的としたKinectによる動物動作のものまねシステム...", href: "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202302244734543912" }
+                    ])
                 )
             ]
         }

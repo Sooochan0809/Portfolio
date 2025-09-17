@@ -39,7 +39,7 @@
   flex-direction: row;
   gap: 48px; /* JSのgap: 48px;を反映 */
   width: max-content;
-  min-height: 480px;
+  min-height: 440px;
   padding-left: 560px;   /* JSのpadding-left: 560px;を反映 */
   padding-right: 1240px;  /* JSのpadding-right: 560px;を反映 */
   padding-top: 0;
