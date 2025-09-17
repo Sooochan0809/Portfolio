@@ -248,13 +248,13 @@
             year: "2024",
             tags: ["WEB", "実装"],
             cover:
-                toDriveDirectLink("https://drive.google.com/file/d/1w0sE5A-m7ezZz0k5iqcT1qayjJ_Snwif/view?usp=sharing"),
+                toDriveDirectLink("https://drive.google.com/file/d/1w0sE5A-m7ezZz0k5iqcT1qayjJ_Snwif/view?usp=drive_link"),
             summary: "",
             period: "2024",
             body: [
                 // ここから画像専用
                 sec("",
-                    img("https://drive.google.com/file/d/1w0sE5A-m7ezZz0k5iqcT1qayjJ_Snwif/view?usp=sharing")
+                    img("https://drive.google.com/file/d/1w0sE5A-m7ezZz0k5iqcT1qayjJ_Snwif/view?usp=drive_link", "画像", "16/9")
                 ),
                 sec("概要",
                     p("NxPC.Lab （新次元多層メディア的クラブ体験研究室）のライブvol.69のウェブサイトの実装を担当しました。"),
@@ -262,6 +262,7 @@
                 sec("ウェブサイト",
                     ul([
                         { text: "NxPCLive vol.69", href: "https://nxpclab.info/vol.69/" },
+                        { text: "NxPCLab", href: "https://nxpclab.info" }
                     ])
                 ),
                 sec("共同制作者",
@@ -374,32 +375,21 @@
     // ===== Cooperation / More =====
     window.worksMore = [
         {
-            slug: "test-more-2025-a",
-            title: "準備中です💦",
+            slug: "pantagurahu",
+            title: "パンタグラフ 美術ワークショップ 「光の雨アニメーション」",
             year: "2025",
-            tags: [],
+            tags: ["撮影","動画編集"],
             cover:
-                toDriveDirectLink(""),
+                toDriveDirectLink("https://drive.google.com/file/d/1Mjg4a9EYKcwRjoIRxhyQcvsL90OL0f2F/view?usp=sharing"),
             summary: "",
-            role: ["研究", "設計"],
             period: "2025",
             body: [
                 // ここから画像専用
-                secImg("",
-                    img("", "画像", "16/9"),
+                sec("",
+                    youtube("https://www.youtube.com/watch?v=YrRA9ISHKZ8", "", "16/9"),
                 ),
                 sec("概要",
                     p("準備中です💦"),
-
-                ),
-                sec("目的",
-                    p("準備中です💦"),
-                ),
-                sec("プロセス",
-                    ul(["準備中です💦"])
-                ),
-                sec("結果・考察",
-                    p("準備中です💦")
                 )
             ]
         },
