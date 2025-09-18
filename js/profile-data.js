@@ -36,32 +36,32 @@ export const data = {
       date: "2025.4",
       title: "福祉の視点　─福祉の技術プロジェクト─",
       venue: "情報科学芸術大学院大学紀要",
-      href: "#"
+      href: "https://iamas.repo.nii.ac.jp/records/2000462"
     },
     {
       date: "2024.9",
       title: "モバイル型入出力装置を用いたムービングライトとの新しいインタラクション",
       venue: "エンターテインメントコンピューティング",
-      href: "#"
+      href: "https://cir.nii.ac.jp/crid/1050582850003550720"
     },
     {
       date: "2024.9",
       title: "耳研澄装置製造工場",
       venue: "Interverse Virtual Reality Challenge (IVRC) 2024",
-      href: "#"
+      href: "https://conference.vrsj.org/ac2024/program/doc/IVRC-06.pdf"
     },
     {
       date: "2023.3",
       title:
         "観察力と表現力の向上を目的としたKinectによる動物動作のものまねシステム ～動物園での子ども向けイベントにおける実証実験をとおして～",
       venue: "映像表現・芸術科学フォーラム2023",
-      href: "#"
+      href: "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202302244734543912"
     },
     {
       date: "2022.9",
       title: "二人三腕脚",
       venue: "Interverse Virtual Reality Challenge (IVRC) 2022",
-      href: "#"
+      href: "https://conference.vrsj.org/ac2022/program/doc/1A3-21.pdf"
     }
   ],
 
