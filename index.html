@@ -272,7 +272,7 @@
       つまり、画面幅が広くなるほど余白が大きくなる設計
     -->
     <div
-      class="main-container-fix mx-auto max-w-8xl px-4 sm:px-8 md:px-16 lg:px-24 xl:px-72 pt-16 pb-[4vh] sm:pb-[4vh] md:pb-[4vh] lg:pb-[4vh] xl:pb-[0h] [@media(min-width:1900px)]:pb-[1vh]"
+      class="main-container-fix mx-auto max-w-8xl px-4 sm:px-8 md:px-16 lg:px-24 xl:px-72 pt-16 pb-[4vh] sm:pb-[4vh] md:pb-[4vh] lg:pb-[1vh] xl:pb-[1h] [@media(min-width:1900px)]:pb-[1vh]"
       style="background-color: #FEFAEF; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
 
       <!-- titleの描画とアニメーション定義 -->
@@ -554,7 +554,7 @@
             </div>
             <style>
               /* 1900px以上で姓名を縦並びにし、各項目の余白を統一 */
-              @media (min-width: 1900px) {
+              @media (min-width: 1240px) {
                 #contactForm .flex.flex-row.gap-3 {
                   flex-direction: column !important;
                   gap: 3px !important;
@@ -574,7 +574,7 @@
                 }
               }
               /* 小画面では横並び */
-              @media (max-width: 1900px) {
+              @media (max-width: 1240px) {
                 #contactForm .flex.flex-row.gap-3 {
                   flex-direction: row;
                   gap: 12px;
