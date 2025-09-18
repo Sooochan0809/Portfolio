@@ -176,7 +176,7 @@
             body: [
                 // ここから画像専用
                 sec("",
-                    img("https://drive.google.com/file/d/1rNQI0kzh4QPWD44srstxefkF4qbpp4ec/view?usp=sharing", "画像", "16/9")
+                    youtube("https://youtu.be/Yd-4rUGkX4A")
                 ),
                 sec("概要",
                     p("この作品では、そうした水中の音環境を、アクティブノイズキャンセリング(ANC)イヤフォンを使って再現します。ANCは、イヤフォンで音楽を聴くときに周囲の騒音を打ち消す技術です。本作品では、そのノイズキャンセリングの強さを調整できるようにし、水中と陸上の聞こえ方の違いを再現します。"),
