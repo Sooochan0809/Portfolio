@@ -359,20 +359,22 @@ body {
         display: flex !important;
     }
 
+    /* ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+       ハンバーガーメニューの中身（ナビゲーション）を右寄せ＋右パディング
+       ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
     .header-anim-item.is-header .header-anim-nav {
         display: none !important;
         position: absolute;
         top: 100%;
         right: 0;
-        background: rgba(255, 255, 255, 0.92) !important;
+        background: rgba(255, 255, 255, 0) !important;
         border-radius: 0px !important;
-        padding: 2px 0 !important;
+        padding: 2px 16px 2px 0 !important; /* 右側に16pxパディング、左は0 */
         max-height: 120px !important;
         line-height: 1.15 !important;
         margin-top: 0 !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         flex-direction: column !important;
-        align-items: flex-start;
+        align-items: flex-end; /* 右寄せ */
         min-width: 120px;
         z-index: 99;
         height: auto;
@@ -388,7 +390,7 @@ body {
         font-size: 0.95rem !important;
         line-height: 1.15 !important;
         width: 100%;
-        text-align: left;
+        text-align: right; /* 右寄せ */
         border-radius: 0;
         margin: 0;
     }
