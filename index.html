@@ -272,7 +272,7 @@
       つまり、画面幅が広くなるほど余白が大きくなる設計
     -->
     <div
-      class="main-container-fix mx-auto max-w-8xl px-4 sm:px-8 md:px-16 lg:px-24 xl:px-72 pt-16 pb-[4vh] sm:pb-[4vh] md:pb-[4vh] lg:pb-[4vh] xl:pb-[8vh] [@media(min-width:1600px)]:pb-[8vh]"
+      class="main-container-fix mx-auto max-w-8xl px-4 sm:px-8 md:px-16 lg:px-24 xl:px-72 pt-16 pb-[4vh] sm:pb-[4vh] md:pb-[4vh] lg:pb-[4vh] xl:pb-[0h] [@media(min-width:1900px)]:pb-[1vh]"
       style="background-color: #FEFAEF; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
 
       <!-- titleの描画とアニメーション定義 -->
@@ -383,11 +383,38 @@
       <!-- ぼかしをカードより上に表示するため、WORKSセクションの外に移動 -->
       <div class="global-blur-bg" aria-hidden="true" style="position:fixed; inset:0; pointer-events:none; z-index:10;">
         <div
-          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100vh; filter:blur(12rem); background:#81c7d7">
+          class="global-blur-left"
+          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100vh; background:#81c7d7;">
         </div>
         <div
-          style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100vh; filter:blur(12rem); background:#83c2ce">
+          class="global-blur-right"
+          style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100vh; background:#83c2ce;">
         </div>
+        <style>
+          /* 画面幅に応じてblurの大きさを可変にする */
+          .global-blur-left,
+          .global-blur-right {
+            filter: blur(10rem);
+          }
+          @media (max-width: 1200px) {
+            .global-blur-left,
+            .global-blur-right {
+              filter: blur(3rem);
+            }
+          }
+          @media (max-width: 800px) {
+            .global-blur-left,
+            .global-blur-right {
+              filter: blur(2rem);
+            }
+          }
+          @media (max-width: 500px) {
+            .global-blur-left,
+            .global-blur-right {
+              filter: blur(1rem);
+            }
+          }
+        </style>
       </div>
       <section id="works">
         <section class="horizontal-section mx-auto max-w-none pt-16 md:pt-16" style="position: relative; z-index: 1;">
@@ -415,15 +442,15 @@
           <div class="w-full md:w-1/2">
             <!-- PC: 常時表示, モバイル: アコーディオン -->
             <div class="block md:hidden">
-              <div class="flex justify-end mb-0">
+              <div class="flex justify-start mb-0">
                 <button id="contactAccordionBtn" type="button"
-                  class="flex items-center gap-1 px-3 py-2 bg-[#81c7d7] text-[#111827] rounded-full border-none focus:outline-none text-xs z-[20] shadow-sm"
-                  style="min-width:auto; width:auto; font-size:0.95rem; line-height:1.2; position:relative;"
+                  class="flex items-center gap-1 px-3 py-2 bg-[#81c7d7]/10 text-[#111827]/60 border-none focus:outline-none text-xs z-[20] shadow-sm"
+                  style="min-width:auto; width:auto; font-size:0.95rem; line-height:1.2; position:relative; border-radius:0;"
                   aria-expanded="false" aria-controls="contactAccordionBody">
-                  <svg id="contactAccordionIcon" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                  <!-- アイコン（下向き矢印）を追加 -->
+                  <svg id="contactAccordionIcon" class="ml-1 transition-transform duration-300" width="16" height="16" viewBox="0 0 20 20" fill="none">
+                    <path d="M6 8l4 4 4-4" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                  <span class="whitespace-nowrap"></span>
                 </button>
               </div>
               <div id="contactAccordionBody" class="overflow-hidden transition-all duration-300 max-h-0" style="will-change: max-height;">
@@ -472,64 +499,116 @@
                   body.style.maxHeight = '0';
                   btn.setAttribute('aria-expanded', 'false');
                   icon.style.transform = 'rotate(0deg)';
+                } else if (btn && body) {
+                  // アイコンが無い場合でもアコーディオンは動作させる
+                  btn.style.zIndex = 20;
+                  btn.style.position = "relative";
+                  btn.addEventListener('click', function () {
+                    const expanded = btn.getAttribute('aria-expanded') === 'true';
+                    btn.setAttribute('aria-expanded', !expanded);
+                    if (!expanded) {
+                      body.style.maxHeight = body.scrollHeight + 'px';
+                    } else {
+                      body.style.maxHeight = '0';
+                    }
+                  });
+                  body.style.maxHeight = '0';
+                  btn.setAttribute('aria-expanded', 'false');
                 }
               })();
             </script>
           </div>
 
           <!-- フォーム部分 -->
-          <form id="contactForm" class="grid gap-3 w-full md:w-1/2 " method="POST"
-            action="https://formspree.io/f/xzzayorb" autocomplete="on">
+          <form id="contactForm"
+            class="grid gap-4 max-w-[560px] w-full mt-0
+                   md:max-w-none md:w-1/2 md:gap-4"
+            method="POST"
+            action="https://formspree.io/f/xzzayorb"
+            autocomplete="on">
             <!-- 会社名（任意） -->
             <div>
               <label for="company" class="block text-sm font-medium text-[#111827] mb-1">ご所属</label>
               <input id="company" name="company"
-                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="会社名/学校名"
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                placeholder="会社名/学校名"
                 autocomplete="organization" />
             </div>
-            <!-- 姓 -->
-            <div class="flex gap-3">
-              <div class="w-1/2">
-                <label for="lastName" class="block text-sm font-medium text-[#111827] mb-1">姓 <span
-                    class="text-red-500">*</span></label>
-                <input id="lastName" name="lastName"
-                  class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="姓" required
-                  autocomplete="family-name" />
-              </div>
-              <div class="w-1/2">
-                <label for="firstName" class="block text-sm font-medium text-[#111827] mb-1">名 <span
-                    class="text-red-500">*</span></label>
-                <input id="firstName" name="firstName"
-                  class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="名" required
-                  autocomplete="given-name" />
+            <!-- 姓・名（小画面:1行, md以上:2行） -->
+            <div class="flex flex-col gap-3">
+              <!-- 1行目: 姓・名 -->
+              <div class="flex flex-row gap-3 md:flex-col md:gap-3">
+                <div class="w-1/2 md:w-full">
+                  <label for="lastName" class="block text-sm font-medium text-[#111827] mb-1">姓 <span class="text-red-500">*</span></label>
+                  <input id="lastName" name="lastName"
+                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                    placeholder="姓" required autocomplete="family-name" />
+                </div>
+                <div class="w-1/2 md:w-full">
+                  <label for="firstName" class="block text-sm font-medium text-[#111827] mb-1">名 <span class="text-red-500">*</span></label>
+                  <input id="firstName" name="firstName"
+                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                    placeholder="名" required autocomplete="given-name" />
+                </div>
               </div>
             </div>
+            <style>
+              /* 1900px以上で姓名を縦並びにし、各項目の余白を統一 */
+              @media (min-width: 1900px) {
+                #contactForm .flex.flex-row.gap-3 {
+                  flex-direction: column !important;
+                  gap: 3px !important;
+                }
+                #contactForm .flex.flex-row.gap-3 > div {
+                  width: 100% !important;
+                }
+              }
+              /* md以上で姓名を縦並びにし、gapを調整 */
+              @media (min-width: 768px) {
+                #contactForm .flex.flex-row.gap-3 {
+                  flex-direction: column;
+                  gap: 16px;
+                }
+                #contactForm .flex.flex-row.gap-3 > div {
+                  width: 100%;
+                }
+              }
+              /* 小画面では横並び */
+              @media (max-width: 1900px) {
+                #contactForm .flex.flex-row.gap-3 {
+                  flex-direction: row;
+                  gap: 12px;
+                }
+                #contactForm .flex.flex-row.gap-3 > div {
+                  width: 50%;
+                }
+              }
+            </style>
             <!-- メールアドレス -->
             <div>
-              <label for="email" class="block text-sm font-medium text-[#111827] mb-1">メールアドレス <span
-                  class="text-red-500">*</span></label>
+              <label for="email" class="block text-sm font-medium text-[#111827] mb-1">メールアドレス <span class="text-red-500">*</span></label>
               <input id="email" name="email" type="email"
-                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="your@email.com"
-                required autocomplete="email" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                placeholder="your@email.com" required autocomplete="email"
+                pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
                 oninput="this.setCustomValidity(this.validity.patternMismatch ? '正しいメールアドレスを入力してください' : '');" />
             </div>
             <!-- 件名 -->
             <div>
-              <label for="msgSubject" class="block text-sm font-medium text-[#111827] mb-1">件名 <span
-                  class="text-red-500">*</span></label>
+              <label for="msgSubject" class="block text-sm font-medium text-[#111827] mb-1">件名 <span class="text-red-500">*</span></label>
               <input id="msgSubject" name="subject"
-                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full" placeholder="件名" required />
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                placeholder="件名" required />
             </div>
             <!-- お問い合わせ内容 -->
             <div>
-              <label for="msgBody" class="block text-sm font-medium text-[#111827] mb-1">お問い合わせ内容 <span
-                  class="text-red-500">*</span></label>
+              <label for="msgBody" class="block text-sm font-medium text-[#111827] mb-1">お問い合わせ内容 <span class="text-red-500">*</span></label>
               <textarea id="msgBody" name="message"
-                class="rounded-0 border px-3 py-3 min-h-[200px] h-[200px] md:min-h-[160px] md:h-[160px] bg-white/70 dark:bg-zinc-950/60 w-full resize-vertical"
+                class="rounded-0 border px-3 py-3 min-h-[120px] md:min-h-[160px] bg-white/70 dark:bg-zinc-950/60 w-full resize-vertical"
                 placeholder="お問い合わせ内容" required></textarea>
             </div>
             <button id="sendBtn"
-              class="justify-self-end rounded-2xl bg-brand px-6 py-3 text-white font-bold shadow-glow disabled:opacity-500 disabled:cursor-not-allowed hover:bg-brand/90 transition-colors"
+              class="justify-self-end rounded-2xl bg-brand px-6 py-3 text-white font-bold shadow-glow disabled:opacity-50 disabled:cursor-not-allowed hover:bg-brand/90 transition-colors"
               type="submit" disabled style="margin-left:auto;">送信</button>
           </form>
         </div>
