@@ -262,15 +262,17 @@
     <!-- 
       このdivのクラス属性で上下のパディング（pt:padding-top, pb:padding-bottom）を調整している
 
-      pt-[8px] pb-[8px]           : 基本（モバイル～小画面）で上下に8pxのパディング
-      sm:pt-[16px] sm:pb-[16px]   : 画面幅が"sm"（640px以上）のとき上下16pxのパディングに上書き
-      md:pt-[32px] md:pb-[32px]   : 画面幅が"md"（768px以上）のとき上下32pxのパディングに上書き
-      lg:pt-[72px] lg:pb-[72px]   : 画面幅が"lg"（1024px以上）のとき上下72pxのパディングに上書き
+      pt-[8vh] pb-[8vh]             : 基本（モバイル～小画面）で上下に「画面の高さの8%」のパディング
+      sm:pt-[10vh] sm:pb-[10vh]     : 画面幅が"sm"（640px以上）のとき上下に「画面の高さの10%」のパディングに上書き
+      md:pt-[12vh] md:pb-[12vh]     : 画面幅が"md"（768px以上）のとき上下に「画面の高さの12%」のパディングに上書き
+      lg:pt-[14vh] lg:pb-[14vh]     : 画面幅が"lg"（1024px以上）のとき上下に「画面の高さの14%」のパディングに上書き
+      xl:pt-[16vh] xl:pb-[16vh]     : 画面幅が"xl"（1280px以上）のとき上下に「画面の高さの16%」のパディングに上書き
+      [@media(min-width:1600px)]:pt-[18vh] [@media(min-width:1600px)]:pb-[18vh] : 画面幅が1600px以上のとき上下に「画面の高さの18%」のパディングに上書き
 
       つまり、画面幅が広くなるほど余白が大きくなる設計
     -->
     <div
-      class="main-container-fix mx-auto max-w-8xl px-4 sm:px-8 md:px-16 lg:px-24 xl:px-72 pt-[8px] pb-[8px] sm:pt-[24px] sm:pb-[8px] md:pt-[48px] md:pb-[24px] xl:pt-[80px] xl:pb-[80px]"
+      class="main-container-fix mx-auto max-w-8xl px-4 sm:px-8 md:px-16 lg:px-24 xl:px-72 pt-16 pb-[4vh] sm:pb-[4vh] md:pb-[4vh] lg:pb-[4vh] xl:pb-[8vh] [@media(min-width:1600px)]:pb-[8vh]"
       style="background-color: #FEFAEF; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
 
       <!-- titleの描画とアニメーション定義 -->
