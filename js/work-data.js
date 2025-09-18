@@ -16,12 +16,16 @@
         return url; // 通常のURLはそのまま返す
     }
 
-    const img = (src, alt = "", ratio = "16/9") => ({
+    // img: 画像にリンクを埋め込めるように link パラメータを追加
+    // 例: img(src, alt, ratio, link)
+    const img = (src, alt = "", ratio = "16/9", link = null) => ({
         type: "img",
         src: toDriveDirectLink(src),
         alt,
         ratio,
+        link,
     });
+
     const secImg = (title, ...images) => ({ type: "gallery", title, images });
     const video = (src, poster = "", ratio = "16/9") => ({ type: "video", src, poster, ratio });
     const ul = (items) => ({ type: "ul", items });            // 箇条書き
@@ -38,12 +42,11 @@
     window.works = [
         {
             slug: "syusikennkyu-3", // 目の身体性について
-            title: "《みる目/みせる目/みられる目》",
+            title: "みる目/みせる目/みられる目",
             year: "2025",
             tags: ["修士研究", "ワークショップ", "iOSアプリ"],
             cover: toDriveDirectLink("https://drive.google.com/file/d/1aYsoJG-ZOdz5V1NbbQE7lLi9knfI-oLV/view?usp=sharing"),
             summary: "",
-            period: "2025",
             body: [
                 // ここから画像専用
                 secImg("",
@@ -52,15 +55,18 @@
                 sec("概要",
                     p("《みる目／みせる目／みられる目》は、コロナ禍以降の「見る」を中心としたメディア環境に対抗して、目が持つ“感情や意思を伝える力”を再発見する体験型のワークショップです。参加者は、目の動きでバネを縮めたり岩を持ち上げたりするゲームに挑戦し、自分の目の動きが生む印象を映像で振り返る。最後に「目を使うこと」の意味を考え、目が視覚だけでなく表情・コミュニケーションの重要な要素であることに気づくことを目指す。"),
                 ),
-                sec("流れ",
+                sec("ながれ",
+                    youtube("https://youtu.be/pVhLlvxYfu8"),
                     p("1.アイスブレイク"),
-                    p("動体視力を使った自己紹介ゲーム「バードウォッチングゲーム」にチャレンジ！"),
+                    p("　動体視力を使った自己紹介ゲーム「バードウォッチングゲーム」にチャレンジ！"),
                     p("2.メインゲーム（全3種類）"),
-                    p("“念力”を試す3つのゲームにチャレンジ！"),
+                    p("　“念力”を試す3つのゲームにチャレンジ！"),
                     p("3.リフレクション"),
-                    p("自分の体験映像を見返し、表情から読み取れる印象を選ぶ。"),
+                    p("　自分の体験映像を見返し、その表情から読み取れる印象を考える"),
                     p("4.ラップアップ"),
-                    p("“念力”って何だろう？を考える。/ ワークショップの総括。"),
+                    p("　“念力”って何だろう？を考える。/ ワークショップの総括"),
+                    p("　　　"),
+                    p("本ワークショップは、オリジナルのiOSアプリケーションでの体験が中心になる。アプリケーションは、「バードウォッチングゲーム」「メインゲーム (全3種）」、「メインゲームの振り返り」の全3パートに分かれている。"),
                 ),
                 sec("問い / 問題意識",
                     p("「目」には、少なくとも以下の3つの側面があると考える。"),
@@ -73,10 +79,6 @@
                 ),
                 sec("目的",
                     p("目を意識的に動かす体験を通して、現代社会において希薄化しつつある「見せる目」「見られる目」への意識を活性化させること。")
-                ),
-                sec("アプリケーション",
-                    youtube("https://youtu.be/pVhLlvxYfu8"),
-                    p("アプリケーションは、「バードウォッチングゲーム」「メインゲーム (全3種）」、「メインゲームの振り返り」の全3パートに分かれている。")
                 ),
                 sec("ベストショット集",
                     img("https://drive.google.com/file/d/179NXrK17mBwrNnmEbMh0LY_zWspeTX3W/view?usp=sharing", "画像", "16/9"),
@@ -103,14 +105,13 @@
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1SUrosEoXyN-X47j-qiHH5pEi6Sxvxzs6/view?usp=sharing"),
             summary: "",
-            period: "2025",
             body: [
                 // ここから画像専用
                 sec("",
                     youtube("https://youtu.be/IPXictFjRAM?si=XbtM-9ZBw2SfjPFL", "4/3"),
                 ),
                 sec("概要",
-                    p("2025年5月5日、スイトピアセンターで開催された「スイトピアテラス」にて、《め遊び -目でモノに触ったり、気持ちを伝えたり、いろいろな目の使い方にチャレンジしよう！- 》を実施。 当日は、老若男女さまざまな方々に《め触り》を体験して頂いた。"),
+                    p("2025年5月5日、大垣市スイトピアセンターで開催された「スイトピアテラス」にて、《め遊び -目でモノに触ったり、気持ちを伝えたり、いろいろな目の使い方にチャレンジしよう！- 》を実施。 当日は、老若男女さまざまな方々に《め触り》を体験して頂いた。"),
                 ),
                 sec("《め触り》について",
                     youtube("https://youtu.be/UoMuOlyS8-c"),
@@ -123,7 +124,7 @@
                 ),
                 sec("関連",
                     ul([
-                        { text: "スイトピア", href: "https://www2.og-bunka.or.jp/" },
+                        { text: "大垣市スイトピアセンター", href: "https://www2.og-bunka.or.jp/" },
                         { text: "疑似触覚", href: "https://www.jstage.jst.go.jp/article/isciesci/61/11/61_447/_pdf/-char/ja" }
                     ])
                 )
@@ -137,7 +138,6 @@
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1s9Q58Q0-wyxCK5ppN7SHriCV2iFyTADI/view?usp=sharing"),
             summary: "",
-            period: "2025",
             body: [
                 // ここから画像専用
                 sec("",
@@ -172,17 +172,16 @@
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1rNQI0kzh4QPWD44srstxefkF4qbpp4ec/view?usp=sharing"),
             summary: "",
-            period: "2025",
             body: [
                 // ここから画像専用
                 sec("",
                     youtube("https://youtu.be/Yd-4rUGkX4A")
                 ),
                 sec("概要",
-                    p("この作品では、そうした水中の音環境を、アクティブノイズキャンセリング(ANC)イヤフォンを使って再現します。ANCは、イヤフォンで音楽を聴くときに周囲の騒音を打ち消す技術です。本作品では、そのノイズキャンセリングの強さを調整できるようにし、水中と陸上の聞こえ方の違いを再現します。"),
-                    p("さらに、胸付近にあたる布による触覚提示を同期させることで、水中にいるような感覚をより強調します。"),
-                    p("これにより、音と触覚の変化によって、陸上と水中の間を行き来する体験を作り出します。")
-
+                    p("誰もが一度は海や川、プールなどで水中に潜り、水中と陸上との音の乖離を経験したことがあるのではないだろうか。それは、音が、空気よりも密度の高い水を伝達することで、陸上の全ての音が遠くに聞こえ、普段とは異なる音の聞こえ方になるためである。"),
+                    p("　　　"),
+                    p("この作品では、そうした水中の音環境を、アクティブノイズキャンセリング(ANC)イヤフォンを使って再現する。ANCは、イヤフォンで音楽を聴くときに周囲の騒音を打ち消す技術であり、本作品では、そのノイズキャンセリングの強さを調整できるようにし、水中と陸上の聞こえ方の違いを再現した。"),
+                    p("さらに、胸付近にあたる布による触覚提示を同期させることで、水中にいるような感覚をより強調することで、音と触覚の変化によって、陸上と水中の間を行き来する体験を作り出した。")
                 ),
                 sec("関連",
                     ul([
@@ -198,13 +197,12 @@
         {
             slug: "ivrc2024-seed",
             title: "耳研澄製造工場 -IVRC2024SEEDSTAGE-",
-            year: "2025",
+            year: "2024",
             tags: ["作品", "研究", "装置"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/15BX6HCzQ38B8JfMaL9f-YLkYQLyfu3Kg/view?usp=drive_link"),
             summary: "",
             role: ["研究", "設計"],
-            period: "2025",
             body: [
                 // ここから画像専用
                 sec("",
@@ -213,9 +211,9 @@
                 sec("概要",
                     p("誰もが一度は海や川、プールなどで水中に潜り、水中と陸上との音の乖離を経験したことがあるのではないだろうか。それは、音が、空気よりも密度の高い水を伝達することで、陸上の全ての音が遠くに聞こえ、普段とは異なる音の聞こえ方になるためである。"),
                     p("　　　"),
-                    p("本作品では、アクティブノイズキャンセリング（ANC）イヤフォンを使い、実際には存在しない「水中」を体験させます。ANCは本来、周囲の騒音を打ち消すために使われますが、この作品ではON/OFFを切り替えることで、水中と陸上の聞こえ方の違いを再現します。"),
+                    p("本作品では、アクティブノイズキャンセリング（ANC）イヤフォンを使い、実際には存在しない「水中」を再現した。ANCは本来、周囲の騒音を打ち消すために使われるが、この作品ではON/OFFを切り替えることで、水中と陸上の聞こえ方の違いを再現する。"),
                     p("　　　"),
-                    p("空間の中でしゃがむと音が遠のき、立ち上がると鮮明に聞こえる。水の音を流していなくても、ノイズキャンセリングによる静寂がまるで鼓膜にかかる水圧のように感じられます。まるで水中に潜ったかのような感覚を立ち上げ、現実には存在しない水中世界へと体験者を導きます。"),
+                    p("空間の中でしゃがむと音が遠のき、立ち上がると鮮明に聞こえる。水の音を流していなくても、ノイズキャンセリングによる静寂がまるで鼓膜にかかる水圧のように感じられる。まるで水中に潜ったかのような感覚を立ち上げ、現実には存在しない水中世界へと体験者を導く。"),
 
                 ),
                 sec("システム",
@@ -246,14 +244,14 @@
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1w0sE5A-m7ezZz0k5iqcT1qayjJ_Snwif/view?usp=drive_link"),
             summary: "",
-            period: "2024",
             body: [
                 // ここから画像専用
                 sec("",
-                    img("https://drive.google.com/file/d/1w0sE5A-m7ezZz0k5iqcT1qayjJ_Snwif/view?usp=drive_link", "画像", "16/9")
+                    img("https://drive.google.com/file/d/1w0sE5A-m7ezZz0k5iqcT1qayjJ_Snwif/view?usp=drive_link", "画像", "16/9", "https://nxpclab.info/vol.69/")
                 ),
-                sec("概要",
-                    p("NxPC.Lab （新次元多層メディア的クラブ体験研究室）のライブvol.69のウェブサイトの実装を担当しました。"),
+                sec("",
+                    p("　　　"),
+                    p("NxPC.Lab （新次元多層メディア的クラブ体験研究室）のライブvol.69のウェブサイトの実装部分を担当しました。"),
                 ),
                 sec("ウェブサイト",
                     ul([
@@ -274,7 +272,6 @@
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1CDRAif-akHv_xQv9xYoHURqCHwlIxQer/view?usp=sharing"),
             summary: "",
-            period: "2025",
             body: [
                 // ここから画像専用
                 sec("",
@@ -301,11 +298,10 @@
             slug: "soturon",
             title: "鍛冶屋町妖怪祭り2023",
             year: "2023",
-            tags: ["作品", "卒業研究"],
+            tags: ["研究"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/10wa_FsPwPQhq0sEtdUsLEF02m7PQ2ssF/view?usp=sharing"),
             summary: "",
-            period: "2025",
             body: [
                 // ここから画像専用
                 sec("",
@@ -342,7 +338,7 @@
             slug: "dousyokubutuen",
             title: "観察力と表現力の向上を目的としたKinectによる動物動作のものまねシステム",
             year: "2022",
-            tags: ["作品", "研究"],
+            tags: ["研究"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1QpBfbi2wXTeEryYJMxZ3IFtnshFIrocD/view?usp=sharing"),
             summary: "",
@@ -373,78 +369,68 @@
             slug: "pantagurahu",
             title: "パンタグラフ 美術ワークショップ 「光の雨アニメーション」",
             year: "2025",
-            tags: ["撮影","動画編集"],
+            tags: ["撮影", "動画編集"],
             cover:
                 toDriveDirectLink("https://drive.google.com/file/d/1Mjg4a9EYKcwRjoIRxhyQcvsL90OL0f2F/view?usp=sharing"),
             summary: "",
-            period: "2025",
             body: [
                 // ここから画像専用
                 sec("",
                     youtube("https://www.youtube.com/watch?v=YrRA9ISHKZ8", "", "16/9"),
                 ),
-                sec("概要",
-                    p("準備中です💦"),
+                sec("",
+                    p("大垣市スイトピアセンターで行われた美術ワークショップ「光の雨アニメーション」の撮影と映像編集を担当しました。"),
+                ),
+
+                sec("関連",
+                    ul([
+                        { text: "大垣市スイトピアセンター", href: "https://www2.og-bunka.or.jp/index.html" }
+                    ])
                 )
             ]
         },
         {
-            slug: "test-more-2025-b",
-            title: "準備中です💦",
+            slug: "MagicLanternformeetingKumamushiagain",
+            title: "Magic Lantern for meeting Kumamushi again",
             year: "2025",
-            tags: [],
+            tags: ["Fusion360"],
             cover:
-                toDriveDirectLink(""),
+                toDriveDirectLink("https://drive.google.com/file/d/1Tqp2LPlnoDlug5VQRj5vDxiGYAIhDtCv/view?usp=sharing"),
             summary: "",
             role: ["研究", "設計"],
-            period: "2025",
             body: [
                 // ここから画像専用
-                secImg("",
-                    img("", "画像", "16/9")
+                sec("",
+                    youtube("https://youtu.be/yP9fGDgol_0")
                 ),
-                sec("概要",
-                    p("準備中です💦"),
 
+                sec("Magic Lantern for meeting Kumamushi again 大橋美月 (2025)",
+                    p("生物学における「生命の定義」にエネルギーや物質の代謝があることが項目に含まれているなかで、微生物クマムシは乾燥などの厳しい環境に対して「クリプトビオシス」という無代謝状態で生き延びることができる。つまり、代謝がなくなった時、彼らは生き物で在りながら生きていない。 そんな不思議な微生物クマムシに、近代科学の技術と珍奇な見世物とが融合している視覚装置「マジックランタン」において光を投影し、「映画のアニミズム」という観点から、生命観の揺らぎについて問いかける。"),
                 ),
-                sec("目的",
-                    p("準備中です💦"),
+                sec("協力",
+                    p("3Dモデリングの修正と変換 / 3Dプリント / 幻灯機機構")
                 ),
-                sec("プロセス",
-                    ul(["準備中です💦"])
-                ),
-                sec("結果・考察",
-                    p("準備中です💦")
-                )
             ]
         },
         {
-            slug: "test-2021-hci",
-            title: "準備中です💦",
-            year: "2021",
-            tags: [],
+            slug: "PhonoscapeProject",
+            title: "Phonoscape Project",
+            year: "2024",
+            tags: ["実装", "iOSアプリケーション"],
             cover:
-                toDriveDirectLink(""),
+                toDriveDirectLink("https://drive.google.com/file/d/1xTal37S6frfS0bUrQNdLLrJX6iR4jJxd/view?usp=sharing"),
             summary: "",
             role: ["研究", "設計"],
-            period: "2025",
             body: [
                 // ここから画像専用
                 secImg("",
-                    img("", "画像", "16/9")
+                    img("https://drive.google.com/file/d/1xTal37S6frfS0bUrQNdLLrJX6iR4jJxd/view?usp=sharing", "画像", "16/9"),
+                    img("https://drive.google.com/file/d/1994-eZizwiG9J46_t_XFz_3u1azkLd4z/view?usp=sharing", "画像", "16/9"),
+                    img("https://drive.google.com/file/d/1Iu7OXSTf9CjlS3PlU47UFoizXHXzNL2i/view?usp=sharing", "画像", "16/9")
                 ),
-                sec("概要",
-                    p("準備中です💦"),
-
-                ),
-                sec("目的",
-                    p("準備中です💦"),
-                ),
-                sec("プロセス",
-                    ul(["準備中です💦"])
-                ),
-                sec("結果・考察",
-                    p("準備中です💦")
+                sec("",
+                    p("　　　"),
+                    p("FabCafe Kyotoにて行われたワークショップで使用するiOSアプリケーションの実装部分を担当しました。")
                 )
             ]
         }
