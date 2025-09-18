@@ -1,9 +1,8 @@
 // js/work-data.js
 // 一覧ページは `works/worksMore` を参照、詳細は `window.works/window.worksMore` も参照可。
-// ←このファイルだけで小見出しと本文を編集できるよう、ヘルパーを用意。
 
 (function () {
-    // ---- 本文ヘルパー（編集がラクになります） --------------------------
+    // ---- 本文ヘルパー--------------------------
     const sec = (title, ...content) => ({ type: "section", title, content });   // 小見出しセクション
     const p = (text) => ({ type: "p", text });             // 段落
     //const img = (src, alt = "", ratio = "16/9") => ({ type: "img", src, alt, ratio }); // 画像（比率可）
@@ -35,9 +34,6 @@
 
         return { type: "youtube", id: videoId, ratio };
     };
-    // 体験の流れを表現できるconst
-    // 例: [{ step: "受付", description: "会場で受付を済ませます" }, ...]
-    const flow = (...steps) => steps.map(([step, description]) => ({ step, description }));
     // ===== Works =====
     window.works = [
         {
