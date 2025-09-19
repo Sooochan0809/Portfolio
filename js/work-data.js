@@ -96,7 +96,7 @@
         },
         {
             slug: "syusikennkyu-2", // め遊びプロジェクト
-            title: "め遊び inスイトピアテラス",
+            title: "め遊び in大垣市スイトピアセンター",
             year: "2025",
             tags: ["ワークショップ", "体験"],
             cover:
