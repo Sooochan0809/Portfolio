@@ -34,7 +34,7 @@ export const data = {
   research: [
     {
       date: "2025.4",
-      title: "福祉の視点　─福祉の技術プロジェクト─",
+      title: "福祉の視点 ─福祉の技術プロジェクト─",
       venue: "情報科学芸術大学院大学紀要",
       href: "https://iamas.repo.nii.ac.jp/records/2000462"
     },
