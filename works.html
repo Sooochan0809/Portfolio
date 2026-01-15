@@ -170,7 +170,7 @@
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
-            animation: hintFloat 1.8s ease-in-out infinite;
+            animation: hintFloat 5s ease-in-out infinite;
         }
 
         .scroll-hint-text {
@@ -191,10 +191,17 @@
                 transform: translateY(0);
             }
 
-            50% {
-                transform: translateY(1rem);
+            /* 上で待機 */
+            20% {
+                transform: translateY(1.5rem);
             }
 
+            /* 下へ */
+            50% {
+                transform: translateY(0);
+            }
+
+            /* 上へ戻る */
             100% {
                 transform: translateY(0);
             }
