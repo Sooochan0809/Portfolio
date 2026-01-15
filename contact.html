@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- OGP設定 -->
+    <meta property="og:title" content="城戸 双汰朗/KidoSotaro">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sooochan0809.github.io/test/">
+    <meta property="og:image" content="img/ogp.webp">
+    <meta property="og:site_name" content="城戸双汰朗">
+    <meta property="og:description" content="城戸 双汰朗(きど そうたろう)のポートフォリオサイトです。">
+    <meta property="og:locale" content="ja">
+    <!-- ここまで -->
+    <link rel="icon" type="image/svg+xml" href="img/logo-favicon.svg">
+    <title>城戸双汰朗</title>
+    <link rel="stylesheet" href="common.css" />
+
+    <style>
+        /* 共通のスタイル */
+
+        .section {
+            height: 100vh;
+            scroll-snap-align: start;
+            display: grid;
+            place-items: center;
+            scroll-snap-stop: always;
+        }
+
+        .main-content-space {
+            position: relative;
+            width: 660px;
+            height: 480px;
+            top: 24px;
+        }
+
+        .main-content-space {
+            display: flex;
+            top: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-block {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .contact-sub-text {
+            margin-bottom: 16px;
+            font-size: 1rem;
+            font-weight: 200;
+        }
+
+        .contact-button {
+            width: 100%;
+            height: 40px;
+            margin-top: 16px;
+
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            border-radius: 32px;
+            text-decoration: none;
+            color: var(--sub);
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid var(--sub);
+
+            display: grid;
+            place-items: center;
+
+            flex-shrink: 0;
+        }
+
+        /* 中のアイコン（マスクで抜く） */
+        .contact-icon::before {
+            content: "";
+            width: 55%;
+            height: 55%;
+            background: var(--sub);
+
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: contain;
+        }
+
+        /* それぞれのSVGを割り当て */
+        .contact-icon.icon-insta::before {
+            mask-image: url("img/icon-instagram.svg");
+        }
+
+        .contact-icon.icon-email::before {
+            mask-image: url("img/icon-email.svg");
+        }
+
+        .contact-icon.icon-tell::before {
+            mask-image: url("img/icon-tell.svg");
+        }
+
+        .contact-link-text {
+            display: inline-flex;
+            align-items: center;
+            font-size: 1rem;
+            line-height: 1;
+            white-space: nowrap;
+            text-decoration: underline;
+            text-underline-position: under;
+        }
+
+        @media (max-width:696px) {
+
+            .main-content-space {
+                width: 95vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-overlay" id="loading">
+        <div class="loading-logo svg anim-spin"></div>
+    </div>
+    <main>
+        <header>
+            <a class="header-logo-container transition" href="index.html">
+                <img class="header-logo svg" />
+            </a>
+            <div class="header-menu-container">
+                <a class="header-menu-text transition" href="about.html">About</a>
+                <a class="header-menu-text transition" href="works.html">Works</a>
+                <a class="header-menu-text transition" href="contact.html">Contact</a>
+                <a class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+                <div class="hamburger-menu-overlay">
+                    <div class="hamburger-menu-text-container">
+                        <a class="hamburger-menu-text transition" href="index.html">Top</a>
+                        <a class="hamburger-menu-text transition" href="about.html">About</a>
+                        <a class="hamburger-menu-text transition" href="works.html">Works</a>
+                        <a class="hamburger-menu-text transition" href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="main-content-space">
+                <div class="contact-block">
+                    <a class="contact-button" href="mailto:skido24@iamas.ac.jp?subject=お問い合わせ&body=ご用件をご記入後、送信をお願いします。">
+                        <span class="contact-icon icon-email"></span>
+                        <span class="contact-link-text">
+                            skido24@iamas.ac.jp
+                        </span>
+                    </a>
+                    <a class="contact-button" href="tel:08027200933">
+                        <span class="contact-icon icon-tell"></span>
+                        <span class="contact-link-text">
+                            080-2720-0933
+                        </span>
+                    </a>
+                    <a class="contact-button" href="https://www.instagram.com/sooochan_0809/" target="_blank"
+                        rel="noopener">
+                        <span class="contact-icon icon-insta"></span>
+                        <span class="contact-link-text">
+                            sooochan_0809
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+<script src="js/loading.js" defer></script>
+<script src="js/transition.js" defer></script>
+<script src="js/hamburger-menu.js" defer></script>
+
+</html>

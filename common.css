@@ -1,0 +1,407 @@
+       /* 共通CSS */
+       :root {
+           --main: #133463;
+           --sub: #CFD6DF;
+           --accent: #0B1F3B;
+           --test: #ff000070;
+
+           --animation-duration: 1.5s;
+           --expandOut: 1.0s
+       }
+
+       body {
+           margin: 0;
+           font-family: "Zen Old Mincho", serif;
+           background: var(--main);
+           color: var(--sub);
+       }
+
+       h1 {
+           font-size: 3rem;
+           letter-spacing: 0.03em;
+           line-height: 1;
+       }
+
+       h2 {
+           font-size: 2rem;
+           line-height: 1;
+       }
+
+       h3 {
+           font-size: 1.5rem;
+           line-height: 1;
+       }
+
+       h4 {
+           font-size: 1.2rem;
+           line-height: 1;
+       }
+
+       p {
+           font-size: 0.9rem;
+           margin: 0;
+           letter-spacing: 0.03em;
+       }
+
+       a {
+           font-size: 1rem;
+           letter-spacing: 0.05rem;
+           color: var(--sub);
+           text-decoration: none;
+       }
+
+       /* svgの色を調整するために必要な記述を共通化 */
+       .svg {
+           aspect-ratio: 1 / 1;
+           mask-repeat: no-repeat;
+           mask-position: center;
+           mask-size: contain;
+       }
+
+       /* 回転アニメーション */
+       .anim-spin {
+           animation-timing-function: cubic-bezier(.9, -0.6, .25, 1.6);
+           animation-fill-mode: forwards;
+       }
+
+       /* ここまで */
+
+       /* ロード時のロゴアニメーション */
+       .loading-overlay {
+           position: fixed;
+           inset: 0;
+           display: grid;
+           place-items: center;
+           overflow: hidden;
+           background: #efefef;
+           z-index: 9999;
+       }
+
+       .loading-overlay::before {
+           content: "";
+           position: absolute;
+           inset: 0;
+           background: url("img/noise.svg") 50% 50% / 101px 101px repeat;
+           pointer-events: none;
+           z-index: 0;
+       }
+
+       .loading-logo {
+           position: relative;
+           z-index: 1;
+           width: min(160px, 20vw);
+           background-color: var(--main);
+           mask-image: url("img/logo-header.svg");
+
+           transform-origin: 50% 50%;
+           will-change: transform;
+       }
+
+       .is-rotating .loading-logo {
+           animation-name: spin-loading-logo;
+           animation-duration: var(--animation-duration);
+       }
+
+       /* 肥大化中も下を操作できるように */
+       .is-expanding {
+           pointer-events: none;
+       }
+
+       .is-expanding .loading-logo {
+           transform-origin: 36% 35%;
+           animation: expandOut var(--expandOut) cubic-bezier(.65, 0, .25, 1) forwards;
+       }
+
+       .is-expanding.loading-overlay {
+           animation: overlayFade 0.35s ease forwards;
+           /* expandOut が終わる 0.5 秒前に見せる */
+           animation-delay: 0.5s;
+       }
+
+       @keyframes overlayFade {
+           to {
+               opacity: 0;
+           }
+       }
+
+       @keyframes spin-loading-logo {
+           from {
+               transform: rotate(0deg) scale(1);
+           }
+
+           to {
+               transform: rotate(360deg) scale(1);
+           }
+       }
+
+       @keyframes expandOut {
+           from {
+               transform: rotate(360deg) scale(1);
+           }
+
+           to {
+               transform: rotate(360deg) scale(300);
+           }
+       }
+
+       @media (prefers-reduced-motion: reduce) {
+           .loading-overlay {
+               display: none;
+           }
+       }
+
+       /* ===== 以下、逆再生（遷移前）アニメーション ===== */
+       @keyframes overlayFadeIn {
+           from {
+               opacity: 0;
+           }
+
+           to {
+               opacity: 1;
+           }
+       }
+
+       /* 拡大(400) → 元(1) に戻す */
+       @keyframes collapseIn {
+           from {
+               transform: rotate(360deg) scale(300);
+           }
+
+           to {
+               transform: rotate(360deg) scale(1);
+           }
+       }
+
+       /* オーバーレイを再表示（フェードイン） */
+       .loading-overlay.is-reverse {
+           opacity: 0;
+           animation: overlayFadeIn 0.35s ease forwards;
+       }
+
+       /* 逆：縮小 */
+       .loading-overlay.is-collapsing .loading-logo {
+           transform-origin: 36% 35%;
+           animation: collapseIn 0.8s cubic-bezier(.65, 0, .25, 1) forwards;
+       }
+
+       /* ここまで */
+
+       /* ヘッダー内のスタイル */
+       .header-logo-container {
+           position: fixed;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           top: 0;
+           left: 0;
+           width: 110px;
+           height: 110px;
+           background-color: var(--accent);
+           z-index: 3;
+       }
+
+       .header-logo {
+           width: 70px;
+           height: auto;
+           background-color: var(--sub);
+           mask-image: url("img/logo-header.svg");
+
+           transform-origin: 50% 50%;
+           will-change: transform;
+       }
+
+       .header-logo.spin-cw {
+           animation-name: spinCW;
+           animation-duration: 1.2s;
+       }
+
+       .header-logo.spin-ccw {
+           animation-name: spinCCW;
+           animation-duration: 1.0s;
+       }
+
+       @keyframes spinCW {
+           from {
+               transform: rotate(0deg);
+           }
+
+           to {
+               transform: rotate(360deg);
+           }
+       }
+
+       @keyframes spinCCW {
+           from {
+               transform: rotate(0deg);
+           }
+
+           to {
+               transform: rotate(-360deg);
+           }
+       }
+
+       .header-menu-container {
+           position: fixed;
+           display: flex;
+           align-items: center;
+           justify-content: space-evenly;
+           top: 0;
+           right: 0;
+           width: 280px;
+           height: 80px;
+           z-index: 3;
+       }
+
+       .hamburger-menu,
+       .hamburger-menu-overlay,
+       .hamburger-menu-text-container,
+       .hamburger-menu-text {
+           display: none;
+       }
+
+       @media (max-width:768px) {
+
+           .header-logo-container,
+           .header-menu-container {
+               width: 60px;
+               height: 60px;
+           }
+
+           .header-logo {
+               width: 40px;
+           }
+
+           a.header-menu-text {
+               display: none;
+           }
+
+           .hamburger-menu {
+               /* wとhは×の交点を計算するときに使う */
+               --w: 28px;
+               --h: 20px;
+               --bar: 2.4px;
+
+               position: relative;
+               width: var(--w);
+               height: var(--h);
+               cursor: pointer;
+               z-index: 9999;
+
+               display: inline-block;
+               transition: all .5s;
+               box-sizing: border-box;
+           }
+
+           .hamburger-menu span {
+               position: absolute;
+               left: 0;
+               width: 100%;
+               border-radius: var(--bar);
+               height: var(--bar);
+               background-color: var(--sub);
+
+               display: inline-block;
+               transition: all .5s;
+               box-sizing: border-box;
+           }
+
+           .hamburger-menu span:nth-of-type(1) {
+               top: 0;
+           }
+
+           .hamburger-menu span:nth-of-type(2) {
+               top: 50%;
+               transform: translateY(-50%);
+           }
+
+           .hamburger-menu span:nth-of-type(3) {
+               bottom: 0;
+           }
+
+           .hamburger-menu.active {
+               -webkit-transform: rotate(360deg);
+               transform: rotate(360deg);
+           }
+
+           .hamburger-menu.active span:nth-of-type(1) {
+               transform: translateY(calc(var(--h) / 2 - var(--bar) / 2)) rotate(45deg);
+               background-color: var(--main);
+           }
+
+           .hamburger-menu.active span:nth-of-type(2) {
+               transform: translateY(-50%) rotate(-45deg);
+               background-color: var(--main);
+           }
+
+           .hamburger-menu.active span:nth-of-type(3) {
+               opacity: 0;
+               background-color: var(--main);
+           }
+
+           .hamburger-menu-overlay {
+               position: fixed;
+               inset: 0;
+               display: grid;
+               place-items: center;
+               overflow: hidden;
+               background: #efefef;
+               z-index: 100;
+               opacity: 0;
+               pointer-events: none;
+               clip-path: circle(0px at calc(100% - 32px) 32px);
+
+               transition:
+                   clip-path 1500ms cubic-bezier(.2, .9, .2, 1),
+                   opacity 1500ms ease;
+           }
+
+           .hamburger-menu-overlay::before {
+               content: "";
+               position: absolute;
+               inset: 0;
+               background: url("img/noise.svg") 50% 50% / 101px 101px repeat;
+               pointer-events: none;
+               z-index: 0;
+           }
+
+           .hamburger-menu-overlay.is-open {
+               opacity: 1;
+               pointer-events: auto;
+               clip-path: circle(150vmax at calc(100% - 32px) 32px);
+           }
+
+           .hamburger-menu-text-container {
+               position: relative;
+               z-index: 100;
+               display: flex;
+               flex-direction: column;
+               justify-content: center;
+               align-items: center;
+               gap: 24px;
+               width: 300px;
+               height: 300px;
+           }
+
+           a.hamburger-menu-text {
+               display: flex;
+               font-size: 2rem;
+               color: var(--main);
+               text-decoration: none;
+               letter-spacing: 0.05rem;
+           }
+       }
+
+       .back-button {
+           width: 90px;
+           height: 40px;
+           border-radius: 32px;
+           background-color: var(--accent);
+
+           display: flex;
+           justify-content: center;
+           align-items: center;
+
+           font-size: 1rem;
+           color: var(--sub);
+           text-decoration: none;
+       }

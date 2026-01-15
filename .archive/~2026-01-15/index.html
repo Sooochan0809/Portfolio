@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>城戸双汰朗|ポートフォリオ</title>
+  <meta name="description" content="kido sotaro" />
+
+  <!-- 検索ヒット関連 -->
+  <meta name="google-site-verification" content="sjE2RcUhpD_eqe9iAfIVKHvzOTge6NhxvWVJQGBf2ss" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KX16JC13WL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-KX16JC13WL');
+  </script>
+
+  <!-- スクロールバー消し -->
+  <style>
+    body {
+      overflow: hidden;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      display: none;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+
+  <script>
+    // 初期ロード時PCもしくはモバイル端末以外は、別サイトに飛ぶ
+    (function () {
+      const ua = navigator.userAgent || "";
+      const vendor = navigator.vendor || "";
+      const uaData = navigator.userAgentData;
+
+      // デバイス判定（iPadOSの"Mac"偽装もケア）
+      function isDesktop() {
+        if (uaData && "mobile" in uaData) {
+          if (uaData.mobile) return false;
+        }
+        const isIPadOS = navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+        const isMobileLike = /(Mobi|Android|iPhone|iPad|iPod|Tablet)/i.test(ua);
+        return !(isMobileLike || isIPadOS);
+      }
+
+      // Chrome（Google製）判定。Edge/Opera/Brave等のChromium系は除外。
+      function isGoogleChromeisEdge() {
+        const isEdge = ua.includes("Edg/");
+        const isOpera = ua.includes("OPR/") || ua.includes("Opera");
+        const isSamsung = ua.includes("SamsungBrowser");
+        const isDuck = ua.includes("DuckDuckGo");
+        const isYandex = ua.includes("YaBrowser");
+        const isVivaldi = ua.includes("Vivaldi");
+        const isBrave = ua.includes("Brave");
+
+        const hasChromeToken = /Chrome\//.test(ua) || /CriOS\//.test(ua); // iOS ChromeはCriOS
+        const isGoogleVendor = vendor === "Google Inc."; // 多くのChromeで"Google Inc."
+
+        // Edgeは許可する（Edgeならtrueを返す）
+        if (isEdge) return true;
+
+        return hasChromeToken && isGoogleVendor && !isOpera && !isSamsung && !isDuck && !isYandex && !isVivaldi && !isBrave;
+      }
+
+      // ここで条件分岐してリダイレクト
+      // モバイル端末（iPhone, Android, iPadなど）の場合は必ずindex-iOS.htmlへリダイレクト
+      // それ以外（PC）はChrome以外ならリダイレクト
+      if (!isDesktop()) {
+        location.replace("index-iOS.html");
+      } else if (!isGoogleChromeisEdge()) {
+        location.replace("index-iOS.html");
+      }
+    })();
+  </script>
+
+  <!-- Tailwind（任意） -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"] },
+          colors: { brand: { DEFAULT: "#81c7d7" } },
+          lineHeight: { '24px': '24px' }
+        }
+      },
+      darkMode: 'class'
+    };
+    document.documentElement.classList.add('light');
+    localStorage.setItem('theme', 'light');
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- ====== 追加: 共通CSSの読み込み ====== -->
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/slidescroll.css" />
+  <!-- GSAP & ScrollTriggerをCDNで追加 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    p {
+      color: #111827;
+    }
+
+    /* 余白対策: body, html, #app, main, .main-container, .mx-auto, .max-w-6xl, .px-4, .sm\:px-6, .lg\:px-8, .pt-\[64px\], .pb-\[0px\] などの高さを100%にし、footerを下部に固定しやすくする */
+    html,
+    body {
+      height: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+      min-height: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- header -->
+  <header class="inner" id="inner">
+    <div class="header-anim-item" id="item">
+      <span class="header-anim-portfolio" id="portfolio-text" tabindex="0">portfolio</span>
+      <div class="header-anim-center" style="position:relative;">
+        <span class="header-anim-name-ja" id="name-ja-text">城戸双汰朗</span>
+      </div>
+      <!-- Hamburger and nav moved to right edge in header mode -->
+      <div class="header-right">
+        <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-controls="main-nav" aria-expanded="false"
+          type="button">
+          <span class="hamburger-bar bar1"></span>
+          <span class="hamburger-bar bar2"></span>
+          <span class="hamburger-bar bar3"></span>
+        </button>
+        <nav class="header-anim-nav" aria-label="メインナビゲーション" id="main-nav">
+          <a href="#profile" data-nav id="nav-about">About</a>
+          <span class="nav-separator">/</span>
+          <a href="#works" data-nav id="nav-works">Works</a>
+          <span class="nav-separator">/</span>
+          <a href="#contact" data-nav id="nav-contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- スクロールサイン: 常に画面内に表示し、スクロール位置で表示場所を変える -->
+  <nav>
+    <div id="scroll-sign" class="scroll-sign-container"
+      style="display:flex; flex-direction:column; align-items:center; pointer-events:none; position:fixed; left:50%; transform:translateX(-50%); bottom:2.5rem; z-index:100;">
+      <div class="scroll-arrow"
+        style="width:32px; height:32px; display:flex; align-items:center; justify-content:center;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+          style="display:block; margin:0 auto; animation:scrollArrowBounce 1.6s infinite;">
+          <path d="M16 8v16M16 24l-6-6M16 24l6-6" stroke="#1c1d1d" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
+      <span class="scroll-sign-text"
+        style="margin-top:16px; font-size:16px; color:#1c1d1d; letter-spacing:0.1em; font-weight:600; opacity:0.85; user-select:none;">
+        SCROLL
+      </span>
+    </div>
+    <style>
+      @keyframes scrollArrowBounce {
+        0% {
+          transform: translateY(0);
+        }
+
+        40% {
+          transform: translateY(16px);
+        }
+
+        60% {
+          transform: translateY(16px);
+        }
+
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .scroll-sign-container {
+        transition: left 0.4s, right 0.4s, top 0.4s, bottom 0.4s;
+      }
+
+      @media (max-width: 600px) {
+        .scroll-sign-container .scroll-arrow svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .scroll-sign-text {
+          font-size: 0.85rem !important;
+        }
+      }
+    </style>
+    <script>
+      // スクロール位置によってサインの表示位置を変える
+      (function () {
+        const sign = document.getElementById('scroll-sign');
+        function updateSignPosition() {
+          const scrollY = window.scrollY || window.pageYOffset;
+          const docHeight = document.documentElement.scrollHeight;
+          const winHeight = window.innerHeight;
+          // ページの上部付近
+          if (scrollY < 100) {
+            // 画面下中央
+            sign.style.bottom = '2.5rem';
+            sign.style.top = '';
+            sign.style.left = '50%';
+            sign.style.right = '';
+            sign.style.transform = 'translateX(-50%)';
+          }
+          // ページの中間
+          else if (scrollY + winHeight < docHeight - 200) {
+            // 画面右下
+            sign.style.bottom = '1.5rem';
+            sign.style.top = '';
+            sign.style.left = '';
+            sign.style.right = '1.5rem';
+            sign.style.transform = 'none';
+          }
+          // ページの最下部付近
+          else {
+            // 画面上中央
+            sign.style.top = '2.5rem';
+            sign.style.bottom = '';
+            sign.style.left = '200%';
+            sign.style.right = '';
+            sign.style.transform = 'translateX(-50%)';
+          }
+        }
+        window.addEventListener('scroll', updateSignPosition, { passive: true });
+        window.addEventListener('resize', updateSignPosition);
+        document.addEventListener('DOMContentLoaded', updateSignPosition);
+      })();
+    </script>
+  </nav>
+
+  <!-- ===== Main ===== -->
+  <main class="pt-0" style="min-height:0; padding-top:0 !important;">
+    <!-- フッターの余白と合わせたら40px -->
+    <!-- 
+      このdivのクラス属性で上下のパディング（pt:padding-top, pb:padding-bottom）を調整している
+
+      pt-[8vh] pb-[8vh]             : 基本（モバイル～小画面）で上下に「画面の高さの8%」のパディング
+      sm:pt-[10vh] sm:pb-[10vh]     : 画面幅が"sm"（640px以上）のとき上下に「画面の高さの10%」のパディングに上書き
+      md:pt-[12vh] md:pb-[12vh]     : 画面幅が"md"（768px以上）のとき上下に「画面の高さの12%」のパディングに上書き
+      lg:pt-[14vh] lg:pb-[14vh]     : 画面幅が"lg"（1024px以上）のとき上下に「画面の高さの14%」のパディングに上書き
+      xl:pt-[16vh] xl:pb-[16vh]     : 画面幅が"xl"（1280px以上）のとき上下に「画面の高さの16%」のパディングに上書き
+      [@media(min-width:1600px)]:pt-[18vh] [@media(min-width:1600px)]:pb-[18vh] : 画面幅が1600px以上のとき上下に「画面の高さの18%」のパディングに上書き
+
+      つまり、画面幅が広くなるほど余白が大きくなる設計
+    -->
+    <div
+      class="main-container-fix mx-auto max-w-8xl px-4 sm:px-8 md:px-16 lg:px-24 xl:px-72 pt-16 pb-[4vh] sm:pb-[4vh] md:pb-[4vh] lg:pb-[1vh] xl:pb-[1h] [@media(min-width:1900px)]:pb-[1vh]"
+      style="background-color: #FEFAEF; min-height:100vh; box-shadow: 0 0 0 100vmax #81c7d7; clip-path: inset(0 -100vmax);">
+
+      <!-- titleの描画とアニメーション定義 -->
+      <header id=title class="profile-header sticky-header-fix">
+        <div class="flex flex-col items-start gap-2">
+          <h1 class="leading-none tracking-tight text-left"
+            style="font-weight:320; font-size:clamp(64px,8vw,80px); letter-spacing:-.02em; position:relative;">
+            <span id="portfolio-progress" style="position:relative; display:inline-block; line-height:1;">
+              <span class="portfolio-text" style="color:#111827; position:relative; z-index:1;"></span>
+              <span class="portfolio-gradient" style="
+                  pointer-events:none;
+                  position:absolute;
+                  left:0; top:0;
+                  width:100%; height:100%;
+                  display:block;
+                  z-index:2;
+                  -webkit-text-fill-color: transparent;
+                  -webkit-background-clip: text;
+                  background-clip: text;
+                  background: linear-gradient(to top, #81c7d7 0%, transparent 0%);
+                  color: #81c7d7;
+                  transition: background 0.2s;
+                ">PROFILE</span>
+            </span>
+          </h1>
+          <span id="portfolio-progress-ja" class="text-sm text-gray-500"></span>
+        </div>
+        <!-- titleの位置上部から120pxで固定: 画面幅に応じて調整 -->
+        <style>
+          .sticky-header-fix {
+            position: sticky;
+            top: 88px;
+            z-index: 10;
+          }
+
+          @media (min-width: 1024px) {
+            .sticky-header-fix {
+              top: 112px;
+            }
+          }
+        </style>
+      </header>
+
+      <!-- profile Two Column Layout（写真＋内容） -->
+      <section id="profile"
+        class="mb-[320px] mt-0 lg:mt-[8px] grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-40">
+        <aside class="order-1 lg:order-none hidden lg:block sticky self-start" style="top: 88px;">
+          <style>
+            @media (min-width: 1024px) {
+              #profile aside {
+                top: 264px !important;
+              }
+            }
+          </style>
+          <figure class="w-[520px] max-w-full border border-gray-200 shadow-sm">
+            <img class="block w-full h-auto" src="./img/01_about/kidosotaro.webp" alt="Portrait" />
+          </figure>
+        </aside>
+
+        <!-- Right Column / Content（2つ目をベース＋1つ目の見出し階層） -->
+        <div class="order-2 lg:order-none">
+          <!-- ABOUT ME -->
+          <section id="about-me" class="mb-[160px] mt-[120px] lg:mt-[272px]">
+            <h2 class="text-xl font-normal cap hidden lg:block" data-cap="私について">ABOUT ME</h2>
+            <div id="about-me-body"></div>
+          </section>
+
+          <!-- Personal History -->
+          <section id="work-experience" class="mb-[160px]">
+            <h2 class="text-xl font-normal cap" data-cap="経歴">Personal History</h2>
+            <ol id="work-experience-list"
+              class="relative mt-[24px] border-l-2 border-zinc-300 dark:border-zinc-800 pl-6"></ol>
+          </section>
+
+          <!-- Research -->
+          <section id="research" class="mb-[160px]">
+            <h2 class="text-xl font-normal cap" data-cap="論文(共著含む)">Research</h2>
+            <ul id="research-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
+          </section>
+
+          <!-- Exhibition / Workshop -->
+          <section id="exhibition-workshop" class="mb-[160px]">
+            <h2 class="text-xl font-normal cap" data-cap="展示／ワークショップ">Exhibition/Workshop</h2>
+            <ul id="exhibition-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
+          </section>
+
+          <!-- Production / Cooperation -->
+          <section id="production-cooperation" class="mb-[160px]">
+            <h2 class="text-xl font-normal cap" data-cap="制作協力">ProductionCooperation</h2>
+            <ul id="cooperation-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
+          </section>
+
+          <!-- Award / License -->
+          <section id="award-license" class="mb-[160px]">
+            <h2 class="text-xl font-normal cap" data-cap="受賞">AWARD</h2>
+            <ul id="award-list" class="mt-[16px] space-y-2 text-[16px] text-[#111827] dark:text-zinc-200"></ul>
+          </section>
+
+          <!-- Skills -->
+          <section id="skills" class="mb-[0px]">
+            <h2 class="text-xl font-normal cap" data-cap="スキル">SKILLS</h2>
+            <div id="skills-body" class="mt-[16px] grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+          </section>
+        </div>
+      </section>
+
+      <!-- WORKS -->
+      <!-- ぼかしをカードより上に表示するため、WORKSセクションの外に移動 -->
+      <div class="global-blur-bg" aria-hidden="true" style="position:fixed; inset:0; pointer-events:none; z-index:10;">
+        <div
+          class="global-blur-left"
+          style="position:absolute; left:-100vmax; top:0; width:100vmax; height:100vh; background:#81c7d7;">
+        </div>
+        <div
+          class="global-blur-right"
+          style="position:absolute; right:-100vmax; top:0; width:100vmax; height:100vh; background:#83c2ce;">
+        </div>
+        <style>
+          /* 画面幅に応じてblurの大きさを可変にする */
+          .global-blur-left,
+          .global-blur-right {
+            filter: blur(3rem);
+          }
+          @media (max-width: 1200px) {
+            .global-blur-left,
+            .global-blur-right {
+              filter: blur(3rem);
+            }
+          }
+          @media (max-width: 800px) {
+            .global-blur-left,
+            .global-blur-right {
+              filter: blur(2rem);
+            }
+          }
+          @media (max-width: 500px) {
+            .global-blur-left,
+            .global-blur-right {
+              filter: blur(1rem);
+            }
+          }
+        </style>
+      </div>
+      <section id="works">
+        <section class="horizontal-section mx-auto max-w-none pt-16 md:pt-16" style="position: relative; z-index: 1;">
+          <div class="section-header" style="position: relative; height: 80px; max-width: 100%;">
+            <style>
+              @media (max-width: 640px) {
+                .section-header {
+                  height: 88px !important;
+                }
+              }
+            </style>
+            <div id="cooperationHeader" class="section-header-inner fade"
+              style="position: absolute; left: 0; top: 0; width: 100%; transition: opacity .4s, visibility .4s;">
+              <div class="flex items-center gap-2"></div>
+            </div>
+          </div>
+          <div id="horizontalScroll" class="horizontal-scroll"></div>
+        </section>
+      </section>
+
+      <!-- contact -->
+      <section id="contact" class="mt-[280px] mb-[0px]">
+        <div class="flex flex-col md:flex-row md:items-start gap-8 pr-[0px]">
+          <!-- テキスト部分 -->
+          <div class="w-full md:w-1/2 contact-fixed-text">
+            <!-- PC: 常時表示, モバイル: アコーディオン -->
+            <div class="block md:hidden">
+              <div class="flex justify-start mb-0">
+                <button id="contactAccordionBtn" type="button"
+                  class="flex items-center gap-1 px-3 py-2 bg-[#81c7d7]/10 text-[#111827]/60 border-none focus:outline-none text-xs z-[20] shadow-sm"
+                  style="min-width:auto; width:auto; font-size:0.95rem; line-height:1.2; position:relative; border-radius:0;"
+                  aria-expanded="false" aria-controls="contactAccordionBody">
+                  <!-- アイコン（下向き矢印）を追加 -->
+                  <svg id="contactAccordionIcon" class="ml-1 transition-transform duration-300" width="16" height="16" viewBox="0 0 20 20" fill="none">
+                    <path d="M6 8l4 4 4-4" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+              <div id="contactAccordionBody" class="overflow-hidden transition-all duration-300 max-h-0" style="will-change: max-height;">
+                <div class="px-4 py-3">
+                  <p class="text-[16px] text-[#111827] mb-4 mt-0">
+                    ポートフォリをご覧いただき、ありがとうございました。<br>御用の際は、下記フォームにてご連絡いただけます。どうぞ、お気軽にご連絡下さい。
+                  </p>
+                  <p class="text-sm text-gray-500">
+                    ※内容によってはご返信できない場合がございます。<br>
+                    ※個人情報は厳重に管理し、第三者に提供することはございません。
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="hidden md:block">
+              <p class="text-[16px] text-[#111827] mb-0 mt-0">
+                ポートフォリをご覧いただき、ありがとうございました！<br>御用の際は、右側のフォームにてご連絡いただけます。どうぞお気軽にご連絡下さい。
+              </p>
+              <p class="text-sm text-gray-500">
+                ※内容によってはご返信できない場合がございます。<br>
+                ※個人情報は厳重に管理し、第三者等に提供することはございません。
+              </p>
+            </div>
+            <script>
+              // アコーディオン動作
+              (function () {
+                const btn = document.getElementById('contactAccordionBtn');
+                const body = document.getElementById('contactAccordionBody');
+                const icon = document.getElementById('contactAccordionIcon');
+                if (btn && body && icon) {
+                  // 追加: ボタンが他要素に隠れないようにz-indexを強制
+                  btn.style.zIndex = 20;
+                  btn.style.position = "relative";
+                  btn.addEventListener('click', function () {
+                    const expanded = btn.getAttribute('aria-expanded') === 'true';
+                    btn.setAttribute('aria-expanded', !expanded);
+                    if (!expanded) {
+                      body.style.maxHeight = body.scrollHeight + 'px';
+                      icon.style.transform = 'rotate(180deg)';
+                    } else {
+                      body.style.maxHeight = '0';
+                      icon.style.transform = 'rotate(0deg)';
+                    }
+                  });
+                  // 初期状態: 閉じておく
+                  body.style.maxHeight = '0';
+                  btn.setAttribute('aria-expanded', 'false');
+                  icon.style.transform = 'rotate(0deg)';
+                } else if (btn && body) {
+                  // アイコンが無い場合でもアコーディオンは動作させる
+                  btn.style.zIndex = 20;
+                  btn.style.position = "relative";
+                  btn.addEventListener('click', function () {
+                    const expanded = btn.getAttribute('aria-expanded') === 'true';
+                    btn.setAttribute('aria-expanded', !expanded);
+                    if (!expanded) {
+                      body.style.maxHeight = body.scrollHeight + 'px';
+                    } else {
+                      body.style.maxHeight = '0';
+                    }
+                  });
+                  body.style.maxHeight = '0';
+                  btn.setAttribute('aria-expanded', 'false');
+                }
+              })();
+            </script>
+          </div>
+
+          <!-- フォーム部分 -->
+          <form id="contactForm"
+            class="grid gap-4 max-w-[560px] w-full mt-0
+                   md:max-w-none md:w-1/2 md:gap-4"
+            method="POST"
+            action="https://formspree.io/f/xzzayorb"
+            autocomplete="on">
+            <!-- 会社名（任意） -->
+            <div>
+              <label for="company" class="block text-sm font-medium text-[#111827] mb-1">ご所属</label>
+              <input id="company" name="company"
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                placeholder="会社名/学校名"
+                autocomplete="organization" />
+            </div>
+            <!-- 姓・名（小画面:1行, md以上:2行） -->
+            <div class="flex flex-col gap-3">
+              <!-- 1行目: 姓・名 -->
+              <div class="flex flex-row gap-3 md:flex-col md:gap-3">
+                <div class="w-1/2 md:w-full">
+                  <label for="lastName" class="block text-sm font-medium text-[#111827] mb-1">姓 <span class="text-red-500">*</span></label>
+                  <input id="lastName" name="lastName"
+                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                    placeholder="姓" required autocomplete="family-name" />
+                </div>
+                <div class="w-1/2 md:w-full">
+                  <label for="firstName" class="block text-sm font-medium text-[#111827] mb-1">名 <span class="text-red-500">*</span></label>
+                  <input id="firstName" name="firstName"
+                    class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                    placeholder="名" required autocomplete="given-name" />
+                </div>
+              </div>
+            </div>
+            <style>
+              /* 1900px以上で姓名を縦並びにし、各項目の余白を統一 */
+              @media (min-width: 1920px) {
+                #contactForm .flex.flex-row.gap-3 {
+                  flex-direction: column !important;
+                  gap: 3px !important;
+                }
+                #contactForm .flex.flex-row.gap-3 > div {
+                  width: 100% !important;
+                }
+              }
+              /* md以上で姓名を縦並びにし、gapを調整 */
+              @media (min-width: 641px) {
+                #contactForm .flex.flex-row.gap-3 {
+                  flex-direction: column;
+                  gap: 16px;
+                }
+                #contactForm .flex.flex-row.gap-3 > div {
+                  width: 100%;
+                }
+              }
+              /* 小画面では横並び */
+              @media (max-width: 1920px) {
+                #contactForm .flex.flex-row.gap-3 {
+                  flex-direction: row;
+                  gap: 12px;
+                }
+                #contactForm .flex.flex-row.gap-3 > div {
+                  width: 50%;
+                }
+              }
+              /* 左側テキストを上部200pxで固定（md以上のみ） */
+              @media (min-width: 768px) {
+                .contact-fixed-text {
+                  position: sticky;
+                  top: 264px;
+                  z-index: 10;
+                }
+              }
+            </style>
+            <!-- メールアドレス -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-[#111827] mb-1">メールアドレス <span class="text-red-500">*</span></label>
+              <input id="email" name="email" type="email"
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                placeholder="your@email.com" required autocomplete="email"
+                pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                oninput="this.setCustomValidity(this.validity.patternMismatch ? '正しいメールアドレスを入力してください' : '');" />
+            </div>
+            <!-- 件名 -->
+            <div>
+              <label for="msgSubject" class="block text-sm font-medium text-[#111827] mb-1">件名 <span class="text-red-500">*</span></label>
+              <input id="msgSubject" name="subject"
+                class="rounded-0 border px-3 py-2 bg-white/70 dark:bg-zinc-950/60 w-full"
+                placeholder="件名" required />
+            </div>
+            <!-- お問い合わせ内容 -->
+            <div>
+              <label for="msgBody" class="block text-sm font-medium text-[#111827] mb-1">お問い合わせ内容 <span class="text-red-500">*</span></label>
+              <textarea id="msgBody" name="message"
+                class="rounded-0 border px-3 py-3 min-h-[120px] md:min-h-[160px] bg-white/70 dark:bg-zinc-950/60 w-full resize-vertical"
+                placeholder="お問い合わせ内容" required></textarea>
+            </div>
+            <button id="sendBtn"
+              class="justify-self-end rounded-2xl bg-brand px-6 py-3 text-white font-bold shadow-glow disabled:opacity-50 disabled:cursor-not-allowed hover:bg-brand/90 transition-colors"
+              type="submit" disabled style="margin-left:auto;">送信</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- footer -->
+      <footer class="pt-[16px] pb-[0px] text-right text-sm text-zinc-500">
+        LastUpdated <span id="last-updated"></span>
+      </footer>
+    </div>
+  </main>
+
+  <script src="js/site.js"></script>
+  <script src="js/work-data.js"></script>
+  <script src="js/slidescroll.js"></script>
+  <script src="js/title-progress.js"></script>
+  <script type="module" src="js/profile-data.js"></script>
+  <script type="module" src="js/profile-render.js"></script>
+
+  <!--メール送信-->
+  <script>// 送信先メールアドレスはFormspree経由（action属性で指定）
+    const form = document.getElementById('contactForm');
+    const lastName = document.getElementById('lastName');
+    const firstName = document.getElementById('firstName');
+    const email = document.getElementById('email');
+    const subject = document.getElementById('msgSubject');
+    const body = document.getElementById('msgBody');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function checkForm() {
+      // 必須項目が全て入力されていれば有効化
+      const requiredFilled =
+        lastName.value.trim() &&
+        firstName.value.trim() &&
+        email.value.trim() &&
+        subject.value.trim() &&
+        body.value.trim();
+      sendBtn.disabled = !requiredFilled;
+    }
+
+    function clearForm() {
+      // フォームの内容をクリア
+      lastName.value = '';
+      firstName.value = '';
+      email.value = '';
+      subject.value = '';
+      body.value = '';
+      document.getElementById('company').value = '';
+    }
+
+    // 初期状態でフォームチェックを実行
+    checkForm();
+
+    lastName.addEventListener('input', checkForm);
+    firstName.addEventListener('input', checkForm);
+    email.addEventListener('input', checkForm);
+    subject.addEventListener('input', checkForm);
+    body.addEventListener('input', checkForm);
+
+    form.addEventListener('submit', function (e) {
+      // 自動送信（FormspreeにPOST）→ 送信後に完了メッセージ表示
+      e.preventDefault();
+      sendBtn.disabled = true;
+      sendBtn.textContent = "送信中…";
+      fetch(form.action, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json"
+        },
+        body: new FormData(form)
+      }).then(response => {
+        if (response.ok) {
+          // 送信成功時：フォームをクリアしてボタンで完了を表示
+          clearForm();
+          sendBtn.textContent = "送信に成功しました。ありがとうございます";
+          sendBtn.classList.remove('bg-brand', 'hover:bg-brand/90');
+          sendBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+          sendBtn.disabled = true;
+
+          // 3秒後にボタンを元に戻す
+          setTimeout(() => {
+            sendBtn.textContent = "送信";
+            sendBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+            sendBtn.classList.add('bg-brand', 'hover:bg-brand/90');
+            checkForm();
+          }, 3000);
+        } else {
+          sendBtn.disabled = false;
+          sendBtn.textContent = "送信";
+          checkForm(); // フォーム状態を再チェック
+          alert("送信に失敗しました。時間をおいて再度お試しください。");
+        }
+      }).catch(() => {
+        sendBtn.disabled = false;
+        sendBtn.textContent = "送信";
+        checkForm(); // フォーム状態を再チェック
+        alert("送信に失敗しました。時間をおいて再度お試しください。");
+      });
+    });
+  </script>
+
+  <!--footer-->
+  <script>
+    // フッターに最終更新日を表示
+    document.getElementById('last-updated').textContent = (function () {
+      const d = new Date(document.lastModified);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}.${m}.${day}`;
+    })();
+  </script>
+
+  <!--ハンバーガー-->
+  <script>
+    (function () {
+      const item = document.getElementById('item');
+      const portfolio = document.getElementById('portfolio-text');
+      const nameJa = document.getElementById('name-ja-text');
+      const nav = document.getElementById('main-nav');
+      const navLinks = nav.querySelectorAll('a[data-nav]');
+      const hamburger = document.getElementById('hamburger');
+
+      const portfolioTextDefault = "portfolio";
+      const portfolioTextHeader = "KidoSotaro";
+
+      // Utility: check if header mode and small screen
+      function isHeaderAndSmallScreen() {
+        return item.classList.contains('is-header') && window.innerWidth <= 900;
+      }
+
+      function updateHeaderTextVisibility() {
+        const scrollY = window.scrollY || window.pageYOffset;
+        const fadeStart = 300;
+        const fadeEnd = 400;
+
+        let opacity = 1;
+        if (scrollY >= fadeEnd) opacity = 0;
+        else if (scrollY > fadeStart) opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
+
+        nameJa.style.opacity = opacity;
+
+        if (opacity === 0) {
+          nameJa.classList.add('hide-in-header');
+          item.classList.add('is-header');
+          if (portfolio.textContent !== portfolioTextHeader) {
+            portfolio.textContent = portfolioTextHeader;
+            portfolio.classList.add('kido-sotaro');
+          }
+        } else {
+          nameJa.classList.remove('hide-in-header');
+          item.classList.remove('is-header');
+          if (portfolio.textContent !== portfolioTextDefault) {
+            portfolio.textContent = portfolioTextDefault;
+            portfolio.classList.remove('kido-sotaro');
+          }
+        }
+
+        // ハンバーガーメニューの表示/非表示制御
+        if (isHeaderAndSmallScreen()) {
+          hamburger.style.display = 'flex';
+          // navの表示はopenクラスで制御するのでここでdisplayは触らない
+        } else {
+          hamburger.style.display = 'none';
+          nav.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      // ナビゲーションのスムーススクロール
+      function smoothScrollTo(targetId) {
+        const el = document.querySelector(targetId);
+        if (!el) return;
+        const headerHeight = 72;
+        const y = el.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+
+      // ナビゲーションリンククリック時
+      navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            e.preventDefault();
+            smoothScrollTo(href);
+            // ハンバーガーメニューを閉じる（小画面時のみ）
+            if (isHeaderAndSmallScreen()) {
+              nav.classList.remove('open');
+              hamburger.classList.remove('open');
+              hamburger.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+      });
+
+      // ハンバーガーメニューの開閉
+      if (hamburger) {
+        hamburger.addEventListener('click', function (e) {
+          if (!isHeaderAndSmallScreen()) return;
+          e.stopPropagation();
+          const isOpen = nav.classList.toggle('open');
+          hamburger.classList.toggle('open', isOpen);
+          hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        // メニュー外クリックで閉じる
+        document.addEventListener('click', function (e) {
+          if (!isHeaderAndSmallScreen()) return;
+          if (!nav.classList.contains('open')) return;
+          if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+            nav.classList.remove('open');
+            hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // ウィンドウリサイズ時
+      window.addEventListener('resize', function () {
+        updateHeaderTextVisibility();
+      });
+
+      // スクロール時
+      window.addEventListener('scroll', updateHeaderTextVisibility, { passive: true });
+
+      // 初期化
+      document.addEventListener('DOMContentLoaded', () => {
+        updateHeaderTextVisibility();
+      });
+
+      // ロゴクリックでトップへ
+      portfolio.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      portfolio.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+
+    })();
+  </script>
+</body>
+
+</html>

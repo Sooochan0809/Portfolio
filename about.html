@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="img/logo-favicon.svg">
+    <title>城戸双汰朗|about</title>
+    <link rel="stylesheet" href="common.css" />
+
+    <style>
+        /* スクロールバーを非表示 */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        main {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .about-container {
+            width: 768px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-top: 25vh;
+            padding-bottom: 48px;
+        }
+
+        /* 以下、aboutの概要 */
+        .about-summary-space {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            row-gap: 0px;
+        }
+
+        .about-summary-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .about-summary-img {
+            width: 336px;
+            height: 336px;
+            display: block;
+        }
+
+        .name-container {
+            width: auto;
+            height: 320px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+        }
+
+        .name-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .last-name-main,
+        .first-name-main {
+            margin: 0;
+        }
+
+        .last-name-sub,
+        .first-name-sub {
+            margin: 0;
+            font-size: 1.0rem;
+            line-height: 1.0;
+            transform: translateY(0.2rem);
+        }
+
+        .name-sep {
+            width: 0.5rem;
+            display: inline-block;
+        }
+
+        .about-summary-main-text {
+            height: 100%;
+            white-space: pre-line;
+            position: relative;
+            margin-left: 0.5rem;
+        }
+
+        /* ここまで */
+
+        .about-detail-space {
+            /* タイトル(h2)のmargin-top1rem分を引いた数値 */
+            margin-top: 64px;
+        }
+
+        .about-detail-content {
+            width: auto;
+            height: auto;
+            margin-bottom: 80px;
+        }
+
+        .title-row-space {
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .title {
+            flex: 0 0 auto;
+            line-height: 0.9;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .sub-title {
+            flex: 1 1 0;
+            font-size: 1rem;
+            transform: translateY(0.2rem);
+            font-weight: normal;
+        }
+
+        .text-row-space {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-left: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .time-text {
+            flex: 0 0 auto;
+            margin: 0;
+        }
+
+        .main-text,
+        a.main-text {
+            flex: 1 1 0;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width:768px) {
+            .about-container {
+                width: 90vw;
+                padding-top: 64px;
+            }
+
+            .about-summary-space {
+                height: auto;
+                margin-top: 0;
+                row-gap: 1rem;
+            }
+
+            .about-summary-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .name-container {
+                width: 240px;
+                height: auto;
+                order: 2;
+                margin: 0;
+                justify-content: flex-start;
+            }
+
+            .name-row {
+                justify-content: flex-start;
+                text-align: left;
+            }
+
+            .about-summary-img {
+                align-self: flex-start;
+                width: 100%;
+                height: auto;
+            }
+
+            .last-name-main,
+            .first-name-main {
+                font-size: 2rem;
+            }
+
+            .about-summary-main-text,
+            .text-row-space {
+                margin-left: 0;
+            }
+
+            .title-row-space {
+                flex-wrap: wrap;
+                gap: 0 1rem;
+            }
+
+            .title {
+                flex: 0 0 auto;
+                margin: 0;
+                font-size: 1.8rem;
+                line-height: 1;
+            }
+
+            .sub-title {
+                flex: 1 1 8rem;
+                min-width: 0;
+                margin: 0;
+                font-size: 0.8rem;
+                overflow-wrap: anywhere;
+            }
+
+            .main-text,
+            a.main-text {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width:500px) {
+            .about-detail-space {
+                /* タイトル(h2)のmargin-top1rem分を引いた数値 */
+                margin-top: 48px;
+            }
+
+            .about-detail-content {
+                margin-bottom: 64px;
+            }
+
+            .text-row-space {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.1rem;
+                margin-left: 0;
+            }
+
+            .time-text {
+                width: 100%;
+                line-height: 1.0;
+                opacity: 0.9;
+            }
+
+            .main-text,
+            a.main-text {
+                width: 100%;
+                margin-bottom: 0.5rem;
+                /* margin-left: 0.5rem; */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-overlay" id="loading">
+        <div class="loading-logo svg anim-spin"></div>
+    </div>
+
+    <main>
+        <header>
+            <a class="header-logo-container transition" href="index.html">
+                <img class="header-logo svg" />
+            </a>
+            <div class="header-menu-container">
+                <a class="header-menu-text transition" href="about.html">About</a>
+                <a class="header-menu-text transition" href="works.html">Works</a>
+                <a class="header-menu-text transition" href="contact.html">Contact</a>
+                <a class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+                <div class="hamburger-menu-overlay">
+                    <div class="hamburger-menu-text-container">
+                        <a class="hamburger-menu-text transition" href="index.html">Top</a>
+                        <a class="hamburger-menu-text transition" href="about.html">About</a>
+                        <a class="hamburger-menu-text transition" href="works.html">Works</a>
+                        <a class="hamburger-menu-text transition" href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="about-container">
+            <div class="about-summary-space">
+                <div class="about-summary-top">
+                    <div class="name-container">
+                        <div class="name-row">
+                            <h1 class="last-name-main">城戸</h1>
+                            <h1 class="first-name-main">双汰朗</h1>
+                            <span class="name-sep"></span>
+                            <span class="last-name-sub">kido</span>
+                            <span class="first-name-sub">sotaro</span>
+                        </div>
+                    </div>
+                    <img id="aboutSummaryImg" class="about-summary-img" src="img/kidosotaro-2-mobile.webp">
+                </div>
+                <p id="aboutSummaryMainText" class="about-summary-main-text"></p>
+            </div>
+            <div class="about-detail-space" id="aboutDetailSpace"></div>
+            <!-- <a class="back-button transition" href="index.html#about">← 戻る</a> -->
+        </div>
+    </main>
+</body>
+
+<script src="js/loading.js" defer></script>
+<script src="js/transition.js" defer></script>
+<script src="js/hamburger-menu.js" defer></script>
+<script src="js/about-detail.js" type="module" defer></script>
+
+<script>
+    const headerLogo = document.querySelector(".header-logo");
+
+    let currentRot = 0;
+    let targetRot = 0;
+    const EASE = 0.2;
+
+    let rafId = null;
+
+    function getScrollProgress() {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (maxScroll <= 0) return 0; // スクロールできないページ
+        return window.scrollY / maxScroll; // 0〜1
+    }
+
+    function animate() {
+        currentRot += (targetRot - currentRot) * EASE;
+        headerLogo.style.transform = `rotate(${currentRot}deg)`;
+
+        if (Math.abs(targetRot - currentRot) > 0.01) {
+            rafId = requestAnimationFrame(animate);
+        } else {
+            rafId = null;
+        }
+    }
+
+    function updateTarget() {
+        const progress = getScrollProgress(); // 0〜1
+        targetRot = progress * 360;          // 0〜360度（1周）
+
+        if (!rafId) rafId = requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("scroll", updateTarget, { passive: true });
+
+    // 画面サイズ変更や、画像読み込みでページ高さが変わるとズレるので補正
+    window.addEventListener("resize", updateTarget);
+    window.addEventListener("load", updateTarget);
+
+    // 初期位置反映
+    updateTarget();
+</script>

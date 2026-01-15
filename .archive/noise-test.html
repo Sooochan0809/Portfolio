@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        :root {
+            --main: #133463;
+            --sub: #efefef;
+            --accent: #1D4B8C;
+        }
+
+        body {
+            position: relative;
+            background: #efefef;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background: url("img/noise.svg") 50% 50% / 101px 101px repeat;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body></body>
+
+</html>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- OGP設定 -->
+    <meta property="og:title" content="城戸 双汰朗/KidoSotaro">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sooochan0809.github.io/test/">
+    <meta property="og:image" content="img/ogp.webp">
+    <meta property="og:site_name" content="城戸双汰朗">
+    <meta property="og:description" content="城戸 双汰朗(きど そうたろう)のポートフォリオサイトです。">
+    <meta property="og:locale" content="ja">
+    <!-- ここまで -->
+    <link rel="icon" type="image/svg+xml" href="img/logo-favicon.svg">
+    <title>城戸双汰朗</title>
+    <link rel="stylesheet" href="common.css" />
+
+    <style>
+        :root {
+            --frame-w: 768px;
+            --frame-h: 560px;
+            --frame-top: 53%;
+        }
+
+        .feed {
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .section {
+            height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            position: relative;
+            display: block;
+        }
+
+        .works-menu {
+            position: fixed;
+            top: var(--frame-top);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: var(--frame-w);
+            height: var(--frame-h);
+            pointer-events: none;
+            display: flex;
+            z-index: 1;
+        }
+
+        .works-menu .works-summary-menu-space {
+            pointer-events: auto;
+        }
+
+        .works-summary-menu-space {
+            width: auto;
+            border-right: 1px solid var(--sub);
+            flex-shrink: 0;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .works-summary-menu-text {
+            font-size: 1.5rem;
+            padding-right: 32px;
+            padding-block: 32px;
+            margin-block: -32px;
+
+            font-weight: normal;
+            line-height: 1;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: opacity 0.2s ease;
+        }
+
+        .works-summary-menu-text.is-active {
+            opacity: 1;
+        }
+
+        .works-section-frame {
+            position: absolute;
+            top: 53%;
+            left: 50%;
+            width: 768px;
+            height: 560px;
+            transform: translate(-50%, -50%);
+            display: flex;
+        }
+
+        .works-menu-spacer {
+            width: var(--menu-w, 140px);
+            flex-shrink: 0;
+        }
+
+        .works-cards-space {
+            padding-left: 48px;
+            display: grid;
+            place-items: center;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 1rem;
+            row-gap: 1rem;
+            width: 100%;
+        }
+
+        .works-cards-space.is-single {
+            grid-template-columns: 1fr;
+        }
+
+        .works-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .works-card-img {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .works-card-img::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(19, 52, 99, 0.2);
+            mix-blend-mode: multiply;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .works-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .scroll-hint {
+            position: fixed;
+            left: var(--frame-top);
+            top: calc(var(--frame-top) + (var(--frame-h) / 2));
+            transform: translateX(-53%);
+
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .scroll-hint.is-hidden {
+            opacity: 0;
+            transform: translateX(-50%) translateY(1rem);
+        }
+
+        .scroll-hint-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: hintFloat 1.8s ease-in-out infinite;
+        }
+
+        .scroll-hint-text {
+            font-size: 0.7rem;
+            color: var(--sub);
+        }
+
+        .scroll-hint-arrow {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-right: 1px solid var(--sub);
+            border-bottom: 1px solid var(--sub);
+            transform: rotate(45deg);
+        }
+
+        @keyframes hintFloat {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(1rem);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== レスポンシブ（あなたの既存設定に合わせる） ===== */
+        @media (max-width: 768px) {
+            :root {
+                --frame-w: 95vw;
+                --frame-h: 70vh;
+            }
+        }
+
+        /* ===== レスポンシブ ===== */
+        @media (max-width: 768px) {
+            .works-menu {
+                width: 95vw;
+                height: 70vh;
+            }
+
+            .works-section-frame {
+                width: 95vw;
+                height: 70vh;
+            }
+
+            .works-summary-menu-text {
+                font-size: 1rem;
+                padding-right: 8px;
+            }
+
+            .works-cards-space {
+                padding-right: 12px;
+                padding-left: 16px;
+                column-gap: 0.5rem;
+                row-gap: 0.5rem;
+            }
+
+            .works-card-img {
+                aspect-ratio: 1 / 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-overlay" id="loading">
+        <div class="loading-logo svg anim-spin"></div>
+    </div>
+    <main>
+        <header>
+            <a class="header-logo-container transition" href="index.html">
+                <img class="header-logo svg anim-spin" />
+            </a>
+            <div class="header-menu-container">
+                <a class="header-menu-text transition" href="about.html">About</a>
+                <a class="header-menu-text transition" href="works.html">Works</a>
+                <a class="header-menu-text transition" href="contact.html">Contact</a>
+                <a class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+                <div class="hamburger-menu-overlay">
+                    <div class="hamburger-menu-text-container">
+                        <a class="hamburger-menu-text transition" href="index.html">Top</a>
+                        <a class="hamburger-menu-text transition" href="about.html">About</a>
+                        <a class="hamburger-menu-text transition" href="works.html">Works</a>
+                        <a class="hamburger-menu-text transition" href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="works-menu">
+            <div class="works-summary-menu-space" id="worksMenu">
+                <div class="works-summary-menu-text is-active" data-filter="NEW">NEW</div>
+            </div>
+        </div>
+        <div class="feed" id="feed"></div>
+
+        <div class="scroll-hint" id="scrollHint" aria-hidden="true">
+            <div class="scroll-hint-inner">
+                <div class="scroll-hint-text">スクロールできます</div>
+                <div class="scroll-hint-arrow"></div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script src="js/loading.js" defer></script>
+<script src="js/transition.js" defer></script>
+<script src="js/hamburger-menu.js" defer></script>
+<!-- import を使うので type="module" で読み込む -->
+<script type="module" src="js/works-cards.js" defer></script>
+
+<script>
+    const headerLogo = document.querySelector(".header-logo");
+    const feedRoot = document.querySelector("#feed");
+
+    let currentSectionIndex = 0;
+    let sectionElements = [];
+
+    function triggerLogoSpin(direction) {
+        // アニメーションを毎回確実に発火させる
+        headerLogo.classList.remove("spin-cw", "spin-ccw");
+        void headerLogo.offsetWidth;
+        headerLogo.classList.add(direction === "cw" ? "spin-cw" : "spin-ccw");
+    }
+
+    function updateCurrentIndexByVisible(entries) {
+        const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (!visible) return;
+
+        const newIndex = sectionElements.indexOf(visible.target);
+        if (newIndex === -1) return;
+        if (newIndex === currentSectionIndex) return;
+
+        const direction = newIndex > currentSectionIndex ? "cw" : "ccw";
+        currentSectionIndex = newIndex;
+        triggerLogoSpin(direction);
+    }
+
+    const observer = new IntersectionObserver(updateCurrentIndexByVisible, {
+        root: feedRoot,
+        threshold: [0.01, 0.25, 0.5, 0.75, 0.99],
+    });
+
+    function observeAllSections() {
+        // 最新の section を取り直す
+        sectionElements = Array.from(feedRoot.querySelectorAll(".section"));
+
+        // 全部 observe（重複しても問題は出にくいけど、気になるなら管理してもOK）
+        sectionElements.forEach((section) => observer.observe(section));
+    }
+
+    observeAllSections();
+
+    const mo = new MutationObserver(() => {
+        observeAllSections();
+    });
+    mo.observe(feedRoot, { childList: true, subtree: true });
+
+    headerLogo.addEventListener("animationend", () => {
+        headerLogo.classList.remove("spin-cw", "spin-ccw");
+    });
+</script>
+
+<script>
+    const feedRoot2 = document.querySelector("#feed");
+    const scrollHint = document.querySelector("#scrollHint");
+
+    let hintHidden = false;
+
+    function hideScrollHint() {
+        if (hintHidden) return;
+        hintHidden = true;
+        scrollHint.classList.add("is-hidden");
+    }
+
+    // 「ユーザー入力でスクロールした」判定を厳密に取りたいので
+    // wheel / touch / key / pointer / click を見る
+    function onUserScrollIntent(e) {
+        hideScrollHint();
+    }
+
+    // wheel（マウスホイール/トラックパッド）
+    feedRoot2.addEventListener("wheel", onUserScrollIntent, { passive: true });
+
+    // touch（スマホ）
+    feedRoot2.addEventListener("touchstart", onUserScrollIntent, { passive: true });
+    feedRoot2.addEventListener("touchmove", onUserScrollIntent, { passive: true });
+
+    // key（キーボードスクロール）
+    window.addEventListener("keydown", (e) => {
+        const keys = ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "];
+        if (keys.includes(e.key)) hideScrollHint();
+    });
+
+    // クリック（スクロールバー掴む / メニュー操作で動くケースも含めたい）
+    window.addEventListener("pointerdown", (e) => {
+        // 作品メニューを押したタイミングでも消すと自然
+        if (e.target.closest(".works-summary-menu-text")) hideScrollHint();
+    });
+
+    // 念のため：実際にスクロール位置が動いたら消す（入力由来だけでなくても）
+    // → ただし「自動ちょいスクロール」で消したくないなら、これは外してOK！
+    feedRoot2.addEventListener("scroll", () => {
+        // 少しでも動いたら消す
+        if (feedRoot2.scrollTop > 4) hideScrollHint();
+    }, { passive: true });
+</script>
+
+
+</html>
