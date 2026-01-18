@@ -10,10 +10,26 @@
        }
 
        body {
+           position: relative;
            margin: 0;
            font-family: "Zen Old Mincho", serif;
            background: var(--main);
            color: var(--sub);
+       }
+
+       /* あってもなくても */
+       body::before {
+           content: "";
+           position: absolute;
+           inset: 0;
+           z-index: -1;
+
+           background: #15396d;
+           mask-image: url("img/noise.svg");
+           mask-repeat: repeat;
+           mask-size: 101px 101px;
+
+           pointer-events: none;
        }
 
        h1 {
