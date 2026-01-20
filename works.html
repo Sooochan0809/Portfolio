@@ -286,113 +286,113 @@
             </div>
         </div>
     </main>
-</body>
 
-<script src="js/loading.js" defer></script>
-<script src="js/transition.js" defer></script>
-<script src="js/hamburger-menu.js" defer></script>
-<!-- import を使うので type="module" で読み込む -->
-<script type="module" src="js/works-cards.js" defer></script>
+    <script src="js/loading.js" defer></script>
+    <script src="js/transition.js" defer></script>
+    <script src="js/hamburger-menu.js" defer></script>
+    <!-- import を使うので type="module" で読み込む -->
+    <script type="module" src="js/works-cards.js" defer></script>
 
-<script>
-    const headerLogo = document.querySelector(".header-logo");
-    const feedRoot = document.querySelector("#feed");
+    <script>
+        const headerLogo = document.querySelector(".header-logo");
+        const feedRoot = document.querySelector("#feed");
 
-    let currentSectionIndex = 0;
-    let sectionElements = [];
+        let currentSectionIndex = 0;
+        let sectionElements = [];
 
-    function triggerLogoSpin(direction) {
-        // アニメーションを毎回確実に発火させる
-        headerLogo.classList.remove("spin-cw", "spin-ccw");
-        void headerLogo.offsetWidth;
-        headerLogo.classList.add(direction === "cw" ? "spin-cw" : "spin-ccw");
-    }
+        function triggerLogoSpin(direction) {
+            // アニメーションを毎回確実に発火させる
+            headerLogo.classList.remove("spin-cw", "spin-ccw");
+            void headerLogo.offsetWidth;
+            headerLogo.classList.add(direction === "cw" ? "spin-cw" : "spin-ccw");
+        }
 
-    function updateCurrentIndexByVisible(entries) {
-        const visible = entries
-            .filter((e) => e.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        function updateCurrentIndexByVisible(entries) {
+            const visible = entries
+                .filter((e) => e.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-        if (!visible) return;
+            if (!visible) return;
 
-        const newIndex = sectionElements.indexOf(visible.target);
-        if (newIndex === -1) return;
-        if (newIndex === currentSectionIndex) return;
+            const newIndex = sectionElements.indexOf(visible.target);
+            if (newIndex === -1) return;
+            if (newIndex === currentSectionIndex) return;
 
-        const direction = newIndex > currentSectionIndex ? "cw" : "ccw";
-        currentSectionIndex = newIndex;
-        triggerLogoSpin(direction);
-    }
+            const direction = newIndex > currentSectionIndex ? "cw" : "ccw";
+            currentSectionIndex = newIndex;
+            triggerLogoSpin(direction);
+        }
 
-    const observer = new IntersectionObserver(updateCurrentIndexByVisible, {
-        root: feedRoot,
-        threshold: [0.01, 0.25, 0.5, 0.75, 0.99],
-    });
+        const observer = new IntersectionObserver(updateCurrentIndexByVisible, {
+            root: feedRoot,
+            threshold: [0.01, 0.25, 0.5, 0.75, 0.99],
+        });
 
-    function observeAllSections() {
-        // 最新の section を取り直す
-        sectionElements = Array.from(feedRoot.querySelectorAll(".section"));
+        function observeAllSections() {
+            // 最新の section を取り直す
+            sectionElements = Array.from(feedRoot.querySelectorAll(".section"));
 
-        // 全部 observe（重複しても問題は出にくいけど、気になるなら管理してもOK）
-        sectionElements.forEach((section) => observer.observe(section));
-    }
+            // 全部 observe（重複しても問題は出にくいけど、気になるなら管理してもOK）
+            sectionElements.forEach((section) => observer.observe(section));
+        }
 
-    observeAllSections();
-
-    const mo = new MutationObserver(() => {
         observeAllSections();
-    });
-    mo.observe(feedRoot, { childList: true, subtree: true });
 
-    headerLogo.addEventListener("animationend", () => {
-        headerLogo.classList.remove("spin-cw", "spin-ccw");
-    });
-</script>
+        const mo = new MutationObserver(() => {
+            observeAllSections();
+        });
+        mo.observe(feedRoot, { childList: true, subtree: true });
 
-<script>
-    const feedRoot2 = document.querySelector("#feed");
-    const scrollHint = document.querySelector("#scrollHint");
+        headerLogo.addEventListener("animationend", () => {
+            headerLogo.classList.remove("spin-cw", "spin-ccw");
+        });
+    </script>
 
-    let hintHidden = false;
+    <script>
+        const feedRoot2 = document.querySelector("#feed");
+        const scrollHint = document.querySelector("#scrollHint");
 
-    function hideScrollHint() {
-        if (hintHidden) return;
-        hintHidden = true;
-        scrollHint.classList.add("is-hidden");
-    }
+        let hintHidden = false;
 
-    // 「ユーザー入力でスクロールした」判定を厳密に取りたいので
-    // wheel / touch / key / pointer / click を見る
-    function onUserScrollIntent(e) {
-        hideScrollHint();
-    }
+        function hideScrollHint() {
+            if (hintHidden) return;
+            hintHidden = true;
+            scrollHint.classList.add("is-hidden");
+        }
 
-    // wheel（マウスホイール/トラックパッド）
-    feedRoot2.addEventListener("wheel", onUserScrollIntent, { passive: true });
+        // 「ユーザー入力でスクロールした」判定を厳密に取りたいので
+        // wheel / touch / key / pointer / click を見る
+        function onUserScrollIntent(e) {
+            hideScrollHint();
+        }
 
-    // touch（スマホ）
-    feedRoot2.addEventListener("touchstart", onUserScrollIntent, { passive: true });
-    feedRoot2.addEventListener("touchmove", onUserScrollIntent, { passive: true });
+        // wheel（マウスホイール/トラックパッド）
+        feedRoot2.addEventListener("wheel", onUserScrollIntent, { passive: true });
 
-    // key（キーボードスクロール）
-    window.addEventListener("keydown", (e) => {
-        const keys = ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "];
-        if (keys.includes(e.key)) hideScrollHint();
-    });
+        // touch（スマホ）
+        feedRoot2.addEventListener("touchstart", onUserScrollIntent, { passive: true });
+        feedRoot2.addEventListener("touchmove", onUserScrollIntent, { passive: true });
 
-    // クリック（スクロールバー掴む / メニュー操作で動くケースも含めたい）
-    window.addEventListener("pointerdown", (e) => {
-        // 作品メニューを押したタイミングでも消すと自然
-        if (e.target.closest(".works-summary-menu-text")) hideScrollHint();
-    });
+        // key（キーボードスクロール）
+        window.addEventListener("keydown", (e) => {
+            const keys = ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "];
+            if (keys.includes(e.key)) hideScrollHint();
+        });
 
-    // 念のため：実際にスクロール位置が動いたら消す（入力由来だけでなくても）
-    // → ただし「自動ちょいスクロール」で消したくないなら、これは外してOK！
-    feedRoot2.addEventListener("scroll", () => {
-        // 少しでも動いたら消す
-        if (feedRoot2.scrollTop > 4) hideScrollHint();
-    }, { passive: true });
-</script>
+        // クリック（スクロールバー掴む / メニュー操作で動くケースも含めたい）
+        window.addEventListener("pointerdown", (e) => {
+            // 作品メニューを押したタイミングでも消すと自然
+            if (e.target.closest(".works-summary-menu-text")) hideScrollHint();
+        });
 
+        // 念のため：実際にスクロール位置が動いたら消す（入力由来だけでなくても）
+        // → ただし「自動ちょいスクロール」で消したくないなら、これは外してOK！
+        feedRoot2.addEventListener("scroll", () => {
+            // 少しでも動いたら消す
+            if (feedRoot2.scrollTop > 4) hideScrollHint();
+        }, { passive: true });
+    </script>
+    
+</body>
 
 </html>

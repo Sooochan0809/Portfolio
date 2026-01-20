@@ -38,7 +38,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding-top: 25vh;
+            padding-top: 18vh;
             padding-bottom: 48px;
         }
 
@@ -258,7 +258,6 @@
             a.main-text {
                 width: 100%;
                 margin-bottom: 0.5rem;
-                /* margin-left: 0.5rem; */
             }
         }
     </style>
@@ -313,52 +312,55 @@
             <!-- <a class="back-button transition" href="index.html#about">← 戻る</a> -->
         </div>
     </main>
+
+    <script src="js/loading.js" defer></script>
+    <script src="js/transition.js" defer></script>
+    <script src="js/hamburger-menu.js" defer></script>
+    <script src="js/about-detail.js" type="module" defer></script>
+
+    <script>
+        const headerLogo = document.querySelector(".header-logo");
+
+        let currentRot = 0;
+        let targetRot = 0;
+        const EASE = 0.2;
+
+        let rafId = null;
+
+        function getScrollProgress() {
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (maxScroll <= 0) return 0; // スクロールできないページ
+            return window.scrollY / maxScroll; // 0〜1
+        }
+
+        function animate() {
+            currentRot += (targetRot - currentRot) * EASE;
+            headerLogo.style.transform = `rotate(${currentRot}deg)`;
+
+            if (Math.abs(targetRot - currentRot) > 0.01) {
+                rafId = requestAnimationFrame(animate);
+            } else {
+                rafId = null;
+            }
+        }
+
+        function updateTarget() {
+            const progress = getScrollProgress(); // 0〜1
+            targetRot = progress * 360;          // 0〜360度（1周）
+
+            if (!rafId) rafId = requestAnimationFrame(animate);
+        }
+
+        window.addEventListener("scroll", updateTarget, { passive: true });
+
+        // 画面サイズ変更や、画像読み込みでページ高さが変わるとズレるので補正
+        window.addEventListener("resize", updateTarget);
+        window.addEventListener("load", updateTarget);
+
+        // 初期位置反映
+        updateTarget();
+    </script>
+
 </body>
 
-<script src="js/loading.js" defer></script>
-<script src="js/transition.js" defer></script>
-<script src="js/hamburger-menu.js" defer></script>
-<script src="js/about-detail.js" type="module" defer></script>
-
-<script>
-    const headerLogo = document.querySelector(".header-logo");
-
-    let currentRot = 0;
-    let targetRot = 0;
-    const EASE = 0.2;
-
-    let rafId = null;
-
-    function getScrollProgress() {
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        if (maxScroll <= 0) return 0; // スクロールできないページ
-        return window.scrollY / maxScroll; // 0〜1
-    }
-
-    function animate() {
-        currentRot += (targetRot - currentRot) * EASE;
-        headerLogo.style.transform = `rotate(${currentRot}deg)`;
-
-        if (Math.abs(targetRot - currentRot) > 0.01) {
-            rafId = requestAnimationFrame(animate);
-        } else {
-            rafId = null;
-        }
-    }
-
-    function updateTarget() {
-        const progress = getScrollProgress(); // 0〜1
-        targetRot = progress * 360;          // 0〜360度（1周）
-
-        if (!rafId) rafId = requestAnimationFrame(animate);
-    }
-
-    window.addEventListener("scroll", updateTarget, { passive: true });
-
-    // 画面サイズ変更や、画像読み込みでページ高さが変わるとズレるので補正
-    window.addEventListener("resize", updateTarget);
-    window.addEventListener("load", updateTarget);
-
-    // 初期位置反映
-    updateTarget();
-</script>
+</html>

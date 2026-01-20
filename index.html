@@ -216,72 +216,73 @@
             </div>
         </section>
     </main>
-</body>
 
-<script src="js/loading.js" defer></script>
-<script src="js/transition.js" defer></script>
-<script src="js/hamburger-menu.js" defer></script>
+    <script src="js/loading.js" defer></script>
+    <script src="js/transition.js" defer></script>
+    <script src="js/hamburger-menu.js" defer></script>
 
-<script>
-    window.S1_SLIDESHOW = (function () {
-        const root = document.getElementById("slideshow");
-        if (!root) return { start: () => { }, stop: () => { } };
+    <script>
+        window.S1_SLIDESHOW = (function () {
+            const root = document.getElementById("slideshow");
+            if (!root) return { start: () => { }, stop: () => { } };
 
-        const imgs = [...root.querySelectorAll("img")];
-        if (!imgs.length) return { start: () => { }, stop: () => { } };
+            const imgs = [...root.querySelectorAll("img")];
+            if (!imgs.length) return { start: () => { }, stop: () => { } };
 
-        const INTERVAL = 3000; // 1枚見せる時間（ms）
-        let index = 0;
+            const INTERVAL = 3000; // 1枚見せる時間（ms）
+            let index = 0;
 
-        let intervalTimer = null;
-        let firstTimer = null;
+            let intervalTimer = null;
+            let firstTimer = null;
 
-        function show(i) {
-            imgs.forEach((img, n) => img.classList.toggle("is-active", n === i));
-        }
+            function show(i) {
+                imgs.forEach((img, n) => img.classList.toggle("is-active", n === i));
+            }
 
-        // ① 1枚目だけ仕込む（フェード無し）
-        (function primeFirstFrame() {
-            imgs.forEach(img => (img.style.transition = "none"));
-            show(0);
-            requestAnimationFrame(() => {
+            // ① 1枚目だけ仕込む（フェード無し）
+            (function primeFirstFrame() {
+                imgs.forEach(img => (img.style.transition = "none"));
+                show(0);
                 requestAnimationFrame(() => {
-                    imgs.forEach(img => (img.style.transition = "")); // CSSのtransitionに戻す
+                    requestAnimationFrame(() => {
+                        imgs.forEach(img => (img.style.transition = "")); // CSSのtransitionに戻す
+                    });
                 });
-            });
-        })();
+            })();
 
-        function stop() {
-            if (intervalTimer) clearInterval(intervalTimer);
-            if (firstTimer) clearTimeout(firstTimer);
-            intervalTimer = null;
-            firstTimer = null;
-        }
+            function stop() {
+                if (intervalTimer) clearInterval(intervalTimer);
+                if (firstTimer) clearTimeout(firstTimer);
+                intervalTimer = null;
+                firstTimer = null;
+            }
 
-        // alreadyShownMs: 「ロード中にすでに見えてた時間」をここで差し引く
-        function start(alreadyShownMs = 0) {
-            stop();
+            // alreadyShownMs: 「ロード中にすでに見えてた時間」をここで差し引く
+            function start(alreadyShownMs = 0) {
+                stop();
 
-            index = 0; // prime状態と同期
-            show(0);
+                index = 0; // prime状態と同期
+                show(0);
 
-            const remain = Math.max(0, INTERVAL - alreadyShownMs);
+                const remain = Math.max(0, INTERVAL - alreadyShownMs);
 
-            // 最初の1回だけ「残り時間」で進める
-            firstTimer = setTimeout(() => {
-                index = (index + 1) % imgs.length;
-                show(index);
-
-                // 以降は通常INTERVAL
-                intervalTimer = setInterval(() => {
+                // 最初の1回だけ「残り時間」で進める
+                firstTimer = setTimeout(() => {
                     index = (index + 1) % imgs.length;
                     show(index);
-                }, INTERVAL);
-            }, remain);
-        }
 
-        return { start, stop };
-    })();
-</script>
+                    // 以降は通常INTERVAL
+                    intervalTimer = setInterval(() => {
+                        index = (index + 1) % imgs.length;
+                        show(index);
+                    }, INTERVAL);
+                }, remain);
+            }
+
+            return { start, stop };
+        })();
+    </script>
+    
+</body>
 
 </html>
