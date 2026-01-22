@@ -9,7 +9,10 @@
            --expandOut: 1.0s
        }
 
+       html,
        body {
+           height: 100%;
+           overflow: hidden;
            position: relative;
            margin: 0;
            font-family: "Zen Old Mincho", serif;
@@ -30,6 +33,12 @@
            mask-size: 101px 101px;
 
            pointer-events: none;
+       }
+
+       header {
+           position: fixed;
+           top: 0;
+           z-index: 10;
        }
 
        h1 {
@@ -409,8 +418,8 @@
 
        .back-button {
            width: 90px;
-           height: 40px;
-           border-radius: 32px;
+           min-height: 40px;
+           border-radius: 24px;
            background-color: var(--accent);
 
            display: flex;
