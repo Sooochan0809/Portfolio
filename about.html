@@ -330,6 +330,7 @@
 
     <script>
         const headerLogo = document.querySelector(".header-logo");
+        const scroller = document.querySelector(".about-container"); // ←ここが重要
 
         let currentRot = 0;
         let targetRot = 0;
@@ -337,10 +338,10 @@
 
         let rafId = null;
 
-        function getScrollProgress() {
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            if (maxScroll <= 0) return 0; // スクロールできないページ
-            return window.scrollY / maxScroll; // 0〜1
+        function getScrollProgress(el) {
+            const maxScroll = el.scrollHeight - el.clientHeight;
+            if (maxScroll <= 0) return 0;
+            return el.scrollTop / maxScroll; // 0〜1
         }
 
         function animate() {
@@ -355,19 +356,20 @@
         }
 
         function updateTarget() {
-            const progress = getScrollProgress(); // 0〜1
-            targetRot = progress * 360;          // 0〜360度（1周）
+            if (!headerLogo || !scroller) return;
+
+            const progress = getScrollProgress(scroller);
+            targetRot = progress * 360;
 
             if (!rafId) rafId = requestAnimationFrame(animate);
         }
 
-        window.addEventListener("scroll", updateTarget, { passive: true });
+        // windowじゃなくscrollerにscrollを付ける
+        scroller?.addEventListener("scroll", updateTarget, { passive: true });
 
-        // 画面サイズ変更や、画像読み込みでページ高さが変わるとズレるので補正
         window.addEventListener("resize", updateTarget);
         window.addEventListener("load", updateTarget);
 
-        // 初期位置反映
         updateTarget();
     </script>
 

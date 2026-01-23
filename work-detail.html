@@ -191,6 +191,51 @@
     <script src="js/hamburger-menu.js" defer></script>
     <script type="module" src="js/works-detail.js" defer></script>
 
+    <script>
+        const headerLogo = document.querySelector(".header-logo");
+        const scroller = document.querySelector(".work-container");
+
+        let currentRot = 0;
+        let targetRot = 0;
+        const EASE = 0.2;
+
+        let rafId = null;
+
+        function getScrollProgress(el) {
+            const maxScroll = el.scrollHeight - el.clientHeight;
+            if (maxScroll <= 0) return 0;
+            return el.scrollTop / maxScroll; // 0〜1
+        }
+
+        function animate() {
+            currentRot += (targetRot - currentRot) * EASE;
+            headerLogo.style.transform = `rotate(${currentRot}deg)`;
+
+            if (Math.abs(targetRot - currentRot) > 0.01) {
+                rafId = requestAnimationFrame(animate);
+            } else {
+                rafId = null;
+            }
+        }
+
+        function updateTarget() {
+            if (!headerLogo || !scroller) return;
+
+            const progress = getScrollProgress(scroller);
+            targetRot = progress * 360;
+
+            if (!rafId) rafId = requestAnimationFrame(animate);
+        }
+
+        // windowじゃなくscrollerにscrollを付ける
+        scroller?.addEventListener("scroll", updateTarget, { passive: true });
+
+        window.addEventListener("resize", updateTarget);
+        window.addEventListener("load", updateTarget);
+
+        updateTarget();
+    </script>
+
 </body>
 
 </html>
