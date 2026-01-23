@@ -415,18 +415,3 @@
                letter-spacing: 0.05rem;
            }
        }
-
-       .back-button {
-           width: 90px;
-           min-height: 40px;
-           border-radius: 24px;
-           background-color: var(--accent);
-
-           display: flex;
-           justify-content: center;
-           align-items: center;
-
-           font-size: 1rem;
-           color: var(--sub);
-           text-decoration: none;
-       }
