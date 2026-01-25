@@ -38,13 +38,23 @@
 
     <!-- 構造化データ -->
     <script type="application/ld+json">
-        {
-           "@context": "https://schema.org",
-           "@type": "Person",
-           "name": "城戸 双汰朗",
-           "alternateName": ["KidoSotaro", "Kido Sotaro", "きど そうたろう"],
-           "url": "https://kidosotaro.com/"
-        }
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://kidosotaro.com/#person",
+            "name": "城戸 双汰朗",
+            "alternateName": ["KidoSotaro", "Kido Sotaro", "きど そうたろう"],
+            "url": "https://kidosotaro.com/"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://kidosotaro.com/works.html#webpage",
+            "url": "https://kidosotaro.com/works.html",
+            "name": "Contact | 城戸双汰朗 / KidoSotaro",
+            "about": { "@id": "https://kidosotaro.com/#person" }
+          }
+        ]
     </script>
 
     <!-- Icons -->
