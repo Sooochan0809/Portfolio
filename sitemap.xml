@@ -46,7 +46,55 @@
     <url>
         <loc>https://kidosotaro.com/work-detail.html?sheet=2025-05-05</loc>
         <lastmod>2026-01-25</lastmod>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://kidosotaro.com/work-detail.html?sheet=2025-02-15</loc>
+        <lastmod>2026-01-25</lastmod>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://kidosotaro.com/work-detail.html?sheet=2025-02-05</loc>
+        <lastmod>2026-01-25</lastmod>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://kidosotaro.com/work-detail.html?sheet=2024-10-26</loc>
+        <lastmod>2026-01-25</lastmod>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://kidosotaro.com/work-detail.html?sheet=2024-10-19</loc>
+        <lastmod>2026-01-25</lastmod>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://kidosotaro.com/work-detail.html?sheet=2024-07-20</loc>
+        <lastmod>2026-01-25</lastmod>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://kidosotaro.com/work-detail.html?sheet=2024-06-15</loc>
+        <lastmod>2026-01-25</lastmod>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://kidosotaro.com/work-detail.html?sheet=2023-11-18</loc>
+        <lastmod>2026-01-25</lastmod>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://kidosotaro.com/work-detail.html?sheet=2023-01-16</loc>
+        <lastmod>2026-01-25</lastmod>
+        <priority>0.5</priority>
     </url>
 
 </urlset>
