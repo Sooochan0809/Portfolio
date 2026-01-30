@@ -114,33 +114,90 @@ function formatMainTextHTML(text) {
   return paras.join('\n<span class="spacer"></span>\n');
 }
 
+function parseYouTube(url) {
+  try {
+    const u = new URL(url);
+
+    // ID抽出
+    let id = null;
+
+    // youtu.be/ID
+    if (u.hostname === "youtu.be") {
+      id = u.pathname.slice(1);
+    }
+
+    // youtube.com/watch?v=ID
+    if (!id && u.pathname === "/watch") {
+      id = u.searchParams.get("v");
+    }
+
+    // youtube.com/live/ID など
+    if (!id) {
+      const m = u.pathname.match(/^\/(live|embed|shorts)\/([A-Za-z0-9_-]+)/);
+      if (m) id = m[2];
+    }
+
+    if (!id) return null;
+
+    // 開始秒抽出（start優先）
+    let start = u.searchParams.get("start");
+    if (start != null) start = Number(start);
+
+    if (!start) {
+      const t = u.searchParams.get("t");
+      start = t ? parseTimeToSeconds(t) : 0;
+    }
+
+    return { id, start: start || 0 };
+  } catch {
+    return null;
+  }
+}
+
+function parseTimeToSeconds(t) {
+  // "1166", "1166s", "1m30s", "1h2m3s"
+  const s = String(t).trim();
+  if (/^\d+$/.test(s)) return Number(s);
+  if (/^\d+s$/.test(s)) return Number(s.slice(0, -1));
+
+  let sec = 0;
+  const h = s.match(/(\d+)h/);
+  const m = s.match(/(\d+)m/);
+  const se = s.match(/(\d+)s/);
+  if (h) sec += Number(h[1]) * 3600;
+  if (m) sec += Number(m[1]) * 60;
+  if (se) sec += Number(se[1]);
+  return sec;
+}
+
 function renderVideoHTML(url) {
   if (!url) return "";
 
-  const yt = url.match(
-    /(?:youtu\.be\/|youtube\.com\/watch\?v=)([A-Za-z0-9_-]+)/
-  );
+  const yt = parseYouTube(url);
   if (yt) {
-    const id = yt[1];
+    const { id, start } = yt;
+
+    const src =
+      start > 0
+        ? `https://www.youtube.com/embed/${id}?start=${start}`
+        : `https://www.youtube.com/embed/${id}`;
+
     return `
-      <iframe
-        src="https://www.youtube.com/embed/${id}"
-        title="YouTube video"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        style="width:100%;height:100%;"
-      ></iframe>
+      <div class="yt">
+        <iframe
+          src="${src}"
+          title="YouTube video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
     `.trim();
   }
 
   if (url.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) {
-    return `<video controls src="${escapeAttr(
-      url
-    )}" style="width:100%;height:100%;"></video>`;
+    return `<video controls src="${escapeAttr(url)}" style="width:100%;"></video>`;
   }
 
-  return `<a href="${escapeAttr(
-    url
-  )}" target="_blank" rel="noopener">動画を開く</a>`;
+  return `<a href="${escapeAttr(url)}" target="_blank" rel="noopener">動画を開く</a>`;
 }
