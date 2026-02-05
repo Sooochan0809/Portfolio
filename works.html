@@ -70,6 +70,11 @@
             --frame-top: 53%;
         }
 
+        /* スクロールバーを非表示 */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
         .feed {
             height: 100vh;
             overflow-y: auto;
@@ -289,44 +294,42 @@
     <div class="loading-overlay" id="loading">
         <div class="loading-logo svg anim-spin"></div>
     </div>
-    <main>
-        <header>
-            <a class="header-logo-container transition" href="index.html">
-                <img class="header-logo svg anim-spin" />
+    <header>
+        <a class="header-logo-container transition" href="index.html">
+            <img class="header-logo svg anim-spin" />
+        </a>
+        <div class="header-menu-container">
+            <a class="header-menu-text transition" href="about.html">About</a>
+            <a class="header-menu-text transition" href="works.html">Works</a>
+            <a class="header-menu-text transition" href="contact.html">Contact</a>
+            <a class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </a>
-            <div class="header-menu-container">
-                <a class="header-menu-text transition" href="about.html">About</a>
-                <a class="header-menu-text transition" href="works.html">Works</a>
-                <a class="header-menu-text transition" href="contact.html">Contact</a>
-                <a class="hamburger-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </a>
-                <div class="hamburger-menu-overlay">
-                    <div class="hamburger-menu-text-container">
-                        <a class="hamburger-menu-text transition" href="about.html">About</a>
-                        <a class="hamburger-menu-text transition" href="works.html">Works</a>
-                        <a class="hamburger-menu-text transition" href="contact.html">Contact</a>
-                    </div>
+            <div class="hamburger-menu-overlay">
+                <div class="hamburger-menu-text-container">
+                    <a class="hamburger-menu-text transition" href="about.html">About</a>
+                    <a class="hamburger-menu-text transition" href="works.html">Works</a>
+                    <a class="hamburger-menu-text transition" href="contact.html">Contact</a>
                 </div>
             </div>
-        </header>
-
-        <div class="works-menu">
-            <div class="works-summary-menu-space" id="worksMenu">
-                <div class="works-summary-menu-text is-active" data-filter="NEW">NEW</div>
-            </div>
         </div>
-        <div class="feed" id="feed"></div>
+    </header>
 
-        <div class="scroll-hint" id="scrollHint" aria-hidden="true">
-            <div class="scroll-hint-inner">
-                <div class="scroll-hint-text">スクロールできます</div>
-                <div class="scroll-hint-arrow"></div>
-            </div>
+    <div class="works-menu">
+        <div class="works-summary-menu-space" id="worksMenu">
+            <div class="works-summary-menu-text is-active" data-filter="NEW">NEW</div>
         </div>
-    </main>
+    </div>
+    <div class="feed" id="feed"></div>
+
+    <div class="scroll-hint" id="scrollHint" aria-hidden="true">
+        <div class="scroll-hint-inner">
+            <div class="scroll-hint-text">スクロールできます</div>
+            <div class="scroll-hint-arrow"></div>
+        </div>
+    </div>
 
     <script src="js/loading.js" defer></script>
     <script src="js/transition.js" defer></script>
