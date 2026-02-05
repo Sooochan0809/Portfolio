@@ -1,4 +1,10 @@
-import { fetchSheetRows, escapeHTML, escapeAttr } from "./works-data.js";
+import {
+  INDEX_SHEET_NAME,
+  fetchSheetRows,
+  escapeHTML,
+  escapeAttr,
+  parseSheetDate,
+} from "./works-data.js";
 
 (async function () {
   const container = document.getElementById("worksDetail");
@@ -82,11 +88,89 @@ import { fetchSheetRows, escapeHTML, escapeAttr } from "./works-data.js";
       }
     }
     flushSubWrap();
+
+    await setupPager(sheetName);
   } catch (e) {
     console.error(e);
-    container.innerHTML = `<p>データ取得に失敗しました（Console見て）</p>`;
+    container.innerHTML = `<p>データ取得に失敗しました。ページをリロードしてください。</p>`;
   }
 })();
+
+async function setupPager(currentSheet) {
+  const prevLink = document.querySelector("a.back-work");
+  const nextLink = document.querySelector("a.next-work");
+  if (!prevLink || !nextLink) return;
+
+  const indexRows = await fetchSheetRows(INDEX_SHEET_NAME);
+  const sheetsRaw = indexRows
+    .map((r, i) => ({
+      sheet: String(r.sheet || r.Sheet || "").trim(),
+      i,
+    }))
+    .filter((x) => x.sheet);
+
+  if (!sheetsRaw.length) return;
+
+  const sheets = sheetsRaw
+    .slice()
+    .sort((a, b) => {
+      const da = parseSheetDate(a.sheet);
+      const db = parseSheetDate(b.sheet);
+      const ta = da ? da.getTime() : -Infinity;
+      const tb = db ? db.getTime() : -Infinity;
+
+      if (da && db) return tb - ta;
+      if (da && !db) return -1;
+      if (!da && db) return 1;
+      return a.i - b.i;
+    })
+    .map((x) => x.sheet);
+
+  const cur = String(currentSheet).trim();
+  const idx = sheets.indexOf(cur);
+
+  if (idx === -1) {
+    disableLink(prevLink);
+    disableLink(nextLink);
+    return;
+  }
+
+  const prevSheet = sheets[idx - 1] || null;
+  const nextSheet = sheets[idx + 1] || null;
+
+  if (prevSheet) {
+    prevLink.href = makeSheetUrl(prevSheet);
+    enableLink(prevLink);
+  } else {
+    disableLink(prevLink);
+  }
+
+  if (nextSheet) {
+    nextLink.href = makeSheetUrl(nextSheet);
+    enableLink(nextLink);
+  } else {
+    disableLink(nextLink);
+  }
+}
+
+function makeSheetUrl(sheet) {
+  const url = new URL(location.href);
+  url.searchParams.set("sheet", sheet);
+  return url.toString();
+}
+
+function disableLink(a) {
+  a.removeAttribute("href");
+  a.setAttribute("aria-disabled", "true");
+  a.style.opacity = "0.35";
+  a.style.pointerEvents = "none";
+}
+
+function enableLink(a) {
+  a.setAttribute("aria-disabled", "false");
+  a.style.opacity = "";
+  a.style.pointerEvents = "";
+}
 
 function normalizeDriveImageUrl(url) {
   if (!url) return "";
@@ -118,20 +202,9 @@ function parseYouTube(url) {
   try {
     const u = new URL(url);
 
-    // ID抽出
     let id = null;
-
-    // youtu.be/ID
-    if (u.hostname === "youtu.be") {
-      id = u.pathname.slice(1);
-    }
-
-    // youtube.com/watch?v=ID
-    if (!id && u.pathname === "/watch") {
-      id = u.searchParams.get("v");
-    }
-
-    // youtube.com/live/ID など
+    if (u.hostname === "youtu.be") id = u.pathname.slice(1);
+    if (!id && u.pathname === "/watch") id = u.searchParams.get("v");
     if (!id) {
       const m = u.pathname.match(/^\/(live|embed|shorts)\/([A-Za-z0-9_-]+)/);
       if (m) id = m[2];
@@ -139,10 +212,8 @@ function parseYouTube(url) {
 
     if (!id) return null;
 
-    // 開始秒抽出（start優先）
     let start = u.searchParams.get("start");
     if (start != null) start = Number(start);
-
     if (!start) {
       const t = u.searchParams.get("t");
       start = t ? parseTimeToSeconds(t) : 0;
@@ -155,7 +226,6 @@ function parseYouTube(url) {
 }
 
 function parseTimeToSeconds(t) {
-  // "1166", "1166s", "1m30s", "1h2m3s"
   const s = String(t).trim();
   if (/^\d+$/.test(s)) return Number(s);
   if (/^\d+s$/.test(s)) return Number(s.slice(0, -1));
