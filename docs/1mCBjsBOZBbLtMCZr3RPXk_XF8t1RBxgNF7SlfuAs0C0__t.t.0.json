@@ -1,10 +1,10 @@
 {
-  "title": ".memoについて",
+  "title": "memoについて",
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.0",
   "offset": 0,
-  "limit": 9,
-  "total": 9,
+  "limit": 3,
+  "total": 3,
   "hasMore": false,
   "blocks": [
     {
@@ -14,47 +14,14 @@
     },
     {
       "type": "paragraph",
-      "heading": "HEADING1",
-      "text": "見出し１"
-    },
-    {
-      "type": "paragraph",
-      "heading": "HEADING2",
-      "text": "見出し２"
-    },
-    {
-      "type": "paragraph",
-      "heading": "HEADING3",
-      "text": "見出し３"
-    },
-    {
-      "type": "paragraph",
-      "heading": "HEADING4",
-      "text": "見出し４"
+      "heading": "NORMAL",
+      "text": "城戸双汰朗のメモ帳です。"
     },
     {
       "type": "paragraph",
       "heading": "NORMAL",
-      "text": "本文"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "あああ"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "あああ"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "あああ"
+      "text": "ざっくばらんに記録を貯めていければと思います。(2026/02/08)"
     }
   ],
-  "updatedAt": "2026-02-07T16:24:52.896Z"
+  "updatedAt": "2026-02-07T16:44:40.576Z"
 }
