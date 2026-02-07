@@ -3,8 +3,8 @@
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.i3n0n9cy2xxe",
   "offset": 0,
-  "limit": 18,
-  "total": 18,
+  "limit": 6,
+  "total": 6,
   "hasMore": false,
   "blocks": [
     {
@@ -14,92 +14,30 @@
     },
     {
       "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "オープンソースの文化とその歴史を下記にまとめます。"
+    },
+    {
+      "type": "paragraph",
       "heading": "HEADING1",
-      "text": "見出し１"
-    },
-    {
-      "type": "paragraph",
-      "heading": "HEADING2",
-      "text": "見出し２"
-    },
-    {
-      "type": "paragraph",
-      "heading": "HEADING3",
-      "text": "見出し３"
-    },
-    {
-      "type": "paragraph",
-      "heading": "HEADING4",
-      "text": "見出し４"
+      "text": "オープンソースとは"
     },
     {
       "type": "paragraph",
       "heading": "NORMAL",
-      "text": "本文"
+      "text": "オープンソースとは、単にソースコードへのアクセスを意味するものではなく、オープンソースソフトウェアの配布条件は、一定の基準を満たす必要がある。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING1",
+      "text": "定義がまとめられたWebサイト"
     },
     {
       "type": "listItem",
       "nesting": 0,
       "glyph": "BULLET",
-      "text": "あああ"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "あああ"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "あああ"
-    },
-    {
-      "type": "paragraph",
-      "heading": "HEADING2",
-      "text": "1.サンプルコード"
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": "document.addEventListener(\"click\", () => {"
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": "  const r = Math.floor(Math.random() * 255);"
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": "  const g = Math.floor(Math.random() * 255);"
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": "  const b = Math.floor(Math.random() * 255);"
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": ""
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": "  document.body.style.transition = \"background 0.8s ease\";"
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": "  document.body.style.background = `rgb(${r}, ${g}, ${b})`;"
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": "});"
+      "text": "https://opensource.org/osd"
     }
   ],
-  "updatedAt": "2026-02-07T16:24:52.896Z"
+  "updatedAt": "2026-02-07T16:44:40.576Z"
 }
