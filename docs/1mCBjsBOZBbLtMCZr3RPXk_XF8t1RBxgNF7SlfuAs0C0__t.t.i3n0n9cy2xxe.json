@@ -54,41 +54,39 @@
       "text": "代表的なオープンソースソフトウェア"
     },
     {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
+      "type": "paragraph",
+      "heading": "HEADING3",
       "text": "Linux（OS）"
     },
     {
       "type": "listItem",
-      "nesting": 1,
-      "glyph": "HOLLOW_BULLET",
+      "nesting": 0,
+      "glyph": "BULLET",
       "text": "開発者：Linus Torvalds"
-    },
-    {
-      "type": "listItem",
-      "nesting": 1,
-      "glyph": "HOLLOW_BULLET",
-      "text": "ソースコード：https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/"
     },
     {
       "type": "listItem",
       "nesting": 0,
       "glyph": "BULLET",
+      "text": "ソースコード：https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
       "text": "Firefox（browser）"
     },
     {
       "type": "listItem",
-      "nesting": 1,
-      "glyph": "HOLLOW_BULLET",
+      "nesting": 0,
+      "glyph": "BULLET",
       "text": "開発者：Mozilla Foundation（モジラ財団） / Mozilla Corporation"
     },
     {
       "type": "listItem",
-      "nesting": 1,
-      "glyph": "HOLLOW_BULLET",
+      "nesting": 0,
+      "glyph": "BULLET",
       "text": "ソースコード：https://hg-edge.mozilla.org/mozilla-central/file/"
     }
   ],
-  "updatedAt": "2026-02-07T16:59:05.044Z"
+  "updatedAt": "2026-02-07T17:01:30.500Z"
 }
