@@ -19,7 +19,7 @@
     },
     {
       "type": "paragraph",
-      "heading": "HEADING2",
+      "heading": "HEADING1",
       "text": "オープンソースとは"
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       "type": "paragraph",
-      "heading": "HEADING2",
+      "heading": "HEADING1",
       "text": "定義がまとめられたWebサイト"
     },
     {
@@ -50,7 +50,7 @@
     },
     {
       "type": "paragraph",
-      "heading": "HEADING2",
+      "heading": "HEADING1",
       "text": "代表的なオープンソースソフトウェア"
     },
     {
@@ -88,5 +88,5 @@
       "text": "ソースコード：https://hg-edge.mozilla.org/mozilla-central/file/"
     }
   ],
-  "updatedAt": "2026-02-07T17:01:30.500Z"
+  "updatedAt": "2026-02-07T17:05:19.710Z"
 }
