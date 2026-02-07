@@ -1,7 +1,13 @@
 {
-  "updatedAt": "2026-02-07T15:52:00.627Z",
-  "count": 2,
+  "updatedAt": "2026-02-07T15:52:08.733Z",
+  "count": 3,
   "items": [
+    {
+      "id": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0__t.i3n0n9cy2xxe",
+      "title": "マスター / タブ2",
+      "updatedAt": "2026-02-07T15:52:07.205Z",
+      "path": "docs/1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0__t.i3n0n9cy2xxe.json"
+    },
     {
       "id": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0__t.0",
       "title": "マスター / タブ1",
