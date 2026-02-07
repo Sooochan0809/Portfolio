@@ -7,19 +7,15 @@
     <meta name="robots" content="index,follow">
 
     <title>memo | 城戸双汰朗 / KidoSotaro</title>
-    <link id="canonical" rel="canonical" href="https://kidosotaro.com/work-detail.html">
     <link id="canonical" rel="canonical" href="https://kidosotaro.com/memo-detail.html">
     <script>
         (function () {
             const url = new URL(location.href);
-
-            if (url.searchParams.has("doc")) {
-                const canonicalUrl =
-                    url.origin + url.pathname + "?doc=" + encodeURIComponent(url.searchParams.get("doc"));
-                document.getElementById("canonical").setAttribute("href", canonicalUrl);
-            } else {
-                document.getElementById("canonical").setAttribute("href", url.origin + url.pathname);
-            }
+            const id = url.searchParams.get("id");
+            const canonicalUrl = id
+                ? (url.origin + url.pathname + "?id=" + encodeURIComponent(id))
+                : (url.origin + url.pathname);
+            document.getElementById("canonical").setAttribute("href", canonicalUrl);
         })();
     </script>
 
