@@ -3,8 +3,8 @@
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.i3n0n9cy2xxe",
   "offset": 0,
-  "limit": 6,
-  "total": 6,
+  "limit": 15,
+  "total": 15,
   "hasMore": false,
   "blocks": [
     {
@@ -19,17 +19,22 @@
     },
     {
       "type": "paragraph",
-      "heading": "HEADING1",
+      "heading": "HEADING2",
       "text": "オープンソースとは"
     },
     {
       "type": "paragraph",
       "heading": "NORMAL",
-      "text": "オープンソースとは、単にソースコードへのアクセスを意味するものではなく、オープンソースソフトウェアの配布条件は、一定の基準を満たす必要がある。"
+      "text": "ソフトウェアの設計図（ソースコード）が公開されていて、「誰でも読むことができる」「改造・改良できる」「条件つきで再配布できる」という仕組みを「オープンソース」と呼ぶ。"
     },
     {
       "type": "paragraph",
-      "heading": "HEADING1",
+      "heading": "NORMAL",
+      "text": "とはいえ、単にソースコードへのアクセスを意味するものではなく、オープンソースソフトウェアの配布条件は、一定の基準を満たす必要がある。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING2",
       "text": "定義がまとめられたWebサイト"
     },
     {
@@ -37,7 +42,53 @@
       "nesting": 0,
       "glyph": "BULLET",
       "text": "https://opensource.org/osd"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": ""
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING2",
+      "text": "代表的なオープンソースソフトウェア"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "Linux（OS）"
+    },
+    {
+      "type": "listItem",
+      "nesting": 1,
+      "glyph": "HOLLOW_BULLET",
+      "text": "開発者：Linus Torvalds"
+    },
+    {
+      "type": "listItem",
+      "nesting": 1,
+      "glyph": "HOLLOW_BULLET",
+      "text": "ソースコード：https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "Firefox（browser）"
+    },
+    {
+      "type": "listItem",
+      "nesting": 1,
+      "glyph": "HOLLOW_BULLET",
+      "text": "開発者：Mozilla Foundation（モジラ財団） / Mozilla Corporation"
+    },
+    {
+      "type": "listItem",
+      "nesting": 1,
+      "glyph": "HOLLOW_BULLET",
+      "text": "ソースコード：https://hg-edge.mozilla.org/mozilla-central/file/"
     }
   ],
-  "updatedAt": "2026-02-07T16:44:40.576Z"
+  "updatedAt": "2026-02-07T16:59:05.044Z"
 }
