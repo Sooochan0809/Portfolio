@@ -3,8 +3,8 @@
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.i3n0n9cy2xxe",
   "offset": 0,
-  "limit": 15,
-  "total": 15,
+  "limit": 27,
+  "total": 27,
   "hasMore": false,
   "blocks": [
     {
@@ -35,18 +35,77 @@
     {
       "type": "paragraph",
       "heading": "HEADING1",
-      "text": "定義がまとめられたWebサイト"
+      "text": "その定義について"
     },
     {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "https://opensource.org/osd"
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "以下の10の条約で定義されている。"
     },
     {
       "type": "paragraph",
       "heading": "NORMAL",
       "text": ""
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "1. Free Redistribution（自由な再配布）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "2. Source Code（ソースコード）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "3. Derived Works（派生作品）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "4. Integrity of The Author's Source Code（作者のソースコードの完全性）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "5. No Discrimination Against Persons or Groups（個人または集団に対する差別の禁止）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "6. No Discrimination Against Fields of Endeavor（活動分野に対する差別の禁止）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "7. Distribution of License（ライセンスの配布）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "8. License Must Not Be Specific to a Product（ライセンスは製品固有のものではない）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "9. License Must Not Restrict Other Software（ライセンスは他のソフトウェアを制限してはならない）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "10. License Must Be Technology-Neutral（ライセンスは技術中立でなければならない）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": ""
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "より詳しい内容：https://opensource.org/osd"
     },
     {
       "type": "paragraph",
@@ -88,5 +147,5 @@
       "text": "ソースコード：https://hg-edge.mozilla.org/mozilla-central/file/"
     }
   ],
-  "updatedAt": "2026-02-07T17:05:19.710Z"
+  "updatedAt": "2026-02-07T17:18:09.499Z"
 }
