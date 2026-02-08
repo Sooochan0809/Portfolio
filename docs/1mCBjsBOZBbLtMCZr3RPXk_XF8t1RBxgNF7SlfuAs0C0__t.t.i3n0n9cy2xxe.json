@@ -1,10 +1,10 @@
 {
-  "title": "オープンソースの歴史",
+  "title": "オープンソースについて",
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.i3n0n9cy2xxe",
   "offset": 0,
-  "limit": 82,
-  "total": 82,
+  "limit": 83,
+  "total": 83,
   "hasMore": false,
   "blocks": [
     {
@@ -61,12 +61,6 @@
       "nesting": 0,
       "glyph": "BULLET",
       "text": "https://ja.wikipedia.org/wiki/FOSS%E3%81%AE%E6%AD%B4%E5%8F%B2"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": ""
     },
     {
       "type": "paragraph",
@@ -424,7 +418,17 @@
       "type": "paragraph",
       "heading": "NORMAL",
       "text": "モバイルOS Symbian がオープンソースとして公開される（歴史的大転換）。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING1",
+      "text": "5.オープンソース以前"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "記載中..."
     }
   ],
-  "updatedAt": "2026-02-08T07:56:55.067Z"
+  "updatedAt": "2026-02-08T08:00:48.161Z"
 }
