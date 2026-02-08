@@ -3,8 +3,8 @@
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.i3n0n9cy2xxe",
   "offset": 0,
-  "limit": 84,
-  "total": 84,
+  "limit": 88,
+  "total": 88,
   "hasMore": false,
   "blocks": [
     {
@@ -61,6 +61,12 @@
       "nesting": 0,
       "glyph": "BULLET",
       "text": "https://ja.wikipedia.org/wiki/FOSS%E3%81%AE%E6%AD%B4%E5%8F%B2"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://lamp-hiroba.sakura.ne.jp/develop/article/036.html"
     },
     {
       "type": "paragraph",
@@ -316,7 +322,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING1",
-      "text": "4.オープンソースの歴史"
+      "text": "5.オープンソースの歴史"
     },
     {
       "type": "paragraph",
@@ -381,7 +387,7 @@
     {
       "type": "paragraph",
       "heading": "NORMAL",
-      "text": "FreeBSD、NetBSD、OpenBSDなどが登場。Unix系OSとして自由ソフトウェアの選択肢が増える。"
+      "text": "FreeBSD、NetBSD、OpenBSD（BSD：Berkeley Software Distribution）などが登場。Unix系OSとして自由ソフトウェアの選択肢が増える。"
     },
     {
       "type": "paragraph",
@@ -391,7 +397,7 @@
     {
       "type": "paragraph",
       "heading": "NORMAL",
-      "text": "Debianプロジェクトが Debian Social Contract と Debian Free Software Guidelines (DFSG) を策定し、自由ソフトウェアの原則を整理した。"
+      "text": "Debianプロジェクト（OS開発コミュニティ）が Debian Social Contract と Debian Free Software Guidelines (DFSG) を策定し、自由ソフトウェアの原則を整理した。"
     },
     {
       "type": "paragraph",
@@ -429,9 +435,24 @@
       "text": "モバイルOS Symbian がオープンソースとして公開される（歴史的大転換）。"
     },
     {
+      "type": "paragraph",
+      "heading": "HEADING1",
+      "text": "6.まとめ"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "オープンソースは、1950年代の研究者による自然な共有文化から始まり、商用化による囲い込みを経て、GNUプロジェクトやGPLの登場によって「自由を守る思想」として再構築された。その後、Linuxの誕生とともに実用的な基盤へと成長し、1998年に「オープンソース」という言葉が生まれることで、理念だけでなくビジネスや社会実装の文脈でも広く受け入れられるようになった。"
+    },
+    {
       "type": "blank",
       "heading": "NORMAL"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "現在では、LinuxやFirefoxのようなソフトウェアだけでなく、GitやGitHubのような分散型開発基盤がその文化を支え、世界規模の協働を可能にしている。"
     }
   ],
-  "updatedAt": "2026-02-08T09:29:39.694Z"
+  "updatedAt": "2026-02-08T12:37:27.940Z"
 }
