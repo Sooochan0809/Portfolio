@@ -10,12 +10,12 @@
     {
       "type": "paragraph",
       "heading": "TITLE",
-      "text": "オープンソースの歴史"
+      "text": "オープンソースについて"
     },
     {
       "type": "paragraph",
       "heading": "NORMAL",
-      "text": "オープンソースの文化とその歴史を下記にまとめます。"
+      "text": "オープンソースの定義や文化、その歴史を下記にまとめます。"
     },
     {
       "type": "paragraph",
@@ -43,9 +43,8 @@
       "text": "以下の10の条約で定義されている。"
     },
     {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": ""
+      "type": "blank",
+      "heading": "NORMAL"
     },
     {
       "type": "paragraph",
@@ -98,9 +97,8 @@
       "text": "10. License Must Be Technology-Neutral（ライセンスは技術中立でなければならない）"
     },
     {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": ""
+      "type": "blank",
+      "heading": "NORMAL"
     },
     {
       "type": "paragraph",
@@ -147,5 +145,5 @@
       "text": "ソースコード：https://hg-edge.mozilla.org/mozilla-central/file/"
     }
   ],
-  "updatedAt": "2026-02-07T17:18:09.499Z"
+  "updatedAt": "2026-02-08T05:36:10.393Z"
 }
