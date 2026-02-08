@@ -133,6 +133,12 @@ function renderBlocksChunk(blocks, startIndex, chunkSize, usedTitleRef, frag) {
       }
       frag.appendChild(table);
     }
+
+    if (b.type === "blank") {
+      const br = document.createElement("br");
+      frag.appendChild(br);
+      continue;
+    }
   }
 
   flushList();
