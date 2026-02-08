@@ -3,8 +3,8 @@
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.i3n0n9cy2xxe",
   "offset": 0,
-  "limit": 83,
-  "total": 83,
+  "limit": 84,
+  "total": 84,
   "hasMore": false,
   "blocks": [
     {
@@ -76,6 +76,10 @@
       "type": "paragraph",
       "heading": "NORMAL",
       "text": "とはいえ、単にソースコードへのアクセス権の自由を意味するものではなく、オープンソースソフトウェアの配布条件は、一定の基準（2. その定義）を満たす必要がある。"
+    },
+    {
+      "type": "blank",
+      "heading": "NORMAL"
     },
     {
       "type": "paragraph",
@@ -317,12 +321,17 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "1950 - 1970年代 　初期のソフトウェア共有文化"
+      "text": "1950 - 1970年代　初期のソフトウェア共有文化"
     },
     {
       "type": "paragraph",
       "heading": "NORMAL",
-      "text": "大学や研究機関ではソフトウェアのソースコードが自由に共有され、改変・再配布するのが普通だった。"
+      "text": "当時、コンピュータは超高価な研究機関用機器で、ソフトウェアはハードウェアのおまけ扱い。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "まだ「ライセンス」という概念すらなく、大学や研究機関ではソフトウェアのソースコードが自由に共有され、改変・再配布することが普通だった。"
     },
     {
       "type": "paragraph",
@@ -357,7 +366,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "1991年　Linux カーネル誕生"
+      "text": "1991年　Linux 誕生"
     },
     {
       "type": "paragraph",
@@ -420,15 +429,9 @@
       "text": "モバイルOS Symbian がオープンソースとして公開される（歴史的大転換）。"
     },
     {
-      "type": "paragraph",
-      "heading": "HEADING1",
-      "text": "5.オープンソース以前"
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": "記載中..."
+      "type": "blank",
+      "heading": "NORMAL"
     }
   ],
-  "updatedAt": "2026-02-08T08:00:48.161Z"
+  "updatedAt": "2026-02-08T09:29:39.694Z"
 }
