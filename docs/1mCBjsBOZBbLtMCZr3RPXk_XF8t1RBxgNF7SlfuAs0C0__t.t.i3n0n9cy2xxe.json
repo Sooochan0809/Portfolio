@@ -3,8 +3,8 @@
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.i3n0n9cy2xxe",
   "offset": 0,
-  "limit": 88,
-  "total": 88,
+  "limit": 87,
+  "total": 87,
   "hasMore": false,
   "blocks": [
     {
@@ -16,57 +16,6 @@
       "type": "paragraph",
       "heading": "NORMAL",
       "text": "オープンソースの定義や文化、その歴史を下記にまとめます。"
-    },
-    {
-      "type": "blank",
-      "heading": "NORMAL"
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": "参照元（ 2026/02/08 時点 ）"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "https://opensource.org/osd"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "https://qiita.com/hidy@github/items/6bb5b71e39063ec9064d"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "https://ja.wikipedia.org/wiki/Linux"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "https://ja.wikipedia.org/wiki/Mozilla_Firefox"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "https://shujisado.com/2024/01/15/freesoftware-and-opensource-history/"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "https://ja.wikipedia.org/wiki/FOSS%E3%81%AE%E6%AD%B4%E5%8F%B2"
-    },
-    {
-      "type": "listItem",
-      "nesting": 0,
-      "glyph": "BULLET",
-      "text": "https://lamp-hiroba.sakura.ne.jp/develop/article/036.html"
     },
     {
       "type": "paragraph",
@@ -452,7 +401,54 @@
       "type": "paragraph",
       "heading": "NORMAL",
       "text": "現在では、LinuxやFirefoxのようなソフトウェアだけでなく、GitやGitHubのような分散型開発基盤がその文化を支え、世界規模の協働を可能にしている。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING1",
+      "text": "6.参照（ 2026/02/08 時点 ）"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://opensource.org/osd"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://qiita.com/hidy@github/items/6bb5b71e39063ec9064d"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://ja.wikipedia.org/wiki/Linux"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://ja.wikipedia.org/wiki/Mozilla_Firefox"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://shujisado.com/2024/01/15/freesoftware-and-opensource-history/"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://ja.wikipedia.org/wiki/FOSS%E3%81%AE%E6%AD%B4%E5%8F%B2"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://lamp-hiroba.sakura.ne.jp/develop/article/036.html"
     }
   ],
-  "updatedAt": "2026-02-08T12:37:27.940Z"
+  "updatedAt": "2026-02-08T12:40:04.009Z"
 }
