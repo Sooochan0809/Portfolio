@@ -1,0 +1,42 @@
+{
+  "title": "気になった記事",
+  "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
+  "tabId": "t.p4ysbraqhp96",
+  "offset": 0,
+  "limit": 6,
+  "total": 6,
+  "hasMore": false,
+  "blocks": [
+    {
+      "type": "paragraph",
+      "heading": "TITLE",
+      "text": "気になった記事集"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "下記に個人的に気になった記事をまとめます。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "【リファクタリング】第23回 死んだコード（Dead Code）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "https://qiita.com/nozomi2025/items/06c25bdb8462f5281b81"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "廃止されたプログラミング言語"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "https://timthewebmaster.com/en/articles/history-of-dead-languages/?utm_source=chatgpt.com"
+    }
+  ],
+  "updatedAt": "2026-02-08T12:37:27.940Z"
+}
