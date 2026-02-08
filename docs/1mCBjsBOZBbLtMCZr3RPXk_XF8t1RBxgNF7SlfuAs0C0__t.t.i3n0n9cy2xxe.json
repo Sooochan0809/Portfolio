@@ -3,8 +3,8 @@
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.i3n0n9cy2xxe",
   "offset": 0,
-  "limit": 83,
-  "total": 83,
+  "limit": 82,
+  "total": 82,
   "hasMore": false,
   "blocks": [
     {
@@ -18,9 +18,13 @@
       "text": "オープンソースの定義や文化、その歴史を下記にまとめます。"
     },
     {
+      "type": "blank",
+      "heading": "NORMAL"
+    },
+    {
       "type": "paragraph",
-      "heading": "HEADING4",
-      "text": "参照元(2026/02/08 時点)"
+      "heading": "NORMAL",
+      "text": "参照元（ 2026/02/08 時点 ）"
     },
     {
       "type": "listItem",
@@ -62,7 +66,7 @@
       "type": "listItem",
       "nesting": 0,
       "glyph": "BULLET",
-      "text": "chatGPT"
+      "text": ""
     },
     {
       "type": "paragraph",
@@ -242,7 +246,7 @@
     {
       "type": "paragraph",
       "heading": "NORMAL",
-      "text": "当時、Linuxカーネルの開発には世界中の多数の開発者が参加しており、既存のバージョン管理システムでは大規模かつ高速な共同開発に対応することが難しく、商用ツールへの依存や、中央集権的な管理体制に対する課題があった。そのため..."
+      "text": "当時、Linuxカーネルの開発には世界中の多数の開発者が参加しており、既存のバージョン管理システムでは大規模かつ高速な共同開発に対応することが難しく、商用ツールへの依存や、中央集権的な管理体制に対する課題があった。そのため以下の要件を目的としてGitを設計し制作するに至った。"
     },
     {
       "type": "blank",
@@ -271,15 +275,6 @@
       "nesting": 0,
       "glyph": "BULLET",
       "text": "特定の企業に依存しないこと"
-    },
-    {
-      "type": "blank",
-      "heading": "NORMAL"
-    },
-    {
-      "type": "paragraph",
-      "heading": "NORMAL",
-      "text": "を目的としてGitを設計し制作するに至った。"
     },
     {
       "type": "blank",
@@ -328,7 +323,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "1950 - 1970年代 — 初期のソフトウェア共有文化"
+      "text": "1950 - 1970年代 　初期のソフトウェア共有文化"
     },
     {
       "type": "paragraph",
@@ -338,7 +333,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "1983 — GNUプロジェクト開始"
+      "text": "1983年　GNUプロジェクト開始"
     },
     {
       "type": "paragraph",
@@ -348,7 +343,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "1985 — Free Software Foundation（FSF）設立"
+      "text": "1985年　Free Software Foundation（FSF）設立"
     },
     {
       "type": "paragraph",
@@ -358,7 +353,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "1989 — GNU GPL 初版"
+      "text": "1989年　GNU GPL 初版"
     },
     {
       "type": "paragraph",
@@ -368,7 +363,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "1991 — Linux カーネル誕生"
+      "text": "1991年　Linux カーネル誕生"
     },
     {
       "type": "paragraph",
@@ -378,7 +373,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "1993 — BSD系が発展"
+      "text": "1993年　BSD系が発展"
     },
     {
       "type": "paragraph",
@@ -388,7 +383,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "1997 — Debian Social Contract & DFSG"
+      "text": "1997年　Debian Social Contract & DFSG"
     },
     {
       "type": "paragraph",
@@ -398,7 +393,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "1998 — 「オープンソース」という言葉の登場"
+      "text": "1998年　「オープンソース」という言葉の登場"
     },
     {
       "type": "paragraph",
@@ -413,7 +408,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "2000年代 — 普及と企業利用の広がり"
+      "text": "2000年代　普及と企業利用の広がり"
     },
     {
       "type": "paragraph",
@@ -423,7 +418,7 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "2010年 — Symbianがオープンソース化"
+      "text": "2010年　Symbianがオープンソース化"
     },
     {
       "type": "paragraph",
@@ -431,5 +426,5 @@
       "text": "モバイルOS Symbian がオープンソースとして公開される（歴史的大転換）。"
     }
   ],
-  "updatedAt": "2026-02-08T07:37:44.182Z"
+  "updatedAt": "2026-02-08T07:56:55.067Z"
 }
