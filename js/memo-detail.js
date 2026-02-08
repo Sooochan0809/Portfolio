@@ -135,7 +135,7 @@ function renderBlocksChunk(blocks, startIndex, chunkSize, usedTitleRef, frag) {
     }
 
     if (b.type === "blank") {
-      const br = document.createElement("br");
+      const br = document.createElement("span");
       frag.appendChild(br);
       continue;
     }
