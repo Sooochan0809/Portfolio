@@ -3,8 +3,8 @@
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.i3n0n9cy2xxe",
   "offset": 0,
-  "limit": 27,
-  "total": 27,
+  "limit": 83,
+  "total": 83,
   "hasMore": false,
   "blocks": [
     {
@@ -19,8 +19,55 @@
     },
     {
       "type": "paragraph",
+      "heading": "HEADING4",
+      "text": "参照元(2026/02/08 時点)"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://opensource.org/osd"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://qiita.com/hidy@github/items/6bb5b71e39063ec9064d"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://ja.wikipedia.org/wiki/Linux"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://ja.wikipedia.org/wiki/Mozilla_Firefox"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://shujisado.com/2024/01/15/freesoftware-and-opensource-history/"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "https://ja.wikipedia.org/wiki/FOSS%E3%81%AE%E6%AD%B4%E5%8F%B2"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "chatGPT"
+    },
+    {
+      "type": "paragraph",
       "heading": "HEADING1",
-      "text": "オープンソースとは"
+      "text": "1.オープンソースとは"
     },
     {
       "type": "paragraph",
@@ -30,12 +77,22 @@
     {
       "type": "paragraph",
       "heading": "NORMAL",
-      "text": "とはいえ、単にソースコードへのアクセスを意味するものではなく、オープンソースソフトウェアの配布条件は、一定の基準を満たす必要がある。"
+      "text": "とはいえ、単にソースコードへのアクセス権の自由を意味するものではなく、オープンソースソフトウェアの配布条件は、一定の基準（2. その定義）を満たす必要がある。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "近い用語にフリーソフトウェア（運動）（Free Software（movement））があるが、利用者の自由（実行・学習・改変・再配布）を重視した考え方・運動であり、哲学的・倫理的背景が強い。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "一方、オープンソース（Open Source）は、ソースコードを開いて共有・改変できるソフトウェアへの定義。実用的かつ、ビジネス的な意味が強調されることが多い。"
     },
     {
       "type": "paragraph",
       "heading": "HEADING1",
-      "text": "その定義について"
+      "text": "2.その定義について"
     },
     {
       "type": "paragraph",
@@ -108,12 +165,21 @@
     {
       "type": "paragraph",
       "heading": "HEADING1",
-      "text": "代表的なオープンソースソフトウェア"
+      "text": "3.代表的なオープンソースソフトウェア"
     },
     {
       "type": "paragraph",
       "heading": "HEADING3",
       "text": "Linux（OS）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "LinuxはUnix系オペレーティングシステムの1つとされ、スーパーコンピュータ、メインフレーム、サーバ、パーソナルコンピュータ、スマートフォンなど、幅広い種類のハードウェアで使用されている。"
+    },
+    {
+      "type": "blank",
+      "heading": "NORMAL"
     },
     {
       "type": "listItem",
@@ -130,7 +196,21 @@
     {
       "type": "paragraph",
       "heading": "HEADING3",
-      "text": "Firefox（browser）"
+      "text": "Firefox（web browser）"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "マルチプラットフォームに対応しており、Microsoft Windows、macOS、Linuxで動作する。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "スマートフォンなどのモバイルデバイス（Android / iOS）にはFirefox for Mobileが利用可能。"
+    },
+    {
+      "type": "blank",
+      "heading": "NORMAL"
     },
     {
       "type": "listItem",
@@ -143,7 +223,213 @@
       "nesting": 0,
       "glyph": "BULLET",
       "text": "ソースコード：https://hg-edge.mozilla.org/mozilla-central/file/"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING1",
+      "text": "4.オープンソースを支える技術"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "Git"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "Gitは、2005年に Linus Torvalds（Linuxの開発者）によって開発された。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "当時、Linuxカーネルの開発には世界中の多数の開発者が参加しており、既存のバージョン管理システムでは大規模かつ高速な共同開発に対応することが難しく、商用ツールへの依存や、中央集権的な管理体制に対する課題があった。そのため..."
+    },
+    {
+      "type": "blank",
+      "heading": "NORMAL"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "高速であること"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "大規模分散開発に耐えられること"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "信頼性が高いこと"
+    },
+    {
+      "type": "listItem",
+      "nesting": 0,
+      "glyph": "BULLET",
+      "text": "特定の企業に依存しないこと"
+    },
+    {
+      "type": "blank",
+      "heading": "NORMAL"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "を目的としてGitを設計し制作するに至った。"
+    },
+    {
+      "type": "blank",
+      "heading": "NORMAL"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "Gitは「中央サーバーに依存しない分散型」という特徴を持っている。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "これは、誰もが完全な履歴を持ち、対等に開発へ参加できる仕組みであり、オープンソースの思想と強く結びついている。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "Github"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "Gitの登場後、2008年に Tom Preston-Werner らによって GitHub が開発された。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "GitHubは、Gitをより使いやすくし、コードの共有や議論を促進するためのプラットフォーム（Webサイト、アプリケーション）として誕生した。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "まとめ"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "Gitがオープンソースを実現する「仕組み」だとすれば、GitHubは、それを享受する「場」。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING1",
+      "text": "4.オープンソースの歴史"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "1950 - 1970年代 — 初期のソフトウェア共有文化"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "大学や研究機関ではソフトウェアのソースコードが自由に共有され、改変・再配布するのが普通だった。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "1983 — GNUプロジェクト開始"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "Richard Stallman が完全なフリーOS「GNU」の開発を発表。ソフトウェアの自由（コピー・改変・再配布の許可）を強調。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "1985 — Free Software Foundation（FSF）設立"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "Stallmanが FSF（フリーソフトウェア財団） を設立し、自由ソフトウェア運動を組織化。GNU（グヌープロジェクト）の理念を広める。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "1989 — GNU GPL 初版"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "GNUプロジェクトの「GPL（General Public License）」が公開。コピーレフト（著作権を利用して、著作物の自由な利用・改変・再配布を保証する考え方）の概念で「自由を永続させる」ライセンスとして重要。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "1991 — Linux カーネル誕生"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "Linus Torvalds がLinuxカーネルを発表し、世界中の開発者とコミュニティが参加する巨大プロジェクトに。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "1993 — BSD系が発展"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "FreeBSD、NetBSD、OpenBSDなどが登場。Unix系OSとして自由ソフトウェアの選択肢が増える。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "1997 — Debian Social Contract & DFSG"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "Debianプロジェクトが Debian Social Contract と Debian Free Software Guidelines (DFSG) を策定し、自由ソフトウェアの原則を整理した。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "1998 — 「オープンソース」という言葉の登場"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "2月3日の VA Linux Systems での戦略会議で “Open Source” という用語が提案される。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "Open Source Initiative（OSI） が設立され、オープンソースの理念と普及を推進する組織となる。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "2000年代 — 普及と企業利用の広がり"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "オープンソースは Linux や Apache などでインフラの中心となり、企業でも採用が進む。"
+    },
+    {
+      "type": "paragraph",
+      "heading": "HEADING3",
+      "text": "2010年 — Symbianがオープンソース化"
+    },
+    {
+      "type": "paragraph",
+      "heading": "NORMAL",
+      "text": "モバイルOS Symbian がオープンソースとして公開される（歴史的大転換）。"
     }
   ],
-  "updatedAt": "2026-02-08T05:36:10.393Z"
+  "updatedAt": "2026-02-08T07:37:44.182Z"
 }
