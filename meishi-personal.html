@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow">
+
+    <title>名刺 | 城戸双汰朗 / KidoSotaro</title>
+    <link rel="canonical" href="https://kidosotaro.com/meishi-official.html">
+
+    <meta name="description" content="城戸 双汰朗(きど そうたろう) の名刺">
+    <!-- OGP設定 -->
+    <meta property="og:title" content="Meishi-official | 城戸双汰朗 / KidoSotaro">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kidosotaro.com/meishi-official.html">
+    <meta property="og:image" content="https://kidosotaro.com/img/ogp.webp">
+    <meta property="og:site_name" content="城戸 双汰朗/KidoSotaro">
+    <meta property="og:description" content="城戸 双汰朗(きど そうたろう) の名刺">
+    <meta property="og:locale" content="ja">
+
+    <!-- X(Twitter) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="memo | 城戸双汰朗 / KidoSotaro" />
+    <meta name="twitter:description" content="城戸 双汰朗(きど そうたろう) の名刺" />
+    <meta name="twitter:image" content="https://kidosotaro.com/img/ogp.webp" />
+
+    <!-- Web App (iOS) -->
+    <meta name="apple-mobile-web-app-title" content="城戸双汰朗 / KidoSotaro" />
+
+    <!-- Search Console(所有権) -->
+    <meta name="google-site-verification" content="sjE2RcUhpD_eqe9iAfIVKHvzOTge6NhxvWVJQGBf2ss" />
+
+    <!-- Google tag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KX16JC13WL"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --main: #133463;
+            --sub: #CFD6DF;
+            --accent: #0B1F3B;
+            --padding: 1rem;
+            --test: #ff000070;
+        }
+
+        body {
+            width: 100dvw;
+            height: 100dvh;
+            margin: 0;
+            padding: 2vh;
+            font-family: "Noto Serif JP", serif;
+            background-color: #fff;
+            color: var(--sub);
+
+            zoom: 1.6;
+            overflow: hidden;
+        }
+
+        main {
+            display: flex;
+            justify-content: start;
+            gap: 1rem;
+            align-items: start;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 1.55rem;
+            margin: 0;
+            line-height: 1;
+        }
+
+        p {
+            font-size: 0.36rem;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .meishi-space {
+            position: relative;
+            width: 55mm;
+            height: 91mm;
+            box-sizing: border-box;
+            padding: var(--padding);
+            background: var(--main);
+        }
+
+        .logo {
+            position: absolute;
+            width: 45%;
+            right: var(--padding);
+            top: var(--padding);
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        .detail-space {
+            position: absolute;
+            width: 50%;
+            height: auto;
+            left: var(--padding);
+            bottom: calc(var(--padding) * 1.5);
+        }
+
+        .meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.16rem;
+            letter-spacing: 0.02rem;
+            font-weight: 100;
+            margin-left: 0.04rem;
+        }
+
+        .name-block {
+            display: grid;
+            grid-template-columns: auto auto;
+            column-gap: 1.25rem;
+            margin-top: 0.6rem;
+            align-items: start;
+        }
+
+        .name-block .col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .name-block .jp {
+            letter-spacing: 0.05rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .name-block .en {
+            margin-top: 0.2rem;
+            margin-left: 0.04rem;
+            letter-spacing: 0.1rem;
+            font-weight: 250;
+            font-size: 0.45rem;
+        }
+
+        .bar {
+            height: 0.5px;
+            background: #000;
+            margin: 0.25rem 0 0.5rem 0;
+            width: 100%;
+            /* 名前の位置に合わせるため */
+            margin-left: 0.04rem;
+        }
+
+        .meta-kv .row {
+            display: grid;
+            grid-template-columns: 0.4rem 1fr;
+            column-gap: 0.6rem;
+            align-items: baseline;
+        }
+
+        .meta-kv .k {
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .meta-kv .v {
+            text-align: left;
+            min-width: 0;
+        }
+
+        @media screen and (max-width: 950px) {
+            body {
+                padding: 0;
+                zoom: 1.0;
+            }
+
+            main {
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        /* ===== PDF/印刷用 ===== */
+        @page {
+            size: 91mm 55mm;
+            margin: 0;
+        }
+
+        @media print {
+
+            /* 画面用のズーム/余白/背景を消す */
+            html,
+            body {
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 91mm !important;
+                height: 55mm !important;
+                background: transparent !important;
+                overflow: hidden !important;
+                zoom: 1 !important;
+                /* bodyの zoom:2.5 を無効化 */
+                -webkit-text-size-adjust: 100%;
+            }
+
+            /* まず全部を非表示（レイアウトからは残る） */
+            body * {
+                visibility: hidden !important;
+            }
+
+            /* 名刺だけ表示 */
+            .meishi-space,
+            .meishi-space * {
+                visibility: visible !important;
+            }
+
+            /* 名刺をページ左上に固定（ズレ防止） */
+            .meishi-space {
+                position: fixed !important;
+                left: 0 !important;
+                top: 0 !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                width: 91mm !important;
+                height: 55mm !important;
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* 印刷の色をできるだけ忠実に */
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <main>
+        <div class="meishi-space">
+            <div class="detail-space">
+                <div class="name-block">
+                    <div class="col">
+                        <h1 class="jp">城戸</h1>
+                        <p class="en">Kido</p>
+                    </div>
+
+                    <div class="col">
+                        <h1 class="jp">双汰朗</h1>
+                        <p class="en">Sotaro</p>
+                    </div>
+                </div>
+                <div class="meta">
+                    <p>エンジニア / 制作協力</p>
+                </div>
+            </div>
+        </div>
+        <div class="meishi-space">
+            <div class="logo">
+                <img src="img/iamas_logo.svg" alt="Logo">
+            </div>
+            <div class="detail-space">
+                <div class="meta meta-kv">
+                    <div class="row">
+                        <p class="k">Tel</p>
+                        <p class="v">080-2720-0933</p>
+                    </div>
+                    <div class="row">
+                        <p class="k">Web</p>
+                        <p class="v">kidosotaro.com</p>
+                    </div>
+                    <div class="row">
+                        <p class="k">Mail</p>
+                        <p class="v">skido24@iamas.ac.jp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+</body>
+
+</html>
