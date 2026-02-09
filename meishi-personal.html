@@ -45,7 +45,7 @@
             --main: #133463;
             --sub: #CFD6DF;
             --accent: #0B1F3B;
-            --padding: 1rem;
+            --padding: 4rem;
             --test: #ff000070;
         }
 
@@ -65,19 +65,20 @@
         main {
             display: flex;
             justify-content: start;
-            gap: 1rem;
             align-items: start;
+            gap: 1rem;
             min-height: 100vh;
         }
 
         h1 {
-            font-size: 1.55rem;
+            font-size: 1.75rem;
             margin: 0;
             line-height: 1;
+            letter-spacing: 0.04rem;
+            font-weight: 400;
         }
 
         p {
-            font-size: 0.36rem;
             margin: 0;
             line-height: 1;
         }
@@ -87,91 +88,74 @@
             width: 55mm;
             height: 91mm;
             box-sizing: border-box;
-            padding: var(--padding);
+            padding: var(--padding) calc(var(--padding) / 1.5) var(--padding) calc(var(--padding) / 1.5);
             background: var(--main);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top,
+        .bottom {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bottom {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .logo {
-            position: absolute;
-            width: 45%;
-            right: var(--padding);
-            top: var(--padding);
-        }
-
-        .logo img {
+            position: relative;
             width: 100%;
-            height: auto;
+            height: 100%;
+            background-color: var(--sub);
+            mask-image: url("img/qrcode.svg");
+            transform-origin: 50% 50%;
+            will-change: transform;
         }
 
-        .detail-space {
-            position: absolute;
-            width: 50%;
-            height: auto;
-            left: var(--padding);
-            bottom: calc(var(--padding) * 1.5);
+        .svg {
+            aspect-ratio: 1 / 1;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: contain;
         }
 
         .meta {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            font-size: 0.4rem;
             gap: 0.16rem;
             letter-spacing: 0.02rem;
             font-weight: 100;
-            margin-left: 0.04rem;
         }
 
-        .name-block {
-            display: grid;
-            grid-template-columns: auto auto;
-            column-gap: 1.25rem;
-            margin-top: 0.6rem;
-            align-items: start;
-        }
-
-        .name-block .col {
+        .jp-name-block {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            flex-direction: row;
+            column-gap: 1.25rem;
+            align-items: start;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
         }
 
-        .name-block .jp {
-            letter-spacing: 0.05rem;
-            font-weight: 500;
-            margin: 0;
+        .en-name-block {
+            display: flex;
+            flex-direction: row;
+            gap: 0.4rem;
         }
 
-        .name-block .en {
-            margin-top: 0.2rem;
-            margin-left: 0.04rem;
-            letter-spacing: 0.1rem;
+        .en {
+            letter-spacing: 0.02rem;
             font-weight: 250;
-            font-size: 0.45rem;
-        }
-
-        .bar {
-            height: 0.5px;
-            background: #000;
-            margin: 0.25rem 0 0.5rem 0;
-            width: 100%;
-            /* 名前の位置に合わせるため */
-            margin-left: 0.04rem;
-        }
-
-        .meta-kv .row {
-            display: grid;
-            grid-template-columns: 0.4rem 1fr;
-            column-gap: 0.6rem;
-            align-items: baseline;
-        }
-
-        .meta-kv .k {
-            text-align: left;
-            white-space: nowrap;
-        }
-
-        .meta-kv .v {
-            text-align: left;
-            min-width: 0;
+            font-size: 0.6rem;
         }
 
         @media screen and (max-width: 950px) {
@@ -244,42 +228,37 @@
 
 <body>
     <main>
+        <!-- 表 -->
         <div class="meishi-space">
-            <div class="detail-space">
-                <div class="name-block">
-                    <div class="col">
-                        <h1 class="jp">城戸</h1>
-                        <p class="en">Kido</p>
-                    </div>
-
-                    <div class="col">
-                        <h1 class="jp">双汰朗</h1>
-                        <p class="en">Sotaro</p>
-                    </div>
+            <div class="top">
+                <div class="jp-name-block">
+                    <h1>城戸</h1>
+                    <h1>双汰朗</h1>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="en-name-block">
+                    <p class="en">Kido</p>
+                    <p class="en">Sotaro</p>
                 </div>
                 <div class="meta">
                     <p>エンジニア / 制作協力</p>
                 </div>
             </div>
         </div>
+        <!-- 裏 -->
         <div class="meishi-space">
-            <div class="logo">
-                <img src="img/iamas_logo.svg" alt="Logo">
+            <div class="top">
+                <div class="logo svg"></div>
             </div>
-            <div class="detail-space">
-                <div class="meta meta-kv">
-                    <div class="row">
-                        <p class="k">Tel</p>
-                        <p class="v">080-2720-0933</p>
-                    </div>
-                    <div class="row">
-                        <p class="k">Web</p>
-                        <p class="v">kidosotaro.com</p>
-                    </div>
-                    <div class="row">
-                        <p class="k">Mail</p>
-                        <p class="v">skido24@iamas.ac.jp</p>
-                    </div>
+            <div class="bottom">
+                <div class="meta">
+                    <p style="font-weight: 500;">Tel</p>
+                    <p class="en">080-2720-0933</p>
+                </div>
+                <div class="meta">
+                    <p style="font-weight: 500;"">Mail</p>
+                    <p class=" en">skido24@iamas.ac.jp</p>
                 </div>
             </div>
         </div>
