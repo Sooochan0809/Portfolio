@@ -1,5 +1,5 @@
 {
-  "title": "タブ 4",
+  "title": "テストの記事",
   "docId": "1mCBjsBOZBbLtMCZr3RPXk_XF8t1RBxgNF7SlfuAs0C0",
   "tabId": "t.bf1sxe35gas7",
   "offset": 0,
@@ -10,7 +10,7 @@
     {
       "type": "paragraph",
       "heading": "TITLE",
-      "text": "テストの記事です。"
+      "text": "テストの記事"
     },
     {
       "type": "paragraph",
@@ -28,5 +28,5 @@
       "text": "本文です。本文です。本文です。"
     }
   ],
-  "updatedAt": "2026-02-19T08:49:21.994Z"
+  "updatedAt": "2026-02-19T08:50:47.073Z"
 }
