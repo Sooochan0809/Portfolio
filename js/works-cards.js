@@ -238,14 +238,34 @@ async function buildCard(entry, latestSheet) {
     }
 
     // 年号一覧
-    const yearsSet = new Set();
+    const yearCounts = new Map();
     for (const e of entries) {
       const dt = parseSheetDate(e.sheet);
       const yFromName = String(e.sheet).match(/\b(19|20)\d{2}\b/)?.[0] || null;
       const y = dt ? String(dt.getFullYear()) : yFromName;
-      if (y) yearsSet.add(String(y).trim());
+      if (!y) continue;
+      const key = String(y).trim();
+      yearCounts.set(key, (yearCounts.get(key) || 0) + 1);
     }
-    const years = Array.from(yearsSet).sort((a, b) => Number(b) - Number(a));
+
+    // 最新1件は NEW に表示するので、その結果年別表示が空になる年は出さない
+    if (latestSheet) {
+      const latestDt = parseSheetDate(latestSheet);
+      const latestYearFromName =
+        String(latestSheet).match(/\b(19|20)\d{2}\b/)?.[0] || null;
+      const latestYear = latestDt
+        ? String(latestDt.getFullYear())
+        : latestYearFromName;
+
+      if (latestYear && yearCounts.has(latestYear)) {
+        yearCounts.set(latestYear, Math.max(0, yearCounts.get(latestYear) - 1));
+      }
+    }
+
+    const years = Array.from(yearCounts.entries())
+      .filter(([, count]) => count > 0)
+      .map(([year]) => year)
+      .sort((a, b) => Number(b) - Number(a));
 
     // メニューに年号を追加
     ensureYearMenuButtons(years);
