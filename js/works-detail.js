@@ -6,100 +6,184 @@ import {
   parseSheetDate,
 } from "./works-data.js";
 
-(async function () {
-  const container = document.getElementById("worksDetail");
-  if (!container) return;
+const container = document.getElementById("worksDetail");
+const prevLink = document.querySelector("a.back-work");
+const nextLink = document.querySelector("a.next-work");
+const scroller = document.querySelector(".work-container");
+const canonicalLink = document.getElementById("canonical");
 
-  const params = new URLSearchParams(location.search);
-  const sheetName = params.get("sheet") || "2025-06-28";
+let sortedSheets = null;
+let currentSheet = null;
+let latestRequestId = 0;
+
+init();
+
+async function init() {
+  if (!container || !prevLink || !nextLink) return;
+
+  bindPager();
+
+  const sheetName = getSheetFromLocation() || "2025-06-28";
+  await renderSheet(sheetName, { replaceState: true, scrollToTop: false });
+}
+
+function bindPager() {
+  prevLink.addEventListener("click", handlePagerClick);
+  nextLink.addEventListener("click", handlePagerClick);
+
+  window.addEventListener("popstate", async () => {
+    const sheetName = getSheetFromLocation() || currentSheet || "2025-06-28";
+    await renderSheet(sheetName, { replaceState: true, scrollToTop: true });
+  });
+}
+
+async function handlePagerClick(e) {
+  const link = e.currentTarget;
+  if (!link?.href || link.getAttribute("aria-disabled") === "true") return;
+
+  e.preventDefault();
+
+  const url = new URL(link.href, location.href);
+  const sheetName = url.searchParams.get("sheet");
+  if (!sheetName || sheetName === currentSheet) return;
+
+  await renderSheet(sheetName, {
+    pushState: true,
+    scrollToTop: true,
+    delayAfterFetchMs: 150,
+  });
+}
+
+async function renderSheet(
+  sheetName,
+  {
+    pushState = false,
+    replaceState = false,
+    scrollToTop = true,
+    delayAfterFetchMs = 0,
+  } = {},
+) {
+  const requestId = ++latestRequestId;
+  setPagerBusy(true);
 
   try {
-    const rows = await fetchSheetRows(sheetName);
-    container.innerHTML = "";
+    const [rows, sheets] = await Promise.all([
+      fetchSheetRows(sheetName),
+      getSortedSheets(),
+    ]);
 
-    let subWrap = null;
-    const flushSubWrap = () => {
-      if (subWrap) {
-        container.appendChild(subWrap);
-        subWrap = null;
-      }
-    };
+    if (requestId !== latestRequestId) return;
 
-    for (const r of rows) {
-      const label = (r.Label || "").trim();
-      const data = (r.Data || "").trimEnd();
-      if (!label) continue;
-
-      if (label !== "sub-text") flushSubWrap();
-
-      if (label === "title") {
-        const h3 = document.createElement("h3");
-        h3.className = "title";
-        h3.textContent = data;
-        container.appendChild(h3);
-        continue;
-      }
-
-      if (label === "head") {
-        const h4 = document.createElement("h4");
-        h4.className = "head";
-        h4.textContent = data;
-        container.appendChild(h4);
-        continue;
-      }
-
-      if (label === "sub-text") {
-        if (!subWrap) {
-          subWrap = document.createElement("div");
-          subWrap.className = "sub-text-space";
-        }
-        const div = document.createElement("div");
-        div.className = "sub-text";
-        div.textContent = data;
-        subWrap.appendChild(div);
-        continue;
-      }
-
-      if (label === "main-text") {
-        const p = document.createElement("p");
-        p.className = "main-text-space";
-        p.innerHTML = formatMainTextHTML(data);
-        container.appendChild(p);
-        continue;
-      }
-
-      if (label === "video") {
-        const wrap = document.createElement("div");
-        wrap.className = "video-space";
-        wrap.innerHTML = renderVideoHTML(data);
-        container.appendChild(wrap);
-        continue;
-      }
-
-      if (label === "img") {
-        const wrap = document.createElement("div");
-        wrap.className = "img-space";
-        const img = document.createElement("img");
-        img.src = normalizeDriveImageUrl(data);
-        img.alt = "";
-        wrap.appendChild(img);
-        container.appendChild(wrap);
-        continue;
-      }
+    if (delayAfterFetchMs > 0) {
+      await wait(delayAfterFetchMs);
+      if (requestId !== latestRequestId) return;
     }
-    flushSubWrap();
 
-    await setupPager(sheetName);
+    container.innerHTML = "";
+    renderRows(rows);
+
+    currentSheet = sheetName;
+    updatePagerLinks(sheets, sheetName);
+    updateCanonical(sheetName);
+
+    const nextUrl = makeSheetUrl(sheetName);
+    if (pushState) {
+      history.pushState({ sheet: sheetName }, "", nextUrl);
+    } else if (replaceState) {
+      history.replaceState({ sheet: sheetName }, "", nextUrl);
+    }
+
+    if (scrollToTop && scroller)
+      scroller.scrollTo({ top: 0, behavior: "auto" });
   } catch (e) {
+    if (requestId !== latestRequestId) return;
     console.error(e);
     container.innerHTML = `<p>データ取得に失敗しました。ページをリロードしてください。</p>`;
+    disableLink(prevLink);
+    disableLink(nextLink);
+  } finally {
+    if (requestId === latestRequestId) {
+      setPagerBusy(false);
+    }
   }
-})();
+}
 
-async function setupPager(currentSheet) {
-  const prevLink = document.querySelector("a.back-work");
-  const nextLink = document.querySelector("a.next-work");
-  if (!prevLink || !nextLink) return;
+function renderRows(rows) {
+  let subWrap = null;
+
+  const flushSubWrap = () => {
+    if (!subWrap) return;
+    container.appendChild(subWrap);
+    subWrap = null;
+  };
+
+  for (const r of rows) {
+    const label = (r.Label || "").trim();
+    const data = (r.Data || "").trimEnd();
+    if (!label) continue;
+
+    if (label !== "sub-text") flushSubWrap();
+
+    if (label === "title") {
+      const h3 = document.createElement("h3");
+      h3.className = "title";
+      h3.textContent = data;
+      container.appendChild(h3);
+      continue;
+    }
+
+    if (label === "head") {
+      const h4 = document.createElement("h4");
+      h4.className = "head";
+      h4.textContent = data;
+      container.appendChild(h4);
+      continue;
+    }
+
+    if (label === "sub-text") {
+      if (!subWrap) {
+        subWrap = document.createElement("div");
+        subWrap.className = "sub-text-space";
+      }
+      const div = document.createElement("div");
+      div.className = "sub-text";
+      div.textContent = data;
+      subWrap.appendChild(div);
+      continue;
+    }
+
+    if (label === "main-text") {
+      const p = document.createElement("p");
+      p.className = "main-text-space";
+      p.innerHTML = formatMainTextHTML(data);
+      container.appendChild(p);
+      continue;
+    }
+
+    if (label === "video") {
+      const wrap = document.createElement("div");
+      wrap.className = "video-space";
+      wrap.innerHTML = renderVideoHTML(data);
+      container.appendChild(wrap);
+      continue;
+    }
+
+    if (label === "img") {
+      const wrap = document.createElement("div");
+      wrap.className = "img-space";
+      const img = document.createElement("img");
+      img.src = normalizeDriveImageUrl(data);
+      img.alt = "";
+      wrap.appendChild(img);
+      container.appendChild(wrap);
+    }
+  }
+
+  flushSubWrap();
+}
+
+async function getSortedSheets() {
+  if (sortedSheets) return sortedSheets;
 
   const indexRows = await fetchSheetRows(INDEX_SHEET_NAME);
   const sheetsRaw = indexRows
@@ -109,9 +193,7 @@ async function setupPager(currentSheet) {
     }))
     .filter((x) => x.sheet);
 
-  if (!sheetsRaw.length) return;
-
-  const sheets = sheetsRaw
+  sortedSheets = sheetsRaw
     .slice()
     .sort((a, b) => {
       const da = parseSheetDate(a.sheet);
@@ -126,8 +208,11 @@ async function setupPager(currentSheet) {
     })
     .map((x) => x.sheet);
 
-  const cur = String(currentSheet).trim();
-  const idx = sheets.indexOf(cur);
+  return sortedSheets;
+}
+
+function updatePagerLinks(sheets, sheetName) {
+  const idx = sheets.indexOf(String(sheetName).trim());
 
   if (idx === -1) {
     disableLink(prevLink);
@@ -153,10 +238,26 @@ async function setupPager(currentSheet) {
   }
 }
 
+function getSheetFromLocation() {
+  return new URLSearchParams(location.search).get("sheet");
+}
+
 function makeSheetUrl(sheet) {
   const url = new URL(location.href);
   url.searchParams.set("sheet", sheet);
   return url.toString();
+}
+
+function updateCanonical(sheet) {
+  if (!canonicalLink) return;
+
+  const url = new URL(location.href);
+  if (sheet) {
+    url.searchParams.set("sheet", sheet);
+  } else {
+    url.searchParams.delete("sheet");
+  }
+  canonicalLink.setAttribute("href", url.toString());
 }
 
 function disableLink(a) {
@@ -170,6 +271,30 @@ function enableLink(a) {
   a.setAttribute("aria-disabled", "false");
   a.style.opacity = "";
   a.style.pointerEvents = "";
+}
+
+function setPagerBusy(isBusy) {
+  [prevLink, nextLink].forEach((a) => {
+    if (!a) return;
+    a.dataset.busy = isBusy ? "1" : "0";
+    if (isBusy) {
+      a.style.pointerEvents = "none";
+      a.style.opacity = "0.5";
+      return;
+    }
+
+    if (a.getAttribute("aria-disabled") === "true") {
+      a.style.pointerEvents = "none";
+      a.style.opacity = "0.35";
+    } else {
+      a.style.pointerEvents = "";
+      a.style.opacity = "";
+    }
+  });
+}
+
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function normalizeDriveImageUrl(url) {

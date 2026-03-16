@@ -70,6 +70,7 @@ function bindTransitions() {
     el.dataset.transitionBound = "1";
 
     el.addEventListener("click", (e) => {
+      if (el.dataset.noTransition === "true") return;
       // 新規タブ系は止めない
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       if (el.target === "_blank") return;
@@ -84,6 +85,7 @@ function bindTransitions() {
 document.addEventListener("click", (e) => {
   const a = e.target.closest("a.transition");
   if (!a) return;
+  if (a.dataset.noTransition === "true") return;
 
   // 新規タブ系は止めない
   if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
