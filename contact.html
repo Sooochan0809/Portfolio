@@ -38,24 +38,26 @@
 
     <!-- 構造化データ -->
     <script type="application/ld+json">
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Person",
-            "@id": "https://kidosotaro.com/#person",
-            "name": "城戸 双汰朗",
-            "alternateName": ["KidoSotaro", "Kido Sotaro", "きど そうたろう"],
-            "url": "https://kidosotaro.com/"
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://kidosotaro.com/works.html#webpage",
-            "url": "https://kidosotaro.com/contact.html",
-            "name": "Contact | 城戸双汰朗 / KidoSotaro",
-            "about": { "@id": "https://kidosotaro.com/#person" }
-          }
-        ]
-    </script>
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": "https://kidosotaro.com/#person",
+              "name": "城戸 双汰朗",
+              "alternateName": ["KidoSotaro", "Kido Sotaro", "きど そうたろう"],
+              "url": "https://kidosotaro.com/"
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://kidosotaro.com/contact.html#webpage",
+              "url": "https://kidosotaro.com/contact.html",
+              "name": "Contact | 城戸双汰朗 / KidoSotaro",
+              "about": { "@id": "https://kidosotaro.com/#person" }
+            }
+          ]
+        }
+        </script>
 
     <!-- Icons -->
     <link rel="icon" href="https://kidosotaro.com/img/logo-favicon.ico" sizes="48x48">
