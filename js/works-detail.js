@@ -120,6 +120,7 @@ function renderRows(rows) {
   for (const r of rows) {
     const label = (r.Label || "").trim();
     const data = (r.Data || "").trimEnd();
+    const linkUrl = normalizeLinkUrl(r.URL || r.Url || r.url);
     if (!label) continue;
 
     if (label !== "sub-text") flushSubWrap();
@@ -174,7 +175,20 @@ function renderRows(rows) {
       const img = document.createElement("img");
       img.src = normalizeDriveImageUrl(data);
       img.alt = "";
-      wrap.appendChild(img);
+
+      if (linkUrl) {
+        const link = document.createElement("a");
+        link.className = "img-link";
+        link.href = linkUrl;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.setAttribute("aria-label", "画像のリンク先を開く");
+        link.appendChild(img);
+        wrap.appendChild(link);
+      } else {
+        wrap.appendChild(img);
+      }
+
       container.appendChild(wrap);
     }
   }
@@ -313,6 +327,16 @@ function normalizeDriveImageUrl(url) {
   if (s.includes("drive.google.com/thumbnail?id=")) return s;
 
   return s;
+}
+
+function normalizeLinkUrl(url) {
+  const s = String(url || "").trim();
+  if (!s) return "";
+
+  if (/^https?:\/\//i.test(s)) return s;
+  if (/^(\/|\.\/|\.\.\/|#)/.test(s)) return s;
+
+  return `https://${s}`;
 }
 
 function formatMainTextHTML(text) {
