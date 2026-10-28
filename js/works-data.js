@@ -1,5 +1,6 @@
 export const SPREADSHEET_ID = "16A7s1AD0VqUKTzFXYcAyOIVknTwTPSJU_OqjLm_u7XY";
 export const INDEX_SHEET_NAME = "index";
+const sheetRowsCache = new Map();
 
 // ===== CSV utils =====
 export function parseCSV(text) {
@@ -72,14 +73,23 @@ export function gvizCsvUrl(sheetName) {
 }
 
 export async function fetchSheetCSV(sheetName) {
-  const res = await fetch(gvizCsvUrl(sheetName), { cache: "no-store" });
+  const res = await fetch(gvizCsvUrl(sheetName));
   if (!res.ok) throw new Error(`fetch failed: ${sheetName} (${res.status})`);
   return (await res.text()).replace(/^\uFEFF/, "");
 }
 
-export async function fetchSheetRows(sheetName) {
-  const csv = await fetchSheetCSV(sheetName);
-  return parseCSV(csv);
+export function fetchSheetRows(sheetName) {
+  const key = String(sheetName);
+  if (!sheetRowsCache.has(key)) {
+    const request = fetchSheetCSV(key)
+      .then(parseCSV)
+      .catch((error) => {
+        sheetRowsCache.delete(key);
+        throw error;
+      });
+    sheetRowsCache.set(key, request);
+  }
+  return sheetRowsCache.get(key);
 }
 
 // ===== date / NEW logic =====

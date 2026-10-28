@@ -15,6 +15,7 @@ const canonicalLink = document.getElementById("canonical");
 let sortedSheets = null;
 let currentSheet = null;
 let latestRequestId = 0;
+const prefetchedImages = new Map();
 
 init();
 
@@ -50,7 +51,6 @@ async function handlePagerClick(e) {
   await renderSheet(sheetName, {
     pushState: true,
     scrollToTop: true,
-    delayAfterFetchMs: 150,
   });
 }
 
@@ -60,7 +60,6 @@ async function renderSheet(
     pushState = false,
     replaceState = false,
     scrollToTop = true,
-    delayAfterFetchMs = 0,
   } = {},
 ) {
   const requestId = ++latestRequestId;
@@ -73,17 +72,15 @@ async function renderSheet(
     ]);
 
     if (requestId !== latestRequestId) return;
-
-    if (delayAfterFetchMs > 0) {
-      await wait(delayAfterFetchMs);
-      if (requestId !== latestRequestId) return;
-    }
+    await preloadFirstMedia(rows, 500);
+    if (requestId !== latestRequestId) return;
 
     container.innerHTML = "";
     renderRows(rows);
 
     currentSheet = sheetName;
     updatePagerLinks(sheets, sheetName);
+    prefetchAdjacentSheets(sheets, sheetName);
     updateCanonical(sheetName);
 
     const nextUrl = makeSheetUrl(sheetName);
@@ -110,7 +107,7 @@ async function renderSheet(
 
 function renderRows(rows) {
   let subWrap = null;
-  let imageCount = 0;
+  let mediaCount = 0;
 
   const flushSubWrap = () => {
     if (!subWrap) return;
@@ -165,8 +162,9 @@ function renderRows(rows) {
     if (label === "video") {
       const wrap = document.createElement("div");
       wrap.className = "video-space";
-      wrap.innerHTML = renderVideoHTML(data);
+      wrap.innerHTML = renderVideoHTML(data, mediaCount === 0);
       container.appendChild(wrap);
+      mediaCount++;
       continue;
     }
 
@@ -176,10 +174,10 @@ function renderRows(rows) {
       const img = document.createElement("img");
       img.src = normalizeDriveImageUrl(data);
       img.alt = "";
-      img.loading = imageCount === 0 ? "eager" : "lazy";
-      img.fetchPriority = imageCount === 0 ? "high" : "low";
+      img.loading = mediaCount === 0 ? "eager" : "lazy";
+      img.fetchPriority = mediaCount === 0 ? "high" : "low";
       img.decoding = "async";
-      imageCount++;
+      mediaCount++;
 
       if (linkUrl) {
         const link = document.createElement("a");
@@ -257,6 +255,51 @@ function updatePagerLinks(sheets, sheetName) {
   }
 }
 
+function prefetchAdjacentSheets(sheets, sheetName) {
+  const index = sheets.indexOf(String(sheetName).trim());
+  if (index === -1) return;
+
+  [sheets[index - 1], sheets[index + 1]].filter(Boolean).forEach((sheet) => {
+    fetchSheetRows(sheet)
+      .then((rows) => preloadFirstMedia(rows))
+      .catch(() => {});
+  });
+}
+
+function preloadFirstMedia(rows, timeoutMs = 0) {
+  const firstMedia = rows.find((row) =>
+    ["img", "video"].includes(String(row.Label).trim())
+  );
+  if (String(firstMedia?.Label).trim() !== "img") return Promise.resolve();
+
+  const src = normalizeDriveImageUrl(firstMedia.Data);
+  if (!src) return Promise.resolve();
+
+  if (!prefetchedImages.has(src)) {
+    prefetchedImages.set(
+      src,
+      new Promise((resolve) => {
+        const img = new Image();
+        img.decoding = "async";
+        img.onload = () => {
+          const decoded = img.decode?.();
+          if (decoded) decoded.catch(() => {}).finally(resolve);
+          else resolve();
+        };
+        img.onerror = resolve;
+        img.src = src;
+      })
+    );
+  }
+
+  const ready = prefetchedImages.get(src);
+  if (!timeoutMs) return ready;
+  return Promise.race([
+    ready,
+    new Promise((resolve) => setTimeout(resolve, timeoutMs)),
+  ]);
+}
+
 function getSheetFromLocation() {
   return new URLSearchParams(location.search).get("sheet");
 }
@@ -310,10 +353,6 @@ function setPagerBusy(isBusy) {
       a.style.opacity = "";
     }
   });
-}
-
-function wait(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function normalizeDriveImageUrl(url) {
@@ -394,7 +433,7 @@ function parseTimeToSeconds(t) {
   return sec;
 }
 
-function renderVideoHTML(url) {
+function renderVideoHTML(url, isPriority = false) {
   if (!url) return "";
 
   const yt = parseYouTube(url);
@@ -411,7 +450,7 @@ function renderVideoHTML(url) {
         <iframe
           src="${src}"
           title="YouTube video"
-          loading="lazy"
+          loading="${isPriority ? "eager" : "lazy"}"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
@@ -421,7 +460,7 @@ function renderVideoHTML(url) {
   }
 
   if (url.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) {
-    return `<video controls preload="metadata" src="${escapeAttr(url)}" style="width:100%;"></video>`;
+    return `<video controls preload="${isPriority ? "metadata" : "none"}" src="${escapeAttr(url)}" style="width:100%;"></video>`;
   }
 
   return `<a href="${escapeAttr(url)}" target="_blank" rel="noopener">動画を開く</a>`;
