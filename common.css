@@ -9,6 +9,10 @@
            --expandOut: 1.0s
        }
 
+       @view-transition {
+           navigation: auto;
+       }
+
        html,
        body {
            height: 100vh;
@@ -18,6 +22,10 @@
            font-family: "Zen Old Mincho", serif;
            background: var(--main);
            color: var(--sub);
+       }
+
+       html {
+           background: #efefef;
        }
 
        /* あってもなくても */
