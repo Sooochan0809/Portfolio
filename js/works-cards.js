@@ -4,7 +4,6 @@ import {
   fetchSheetRows,
   parseSheetDate,
   summarizeWorkFromDetailRows,
-  escapeHTML,
   escapeAttr,
 } from "./works-data.js";
 
@@ -32,7 +31,7 @@ function setActiveMenu(filter) {
   menu.querySelectorAll(".works-summary-menu-text").forEach((el) => {
     el.classList.toggle(
       "is-active",
-      String(el.dataset.filter) === String(filter)
+      String(el.dataset.filter) === String(filter),
     );
   });
 }
@@ -43,13 +42,13 @@ function ensureYearMenuButtons(years) {
 
   const existing = new Set(
     Array.from(menu.querySelectorAll(".works-summary-menu-text")).map((el) =>
-      String(el.dataset.filter || "").trim()
-    )
+      String(el.dataset.filter || "").trim(),
+    ),
   );
 
   // NEWボタンの直後に年号を差し込む（NEWが無ければ末尾）
   const newBtn = menu.querySelector(
-    '.works-summary-menu-text[data-filter="NEW"]'
+    '.works-summary-menu-text[data-filter="NEW"]',
   );
   let insertPos = newBtn ? newBtn.nextSibling : null;
 
@@ -97,7 +96,7 @@ function createSection(filter) {
 
 function getCardsContainer(filter) {
   const sec = document.querySelector(
-    `.works-section[data-filter="${CSS.escape(String(filter))}"]`
+    `.works-section[data-filter="${CSS.escape(String(filter))}"]`,
   );
   if (!sec) return null;
   return sec.querySelector("[data-cards]");
@@ -122,7 +121,7 @@ function setupMenuClickScroll() {
 
     const filter = String(btn.dataset.filter || "NEW");
     const sec = document.querySelector(
-      `.works-section[data-filter="${CSS.escape(filter)}"]`
+      `.works-section[data-filter="${CSS.escape(filter)}"]`,
     );
     if (!sec) return;
 
@@ -160,7 +159,7 @@ function setupScrollSyncActiveMenu() {
     {
       root: feed,
       threshold: [0.35, 0.5, 0.65],
-    }
+    },
   );
 
   sections.forEach((sec) => io.observe(sec));
@@ -169,21 +168,20 @@ function setupScrollSyncActiveMenu() {
 
 async function buildCard(entry, latestSheet) {
   const sheet = entry.sheet;
-  const indexThumb = entry.thumb;
+  let thumb = entry.thumb;
 
-  const detailRows = await fetchSheetRows(sheet);
-  const { title, thumb: detailThumb } = summarizeWorkFromDetailRows(
-    detailRows,
-    sheet
-  );
+  if (!thumb) {
+    const detailRows = await fetchSheetRows(sheet);
+    thumb = summarizeWorkFromDetailRows(detailRows, sheet).thumb;
+  }
 
   const dt = parseSheetDate(sheet);
   const yFromName = String(sheet).match(/\b(19|20)\d{2}\b/)?.[0] || null;
   const year = dt ? String(dt.getFullYear()) : yFromName || "NEW";
   const filter = latestSheet && sheet === latestSheet ? "NEW" : year;
 
-  const thumbUrl =
-    normalizeDriveImageUrl(indexThumb || detailThumb) || "img/ogp.webp";
+  const thumbUrl = normalizeDriveImageUrl(thumb) || "img/ogp.webp";
+  const isLatest = latestSheet && sheet === latestSheet;
 
   const a = document.createElement("a");
   a.className = "works-card transition";
@@ -191,12 +189,13 @@ async function buildCard(entry, latestSheet) {
   a.href = `work-detail.html?sheet=${encodeURIComponent(sheet)}`;
   a.innerHTML = `
     <div class="works-card-img">
-      <img src="${escapeAttr(thumbUrl)}" alt="">
+      <img src="${escapeAttr(thumbUrl)}" alt="" ${
+        isLatest
+          ? 'loading="eager" fetchpriority="high"'
+          : 'loading="lazy" fetchpriority="low"'
+      } decoding="async">
     </div>
   `.trim();
-
-  // タイトルを出したければここを復活させる
-  // a.insertAdjacentHTML("beforeend", `<div class="works-card-text">${escapeHTML(title)}</div>`);
 
   return { filter, el: a };
 }
@@ -300,15 +299,23 @@ async function buildCard(entry, latestSheet) {
 
     const rest = entries.filter((e) => e !== latestEntry);
 
-    for (const entry of rest) {
-      await new Promise((r) => setTimeout(r, 0));
-      try {
-        const { filter, el } = await buildCard(entry, latestSheet);
+    const cards = await Promise.all(
+      rest.map(async (entry) => {
+        try {
+          return await buildCard(entry, latestSheet);
+        } catch (err) {
+          console.warn("カード生成スキップ:", entry.sheet, err);
+          return null;
+        }
+      }),
+    );
+
+    for (const card of cards) {
+      if (card) {
+        const { filter, el } = card;
         const box = getCardsContainer(filter);
         box?.appendChild(el);
         updateGridSingleClass(box);
-      } catch (err) {
-        console.warn("カード生成スキップ:", entry.sheet, err);
       }
     }
 

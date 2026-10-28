@@ -110,6 +110,7 @@ async function renderSheet(
 
 function renderRows(rows) {
   let subWrap = null;
+  let imageCount = 0;
 
   const flushSubWrap = () => {
     if (!subWrap) return;
@@ -175,6 +176,10 @@ function renderRows(rows) {
       const img = document.createElement("img");
       img.src = normalizeDriveImageUrl(data);
       img.alt = "";
+      img.loading = imageCount === 0 ? "eager" : "lazy";
+      img.fetchPriority = imageCount === 0 ? "high" : "low";
+      img.decoding = "async";
+      imageCount++;
 
       if (linkUrl) {
         const link = document.createElement("a");
@@ -406,6 +411,7 @@ function renderVideoHTML(url) {
         <iframe
           src="${src}"
           title="YouTube video"
+          loading="lazy"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
@@ -415,7 +421,7 @@ function renderVideoHTML(url) {
   }
 
   if (url.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) {
-    return `<video controls src="${escapeAttr(url)}" style="width:100%;"></video>`;
+    return `<video controls preload="metadata" src="${escapeAttr(url)}" style="width:100%;"></video>`;
   }
 
   return `<a href="${escapeAttr(url)}" target="_blank" rel="noopener">動画を開く</a>`;
